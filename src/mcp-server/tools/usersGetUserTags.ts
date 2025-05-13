@@ -13,6 +13,7 @@ const args = {
 export const tool$usersGetUserTags: ToolDefinition<typeof args> = {
   name: "users-get-user-tags",
   description: `Returns all tags applied to the user.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await usersGetUserTags(

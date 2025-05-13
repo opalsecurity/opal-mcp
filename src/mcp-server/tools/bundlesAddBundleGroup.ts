@@ -13,6 +13,7 @@ const args = {
 export const tool$bundlesAddBundleGroup: ToolDefinition<typeof args> = {
   name: "bundles-add-bundle-group",
   description: `Adds a group to a bundle.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await bundlesAddBundleGroup(

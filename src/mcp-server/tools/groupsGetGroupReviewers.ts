@@ -13,6 +13,7 @@ const args = {
 export const tool$groupsGetGroupReviewers: ToolDefinition<typeof args> = {
   name: "groups-get-group-reviewers",
   description: `Gets the list of owner IDs of the reviewers for a group.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsGetGroupReviewers(

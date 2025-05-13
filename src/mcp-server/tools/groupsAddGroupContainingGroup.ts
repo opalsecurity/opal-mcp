@@ -13,6 +13,7 @@ const args = {
 export const tool$groupsAddGroupContainingGroup: ToolDefinition<typeof args> = {
   name: "groups-add-group-containing-group",
   description: `Creates a new containing group.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsAddGroupContainingGroup(

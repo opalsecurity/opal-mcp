@@ -13,6 +13,7 @@ const args = {
 export const tool$groupsSetGroupOnCallSchedules: ToolDefinition<typeof args> = {
   name: "groups-set-group-on-call-schedules",
   description: `Sets the list of on call schedules attached to a group.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsSetGroupOnCallSchedules(

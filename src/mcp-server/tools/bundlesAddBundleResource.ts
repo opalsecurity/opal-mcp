@@ -13,6 +13,7 @@ const args = {
 export const tool$bundlesAddBundleResource: ToolDefinition<typeof args> = {
   name: "bundles-add-bundle-resource",
   description: `Adds a resource to a bundle.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await bundlesAddBundleResource(

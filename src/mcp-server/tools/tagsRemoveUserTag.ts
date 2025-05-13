@@ -13,6 +13,7 @@ const args = {
 export const tool$tagsRemoveUserTag: ToolDefinition<typeof args> = {
   name: "tags-remove-user-tag",
   description: `Removes a tag from a user.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await tagsRemoveUserTag(

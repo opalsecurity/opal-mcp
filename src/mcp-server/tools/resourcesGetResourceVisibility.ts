@@ -14,6 +14,7 @@ export const tool$resourcesGetResourceVisibility: ToolDefinition<typeof args> =
   {
     name: "resources-get-resource-visibility",
     description: `Gets the visibility of this resource.`,
+    scopes: ["read"],
     args,
     tool: async (client, args, ctx) => {
       const [result, apiCall] = await resourcesGetResourceVisibility(

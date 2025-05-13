@@ -15,6 +15,7 @@ export const tool$messageChannelsGetMessageChannel: ToolDefinition<
 > = {
   name: "message-channels-get-message-channel",
   description: `Gets a \`MessageChannel\` object.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await messageChannelsGetMessageChannel(

@@ -13,6 +13,7 @@ const args = {
 export const tool$groupsDeleteGroupUser: ToolDefinition<typeof args> = {
   name: "groups-delete-group-user",
   description: `Removes a user's access from this group.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsDeleteGroupUser(

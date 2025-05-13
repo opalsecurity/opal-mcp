@@ -16,6 +16,7 @@ export const tool$resourcesGetResourceMessageChannels: ToolDefinition<
   name: "resources-get-resource-message-channels",
   description:
     `Gets the list of audit message channels attached to a resource.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesGetResourceMessageChannels(

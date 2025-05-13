@@ -13,6 +13,7 @@ const args = {
 export const tool$groupsGetGroup: ToolDefinition<typeof args> = {
   name: "groups-get-group",
   description: `Returns a \`Group\` object.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsGetGroup(

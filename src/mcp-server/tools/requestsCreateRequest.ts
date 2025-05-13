@@ -13,6 +13,7 @@ const args = {
 export const tool$requestsCreateRequest: ToolDefinition<typeof args> = {
   name: "requests-create-request",
   description: `Create an access request`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await requestsCreateRequest(

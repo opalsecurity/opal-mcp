@@ -14,6 +14,7 @@ export const tool$configurationTemplatesDeleteConfigurationTemplate:
   ToolDefinition<typeof args> = {
     name: "configuration-templates-delete-configuration-template",
     description: `Deletes a configuration template.`,
+    scopes: ["write"],
     args,
     tool: async (client, args, ctx) => {
       const [result, apiCall] =

@@ -4,6 +4,8 @@ sources:
     Opal API:
         inputs:
             - location: https://app.opal.dev/openapi.yaml
+        overlays:
+            - location: mcp-overlay.yaml
         registry:
             location: registry.speakeasyapi.dev/opal/opal/opal-api
 targets:

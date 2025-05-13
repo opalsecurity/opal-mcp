@@ -14,6 +14,7 @@ export const tool$resourcesGetResourceNhis: ToolDefinition<typeof args> = {
   name: "resources-get-resource-nhis",
   description:
     `Gets the list of non-human identities with access to this resource.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesGetResourceNhis(

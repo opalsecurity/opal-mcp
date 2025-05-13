@@ -13,6 +13,7 @@ const args = {
 export const tool$bundlesGetBundleGroups: ToolDefinition<typeof args> = {
   name: "bundles-get-bundle-groups",
   description: `Returns a list of \`Group\` objects in a given bundle.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await bundlesGetBundleGroups(

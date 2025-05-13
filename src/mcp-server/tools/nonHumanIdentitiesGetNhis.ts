@@ -13,6 +13,7 @@ const args = {
 export const tool$nonHumanIdentitiesGetNhis: ToolDefinition<typeof args> = {
   name: "non-human-identities-get-nhis",
   description: `Returns a list of non-human identities for your organization.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await nonHumanIdentitiesGetNhis(

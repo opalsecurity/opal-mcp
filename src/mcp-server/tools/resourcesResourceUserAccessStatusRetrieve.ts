@@ -15,6 +15,7 @@ export const tool$resourcesResourceUserAccessStatusRetrieve: ToolDefinition<
 > = {
   name: "resources-resource-user-access-status-retrieve",
   description: `Get user's access status to a resource.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesResourceUserAccessStatusRetrieve(

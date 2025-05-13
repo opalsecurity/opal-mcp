@@ -14,6 +14,7 @@ export const tool$appsGetSyncErrors: ToolDefinition<typeof args> = {
   name: "apps-get-sync-errors",
   description:
     `Returns a list of recent sync errors that have occurred since the last successful sync.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await appsGetSyncErrors(

@@ -13,6 +13,7 @@ const args = {
 export const tool$bundlesCreateBundle: ToolDefinition<typeof args> = {
   name: "bundles-create-bundle",
   description: `Creates a bundle.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await bundlesCreateBundle(

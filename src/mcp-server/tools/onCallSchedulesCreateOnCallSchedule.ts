@@ -15,6 +15,7 @@ export const tool$onCallSchedulesCreateOnCallSchedule: ToolDefinition<
 > = {
   name: "on-call-schedules-create-on-call-schedule",
   description: `Creates a \`OnCallSchedule\` objects.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await onCallSchedulesCreateOnCallSchedule(

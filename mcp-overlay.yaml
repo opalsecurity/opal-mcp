@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: Add MCP scopes
+  version: 0.0.0
+actions:
+  - target: $.paths.*["get","head","query"]
+    update: { "x-speakeasy-mcp": { "scopes": ["read"] } }
+
+  - target: $.paths.*["post","put","delete","patch"]
+    update: { "x-speakeasy-mcp": { "scopes": ["write"] } }
+
+  # Disable deprecated group reviewer endpoints
+  - target: $.paths["/v1/groups/{group_id}/reviewers"].get
+    update: { "x-speakeasy-mcp": { "disabled": true } }
+
+  - target: $.paths["/v1/groups/{group_id}/reviewers"].put
+    update: { "x-speakeasy-mcp": { "disabled": true } }
+
+  - target: $.paths["/v1/groups/{group_id}/reviewer_stages"].get
+    update: { "x-speakeasy-mcp": { "disabled": true } }
+
+  - target: $.paths["/v1/groups/{group_id}/reviewer_stages"].put
+    update: { "x-speakeasy-mcp": { "disabled": true } }

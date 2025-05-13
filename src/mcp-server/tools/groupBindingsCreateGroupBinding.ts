@@ -14,6 +14,7 @@ export const tool$groupBindingsCreateGroupBinding: ToolDefinition<typeof args> =
   {
     name: "group-bindings-create-group-binding",
     description: `Creates a group binding.`,
+    scopes: ["write"],
     args,
     tool: async (client, args, ctx) => {
       const [result, apiCall] = await groupBindingsCreateGroupBinding(

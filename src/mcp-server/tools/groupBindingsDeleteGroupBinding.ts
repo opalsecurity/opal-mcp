@@ -14,6 +14,7 @@ export const tool$groupBindingsDeleteGroupBinding: ToolDefinition<typeof args> =
   {
     name: "group-bindings-delete-group-binding",
     description: `Deletes a group binding.`,
+    scopes: ["write"],
     args,
     tool: async (client, args, ctx) => {
       const [result, apiCall] = await groupBindingsDeleteGroupBinding(

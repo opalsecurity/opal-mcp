@@ -13,6 +13,7 @@ const args = {
 export const tool$tagsAddGroupTag: ToolDefinition<typeof args> = {
   name: "tags-add-group-tag",
   description: `Applies a tag to a group.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await tagsAddGroupTag(

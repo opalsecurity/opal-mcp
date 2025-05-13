@@ -15,6 +15,7 @@ export const tool$resourcesSetResourceReviewerStages: ToolDefinition<
 > = {
   name: "resources-set-resource-reviewer-stages",
   description: `Sets the list of reviewer stages for a resource.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesSetResourceReviewerStages(

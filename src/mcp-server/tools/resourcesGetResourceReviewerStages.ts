@@ -15,6 +15,7 @@ export const tool$resourcesGetResourceReviewerStages: ToolDefinition<
 > = {
   name: "resources-get-resource-reviewer-stages",
   description: `Gets the list reviewer stages for a resource.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesGetResourceReviewerStages(

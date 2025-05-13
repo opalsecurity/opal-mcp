@@ -13,6 +13,7 @@ const args = {
 export const tool$tagsAddUserTag: ToolDefinition<typeof args> = {
   name: "tags-add-user-tag",
   description: `Applies a tag to a user.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await tagsAddUserTag(

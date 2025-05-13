@@ -13,6 +13,7 @@ const args = {
 export const tool$groupsGetGroupReviewerStages: ToolDefinition<typeof args> = {
   name: "groups-get-group-reviewer-stages",
   description: `Gets the list of reviewer stages for a group.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsGetGroupReviewerStages(

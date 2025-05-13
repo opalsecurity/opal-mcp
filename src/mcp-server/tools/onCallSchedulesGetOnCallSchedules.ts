@@ -8,6 +8,7 @@ import { formatResult, ToolDefinition } from "../tools.js";
 export const tool$onCallSchedulesGetOnCallSchedules: ToolDefinition = {
   name: "on-call-schedules-get-on-call-schedules",
   description: `Returns a list of \`OnCallSchedule\` objects.`,
+  scopes: ["read"],
   tool: async (client, ctx) => {
     const [result, apiCall] = await onCallSchedulesGetOnCallSchedules(
       client,

@@ -13,6 +13,7 @@ const args = {
 export const tool$usersUser: ToolDefinition<typeof args> = {
   name: "users-user",
   description: `Returns a \`User\` object.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await usersUser(

@@ -13,6 +13,7 @@ const args = {
 export const tool$groupsAddGroupUser: ToolDefinition<typeof args> = {
   name: "groups-add-group-user",
   description: `Adds a user to this group.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsAddGroupUser(

@@ -9,6 +9,7 @@ export const tool$configurationTemplatesGetConfigurationTemplates:
   ToolDefinition = {
     name: "configuration-templates-get-configuration-templates",
     description: `Returns a list of \`ConfigurationTemplate\` objects.`,
+    scopes: ["read"],
     tool: async (client, ctx) => {
       const [result, apiCall] =
         await configurationTemplatesGetConfigurationTemplates(

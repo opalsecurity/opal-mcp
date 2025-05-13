@@ -14,6 +14,7 @@ export const tool$resourcesDeleteResourceNhi: ToolDefinition<typeof args> = {
   name: "resources-delete-resource-nhi",
   description:
     `Removes a non-human identity's direct access from this resource.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesDeleteResourceNhi(

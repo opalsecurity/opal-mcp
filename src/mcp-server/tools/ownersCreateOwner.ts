@@ -13,6 +13,7 @@ const args = {
 export const tool$ownersCreateOwner: ToolDefinition<typeof args> = {
   name: "owners-create-owner",
   description: `Creates an owner.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await ownersCreateOwner(

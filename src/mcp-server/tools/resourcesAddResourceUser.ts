@@ -13,6 +13,7 @@ const args = {
 export const tool$resourcesAddResourceUser: ToolDefinition<typeof args> = {
   name: "resources-add-resource-user",
   description: `Adds a user to this resource.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesAddResourceUser(

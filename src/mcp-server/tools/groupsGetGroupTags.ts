@@ -13,6 +13,7 @@ const args = {
 export const tool$groupsGetGroupTags: ToolDefinition<typeof args> = {
   name: "groups-get-group-tags",
   description: `Returns all tags applied to the group.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsGetGroupTags(

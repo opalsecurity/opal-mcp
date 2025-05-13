@@ -13,6 +13,7 @@ const args = {
 export const tool$accessRulesCreateAccessRule: ToolDefinition<typeof args> = {
   name: "access-rules-create-access-rule",
   description: `Creates a new access rule config for the given group_id.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await accessRulesCreateAccessRule(

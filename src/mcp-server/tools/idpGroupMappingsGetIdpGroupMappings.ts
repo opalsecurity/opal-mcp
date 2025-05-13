@@ -16,6 +16,7 @@ export const tool$idpGroupMappingsGetIdpGroupMappings: ToolDefinition<
   name: "idp-group-mappings-get-idp-group-mappings",
   description:
     `Returns the configured set of available \`IdpGroupMapping\` objects for an Okta app.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await idpGroupMappingsGetIdpGroupMappings(

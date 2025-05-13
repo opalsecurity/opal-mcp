@@ -13,6 +13,7 @@ const args = {
 export const tool$eventsEvents: ToolDefinition<typeof args> = {
   name: "events-events",
   description: `Returns a list of \`Event\` objects.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await eventsEvents(

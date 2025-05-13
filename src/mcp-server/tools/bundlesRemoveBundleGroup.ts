@@ -13,6 +13,7 @@ const args = {
 export const tool$bundlesRemoveBundleGroup: ToolDefinition<typeof args> = {
   name: "bundles-remove-bundle-group",
   description: `Removes a group from a bundle.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await bundlesRemoveBundleGroup(

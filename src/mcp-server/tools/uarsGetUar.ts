@@ -13,6 +13,7 @@ const args = {
 export const tool$uarsGetUar: ToolDefinition<typeof args> = {
   name: "uars-get-uar",
   description: `Retrieves a specific UAR.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await uarsGetUar(

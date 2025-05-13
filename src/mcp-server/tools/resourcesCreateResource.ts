@@ -14,6 +14,7 @@ export const tool$resourcesCreateResource: ToolDefinition<typeof args> = {
   name: "resources-create-resource",
   description:
     `Creates a resource. See [here](https://docs.opal.dev/reference/end-system-objects) for details about importing resources.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesCreateResource(

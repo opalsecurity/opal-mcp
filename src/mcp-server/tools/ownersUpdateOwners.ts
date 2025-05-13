@@ -13,6 +13,7 @@ const args = {
 export const tool$ownersUpdateOwners: ToolDefinition<typeof args> = {
   name: "owners-update-owners",
   description: `Bulk updates a list of owners.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await ownersUpdateOwners(

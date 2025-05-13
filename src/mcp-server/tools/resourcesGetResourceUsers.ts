@@ -13,6 +13,7 @@ const args = {
 export const tool$resourcesGetResourceUsers: ToolDefinition<typeof args> = {
   name: "resources-get-resource-users",
   description: `Gets the list of users for this resource.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesGetResourceUsers(

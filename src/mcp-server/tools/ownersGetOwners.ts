@@ -13,6 +13,7 @@ const args = {
 export const tool$ownersGetOwners: ToolDefinition<typeof args> = {
   name: "owners-get-owners",
   description: `Returns a list of \`Owner\` objects.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await ownersGetOwners(

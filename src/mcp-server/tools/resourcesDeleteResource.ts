@@ -13,6 +13,7 @@ const args = {
 export const tool$resourcesDeleteResource: ToolDefinition<typeof args> = {
   name: "resources-delete-resource",
   description: `Deletes a resource.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesDeleteResource(

@@ -13,6 +13,7 @@ const args = {
 export const tool$groupsGetGroupContainingGroup: ToolDefinition<typeof args> = {
   name: "groups-get-group-containing-group",
   description: `Gets a specific containing group for a group.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsGetGroupContainingGroup(

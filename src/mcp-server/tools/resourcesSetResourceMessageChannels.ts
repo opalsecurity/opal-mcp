@@ -16,6 +16,7 @@ export const tool$resourcesSetResourceMessageChannels: ToolDefinition<
   name: "resources-set-resource-message-channels",
   description:
     `Sets the list of audit message channels attached to a resource.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesSetResourceMessageChannels(

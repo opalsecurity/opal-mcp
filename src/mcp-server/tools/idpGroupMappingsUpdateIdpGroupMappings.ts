@@ -16,6 +16,7 @@ export const tool$idpGroupMappingsUpdateIdpGroupMappings: ToolDefinition<
   name: "idp-group-mappings-update-idp-group-mappings",
   description:
     `Updates the list of available \`IdpGroupMapping\` objects for an Okta app.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await idpGroupMappingsUpdateIdpGroupMappings(

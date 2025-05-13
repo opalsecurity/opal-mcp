@@ -14,6 +14,7 @@ export const tool$ownersGetOwnerUsers: ToolDefinition<typeof args> = {
   name: "owners-get-owner-users",
   description:
     `Gets the list of users for this owner, in escalation priority order if applicable.`,
+  scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await ownersGetOwnerUsers(

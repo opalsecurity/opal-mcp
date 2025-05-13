@@ -13,6 +13,7 @@ const args = {
 export const tool$groupsUpdateGroups: ToolDefinition<typeof args> = {
   name: "groups-update-groups",
   description: `Bulk updates a list of groups.`,
+  scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsUpdateGroups(
