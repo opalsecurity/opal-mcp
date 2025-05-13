@@ -411,7 +411,20 @@ run();
 
 ### [users](docs/sdks/users/README.md)
 
-* [user](docs/sdks/users/README.md#user) - Returns a `User` object.
+* [user](docs/sdks/users/README.md#user) - Retrieves detailed user information from Opal. This endpoint is designed for MCP (Mission Control Platform) integration
+to fetch user details by either user ID (UUID) or email address. The endpoint follows a strict precedence rule where
+user_id takes priority over email if both are provided.
+
+Key Implementation Notes:
+- Exactly one identifier (user_id OR email) must be provided
+- Returns a complete User object with all associated metadata
+- Suitable for user verification and profile data retrieval
+- Recommended for MCP user synchronization workflows
+
+Authentication:
+- Requires valid API authentication
+- Respects standard Opal authorization rules
+
 * [getUsers](docs/sdks/users/README.md#getusers) - Returns a list of users for your organization.
 * [getUserTags](docs/sdks/users/README.md#getusertags) - Returns all tags applied to the user.
 
@@ -543,7 +556,20 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`uarsGetUARs`](docs/sdks/uars/README.md#getuars) - Returns a list of `UAR` objects.
 - [`usersGetUsers`](docs/sdks/users/README.md#getusers) - Returns a list of users for your organization.
 - [`usersGetUserTags`](docs/sdks/users/README.md#getusertags) - Returns all tags applied to the user.
-- [`usersUser`](docs/sdks/users/README.md#user) - Returns a `User` object.
+- [`usersUser`](docs/sdks/users/README.md#user) - Retrieves detailed user information from Opal. This endpoint is designed for MCP (Mission Control Platform) integration
+to fetch user details by either user ID (UUID) or email address. The endpoint follows a strict precedence rule where
+user_id takes priority over email if both are provided.
+
+Key Implementation Notes:
+- Exactly one identifier (user_id OR email) must be provided
+- Returns a complete User object with all associated metadata
+- Suitable for user verification and profile data retrieval
+- Recommended for MCP user synchronization workflows
+
+Authentication:
+- Requires valid API authentication
+- Respects standard Opal authorization rules
+
 - ~~[`groupsGetGroupReviewers`](docs/sdks/groups/README.md#getgroupreviewers)~~ - Gets the list of owner IDs of the reviewers for a group. :warning: **Deprecated**
 - ~~[`groupsGetGroupReviewerStages`](docs/sdks/groups/README.md#getgroupreviewerstages)~~ - Gets the list of reviewer stages for a group. :warning: **Deprecated**
 - ~~[`groupsSetGroupReviewers`](docs/sdks/groups/README.md#setgroupreviewers)~~ - Sets the list of reviewers for a group. :warning: **Deprecated**
