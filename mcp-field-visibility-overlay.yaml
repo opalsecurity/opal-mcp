@@ -4,18 +4,26 @@ info:
   title: Hide irrelevant fields
   version: 0.0.0
 actions:
-  - target: "#/components/schemas/AddGroupUserRequest"
-    update:
-      hideFields: ["durationMinutes", "accessLevelRemoteId"]
+  - target: "#/components/schemas/AddGroupUserRequest/properties/durationMinutes"
+    remove: true
+  - target: "#/components/schemas/AddGroupUserRequest/properties/accessLevelRemoteId"
+    remove: true
 
-  - target: "#/components/schemas/AddResourceUserRequest"
-    update:
-      hideFields: ["durationMinutes", "accessLevelRemoteId"]
+  - target: "#/components/schemas/AddResourceUserRequest/properties/durationMinutes"
+    remove: true
+  - target: "#/components/schemas/AddResourceUserRequest/properties/accessLevelRemoteId"
+    remove: true
 
-  - target: "#/components/schemas/Resource"
-    update:
-      hideFields: ["remoteInfo", "resourceType", "resourceTypeId"]
+  - target: "#/components/schemas/Resource/properties/remoteInfo"
+    remove: true
+  - target: "#/components/schemas/Resource/properties/resourceType"
+    remove: true
+  - target: "#/components/schemas/Resource/properties/resourceTypeId"
+    remove: true
 
-  - target: "#/components/schemas/Group"
-    update:
-      hideFields: ["remoteInfo", "groupType", "groupTypeId"]
+  - target: "#/components/schemas/Group/properties/remoteInfo"
+    remove: true
+  - target: "#/components/schemas/Group/properties/groupType"
+    remove: true
+  - target: "#/components/schemas/Group/properties/groupTypeId"
+    remove: true
