@@ -1,0 +1,18 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    Opal API:
+        inputs:
+            - location: https://app.opal.dev/openapi.yaml
+        registry:
+            location: registry.speakeasyapi.dev/opal/opal/opal-api
+targets:
+    opal-mcp:
+        target: typescript
+        source: Opal API
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/opal/opal/opal-api-typescript-code-samples
+            labelOverride:
+                fixedValue: Typescript (SDK)
+            blocking: false

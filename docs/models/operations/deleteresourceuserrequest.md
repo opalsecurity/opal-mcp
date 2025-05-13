@@ -1,0 +1,21 @@
+# DeleteResourceUserRequest
+
+## Example Usage
+
+```typescript
+import { DeleteResourceUserRequest } from "opal-mcp/models/operations";
+
+let value: DeleteResourceUserRequest = {
+  resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+  userId: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06",
+  accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                    | Type                                                                                                                                                     | Required                                                                                                                                                 | Description                                                                                                                                              | Example                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `resourceId`                                                                                                                                             | *string*                                                                                                                                                 | :heavy_check_mark:                                                                                                                                       | The ID of the resource.                                                                                                                                  | 4baf8423-db0a-4037-a4cf-f79c60cb67a5                                                                                                                     |
+| `userId`                                                                                                                                                 | *string*                                                                                                                                                 | :heavy_check_mark:                                                                                                                                       | The ID of a user to remove from this resource.                                                                                                           | f92aa855-cea9-4814-b9d8-f2a60d3e4a06                                                                                                                     |
+| `accessLevelRemoteId`                                                                                                                                    | *string*                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                       | The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed. | arn:aws:iam::590304332660:role/AdministratorAccess                                                                                                       |

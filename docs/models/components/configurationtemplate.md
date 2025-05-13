@@ -1,0 +1,55 @@
+# ConfigurationTemplate
+
+# Configuration Template Object
+### Description
+The `ConfigurationTemplate` object is used to represent a configuration template.
+
+### Usage Example
+Returned from the `GET Configuration Templates` endpoint.
+
+## Example Usage
+
+```typescript
+import { ConfigurationTemplate } from "opal-mcp/models/components";
+
+let value: ConfigurationTemplate = {
+  configurationTemplateId: "7c86c85d-0651-43e2-a748-d69d658418e8",
+  name: "Prod AWS Template",
+  adminOwnerId: "7c86c85d-0651-43e2-a748-d69d658418e8",
+  visibility: {
+    visibility: "GLOBAL",
+  },
+  linkedAuditMessageChannelIds: [
+    "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    "37cb7e41-12ba-46da-92ff-030abe0450b2",
+  ],
+  requestConfigurationId: "7c86c85d-0651-43e2-a748-d69d658418e8",
+  memberOncallScheduleIds: [
+    "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    "37cb7e41-12ba-46da-92ff-030abe0450b2",
+  ],
+  breakGlassUserIds: [
+    "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    "37cb7e41-12ba-46da-92ff-030abe0450b2",
+  ],
+  requireMfaToApprove: false,
+  requireMfaToConnect: false,
+};
+```
+
+## Fields
+
+| Field                                                                                                                                    | Type                                                                                                                                     | Required                                                                                                                                 | Description                                                                                                                              | Example                                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `configurationTemplateId`                                                                                                                | *string*                                                                                                                                 | :heavy_minus_sign:                                                                                                                       | The ID of the configuration template.                                                                                                    | 7c86c85d-0651-43e2-a748-d69d658418e8                                                                                                     |
+| `name`                                                                                                                                   | *string*                                                                                                                                 | :heavy_minus_sign:                                                                                                                       | The name of the configuration template.                                                                                                  | Prod AWS Template                                                                                                                        |
+| `adminOwnerId`                                                                                                                           | *string*                                                                                                                                 | :heavy_minus_sign:                                                                                                                       | The ID of the owner of the configuration template.                                                                                       | 7c86c85d-0651-43e2-a748-d69d658418e8                                                                                                     |
+| `visibility`                                                                                                                             | [components.VisibilityInfo](../../models/components/visibilityinfo.md)                                                                   | :heavy_minus_sign:                                                                                                                       | Visibility infomation of an entity.                                                                                                      | {<br/>"visibility": "LIMITED",<br/>"visibility_group_ids": [<br/>"7870617d-e72a-47f5-a84c-693817ab4567",<br/>"1520617d-e72a-47f5-a84c-693817ab48ad2"<br/>]<br/>} |
+| `linkedAuditMessageChannelIds`                                                                                                           | *string*[]                                                                                                                               | :heavy_minus_sign:                                                                                                                       | The IDs of the audit message channels linked to the configuration template.                                                              | [<br/>"37cb7e41-12ba-46da-92ff-030abe0450b1",<br/>"37cb7e41-12ba-46da-92ff-030abe0450b2"<br/>]                                           |
+| `requestConfigurationId`                                                                                                                 | *string*                                                                                                                                 | :heavy_minus_sign:                                                                                                                       | The ID of the request configuration linked to the configuration template.                                                                | 7c86c85d-0651-43e2-a748-d69d658418e8                                                                                                     |
+| `memberOncallScheduleIds`                                                                                                                | *string*[]                                                                                                                               | :heavy_minus_sign:                                                                                                                       | The IDs of the on-call schedules linked to the configuration template.                                                                   | [<br/>"37cb7e41-12ba-46da-92ff-030abe0450b1",<br/>"37cb7e41-12ba-46da-92ff-030abe0450b2"<br/>]                                           |
+| `breakGlassUserIds`                                                                                                                      | *string*[]                                                                                                                               | :heavy_minus_sign:                                                                                                                       | The IDs of the break glass users linked to the configuration template.                                                                   | [<br/>"37cb7e41-12ba-46da-92ff-030abe0450b1",<br/>"37cb7e41-12ba-46da-92ff-030abe0450b2"<br/>]                                           |
+| `requireMfaToApprove`                                                                                                                    | *boolean*                                                                                                                                | :heavy_minus_sign:                                                                                                                       | A bool representing whether or not to require MFA for reviewers to approve requests for this configuration template.                     | false                                                                                                                                    |
+| `requireMfaToConnect`                                                                                                                    | *boolean*                                                                                                                                | :heavy_minus_sign:                                                                                                                       | A bool representing whether or not to require MFA to connect to resources associated with this configuration template.                   | false                                                                                                                                    |
+| `ticketPropagation`                                                                                                                      | [components.TicketPropagationConfiguration](../../models/components/ticketpropagationconfiguration.md)                                   | :heavy_minus_sign:                                                                                                                       | Configuration for ticket propagation, when enabled, a ticket will be created for access changes related to the users in this resource.   |                                                                                                                                          |
+| `customRequestNotification`                                                                                                              | *string*                                                                                                                                 | :heavy_minus_sign:                                                                                                                       | Custom request notification sent upon request approval for this configuration template.                                                  | Check your email to register your account.                                                                                               |

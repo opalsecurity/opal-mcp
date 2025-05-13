@@ -1,0 +1,17 @@
+# PropagationStatusEnum
+
+The status of whether the user has been synced to the group or resource in the remote system.
+
+## Example Usage
+
+```typescript
+import { PropagationStatusEnum } from "opal-mcp/models/components";
+
+let value: PropagationStatusEnum = "SUCCESS";
+```
+
+## Values
+
+```typescript
+"SUCCESS" | "ERR_REMOTE_INTERNAL_ERROR" | "ERR_REMOTE_USER_NOT_FOUND" | "ERR_REMOTE_USER_NOT_LINKED" | "ERR_REMOTE_RESOURCE_NOT_FOUND" | "ERR_REMOTE_THROTTLE" | "ERR_NOT_AUTHORIZED_TO_QUERY_RESOURCE" | "ERR_REMOTE_PROVISIONING_VIA_IDP_FAILED" | "ERR_IDP_EMAIL_UPDATE_CONFLICT" | "ERR_TIMEOUT" | "ERR_UNKNOWN" | "ERR_OPAL_INTERNAL_ERROR" | "ERR_ORG_READ_ONLY" | "ERR_OPERATION_UNSUPPORTED" | "PENDING" | "PENDING_MANUAL_PROPAGATION" | "PENDING_TICKET_CREATION" | "ERR_TICKET_CREATION_SKIPPED" | "ERR_DRY_RUN_MODE_ENABLED" | "ERR_HR_IDP_PROVIDER_NOT_LINKED" | "ERR_REMOTE_UNRECOVERABLE_ERROR"
+```
