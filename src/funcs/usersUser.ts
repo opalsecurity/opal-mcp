@@ -25,7 +25,19 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Returns a `User` object.
+ * Retrieves detailed user information from Opal. This endpoint is designed for MCP (Mission Control Platform) integration
+ * to fetch user details by either user ID (UUID) or email address. The endpoint follows a strict precedence rule where
+ * user_id takes priority over email if both are provided.
+ *
+ * Key Implementation Notes:
+ * - Exactly one identifier (user_id OR email) must be provided
+ * - Returns a complete User object with all associated metadata
+ * - Suitable for user verification and profile data retrieval
+ * - Recommended for MCP user synchronization workflows
+ *
+ * Authentication:
+ * - Requires valid API authentication
+ * - Respects standard Opal authorization rules
  */
 export function usersUser(
   client: OpalMcpCore,

@@ -1,0 +1,21 @@
+openapi: 3.1.0
+overlay: 1.0.0
+info:
+  title: Hide irrelevant fields
+  version: 0.0.0
+actions:
+  - target: "#/components/schemas/AddGroupUserRequest"
+    update:
+      hideFields: ["durationMinutes", "accessLevelRemoteId"]
+
+  - target: "#/components/schemas/AddResourceUserRequest"
+    update:
+      hideFields: ["durationMinutes", "accessLevelRemoteId"]
+
+  - target: "#/components/schemas/Resource"
+    update:
+      hideFields: ["remoteInfo", "resourceType", "resourceTypeId"]
+
+  - target: "#/components/schemas/Group"
+    update:
+      hideFields: ["remoteInfo", "groupType", "groupTypeId"]

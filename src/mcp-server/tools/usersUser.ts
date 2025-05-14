@@ -12,7 +12,21 @@ const args = {
 
 export const tool$usersUser: ToolDefinition<typeof args> = {
   name: "users-user",
-  description: `Returns a \`User\` object.`,
+  description:
+    `Retrieves detailed user information from Opal. This endpoint is designed for MCP (Mission Control Platform) integration
+to fetch user details by either user ID (UUID) or email address. The endpoint follows a strict precedence rule where
+user_id takes priority over email if both are provided.
+
+Key Implementation Notes:
+- Exactly one identifier (user_id OR email) must be provided
+- Returns a complete User object with all associated metadata
+- Suitable for user verification and profile data retrieval
+- Recommended for MCP user synchronization workflows
+
+Authentication:
+- Requires valid API authentication
+- Respects standard Opal authorization rules
+`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
