@@ -18,7 +18,11 @@ actions:
     update: { "x-speakeasy-mcp": { "disabled": true } }
 
   - target: $.paths["/v1/groups/{group_id}/reviewer_stages"].get
-    update: { "x-speakeasy-mcp": { "disabled": true } }
+    remove: true
 
   - target: $.paths["/v1/groups/{group_id}/reviewer_stages"].put
-    update: { "x-speakeasy-mcp": { "disabled": true } }
+    remove: true
+
+  # Disable the requests endpoint in favor of the relay version
+  - target: $.paths["/v1/requests"].get
+    remove: true

@@ -25,27 +25,15 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Retrieves detailed user information from Opal. This endpoint is designed to fetch user details by
- * either user ID (UUID) or email address. The endpoint follows a strict precedence rule where
- * user_id takes priority over email if both are provided.
- *
- * Key Implementation Notes:
- * - Exactly one identifier (user_id OR email) must be provided
- * - Returns a complete User object with all associated metadata
- * - Suitable for user verification and profile data retrieval
- * - Recommended for MCP user synchronization workflows
- *
- * Authentication:
- * - Requires valid API authentication
- * - Respects standard Opal authorization rules
+ * Returns a paginated list of requests using Relay-style cursor pagination.
  */
-export function usersUser(
+export function requestsGetRequestsRelay(
   client: OpalMcpCore,
-  request: operations.UserRequest,
+  request: operations.GetRequestsRelayRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    components.User,
+    components.RequestConnection,
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -64,12 +52,12 @@ export function usersUser(
 
 async function $do(
   client: OpalMcpCore,
-  request: operations.UserRequest,
+  request: operations.GetRequestsRelayRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      components.User,
+      components.RequestConnection,
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -83,7 +71,7 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.UserRequest$outboundSchema.parse(value),
+    (value) => operations.GetRequestsRelayRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -92,11 +80,16 @@ async function $do(
   const payload = parsed.value;
   const body = null;
 
-  const path = pathToFunc("/user")();
+  const path = pathToFunc("/requests/relay")();
 
   const query = encodeFormQuery({
-    "email": payload.email,
-    "user_id": payload.user_id,
+    "after": payload.after,
+    "before": payload.before,
+    "first": payload.first,
+    "from": payload.from,
+    "last": payload.last,
+    "status": payload.status,
+    "to": payload.to,
   });
 
   const headers = new Headers(compactMap({
@@ -109,7 +102,7 @@ async function $do(
 
   const context = {
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "user",
+    operationID: "getRequestsRelay",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -148,7 +141,7 @@ async function $do(
   const response = doResult.value;
 
   const [result] = await M.match<
-    components.User,
+    components.RequestConnection,
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -157,7 +150,7 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, components.User$inboundSchema),
+    M.json(200, components.RequestConnection$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response);

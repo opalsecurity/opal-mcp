@@ -3,14 +3,13 @@
  */
 
 import { OpalMcpCore } from "../core.js";
-import { encodeFormQuery } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import { APIError } from "../models/errors/apierror.js";
 import {
   ConnectionError,
@@ -25,27 +24,15 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Retrieves detailed user information from Opal. This endpoint is designed to fetch user details by
- * either user ID (UUID) or email address. The endpoint follows a strict precedence rule where
- * user_id takes priority over email if both are provided.
- *
- * Key Implementation Notes:
- * - Exactly one identifier (user_id OR email) must be provided
- * - Returns a complete User object with all associated metadata
- * - Suitable for user verification and profile data retrieval
- * - Recommended for MCP user synchronization workflows
- *
- * Authentication:
- * - Requires valid API authentication
- * - Respects standard Opal authorization rules
+ * Approve an access request
  */
-export function usersUser(
+export function requestsApproveRequest(
   client: OpalMcpCore,
-  request: operations.UserRequest,
+  request: operations.ApproveRequestRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    components.User,
+    operations.ApproveRequestResponse,
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -64,12 +51,12 @@ export function usersUser(
 
 async function $do(
   client: OpalMcpCore,
-  request: operations.UserRequest,
+  request: operations.ApproveRequestRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      components.User,
+      operations.ApproveRequestResponse,
       | APIError
       | SDKValidationError
       | UnexpectedClientError
@@ -83,23 +70,26 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.UserRequest$outboundSchema.parse(value),
+    (value) => operations.ApproveRequestRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload.RequestBody, { explode: true });
 
-  const path = pathToFunc("/user")();
+  const pathParams = {
+    id: encodeSimple("id", payload.id, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+  };
 
-  const query = encodeFormQuery({
-    "email": payload.email,
-    "user_id": payload.user_id,
-  });
+  const path = pathToFunc("/requests/{id}/approve")(pathParams);
 
   const headers = new Headers(compactMap({
+    "Content-Type": "application/json",
     Accept: "application/json",
   }));
 
@@ -109,7 +99,7 @@ async function $do(
 
   const context = {
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "user",
+    operationID: "approveRequest",
     oAuth2Scopes: [],
 
     resolvedSecurity: requestSecurity,
@@ -123,11 +113,10 @@ async function $do(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "GET",
+    method: "POST",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
-    query: query,
     body: body,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
@@ -148,7 +137,7 @@ async function $do(
   const response = doResult.value;
 
   const [result] = await M.match<
-    components.User,
+    operations.ApproveRequestResponse,
     | APIError
     | SDKValidationError
     | UnexpectedClientError
@@ -157,7 +146,7 @@ async function $do(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, components.User$inboundSchema),
+    M.json(200, operations.ApproveRequestResponse$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response);

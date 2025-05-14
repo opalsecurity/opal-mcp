@@ -86,8 +86,10 @@ import { tool$ownersGetOwners } from "./tools/ownersGetOwners.js";
 import { tool$ownersGetOwnerUsers } from "./tools/ownersGetOwnerUsers.js";
 import { tool$ownersSetOwnerUsers } from "./tools/ownersSetOwnerUsers.js";
 import { tool$ownersUpdateOwners } from "./tools/ownersUpdateOwners.js";
+import { tool$requestsApproveRequest } from "./tools/requestsApproveRequest.js";
 import { tool$requestsCreateRequest } from "./tools/requestsCreateRequest.js";
 import { tool$requestsGetRequests } from "./tools/requestsGetRequests.js";
+import { tool$requestsGetRequestsRelay } from "./tools/requestsGetRequestsRelay.js";
 import { tool$resourcesAddResourceNhi } from "./tools/resourcesAddResourceNhi.js";
 import { tool$resourcesAddResourceUser } from "./tools/resourcesAddResourceUser.js";
 import { tool$resourcesCreateResource } from "./tools/resourcesCreateResource.js";
@@ -140,7 +142,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "OpalMcp",
-    version: "0.0.4",
+    version: "0.0.5",
   });
 
   const client = new OpalMcpCore({
@@ -235,6 +237,8 @@ export function createMCPServer(deps: {
   tool(tool$ownersSetOwnerUsers);
   tool(tool$requestsGetRequests);
   tool(tool$requestsCreateRequest);
+  tool(tool$requestsGetRequestsRelay);
+  tool(tool$requestsApproveRequest);
   tool(tool$resourcesGetResources);
   tool(tool$resourcesUpdateResources);
   tool(tool$resourcesCreateResource);

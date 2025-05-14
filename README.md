@@ -113,6 +113,13 @@ Opal API: The Opal API is a RESTful API that allows you to interact with the Opa
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
+* [Opal MCP (Management Control Plane)](#opal-mcp-management-control-plane)
+  * [Architecture Overview](#architecture-overview)
+  * [OpenAPI to SDK Generation](#openapi-to-sdk-generation)
+  * [Using the Generated SDK](#using-the-generated-sdk)
+  * [Development](#development)
+  * [Contributing](#contributing)
+  * [Documentation](#documentation)
 * [opal-mcp](#opal-mcp)
   * [SDK Installation](#sdk-installation)
   * [Requirements](#requirements)
@@ -125,7 +132,7 @@ Opal API: The Opal API is a RESTful API that allows you to interact with the Opa
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
-* [Development](#development)
+* [Development](#development-1)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
 
@@ -134,34 +141,30 @@ Opal API: The Opal API is a RESTful API that allows you to interact with the Opa
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
-> [!TIP]
-> To finish publishing your SDK to npm and others you must [run your first generation action](https://www.speakeasy.com/docs/github-setup#step-by-step-guide).
-
-
 The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
 
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add opal-mcp
 ```
 
 ### PNPM
 
 ```bash
-pnpm add <UNSET>
+pnpm add opal-mcp
 ```
 
 ### Bun
 
 ```bash
-bun add <UNSET>
+bun add opal-mcp
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET> zod
+yarn add opal-mcp zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -448,6 +451,8 @@ run();
 
 * [getRequests](docs/sdks/requests/README.md#getrequests) - Returns a list of requests for your organization that is visible by the admin.
 * [createRequest](docs/sdks/requests/README.md#createrequest) - Create an access request
+* [getRequestsRelay](docs/sdks/requests/README.md#getrequestsrelay) - Returns a paginated list of requests using Relay-style cursor pagination.
+* [approveRequest](docs/sdks/requests/README.md#approverequest) - Approve an access request
 
 ### [resources](docs/sdks/resources/README.md)
 
@@ -501,8 +506,8 @@ run();
 
 ### [users](docs/sdks/users/README.md)
 
-* [user](docs/sdks/users/README.md#user) - Retrieves detailed user information from Opal. This endpoint is designed for MCP (Mission Control Platform) integration
-to fetch user details by either user ID (UUID) or email address. The endpoint follows a strict precedence rule where
+* [user](docs/sdks/users/README.md#user) - Retrieves detailed user information from Opal. This endpoint is designed to fetch user details by
+either user ID (UUID) or email address. The endpoint follows a strict precedence rule where
 user_id takes priority over email if both are provided.
 
 Key Implementation Notes:
@@ -605,8 +610,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`ownersGetOwnerUsers`](docs/sdks/owners/README.md#getownerusers) - Gets the list of users for this owner, in escalation priority order if applicable.
 - [`ownersSetOwnerUsers`](docs/sdks/owners/README.md#setownerusers) - Sets the list of users for this owner. If escalation is enabled, the order of this list is the escalation priority order of the users. If the owner has a source group, adding or removing users from this list won't be possible.
 - [`ownersUpdateOwners`](docs/sdks/owners/README.md#updateowners) - Bulk updates a list of owners.
+- [`requestsApproveRequest`](docs/sdks/requests/README.md#approverequest) - Approve an access request
 - [`requestsCreateRequest`](docs/sdks/requests/README.md#createrequest) - Create an access request
 - [`requestsGetRequests`](docs/sdks/requests/README.md#getrequests) - Returns a list of requests for your organization that is visible by the admin.
+- [`requestsGetRequestsRelay`](docs/sdks/requests/README.md#getrequestsrelay) - Returns a paginated list of requests using Relay-style cursor pagination.
 - [`resourcesAddResourceNhi`](docs/sdks/resources/README.md#addresourcenhi) - Gives a non-human identity access to this resource.
 - [`resourcesAddResourceUser`](docs/sdks/resources/README.md#addresourceuser) - Adds a user to this resource.
 - [`resourcesCreateResource`](docs/sdks/resources/README.md#createresource) - Creates a resource. See [here](https://docs.opal.dev/reference/end-system-objects) for details about importing resources.
@@ -646,8 +653,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`uarsGetUARs`](docs/sdks/uars/README.md#getuars) - Returns a list of `UAR` objects.
 - [`usersGetUsers`](docs/sdks/users/README.md#getusers) - Returns a list of users for your organization.
 - [`usersGetUserTags`](docs/sdks/users/README.md#getusertags) - Returns all tags applied to the user.
-- [`usersUser`](docs/sdks/users/README.md#user) - Retrieves detailed user information from Opal. This endpoint is designed for MCP (Mission Control Platform) integration
-to fetch user details by either user ID (UUID) or email address. The endpoint follows a strict precedence rule where
+- [`usersUser`](docs/sdks/users/README.md#user) - Retrieves detailed user information from Opal. This endpoint is designed to fetch user details by
+either user ID (UUID) or email address. The endpoint follows a strict precedence rule where
 user_id takes priority over email if both are provided.
 
 Key Implementation Notes:

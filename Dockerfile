@@ -37,4 +37,4 @@ COPY --from=builder /app/bin ./bin
 COPY --from=builder /app/node_modules ./node_modules
 
 # Set entrypoint
-ENTRYPOINT ["node", "bin/mcp-server.js", "start", "--transport", "sse", "--port", "$PORT", "--bearer-auth", "$BEARER_AUTH", "--server-url", "$SERVER_URL", "--log-level", "$LOG_LEVEL"]
+ENTRYPOINT node bin/mcp-server.js start --transport sse --port $PORT --bearer-auth $BEARER_AUTH --server-url $SERVER_URL --log-level $LOG_LEVEL

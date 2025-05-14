@@ -2,8 +2,8 @@ speakeasyVersion: 1.544.0
 sources:
     Opal API:
         sourceNamespace: opal-api
-        sourceRevisionDigest: sha256:1b1e086ba8704bd2b9a4fa8d1d6fa776464367436e9c819354118a672ce6d991
-        sourceBlobDigest: sha256:b5e808cce8225b044c356512b28ba189f97e5af6648c07aaf54fd837592e7f23
+        sourceRevisionDigest: sha256:b17ee5a753d2c259f2fed427ef53b01f2ccb6dbabb187396253c9096fedd2490
+        sourceBlobDigest: sha256:39ca996d5b87010e74a28d2327517a51770220f27a30b359b96bbded56cf8459
         tags:
             - latest
             - "1.0"
@@ -11,17 +11,17 @@ targets:
     opal-mcp:
         source: Opal API
         sourceNamespace: opal-api
-        sourceRevisionDigest: sha256:1b1e086ba8704bd2b9a4fa8d1d6fa776464367436e9c819354118a672ce6d991
-        sourceBlobDigest: sha256:b5e808cce8225b044c356512b28ba189f97e5af6648c07aaf54fd837592e7f23
+        sourceRevisionDigest: sha256:b17ee5a753d2c259f2fed427ef53b01f2ccb6dbabb187396253c9096fedd2490
+        sourceBlobDigest: sha256:39ca996d5b87010e74a28d2327517a51770220f27a30b359b96bbded56cf8459
         codeSamplesNamespace: opal-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:1a03c12922f86ab368cd9191aab36db90eb077157bc074e3aeb27a970536dbae
+        codeSamplesRevisionDigest: sha256:cd66663ebde95f27b20b55a749fc65e72e835d5a0af67782144a82e67557b4a0
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         Opal API:
             inputs:
-                - location: https://app.opal.dev/openapi.yaml
+                - location: https://dev.opal.dev/openapi.yaml
             overlays:
                 - location: mcp-scopes-and-endpoints-overlay.yaml
                 - location: mcp-field-visibility-overlay.yaml
@@ -32,6 +32,9 @@ workflow:
         opal-mcp:
             target: typescript
             source: Opal API
+            publish:
+                npm:
+                    token: $npm_token
             codeSamples:
                 registry:
                     location: registry.speakeasyapi.dev/opal/opal/opal-api-typescript-code-samples
