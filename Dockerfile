@@ -6,6 +6,11 @@ FROM node:20-slim AS builder
 # Set working directory
 WORKDIR /app
 
+# Install Bun
+RUN apt-get update && apt-get install -y curl unzip && \
+    curl -fsSL https://bun.sh/install | bash && \
+    ln -s $HOME/.bun/bin/bun /usr/local/bin/bun
+
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
