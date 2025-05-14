@@ -12,7 +12,7 @@ Returned from the `GET Requests` endpoint.
 ```typescript
 import { RequestStatusEnum } from "opal-mcp/models/components";
 
-let value: RequestStatusEnum = "DENIED";
+let value: RequestStatusEnum = "PENDING";
 ```
 
 ## Values

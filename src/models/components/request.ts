@@ -20,6 +20,12 @@ import {
   RequestedItem$outboundSchema,
 } from "./requesteditem.js";
 import {
+  RequestItemStages,
+  RequestItemStages$inboundSchema,
+  RequestItemStages$Outbound,
+  RequestItemStages$outboundSchema,
+} from "./requestitemstages.js";
+import {
   RequestStatusEnum,
   RequestStatusEnum$inboundSchema,
   RequestStatusEnum$outboundSchema,
@@ -87,6 +93,10 @@ export type Request = {
    * The responses given to the custom fields associated to the request
    */
   customFieldsResponses?: Array<RequestCustomFieldResponse> | undefined;
+  /**
+   * The stages configuration for a request item
+   */
+  stages?: RequestItemStages | undefined;
 };
 
 /** @internal */
@@ -108,6 +118,7 @@ export const Request$inboundSchema: z.ZodType<Request, z.ZodTypeDef, unknown> =
     requested_items_list: z.array(RequestedItem$inboundSchema).optional(),
     custom_fields_responses: z.array(RequestCustomFieldResponse$inboundSchema)
       .optional(),
+    stages: RequestItemStages$inboundSchema.optional(),
   }).transform((v) => {
     return remap$(v, {
       "created_at": "createdAt",
@@ -136,6 +147,7 @@ export type Request$Outbound = {
   custom_fields_responses?:
     | Array<RequestCustomFieldResponse$Outbound>
     | undefined;
+  stages?: RequestItemStages$Outbound | undefined;
 };
 
 /** @internal */
@@ -156,6 +168,7 @@ export const Request$outboundSchema: z.ZodType<
   requestedItemsList: z.array(RequestedItem$outboundSchema).optional(),
   customFieldsResponses: z.array(RequestCustomFieldResponse$outboundSchema)
     .optional(),
+  stages: RequestItemStages$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     createdAt: "created_at",

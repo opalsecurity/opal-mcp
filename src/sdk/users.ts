@@ -12,8 +12,8 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Users extends ClientSDK {
   /**
-   * Retrieves detailed user information from Opal. This endpoint is designed for MCP (Mission Control Platform) integration
-   * to fetch user details by either user ID (UUID) or email address. The endpoint follows a strict precedence rule where
+   * Retrieves detailed user information from Opal. This endpoint is designed to fetch user details by
+   * either user ID (UUID) or email address. The endpoint follows a strict precedence rule where
    * user_id takes priority over email if both are provided.
    *
    * Key Implementation Notes:
