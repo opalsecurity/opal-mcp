@@ -36,11 +36,5 @@ WORKDIR /app
 COPY --from=builder /app/bin ./bin
 COPY --from=builder /app/node_modules ./node_modules
 
-# Print the environment variables
-RUN echo "BEARER_AUTH: $BEARER_AUTH"
-RUN echo "PORT: $PORT"
-RUN echo "SERVER_URL: $SERVER_URL"
-RUN echo "LOG_LEVEL: $LOG_LEVEL"
-
 # Set entrypoint
 ENTRYPOINT ["node", "bin/mcp-server.js", "start", "--transport", "sse", "--port", "$PORT", "--bearer-auth", "$BEARER_AUTH", "--server-url", "$SERVER_URL", "--log-level", "$LOG_LEVEL"]
