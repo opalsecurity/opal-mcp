@@ -14,6 +14,9 @@ targets:
     opal-mcp:
         target: typescript
         source: Opal API
+        publish:
+            npm:
+                token: $npm_token
         codeSamples:
             registry:
                 location: registry.speakeasyapi.dev/opal/opal/opal-api-typescript-code-samples

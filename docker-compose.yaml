@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+services:
+  opal-mcp-server:
+    build: .
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    ports:
+      - "${PORT:-32000}:${PORT:-32000}"
+    env_file:
+      - .env
+    environment:
+      PORT: ${PORT:-32000}
+      SERVER_URL: ${SERVER_URL:-https://dev.opal.dev/v1}
+      LOG_LEVEL: ${LOG_LEVEL:-debug}
+      OPENAPI_MCP_HEADERS: '{"Authorization":"Bearer ${BEARER_AUTH}"}'
