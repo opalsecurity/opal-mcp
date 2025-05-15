@@ -1,8 +1,8 @@
-# Opal MCP (Management Control Plane)
+# Opal Management Control PLane (MCP) for Agentic Access
 
 This repository serves two main purposes:
 1. Generating a TypeScript SDK from Opal's public OpenAPI specification
-2. Using this SDK to implement the MCP server
+2. Using this SDK to implement the MCP (yes, also Model Context Protocol for Opal) server
 
 ## Architecture Overview
 
