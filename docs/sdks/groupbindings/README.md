@@ -110,7 +110,7 @@ async function run() {
         groupId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
       },
       {
-        groupId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
+        groupId: "99d0b81d-14be-4cf6-bd27-348b4af1d11b",
       },
     ],
   });
@@ -144,7 +144,7 @@ async function run() {
         groupId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
       },
       {
-        groupId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
+        groupId: "99d0b81d-14be-4cf6-bd27-348b4af1d11b",
       },
     ],
   });
@@ -198,7 +198,7 @@ async function run() {
   await opalMcp.groupBindings.updateGroupBindings({
     groupBindings: [
       {
-        groupBindingId: "0ae19dbf-324d-4216-999c-574d46182c7e",
+        groupBindingId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
         sourceGroupId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
         groups: [
           {
@@ -206,6 +206,18 @@ async function run() {
           },
           {
             groupId: "99d0b81d-14be-4cf6-bd27-348b4af1d11b",
+          },
+        ],
+      },
+      {
+        groupBindingId: "99d0b81d-14be-4cf6-bd27-348b4af1d11b",
+        sourceGroupId: "99d0b81d-14be-4cf6-bd27-348b4af1d11b",
+        groups: [
+          {
+            groupId: "99d0b81d-14be-4cf6-bd27-348b4af1d11b",
+          },
+          {
+            groupId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
           },
         ],
       },
@@ -236,7 +248,7 @@ async function run() {
   const res = await groupBindingsUpdateGroupBindings(opalMcp, {
     groupBindings: [
       {
-        groupBindingId: "0ae19dbf-324d-4216-999c-574d46182c7e",
+        groupBindingId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
         sourceGroupId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
         groups: [
           {
@@ -244,6 +256,18 @@ async function run() {
           },
           {
             groupId: "99d0b81d-14be-4cf6-bd27-348b4af1d11b",
+          },
+        ],
+      },
+      {
+        groupBindingId: "99d0b81d-14be-4cf6-bd27-348b4af1d11b",
+        sourceGroupId: "99d0b81d-14be-4cf6-bd27-348b4af1d11b",
+        groups: [
+          {
+            groupId: "99d0b81d-14be-4cf6-bd27-348b4af1d11b",
+          },
+          {
+            groupId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
           },
         ],
       },

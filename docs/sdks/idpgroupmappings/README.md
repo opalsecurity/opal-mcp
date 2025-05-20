@@ -104,6 +104,8 @@ async function run() {
     requestBody: {
       mappings: [
         {},
+        {},
+        {},
       ],
     },
   });
@@ -133,6 +135,8 @@ async function run() {
     appResourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
     requestBody: {
       mappings: [
+        {},
+        {},
         {},
       ],
     },

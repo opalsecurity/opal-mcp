@@ -8,6 +8,8 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type AddUserTagRequestBody = {};
+
 export type AddUserTagRequest = {
   /**
    * The ID of the tag to apply.
@@ -17,7 +19,56 @@ export type AddUserTagRequest = {
    * The ID of the user to apply the tag to.
    */
   userId: string;
+  requestBody?: AddUserTagRequestBody | undefined;
 };
+
+/** @internal */
+export const AddUserTagRequestBody$inboundSchema: z.ZodType<
+  AddUserTagRequestBody,
+  z.ZodTypeDef,
+  unknown
+> = z.object({});
+
+/** @internal */
+export type AddUserTagRequestBody$Outbound = {};
+
+/** @internal */
+export const AddUserTagRequestBody$outboundSchema: z.ZodType<
+  AddUserTagRequestBody$Outbound,
+  z.ZodTypeDef,
+  AddUserTagRequestBody
+> = z.object({});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace AddUserTagRequestBody$ {
+  /** @deprecated use `AddUserTagRequestBody$inboundSchema` instead. */
+  export const inboundSchema = AddUserTagRequestBody$inboundSchema;
+  /** @deprecated use `AddUserTagRequestBody$outboundSchema` instead. */
+  export const outboundSchema = AddUserTagRequestBody$outboundSchema;
+  /** @deprecated use `AddUserTagRequestBody$Outbound` instead. */
+  export type Outbound = AddUserTagRequestBody$Outbound;
+}
+
+export function addUserTagRequestBodyToJSON(
+  addUserTagRequestBody: AddUserTagRequestBody,
+): string {
+  return JSON.stringify(
+    AddUserTagRequestBody$outboundSchema.parse(addUserTagRequestBody),
+  );
+}
+
+export function addUserTagRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<AddUserTagRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddUserTagRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddUserTagRequestBody' from JSON`,
+  );
+}
 
 /** @internal */
 export const AddUserTagRequest$inboundSchema: z.ZodType<
@@ -27,10 +78,12 @@ export const AddUserTagRequest$inboundSchema: z.ZodType<
 > = z.object({
   tag_id: z.string(),
   user_id: z.string(),
+  RequestBody: z.lazy(() => AddUserTagRequestBody$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "tag_id": "tagId",
     "user_id": "userId",
+    "RequestBody": "requestBody",
   });
 });
 
@@ -38,6 +91,7 @@ export const AddUserTagRequest$inboundSchema: z.ZodType<
 export type AddUserTagRequest$Outbound = {
   tag_id: string;
   user_id: string;
+  RequestBody?: AddUserTagRequestBody$Outbound | undefined;
 };
 
 /** @internal */
@@ -48,10 +102,12 @@ export const AddUserTagRequest$outboundSchema: z.ZodType<
 > = z.object({
   tagId: z.string(),
   userId: z.string(),
+  requestBody: z.lazy(() => AddUserTagRequestBody$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     tagId: "tag_id",
     userId: "user_id",
+    requestBody: "RequestBody",
   });
 });
 

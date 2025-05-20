@@ -116,8 +116,6 @@ async function run() {
       "7870617d-e72a-47f5-a84c-693817ab4567",
       "1520617d-e72a-47f5-a84c-693817ab48ad2",
     ],
-    reviewerMessageChannelId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
-    sourceGroupId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
   });
 
   // Handle the result
@@ -150,8 +148,6 @@ async function run() {
       "7870617d-e72a-47f5-a84c-693817ab4567",
       "1520617d-e72a-47f5-a84c-693817ab48ad2",
     ],
-    reviewerMessageChannelId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
-    sourceGroupId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
   });
 
   if (!res.ok) {
@@ -208,6 +204,12 @@ async function run() {
         description: "This owner represents the API team owners.",
         accessRequestEscalationPeriod: 120,
       },
+      {
+        ownerId: "99d0b81d-14be-4cf6-bd27-348b4af1d11b",
+        name: "Finance Owner",
+        description: "This owner represents the Finance team owners.",
+        accessRequestEscalationPeriod: 15,
+      },
     ],
   });
 
@@ -240,6 +242,12 @@ async function run() {
         name: "API Owner",
         description: "This owner represents the API team owners.",
         accessRequestEscalationPeriod: 120,
+      },
+      {
+        ownerId: "99d0b81d-14be-4cf6-bd27-348b4af1d11b",
+        name: "Finance Owner",
+        description: "This owner represents the Finance team owners.",
+        accessRequestEscalationPeriod: 15,
       },
     ],
   });

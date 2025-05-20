@@ -30,41 +30,7 @@ async function run() {
     status: "ACTIVE",
     ruleClauses: {
       when: {
-        clauses: [
-          {
-            selectors: [
-              {
-                key: "<key>",
-                value: "<value>",
-                connectionId: "1717888b-c1ff-4b21-bbd3-59fb9373fb24",
-              },
-              {
-                key: "<key>",
-                value: "<value>",
-                connectionId: "4575cbf9-6537-483a-86a0-75715ba04d88",
-              },
-              {
-                key: "<key>",
-                value: "<value>",
-                connectionId: "c781ed55-b8f6-49cd-bd3f-70ae1f045666",
-              },
-            ],
-          },
-          {
-            selectors: [
-              {
-                key: "<key>",
-                value: "<value>",
-                connectionId: "a191e1ed-acdd-4469-85e1-5292f5c4e813",
-              },
-              {
-                key: "<key>",
-                value: "<value>",
-                connectionId: "f52ddec6-6044-4bbd-b1e4-56440cbc479e",
-              },
-            ],
-          },
-        ],
+        clauses: [],
       },
     },
   });
@@ -98,41 +64,7 @@ async function run() {
     status: "ACTIVE",
     ruleClauses: {
       when: {
-        clauses: [
-          {
-            selectors: [
-              {
-                key: "<key>",
-                value: "<value>",
-                connectionId: "1717888b-c1ff-4b21-bbd3-59fb9373fb24",
-              },
-              {
-                key: "<key>",
-                value: "<value>",
-                connectionId: "4575cbf9-6537-483a-86a0-75715ba04d88",
-              },
-              {
-                key: "<key>",
-                value: "<value>",
-                connectionId: "c781ed55-b8f6-49cd-bd3f-70ae1f045666",
-              },
-            ],
-          },
-          {
-            selectors: [
-              {
-                key: "<key>",
-                value: "<value>",
-                connectionId: "a191e1ed-acdd-4469-85e1-5292f5c4e813",
-              },
-              {
-                key: "<key>",
-                value: "<value>",
-                connectionId: "f52ddec6-6044-4bbd-b1e4-56440cbc479e",
-              },
-            ],
-          },
-        ],
+        clauses: [],
       },
     },
   });
@@ -268,7 +200,36 @@ async function run() {
       status: "ACTIVE",
       ruleClauses: {
         when: {
-          clauses: [],
+          clauses: [
+            {
+              selectors: [
+                {
+                  key: "<key>",
+                  value: "<value>",
+                  connectionId: "fb76ee36-3589-45c2-b5e3-11bae3b92e8e",
+                },
+                {
+                  key: "<key>",
+                  value: "<value>",
+                  connectionId: "fb76ee36-3589-45c2-b5e3-11bae3b92e8e",
+                },
+              ],
+            },
+            {
+              selectors: [
+                {
+                  key: "<key>",
+                  value: "<value>",
+                  connectionId: "fb76ee36-3589-45c2-b5e3-11bae3b92e8e",
+                },
+                {
+                  key: "<key>",
+                  value: "<value>",
+                  connectionId: "fb76ee36-3589-45c2-b5e3-11bae3b92e8e",
+                },
+              ],
+            },
+          ],
         },
       },
     },
@@ -305,7 +266,36 @@ async function run() {
       status: "ACTIVE",
       ruleClauses: {
         when: {
-          clauses: [],
+          clauses: [
+            {
+              selectors: [
+                {
+                  key: "<key>",
+                  value: "<value>",
+                  connectionId: "fb76ee36-3589-45c2-b5e3-11bae3b92e8e",
+                },
+                {
+                  key: "<key>",
+                  value: "<value>",
+                  connectionId: "fb76ee36-3589-45c2-b5e3-11bae3b92e8e",
+                },
+              ],
+            },
+            {
+              selectors: [
+                {
+                  key: "<key>",
+                  value: "<value>",
+                  connectionId: "fb76ee36-3589-45c2-b5e3-11bae3b92e8e",
+                },
+                {
+                  key: "<key>",
+                  value: "<value>",
+                  connectionId: "fb76ee36-3589-45c2-b5e3-11bae3b92e8e",
+                },
+              ],
+            },
+          ],
         },
       },
     },

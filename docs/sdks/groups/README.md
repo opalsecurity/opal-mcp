@@ -147,6 +147,15 @@ async function run() {
         requireManagerApproval: false,
         requireSupportTicket: false,
       },
+      {
+        groupId: "99d0b81d-14be-4cf6-bd27-348b4af1d11b",
+        name: "on-call-integrations",
+        description: "Manages the Integrations Team on-call privileged resources. This group is automatically synced with the on-call rotation defined in PagerDuty.",
+        adminOwnerId: "4220bc12-ab8a-4b5d-be7b-f6bbcf9159f3",
+        maxDuration: 360,
+        requireManagerApproval: false,
+        requireSupportTicket: true,
+      },
     ],
   });
 
@@ -182,6 +191,15 @@ async function run() {
         maxDuration: 120,
         requireManagerApproval: false,
         requireSupportTicket: false,
+      },
+      {
+        groupId: "99d0b81d-14be-4cf6-bd27-348b4af1d11b",
+        name: "on-call-integrations",
+        description: "Manages the Integrations Team on-call privileged resources. This group is automatically synced with the on-call rotation defined in PagerDuty.",
+        adminOwnerId: "4220bc12-ab8a-4b5d-be7b-f6bbcf9159f3",
+        maxDuration: 360,
+        requireManagerApproval: false,
+        requireSupportTicket: true,
       },
     ],
   });
@@ -233,45 +251,12 @@ const opalMcp = new OpalMcp({
 
 async function run() {
   const result = await opalMcp.groups.createGroup({
-    name: "mongo-db-prod",
+    name: "Engineering Team",
     description: "Engineering team Okta group.",
-    groupType: "OPAL_GROUP",
+    groupType: "OKTA_GROUP",
     appId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
-    remoteInfo: {
-      activeDirectoryGroup: {
-        groupId: "01fa7402-01d8-103b-8deb-5f3a0ab7884",
-      },
-      githubTeam: {
-        teamSlug: "opal-security",
-      },
-      gitlabGroup: {
-        groupId: "898931321",
-      },
-      googleGroup: {
-        groupId: "1y6w882181n7sg",
-      },
-      ldapGroup: {
-        groupId: "01fa7402-01d8-103b-8deb-5f3a0ab7884",
-      },
-      oktaGroup: {
-        groupId: "00gjs33pe8rtmRrp3rd6",
-      },
-      duoGroup: {
-        groupId: "DSRD8W89B9DNDBY4RHAC",
-      },
-      azureAdSecurityGroup: {
-        groupId: "01fa7402-01d8-103b-8deb-5f3a0ab7884",
-      },
-      azureAdMicrosoft365Group: {
-        groupId: "01fa7402-01d8-103b-8deb-5f3a0ab7884",
-      },
-      snowflakeRole: {
-        roleId: "01fa7402-01d8-103b-8deb-5f3a0ab7884",
-      },
-    },
-    remoteGroupId: "00g4fixjd6Bc9w012345",
+    remoteGroupId: "00g4fixjd6Bc9w0TT5d7",
     metadata: "{ \"okta_directory_group\": { \"group_id\": \"00g4bs66kwtpe1g12345\" } }",
-    customRequestNotification: "Check your email to register your account.",
   });
 
   // Handle the result
@@ -297,45 +282,12 @@ const opalMcp = new OpalMcpCore({
 
 async function run() {
   const res = await groupsCreateGroup(opalMcp, {
-    name: "mongo-db-prod",
+    name: "Engineering Team",
     description: "Engineering team Okta group.",
-    groupType: "OPAL_GROUP",
+    groupType: "OKTA_GROUP",
     appId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
-    remoteInfo: {
-      activeDirectoryGroup: {
-        groupId: "01fa7402-01d8-103b-8deb-5f3a0ab7884",
-      },
-      githubTeam: {
-        teamSlug: "opal-security",
-      },
-      gitlabGroup: {
-        groupId: "898931321",
-      },
-      googleGroup: {
-        groupId: "1y6w882181n7sg",
-      },
-      ldapGroup: {
-        groupId: "01fa7402-01d8-103b-8deb-5f3a0ab7884",
-      },
-      oktaGroup: {
-        groupId: "00gjs33pe8rtmRrp3rd6",
-      },
-      duoGroup: {
-        groupId: "DSRD8W89B9DNDBY4RHAC",
-      },
-      azureAdSecurityGroup: {
-        groupId: "01fa7402-01d8-103b-8deb-5f3a0ab7884",
-      },
-      azureAdMicrosoft365Group: {
-        groupId: "01fa7402-01d8-103b-8deb-5f3a0ab7884",
-      },
-      snowflakeRole: {
-        roleId: "01fa7402-01d8-103b-8deb-5f3a0ab7884",
-      },
-    },
-    remoteGroupId: "00g4fixjd6Bc9w012345",
+    remoteGroupId: "00g4fixjd6Bc9w0TT5d7",
     metadata: "{ \"okta_directory_group\": { \"group_id\": \"00g4bs66kwtpe1g12345\" } }",
-    customRequestNotification: "Check your email to register your account.",
   });
 
   if (!res.ok) {

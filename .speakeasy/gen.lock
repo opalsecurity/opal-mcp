@@ -1,18 +1,20 @@
 lockVersion: 2.0.0
 id: 4f4a8d8c-90c5-4992-8800-17a249fd1e0f
 management:
-  docChecksum: 4d96e513d0065fa12dbb07990649d307
+  docChecksum: d4bae26bf2332d76e1512782c1eb0faa
   docVersion: "1.0"
-  speakeasyVersion: 1.544.0
-  generationVersion: 2.599.0
-  releaseVersion: 0.0.5
-  configChecksum: 57a36ed8e1d20eaba584e0561e78da51
+  speakeasyVersion: 1.548.1
+  generationVersion: 2.605.0
+  releaseVersion: 0.0.6
+  configChecksum: 916eba046724c31f027edc5aff50ac0f
+  repoURL: https://github.com/opalsecurity/opal-mcp.git
+  installationURL: https://github.com/opalsecurity/opal-mcp
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
-    core: 3.21.7
+    core: 3.21.8
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     devContainers: 2.90.0
@@ -236,6 +238,7 @@ generatedFiles:
   - docs/models/operations/addresourceuserrequest.md
   - docs/models/operations/addresourceuserrequestbody.md
   - docs/models/operations/addusertagrequest.md
+  - docs/models/operations/addusertagrequestbody.md
   - docs/models/operations/approverequestrequest.md
   - docs/models/operations/approverequestrequestbody.md
   - docs/models/operations/approverequestresponse.md
@@ -932,7 +935,7 @@ examples:
   createBundle:
     speakeasy-default-create-bundle:
       requestBody:
-        application/json: {"name": "Test Bundle", "description": "This is a test bundle", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8"}
+        application/json: {"name": "Engineering Team Bundle", "description": "Engineering team bundle.", "admin_owner_id": "7870617d-e72a-47f5-a84c-693817ab4567"}
       responses:
         "201":
           application/json: {"bundle_id": "a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1", "name": "Bundle 1", "description": "Description of bundle 1", "admin_owner_id": "4aed3e8a-727b-4d72-8010-3b8710c50bec", "total_num_items": 15, "total_num_resources": 10, "total_num_groups": 5}
@@ -1036,21 +1039,21 @@ examples:
     speakeasy-default-get-configuration-templates:
       responses:
         "200":
-          application/json: {"results": [{"configuration_template_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Prod AWS Template", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "visibility": {"visibility": "GLOBAL"}, "linked_audit_message_channel_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "request_configuration_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "member_oncall_schedule_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "break_glass_user_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "require_mfa_to_approve": false, "require_mfa_to_connect": false}]}
+          application/json: {"results": [{"configuration_template_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "admin_owner_id": "a4d7d928-783e-4599-8ec6-088d635af4ac", "visibility": {"visibility": "GLOBAL"}, "linked_audit_message_channel_ids": ["l3cb7e41-12ba-46da-92ff-030abe0450b1", "f3cb7e41-12ba-46da-92ff-030abe0450b2"], "request_configuration_id": "r3cb7e41-12ba-46da-92ff-030abe0450b1", "member_oncall_schedule_ids": ["23cb7e41-12ba-46da-92ff-030abe0450b1", "m3cb7e41-12ba-46da-92ff-030abe0450b2"], "break_glass_user_ids": ["63cb7e41-12ba-46da-92ff-030abe0450b1", "b3cb7e41-12ba-46da-92ff-030abe0450b2"], "require_mfa_to_approve": false, "require_mfa_to_connect": false}]}
   createConfigurationTemplate:
     speakeasy-default-create-configuration-template:
       requestBody:
-        application/json: {"admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "visibility": {"visibility": "GLOBAL", "visibility_group_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}, "linked_audit_message_channel_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "member_oncall_schedule_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "break_glass_user_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "require_mfa_to_approve": false, "require_mfa_to_connect": false, "name": "Prod AWS Template", "request_configurations": [{"allow_requests": true, "auto_approval": false, "require_mfa_to_request": false, "max_duration_minutes": 120, "recommended_duration_minutes": 120, "require_support_ticket": false, "reviewer_stages": [{"require_manager_approval": false, "operator": "AND", "owner_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"]}], "priority": 1}], "request_configuration_list": {"request_configurations": [{"allow_requests": true, "auto_approval": false, "require_mfa_to_request": false, "max_duration_minutes": 120, "recommended_duration_minutes": 120, "require_support_ticket": false, "reviewer_stages": [{"require_manager_approval": false, "operator": "AND", "owner_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"]}], "priority": 1}]}, "ticket_propagation": {"enabled_on_grant": false, "enabled_on_revocation": true, "ticket_provider": "LINEAR"}, "custom_request_notification": "Check your email to register your account."}
+        application/json: {"admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "visibility": {"visibility": "GLOBAL"}, "linked_audit_message_channel_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "member_oncall_schedule_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "break_glass_user_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "require_mfa_to_approve": false, "require_mfa_to_connect": false, "name": "Prod AWS Template"}
       responses:
         "200":
-          application/json: {"configuration_template_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Prod AWS Template", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "visibility": {"visibility": "GLOBAL", "visibility_group_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}, "linked_audit_message_channel_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "request_configuration_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "member_oncall_schedule_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "7c86c85d-0651-43e2-a748-d69d658418e8"], "break_glass_user_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "require_mfa_to_approve": false, "require_mfa_to_connect": false, "ticket_propagation": {"enabled_on_grant": false, "enabled_on_revocation": false, "ticket_provider": "LINEAR"}, "custom_request_notification": "Check your email to register your account."}
+          application/json: {"configuration_template_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Prod AWS Template", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "visibility": {"visibility": "GLOBAL"}, "linked_audit_message_channel_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "request_configuration_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "member_oncall_schedule_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "break_glass_user_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "require_mfa_to_approve": false, "require_mfa_to_connect": false}
   updateConfigurationTemplate:
     speakeasy-default-update-configuration-template:
       requestBody:
-        application/json: {"configuration_template_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Prod AWS Template", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "visibility": {"visibility": "GLOBAL", "visibility_group_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}, "linked_audit_message_channel_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "request_configurations": [{"allow_requests": true, "auto_approval": false, "require_mfa_to_request": false, "max_duration_minutes": 120, "recommended_duration_minutes": 120, "require_support_ticket": false, "reviewer_stages": [{"require_manager_approval": false, "operator": "AND", "owner_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"]}], "priority": 1}], "request_configuration_list": {"request_configurations": [{"allow_requests": true, "auto_approval": false, "require_mfa_to_request": false, "max_duration_minutes": 120, "recommended_duration_minutes": 120, "require_support_ticket": false, "reviewer_stages": [{"require_manager_approval": false, "operator": "AND", "owner_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"]}], "priority": 1}]}, "member_oncall_schedule_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "7c86c85d-0651-43e2-a748-d69d658418e8"], "break_glass_user_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "require_mfa_to_approve": false, "require_mfa_to_connect": false, "ticket_propagation": {"enabled_on_grant": false, "enabled_on_revocation": false, "ticket_provider": "LINEAR"}, "custom_request_notification": "Check your email to register your account."}
+        application/json: {"configuration_template_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Prod AWS Template", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "visibility": {"visibility": "GLOBAL"}, "linked_audit_message_channel_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "member_oncall_schedule_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "break_glass_user_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "require_mfa_to_approve": false, "require_mfa_to_connect": false}
       responses:
         "200":
-          application/json: {"configuration_template_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Prod AWS Template", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "visibility": {"visibility": "GLOBAL", "visibility_group_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}, "linked_audit_message_channel_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "request_configuration_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "member_oncall_schedule_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "7c86c85d-0651-43e2-a748-d69d658418e8"], "break_glass_user_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "require_mfa_to_approve": false, "require_mfa_to_connect": false, "ticket_propagation": {"enabled_on_grant": true, "enabled_on_revocation": false, "ticket_provider": "LINEAR"}, "custom_request_notification": "Check your email to register your account."}
+          application/json: {"configuration_template_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Prod AWS Template", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "visibility": {"visibility": "GLOBAL"}, "linked_audit_message_channel_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "request_configuration_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "member_oncall_schedule_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "break_glass_user_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "require_mfa_to_approve": false, "require_mfa_to_connect": false}
   deleteConfigurationTemplate:
     "":
       parameters:
@@ -1112,17 +1115,17 @@ examples:
   updateGroups:
     speakeasy-default-update-groups:
       requestBody:
-        application/json: {"groups": [{"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "api-group", "description": "This group represents Active Directory group \"Payments Production Admin\". We use this AD group to facilitate staging deployments and qualifying new releases.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false}]}
+        application/json: {"groups": [{"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "api-group", "description": "This group represents Active Directory group \"Payments Production Admin\". We use this AD group to facilitate staging deployments and qualifying new releases.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false}, {"group_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "name": "on-call-integrations", "description": "Manages the Integrations Team on-call privileged resources. This group is automatically synced with the on-call rotation defined in PagerDuty.", "admin_owner_id": "4220bc12-ab8a-4b5d-be7b-f6bbcf9159f3", "max_duration": 360, "require_manager_approval": false, "require_support_ticket": true}]}
       responses:
         "200":
-          application/json: {"groups": [{"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "api-group", "description": "This group represents Active Directory group \"Payments Production Admin\". We use this AD group to facilitate staging deployments and qualifying new releases.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false}]}
+          application/json: {"groups": [{"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "api-group", "description": "This group represents Active Directory group \"Payments Production Admin\". We use this AD group to facilitate staging deployments and qualifying new releases.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false}, {"group_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "name": "on-call-integrations", "description": "Manages the Integrations Team on-call privileged resources. This group is automatically synced with the on-call rotation defined in PagerDuty.", "admin_owner_id": "4220bc12-ab8a-4b5d-be7b-f6bbcf9159f3", "max_duration": 360, "require_manager_approval": false, "require_support_ticket": true}]}
   createGroup:
     speakeasy-default-create-group:
       requestBody:
-        application/json: {"name": "mongo-db-prod", "description": "Engineering team Okta group.", "group_type": "OPAL_GROUP", "app_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "remote_info": {"active_directory_group": {"group_id": "01fa7402-01d8-103b-8deb-5f3a0ab7884"}, "github_team": {"team_slug": "opal-security"}, "gitlab_group": {"group_id": "898931321"}, "google_group": {"group_id": "1y6w882181n7sg"}, "ldap_group": {"group_id": "01fa7402-01d8-103b-8deb-5f3a0ab7884"}, "okta_group": {"group_id": "00gjs33pe8rtmRrp3rd6"}, "duo_group": {"group_id": "DSRD8W89B9DNDBY4RHAC"}, "azure_ad_security_group": {"group_id": "01fa7402-01d8-103b-8deb-5f3a0ab7884"}, "azure_ad_microsoft_365_group": {"group_id": "01fa7402-01d8-103b-8deb-5f3a0ab7884"}, "snowflake_role": {"role_id": "01fa7402-01d8-103b-8deb-5f3a0ab7884"}}, "remote_group_id": "00g4fixjd6Bc9w012345", "metadata": "{ \"okta_directory_group\": { \"group_id\": \"00g4bs66kwtpe1g12345\" } }", "custom_request_notification": "Check your email to register your account."}
+        application/json: {"name": "Engineering Team", "description": "Engineering team Okta group.", "group_type": "OKTA_GROUP", "app_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "remote_group_id": "00g4fixjd6Bc9w0TT5d7", "metadata": "{ \"okta_directory_group\": { \"group_id\": \"00g4bs66kwtpe1g12345\" } }"}
       responses:
         "200":
-          application/json: {"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "name": "API Group", "description": "This group represents Active Directory group \"Payments Production Admin\". We use this AD group to facilitate staging deployments and qualifying new releases.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "remote_id": "google-group-group:037m2jsg218b2wb", "remote_name": "Finance team", "group_type": "OPAL_GROUP", "max_duration": 120, "recommended_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "require_mfa_to_approve": false, "require_mfa_to_request": false, "auto_approval": false, "request_template_id": "06851574-e50d-40ca-8c78-f72ae6ab4304", "configuration_template_id": "06851574-e50d-40ca-8c78-f72ae6ab4304", "group_binding_id": "06851574-e50d-40ca-8c78-f72ae6ab4304", "is_requestable": false, "request_configurations": [{"allow_requests": true, "auto_approval": false, "require_mfa_to_request": false, "max_duration_minutes": 120, "recommended_duration_minutes": 120, "require_support_ticket": false, "reviewer_stages": [{"require_manager_approval": false, "operator": "AND", "owner_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"]}], "priority": 1}], "remote_info": {"active_directory_group": {"group_id": "01fa7402-01d8-103b-8deb-5f3a0ab7884"}, "github_team": {"team_slug": "opal-security"}, "gitlab_group": {"group_id": "898931321"}, "google_group": {"group_id": "1y6w882181n7sg"}, "ldap_group": {"group_id": "01fa7402-01d8-103b-8deb-5f3a0ab7884"}, "okta_group": {"group_id": "00gjs33pe8rtmRrp3rd6"}, "duo_group": {"group_id": "DSRD8W89B9DNDBY4RHAC"}, "azure_ad_security_group": {"group_id": "01fa7402-01d8-103b-8deb-5f3a0ab7884"}, "azure_ad_microsoft_365_group": {"group_id": "01fa7402-01d8-103b-8deb-5f3a0ab7884"}, "snowflake_role": {"role_id": "01fa7402-01d8-103b-8deb-5f3a0ab7884"}}, "custom_request_notification": "Check your email to register your account."}
+          application/json: {"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "description": "This group represents Active Directory group \"Payments Production Admin\". We use this AD group to facilitate staging deployments and qualifying new releases.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "remote_id": "037m2jsg218b2wb", "remote_name": "Finance Team", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false}
   getGroup:
     "":
       parameters:
@@ -1335,14 +1338,14 @@ examples:
   createGroupBinding:
     speakeasy-default-create-group-binding:
       requestBody:
-        application/json: {"source_group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "groups": [{"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353"}, {"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353"}]}
+        application/json: {"source_group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "groups": [{"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353"}, {"group_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b"}]}
       responses:
         "200":
-          application/json: {"group_binding_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "created_by_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "created_at": "2022-01-23T04:56:07Z", "source_group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "groups": [{"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "group_type": "OKTA_GROUP"}]}
+          application/json: {"group_binding_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "created_by_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "created_at": "2022-01-23T04:56:07Z", "source_group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "groups": [{"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "group_type": "OKTA_GROUP"}, {"group_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "group_type": "AWS_SSO_GROUP"}]}
   updateGroupBindings:
     speakeasy-default-update-group-bindings:
       requestBody:
-        application/json: {"group_bindings": [{"group_binding_id": "0ae19dbf-324d-4216-999c-574d46182c7e", "source_group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "groups": [{"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353"}, {"group_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b"}]}]}
+        application/json: {"group_bindings": [{"group_binding_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "source_group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "groups": [{"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353"}, {"group_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b"}]}, {"group_binding_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "source_group_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "groups": [{"group_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b"}, {"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353"}]}]}
   getGroupBinding:
     "":
       parameters:
@@ -1370,7 +1373,7 @@ examples:
         path:
           app_resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
       requestBody:
-        application/json: {"mappings": [{}]}
+        application/json: {"mappings": [{}, {}, {}]}
   delete_idp_group_mappings:
     "":
       parameters:
@@ -1390,17 +1393,17 @@ examples:
   createOwner:
     speakeasy-default-create-owner:
       requestBody:
-        application/json: {"name": "API Owner", "description": "This owner represents the API team owners.", "access_request_escalation_period": 120, "user_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"], "reviewer_message_channel_id": "37cb7e41-12ba-46da-92ff-030abe0450b1", "source_group_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3"}
+        application/json: {"name": "API Owner", "description": "This owner represents the API team owners.", "access_request_escalation_period": 120, "user_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
       responses:
         "200":
-          application/json: {"owner_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "API Owner", "description": "This owner represents the API team owners.", "access_request_escalation_period": 120, "reviewer_message_channel_id": "37cb7e41-12ba-46da-92ff-030abe0450b1", "source_group_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3"}
+          application/json: {"owner_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "API Owner", "description": "This owner represents the API team owners.", "access_request_escalation_period": 120}
   updateOwners:
     speakeasy-default-update-owners:
       requestBody:
-        application/json: {"owners": [{"owner_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "API Owner", "description": "This owner represents the API team owners.", "access_request_escalation_period": 120}]}
+        application/json: {"owners": [{"owner_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "API Owner", "description": "This owner represents the API team owners.", "access_request_escalation_period": 120}, {"owner_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "name": "Finance Owner", "description": "This owner represents the Finance team owners.", "access_request_escalation_period": 15}]}
       responses:
         "200":
-          application/json: {"owners": [{"owner_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "API Owner", "description": "This owner represents the API team owners.", "access_request_escalation_period": 120}]}
+          application/json: {"owners": [{"owner_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "API Owner", "description": "This owner represents the API team owners.", "access_request_escalation_period": 120}, {"owner_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "name": "Finance Owner", "description": "This owner represents the Finance team owners.", "access_request_escalation_period": 15}]}
   getOwner:
     "":
       parameters:
@@ -1450,7 +1453,7 @@ examples:
           page_size: 200
       responses:
         "200":
-          application/json: {"requests": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "g86c85d-0651-43e2-a748-d69d658418e8", "status": "CANCELED", "reason": "I need this resource.", "duration_minutes": 1440}], "cursor": "eyJjcmVhdGVkX2F0IjoiMjAyMS0wMS0wNlQyMDo0NzowMFoiLCJ2YWx1ZSI6ImFkbWluIn0="}
+          application/json: {"requests": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "g86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING", "reason": "I need this resource.", "duration_minutes": 1440}], "cursor": "eyJjcmVhdGVkX2F0IjoiMjAyMS0wMS0wNlQyMDo0NzowMFoiLCJ2YWx1ZSI6ImFkbWluIn0="}
     withDatetime:
       parameters:
         query:
@@ -1460,7 +1463,7 @@ examples:
           page_size: 200
       responses:
         "200":
-          application/json: {"requests": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "g86c85d-0651-43e2-a748-d69d658418e8", "status": "DENIED", "reason": "I need this resource.", "duration_minutes": 1440}], "cursor": "eyJjcmVhdGVkX2F0IjoiMjAyMS0wMS0wNlQyMDo0NzowMFoiLCJ2YWx1ZSI6ImFkbWluIn0="}
+          application/json: {"requests": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "g86c85d-0651-43e2-a748-d69d658418e8", "status": "CANCELED", "reason": "I need this resource.", "duration_minutes": 1440}], "cursor": "eyJjcmVhdGVkX2F0IjoiMjAyMS0wMS0wNlQyMDo0NzowMFoiLCJ2YWx1ZSI6ImFkbWluIn0="}
     "":
       parameters:
         query:
@@ -1468,14 +1471,38 @@ examples:
           page_size: 200
       responses:
         "200":
-          application/json: {"requests": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "g86c85d-0651-43e2-a748-d69d658418e8", "status": "DENIED", "reason": "I need this resource.", "duration_minutes": 1440}], "cursor": "eyJjcmVhdGVkX2F0IjoiMjAyMS0wMS0wNlQyMDo0NzowMFoiLCJ2YWx1ZSI6ImFkbWluIn0="}
+          application/json: {"requests": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "g86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING", "reason": "I need this resource.", "duration_minutes": 1440}], "cursor": "eyJjcmVhdGVkX2F0IjoiMjAyMS0wMS0wNlQyMDo0NzowMFoiLCJ2YWx1ZSI6ImFkbWluIn0="}
   createRequest:
     speakeasy-default-create-request:
       requestBody:
-        application/json: {"resources": [{"id": "group283-ca87-4a8a-bdbb-df212eca5353", "access_level_remote_id": "arn:aws:iam::490306337630:role/SupportUser", "access_level_name": "arn:aws:iam::490306337630:role/SupportUser"}], "groups": [], "target_user_id": "userd283-ca87-4a8a-bdbb-df212eca5353", "target_group_id": "userd283-ca87-4a8a-bdbb-df212eca5353", "reason": "<value>", "support_ticket": {"ticketing_provider": "LINEAR", "remote_id": "<id>", "identifier": "<value>", "url": "https://bleak-fowl.net"}, "duration_minutes": 523545}
+        application/json: {"resources": [], "groups": [{"id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "access_level_remote_id": "arn:aws:iam::490306337630:role/SupportUser", "access_level_name": "arn:aws:iam::490306337630:role/SupportUser"}, {"id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "access_level_remote_id": "arn:aws:iam::490306337630:role/SupportUser", "access_level_name": "arn:aws:iam::490306337630:role/SupportUser"}, {"id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "access_level_remote_id": "arn:aws:iam::490306337630:role/SupportUser", "access_level_name": "arn:aws:iam::490306337630:role/SupportUser"}], "target_user_id": "userd283-ca87-4a8a-bdbb-df212eca5353", "target_group_id": "userd283-ca87-4a8a-bdbb-df212eca5353", "reason": "<value>", "support_ticket": {"ticketing_provider": "LINEAR", "remote_id": "<id>", "identifier": "<value>", "url": "https://remarkable-smoke.net/"}, "duration_minutes": 931503}
       responses:
         "200":
           application/json: {"id": "4baf8423-db0a-4037-a4cf-f79c60cb67a5"}
+  getRequestsRelay:
+    "":
+      parameters:
+        query:
+          first: 10
+          after: "Y3Vyc29yOnYyOpK5MjAyMS0wMS0wN1QwNzo0MToyNy4xMTlaFjYwZmM2YmJlZjk4YzE1N2ZhNjFhYjk4Nw=="
+          last: 10
+          before: "Y3Vyc29yOnYyOpK5MjAyMS0wMS0wN1QwNzo0MToyNy4xMTlaFjYwZmM2YmJlZjk4YzE1N2ZhNjFhYjk4Nw=="
+          status: "PENDING"
+          to: "37cb7e41-12ba-46da-92ff-030abe0450b1"
+          from: "37cb7e41-12ba-46da-92ff-030abe0450b1"
+      responses:
+        "200":
+          application/json: {"edges": [{"node": {"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "r86c85d-0651-43e2-a748-d69d658418e8", "status": "CANCELED", "reason": "I need this resource.", "duration_minutes": 1440, "stages": {"requestedRoleName": "Admin", "requestedItemName": "AWS Production Account", "stages": [{"stage": 1, "operator": "AND", "reviewers": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING"}]}, {"stage": 2, "operator": "OR", "reviewers": [{"id": "8d86c85d-0651-43e2-a748-d69d658418e9", "status": "APPROVED"}]}]}}, "cursor": "<value>"}, {"node": {"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "r86c85d-0651-43e2-a748-d69d658418e8", "status": "CANCELED", "reason": "I need this resource.", "duration_minutes": 1440, "stages": {"requestedRoleName": "Admin", "requestedItemName": "AWS Production Account", "stages": [{"stage": 1, "operator": "AND", "reviewers": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING"}]}, {"stage": 2, "operator": "OR", "reviewers": [{"id": "8d86c85d-0651-43e2-a748-d69d658418e9", "status": "APPROVED"}]}]}}, "cursor": "<value>"}], "pageInfo": {"hasNextPage": false, "endCursor": "<value>", "hasPreviousPage": false, "startCursor": "<value>"}, "totalCount": 774565}
+  approveRequest:
+    speakeasy-default-approve-request:
+      parameters:
+        path:
+          id: "5ee691eb-6bcb-4d2a-a747-6d792f2ebd23"
+      requestBody:
+        application/json: {"level": "REGULAR", "comment": "Approved after security review"}
+      responses:
+        "200":
+          application/json: {"request": {"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "r86c85d-0651-43e2-a748-d69d658418e8", "status": "DENIED", "reason": "I need this resource.", "duration_minutes": 1440, "stages": {"requestedRoleName": "Admin", "requestedItemName": "AWS Production Account", "stages": [{"stage": 1, "operator": "AND", "reviewers": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING"}]}, {"stage": 2, "operator": "OR", "reviewers": [{"id": "8d86c85d-0651-43e2-a748-d69d658418e9", "status": "APPROVED"}]}]}}, "taskId": "c6f85bfb-3fe7-4936-a68d-7a5e1e3d0f6a"}
   getResources:
     "":
       parameters:
@@ -1492,17 +1519,17 @@ examples:
   updateResources:
     speakeasy-default-update-resources:
       requestBody:
-        application/json: {"resources": [{"resource_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "my-mongo-db", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false}]}
+        application/json: {"resources": [{"resource_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "my-mongo-db", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false}, {"resource_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "name": "Admin Role", "description": "This resource represents GCP project \"app-demo\".", "admin_owner_id": "4220bc12-ab8a-4b5d-be7b-f6bbcf9159f3", "max_duration": 360, "require_manager_approval": false, "require_support_ticket": true}]}
       responses:
         "200":
-          application/json: {"resources": [{"resource_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "my-mongo-db", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false}]}
+          application/json: {"resources": [{"resource_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "my-mongo-db", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false}, {"resource_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "name": "Admin Role", "description": "This resource represents GCP project \"app-demo\".", "admin_owner_id": "4220bc12-ab8a-4b5d-be7b-f6bbcf9159f3", "max_duration": 360, "require_manager_approval": false, "require_support_ticket": true}]}
   createResource:
     speakeasy-default-create-resource:
       requestBody:
-        application/json: {"name": "mongo-db-prod", "description": "Engineering team Okta role.", "resource_type": "AWS_IAM_ROLE", "app_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "remote_info": {"aws_account": {"account_id": "234234234234"}, "aws_permission_set": {"arn": "arn:aws:sso:::permissionSet/asdf-32139302d201d32/ps-f03323201211e1b9", "account_id": "234234234234"}, "aws_iam_role": {"arn": "arn:aws:iam::179308207300:role/MyRole", "account_id": "234234234234"}, "aws_ec2_instance": {"instance_id": "i-13f1a1e2899f9e93a", "region": "us-east-2", "account_id": "234234234234"}, "aws_rds_instance": {"instance_id": "demo-mysql-db", "region": "us-east-2", "resource_id": "db-AOO8V0XUCNU13XLZXQDQRSN0NQ", "account_id": "234234234234"}, "aws_eks_cluster": {"arn": "arn:aws:eks:us-east-2:234234234234:cluster/testcluster", "account_id": "234234234234"}, "gcp_organization": {"organization_id": "organizations/898931321"}, "gcp_bucket": {"bucket_id": "example-bucket-898931321"}, "gcp_compute_instance": {"instance_id": "example-instance-898931321", "project_id": "example-project-898931321", "zone": "us-central1-a"}, "gcp_big_query_dataset": {"project_id": "example-project-898931321", "dataset_id": "example-dataset-898931321"}, "gcp_big_query_table": {"project_id": "example-project-898931321", "dataset_id": "example-dataset-898931321", "table_id": "example-table-898931321"}, "gcp_folder": {"folder_id": "folder/898931321"}, "gcp_gke_cluster": {"cluster_name": "example-cluster-898931321"}, "gcp_project": {"project_id": "example-project-898931321"}, "gcp_sql_instance": {"instance_id": "example-sql-898931321", "project_id": "example-project-898931321"}, "gcp_service_account": {"email": "production@project.iam.gserviceaccount.com", "service_account_id": "103561576023829460000", "project_id": "example-project-898931321"}, "github_repo": {"repo_name": "Opal Security"}, "gitlab_project": {"project_id": "898931321"}, "okta_app": {"app_id": "a9dfas0f678asdf67867"}, "okta_standard_role": {"role_type": "ORG_ADMIN"}, "okta_custom_role": {"role_id": "a9dfas0f678asdf67867"}, "pagerduty_role": {"role_name": "owner"}, "salesforce_permission_set": {"permission_set_id": "0PS5Y090202wOV7WAM"}, "salesforce_profile": {"profile_id": "0PS5Y090202wOV7WAM", "user_license_id": "1005Y030081Qb5XJHS"}, "salesforce_role": {"role_id": "0PS5Y090202wOV7WAM"}, "teleport_role": {"role_name": "admin_role"}}, "remote_resource_id": "API_ACCESS_MANAGEMENT_ADMIN-51d203da-313a-4fd9-8fcf-420ce6312345", "metadata": "{\n  \"okta_directory_role\":\n    {\n      \"role_id\": \"SUPER_ADMIN-b52aa037-4a35-4ac3-9350-f6260fd12345\",\n      \"role_type\": \"SUPER_ADMIN\",\n    },\n}", "custom_request_notification": "Check your email to register your account."}
+        application/json: {"name": "Okta Engineering Super Admin", "description": "Okta super admin role.", "resource_type": "OKTA_ROLE", "app_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "remote_resource_id": "API_ACCESS_MANAGEMENT_ADMIN-51d203da-313a-4fd9-8fcf-420ce6312345", "metadata": "{\n  \"okta_directory_role\":\n    {\n      \"role_id\": \"SUPER_ADMIN-b52aa037-4a35-4ac3-9350-f6260fd12345\",\n      \"role_type\": \"SUPER_ADMIN\",\n    },\n}"}
       responses:
         "200":
-          application/json: {"resource_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "name": "mongo-db-prod", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "remote_resource_id": "318038399", "remote_resource_name": "repo-name", "resource_type": "AWS_IAM_ROLE", "max_duration": 120, "recommended_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "require_mfa_to_approve": false, "require_mfa_to_request": false, "require_mfa_to_connect": false, "auto_approval": false, "request_template_id": "06851574-e50d-40ca-8c78-f72ae6ab4304", "is_requestable": false, "parent_resource_id": "06851574-e50d-40ca-8c78-f72ae6ab4305", "configuration_template_id": "06851574-e50d-40ca-8c78-f72ae6ab4304", "request_configurations": [{"allow_requests": true, "auto_approval": false, "require_mfa_to_request": false, "max_duration_minutes": 120, "recommended_duration_minutes": 120, "require_support_ticket": false, "reviewer_stages": [{"require_manager_approval": false, "operator": "AND", "owner_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"]}], "priority": 1}], "ticket_propagation": {"enabled_on_grant": true, "enabled_on_revocation": true, "ticket_provider": "LINEAR"}, "remote_info": {"aws_account": {"account_id": "234234234234"}, "aws_permission_set": {"arn": "arn:aws:sso:::permissionSet/asdf-32139302d201d32/ps-f03323201211e1b9", "account_id": "234234234234"}, "aws_iam_role": {"arn": "arn:aws:iam::179308207300:role/MyRole", "account_id": "234234234234"}, "aws_ec2_instance": {"instance_id": "i-13f1a1e2899f9e93a", "region": "us-east-2", "account_id": "234234234234"}, "aws_rds_instance": {"instance_id": "demo-mysql-db", "region": "us-east-2", "resource_id": "db-AOO8V0XUCNU13XLZXQDQRSN0NQ", "account_id": "234234234234"}, "aws_eks_cluster": {"arn": "arn:aws:eks:us-east-2:234234234234:cluster/testcluster", "account_id": "234234234234"}, "gcp_organization": {"organization_id": "organizations/898931321"}, "gcp_bucket": {"bucket_id": "example-bucket-898931321"}, "gcp_compute_instance": {"instance_id": "example-instance-898931321", "project_id": "example-project-898931321", "zone": "us-central1-a"}, "gcp_big_query_dataset": {"project_id": "example-project-898931321", "dataset_id": "example-dataset-898931321"}, "gcp_big_query_table": {"project_id": "example-project-898931321", "dataset_id": "example-dataset-898931321", "table_id": "example-table-898931321"}, "gcp_folder": {"folder_id": "folder/898931321"}, "gcp_gke_cluster": {"cluster_name": "example-cluster-898931321"}, "gcp_project": {"project_id": "example-project-898931321"}, "gcp_sql_instance": {"instance_id": "example-sql-898931321", "project_id": "example-project-898931321"}, "gcp_service_account": {"email": "production@project.iam.gserviceaccount.com", "service_account_id": "103561576023829460000", "project_id": "example-project-898931321"}, "github_repo": {"repo_name": "Opal Security"}, "gitlab_project": {"project_id": "898931321"}, "okta_app": {"app_id": "a9dfas0f678asdf67867"}, "okta_standard_role": {"role_type": "ORG_ADMIN"}, "okta_custom_role": {"role_id": "a9dfas0f678asdf67867"}, "pagerduty_role": {"role_name": "owner"}, "salesforce_permission_set": {"permission_set_id": "0PS5Y090202wOV7WAM"}, "salesforce_profile": {"profile_id": "0PS5Y090202wOV7WAM", "user_license_id": "1005Y030081Qb5XJHS"}, "salesforce_role": {"role_id": "0PS5Y090202wOV7WAM"}, "teleport_role": {"role_name": "admin_role"}}}
+          application/json: {"resource_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "parent_resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5345"}
   get_resource:
     "":
       parameters:
@@ -1739,7 +1766,7 @@ examples:
   create_access_rule:
     speakeasy-default-create-access-rule:
       requestBody:
-        application/json: {"name": "Platform Engineering", "description": "This access rule represents all platform engineers in the company.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "ACTIVE", "ruleClauses": {"when": {"clauses": [{"selectors": [{"key": "<key>", "value": "<value>", "connection_id": "1717888b-c1ff-4b21-bbd3-59fb9373fb24"}, {"key": "<key>", "value": "<value>", "connection_id": "4575cbf9-6537-483a-86a0-75715ba04d88"}, {"key": "<key>", "value": "<value>", "connection_id": "c781ed55-b8f6-49cd-bd3f-70ae1f045666"}]}, {"selectors": [{"key": "<key>", "value": "<value>", "connection_id": "a191e1ed-acdd-4469-85e1-5292f5c4e813"}, {"key": "<key>", "value": "<value>", "connection_id": "f52ddec6-6044-4bbd-b1e4-56440cbc479e"}]}]}}}
+        application/json: {"name": "Platform Engineering", "description": "This access rule represents all platform engineers in the company.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "ACTIVE", "ruleClauses": {"when": {"clauses": []}}}
       responses:
         "201":
           application/json: {"access_rule_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Platform Engineering", "description": "This access rule represents all platform engineers in the company.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "ACTIVE", "ruleClauses": {"when": {"clauses": []}}}
@@ -1750,17 +1777,17 @@ examples:
           access_rule_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
       responses:
         "200":
-          application/json: {"access_rule_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Platform Engineering", "description": "This access rule represents all platform engineers in the company.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "ACTIVE", "ruleClauses": {"when": {"clauses": [{"selectors": []}]}}}
+          application/json: {"access_rule_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Platform Engineering", "description": "This access rule represents all platform engineers in the company.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "ACTIVE", "ruleClauses": {"when": {"clauses": []}}}
   update_access_rule:
     "":
       parameters:
         path:
           access_rule_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
       requestBody:
-        application/json: {"name": "Platform Engineering", "description": "This access rule represents all platform engineers in the company.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "ACTIVE", "ruleClauses": {"when": {"clauses": []}}}
+        application/json: {"name": "Platform Engineering", "description": "This access rule represents all platform engineers in the company.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "ACTIVE", "ruleClauses": {"when": {"clauses": [{"selectors": [{"key": "<key>", "value": "<value>", "connection_id": "fb76ee36-3589-45c2-b5e3-11bae3b92e8e"}, {"key": "<key>", "value": "<value>", "connection_id": "fb76ee36-3589-45c2-b5e3-11bae3b92e8e"}]}, {"selectors": [{"key": "<key>", "value": "<value>", "connection_id": "fb76ee36-3589-45c2-b5e3-11bae3b92e8e"}, {"key": "<key>", "value": "<value>", "connection_id": "fb76ee36-3589-45c2-b5e3-11bae3b92e8e"}]}]}}}
       responses:
         "200":
-          application/json: {"access_rule_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Platform Engineering", "description": "This access rule represents all platform engineers in the company.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "ACTIVE", "ruleClauses": {"when": {"clauses": []}}}
+          application/json: {"access_rule_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Platform Engineering", "description": "This access rule represents all platform engineers in the company.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "ACTIVE", "ruleClauses": {"when": {"clauses": [{"selectors": [{"key": "<key>", "value": "<value>", "connection_id": "fb76ee36-3589-45c2-b5e3-11bae3b92e8e"}, {"key": "<key>", "value": "<value>", "connection_id": "fb76ee36-3589-45c2-b5e3-11bae3b92e8e"}]}, {"selectors": [{"key": "<key>", "value": "<value>", "connection_id": "fb76ee36-3589-45c2-b5e3-11bae3b92e8e"}, {"key": "<key>", "value": "<value>", "connection_id": "fb76ee36-3589-45c2-b5e3-11bae3b92e8e"}]}]}}}
   get_tag_by_ID:
     "":
       parameters:
@@ -1844,7 +1871,7 @@ examples:
     speakeasy-default-get-message-channels:
       responses:
         "200":
-          application/json: {"channels": [{"message_channel_id": "6670617d-e72a-47f5-a84c-693817ab4860", "third_party_provider": "SLACK", "remote_id": "C03FJR97276", "name": "api-team-audit-channel", "is_private": false}]}
+          application/json: {"channels": [{"message_channel_id": "7870617d-e72a-47f5-a84c-693817ab4567", "third_party_provider": "SLACK", "remote_id": "C03FJR97276", "name": "api-team-audit-channel", "is_private": false}, {"message_channel_id": "1520617d-e72a-47f5-a84c-693817ab48ad2", "third_party_provider": "SLACK", "remote_id": "A4FJR97365D", "name": "api-team-monitor-channel", "is_private": false}]}
   create_message_channel:
     speakeasy-default-create-message-channel:
       requestBody:
@@ -1864,7 +1891,7 @@ examples:
     speakeasy-default-get-on-call-schedules:
       responses:
         "200":
-          application/json: {"on_call_schedules": [{"on_call_schedule_id": "50d5e9f6-f23f-4d5a-ae91-b2640cf3975e", "third_party_provider": "PAGER_DUTY", "remote_id": "P7OWH2R", "name": "Customer Support On-Call"}]}
+          application/json: {"on_call_schedules": [{"on_call_schedule_id": "50d5e9f6-f23f-4d5a-ae91-b2640cf3975e", "third_party_provider": "PAGER_DUTY", "remote_id": "P7OWH2R", "name": "Customer Support On-Call"}, {"on_call_schedule_id": "4d61592c-ed61-4b13-8f22-2fac1c49f574", "third_party_provider": "OPSGENIE", "remote_id": "72a8cb04-9e25-465d-a932-992f72077c61", "name": "Opal Backend On-Call"}]}
   create_on_call_schedule:
     speakeasy-default-create-on-call-schedule:
       requestBody:
@@ -1892,10 +1919,10 @@ examples:
   create_uar:
     speakeasy-default-create-uar:
       requestBody:
-        application/json: {"name": "Monthly UAR (July)", "reviewer_assignment_policy": "MANUALLY", "send_reviewer_assignment_notification": false, "deadline": "2022-07-14T06:59:59Z", "time_zone": "America/Los_Angeles", "self_review_allowed": false, "reminder_schedule": [7, 3, 1, 0], "reminder_include_manager": false, "uar_scope": {"group_visibility": "STRICT", "users": ["userd283-ca87-4a8a-bdbb-df212eca5353"], "filter_operator": "ANY", "entities": ["f454d283-as87-4a8a-bdbb-df212eca5353"], "apps": ["pas2d283-ca87-4a8a-bdbb-df212eca5353"], "admins": ["f454d283-ca87-4a8a-bdbb-df212eca5353"], "group_types": ["OPAL_GROUP"], "resource_types": ["AWS_IAM_ROLE"], "include_group_bindings": false, "tags": [{"key": "uar_scope", "value": "high_priority"}], "names": ["demo"]}}
+        application/json: {"name": "Monthly UAR (July)", "reviewer_assignment_policy": "MANUALLY", "send_reviewer_assignment_notification": false, "deadline": "2022-07-14T06:59:59Z", "time_zone": "America/Los_Angeles", "self_review_allowed": false, "reminder_schedule": [7, 3, 1, 0], "reminder_include_manager": true, "uar_scope": {"group_visibility": "STRICT", "admins": ["f454d283-ca87-4a8a-bdbb-df212eca5353", "8763d283-ca87-4a8a-bdbb-df212ecab139"], "tags": [{"key": "uar_scope", "value": "high_priority"}], "names": ["demo", "api"]}}
       responses:
         "200":
-          application/json: {"uar_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "Monthly UAR (July)", "reviewer_assignment_policy": "MANUALLY", "send_reviewer_assignment_notification": false, "deadline": "2022-07-14T06:59:59Z", "time_zone": "America/Los_Angeles", "self_review_allowed": false, "uar_scope": {"users": ["userd283-ca87-4a8a-bdbb-df212eca5353"], "filter_operator": "ANY", "entities": ["f454d283-as87-4a8a-bdbb-df212eca5353"], "apps": ["pas2d283-ca87-4a8a-bdbb-df212eca5353"], "admins": ["f454d283-ca87-4a8a-bdbb-df212eca5353"], "group_types": ["OPAL_GROUP"], "resource_types": ["AWS_IAM_ROLE"], "include_group_bindings": false, "tags": [{"key": "uar_scope", "value": "high_priority"}], "names": ["demo"]}}
+          application/json: {"uar_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "Monthly UAR (July)", "reviewer_assignment_policy": "MANUALLY", "send_reviewer_assignment_notification": false, "deadline": "2022-07-14T06:59:59Z", "time_zone": "America/Los_Angeles", "self_review_allowed": false, "uar_scope": {"admins": ["f454d283-ca87-4a8a-bdbb-df212eca5353", "8763d283-ca87-4a8a-bdbb-df212ecab139"], "tags": [{"key": "uar_scope", "value": "high_priority"}], "names": ["demo", "api"]}}
   get_uar:
     "":
       parameters:
@@ -1904,29 +1931,5 @@ examples:
       responses:
         "200":
           application/json: {"uar_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "Monthly UAR (July)", "reviewer_assignment_policy": "MANUALLY", "send_reviewer_assignment_notification": false, "deadline": "2022-07-14T06:59:59Z", "time_zone": "America/Los_Angeles", "self_review_allowed": false, "uar_scope": {"admins": ["f454d283-ca87-4a8a-bdbb-df212eca5353", "8763d283-ca87-4a8a-bdbb-df212ecab139"], "tags": [{"key": "uar_scope", "value": "high_priority"}], "names": ["demo", "api"]}}
-  getRequestsRelay:
-    "":
-      parameters:
-        query:
-          first: 10
-          after: "Y3Vyc29yOnYyOpK5MjAyMS0wMS0wN1QwNzo0MToyNy4xMTlaFjYwZmM2YmJlZjk4YzE1N2ZhNjFhYjk4Nw=="
-          last: 10
-          before: "Y3Vyc29yOnYyOpK5MjAyMS0wMS0wN1QwNzo0MToyNy4xMTlaFjYwZmM2YmJlZjk4YzE1N2ZhNjFhYjk4Nw=="
-          status: "PENDING"
-          to: "37cb7e41-12ba-46da-92ff-030abe0450b1"
-          from: "37cb7e41-12ba-46da-92ff-030abe0450b1"
-      responses:
-        "200":
-          application/json: {"edges": [{"node": {"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "r86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING", "reason": "I need this resource.", "duration_minutes": 1440, "stages": {"requestedRoleName": "Admin", "requestedItemName": "AWS Production Account", "stages": [{"stage": 1, "operator": "AND", "reviewers": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING"}]}, {"stage": 2, "operator": "OR", "reviewers": [{"id": "8d86c85d-0651-43e2-a748-d69d658418e9", "status": "APPROVED"}]}]}}, "cursor": "<value>"}], "pageInfo": {"hasNextPage": false, "endCursor": "<value>", "hasPreviousPage": false, "startCursor": "<value>"}, "totalCount": 387693}
-  approveRequest:
-    speakeasy-default-approve-request:
-      parameters:
-        path:
-          id: "c0f3ec67-1160-46ca-a9ce-15c81cc6d9e2"
-      requestBody:
-        application/json: {"level": "REGULAR", "comment": "Approved after security review"}
-      responses:
-        "200":
-          application/json: {"request": {"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING", "reason": "I need access to the AWS account.", "duration_minutes": 120, "requested_items_list": [{"resource_id": "09d4e00b-c6ca-4eed-97af-28dc86b0dc01", "group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "access_level_name": "admin", "access_level_remote_id": "arn:aws:iam::490306337630:role/SupportUser", "name": "Engineering Team"}], "custom_fields_responses": [{"field_name": "<value>", "field_type": "LONG_TEXT", "field_value": true}], "stages": {"requestedRoleName": "Admin", "requestedItemName": "AWS Production Account", "stages": [{"stage": 1, "operator": "AND", "reviewers": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING"}]}, {"stage": 2, "operator": "OR", "reviewers": [{"id": "8d86c85d-0651-43e2-a748-d69d658418e9", "status": "APPROVED"}]}]}}, "taskId": "c6f85bfb-3fe7-4936-a68d-7a5e1e3d0f6a"}
-examplesVersion: 1.0.1
+examplesVersion: 1.0.2
 generatedTests: {}

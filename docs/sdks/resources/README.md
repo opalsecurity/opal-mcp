@@ -146,6 +146,15 @@ async function run() {
         requireManagerApproval: false,
         requireSupportTicket: false,
       },
+      {
+        resourceId: "99d0b81d-14be-4cf6-bd27-348b4af1d11b",
+        name: "Admin Role",
+        description: "This resource represents GCP project \"app-demo\".",
+        adminOwnerId: "4220bc12-ab8a-4b5d-be7b-f6bbcf9159f3",
+        maxDuration: 360,
+        requireManagerApproval: false,
+        requireSupportTicket: true,
+      },
     ],
   });
 
@@ -181,6 +190,15 @@ async function run() {
         maxDuration: 120,
         requireManagerApproval: false,
         requireSupportTicket: false,
+      },
+      {
+        resourceId: "99d0b81d-14be-4cf6-bd27-348b4af1d11b",
+        name: "Admin Role",
+        description: "This resource represents GCP project \"app-demo\".",
+        adminOwnerId: "4220bc12-ab8a-4b5d-be7b-f6bbcf9159f3",
+        maxDuration: 360,
+        requireManagerApproval: false,
+        requireSupportTicket: true,
       },
     ],
   });
@@ -232,107 +250,10 @@ const opalMcp = new OpalMcp({
 
 async function run() {
   const result = await opalMcp.resources.createResource({
-    name: "mongo-db-prod",
-    description: "Engineering team Okta role.",
-    resourceType: "AWS_IAM_ROLE",
+    name: "Okta Engineering Super Admin",
+    description: "Okta super admin role.",
+    resourceType: "OKTA_ROLE",
     appId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
-    remoteInfo: {
-      awsAccount: {
-        accountId: "234234234234",
-      },
-      awsPermissionSet: {
-        arn: "arn:aws:sso:::permissionSet/asdf-32139302d201d32/ps-f03323201211e1b9",
-        accountId: "234234234234",
-      },
-      awsIamRole: {
-        arn: "arn:aws:iam::179308207300:role/MyRole",
-        accountId: "234234234234",
-      },
-      awsEc2Instance: {
-        instanceId: "i-13f1a1e2899f9e93a",
-        region: "us-east-2",
-        accountId: "234234234234",
-      },
-      awsRdsInstance: {
-        instanceId: "demo-mysql-db",
-        region: "us-east-2",
-        resourceId: "db-AOO8V0XUCNU13XLZXQDQRSN0NQ",
-        accountId: "234234234234",
-      },
-      awsEksCluster: {
-        arn: "arn:aws:eks:us-east-2:234234234234:cluster/testcluster",
-        accountId: "234234234234",
-      },
-      gcpOrganization: {
-        organizationId: "organizations/898931321",
-      },
-      gcpBucket: {
-        bucketId: "example-bucket-898931321",
-      },
-      gcpComputeInstance: {
-        instanceId: "example-instance-898931321",
-        projectId: "example-project-898931321",
-        zone: "us-central1-a",
-      },
-      gcpBigQueryDataset: {
-        projectId: "example-project-898931321",
-        datasetId: "example-dataset-898931321",
-      },
-      gcpBigQueryTable: {
-        projectId: "example-project-898931321",
-        datasetId: "example-dataset-898931321",
-        tableId: "example-table-898931321",
-      },
-      gcpFolder: {
-        folderId: "folder/898931321",
-      },
-      gcpGkeCluster: {
-        clusterName: "example-cluster-898931321",
-      },
-      gcpProject: {
-        projectId: "example-project-898931321",
-      },
-      gcpSqlInstance: {
-        instanceId: "example-sql-898931321",
-        projectId: "example-project-898931321",
-      },
-      gcpServiceAccount: {
-        email: "production@project.iam.gserviceaccount.com",
-        serviceAccountId: "103561576023829460000",
-        projectId: "example-project-898931321",
-      },
-      githubRepo: {
-        repoName: "Opal Security",
-      },
-      gitlabProject: {
-        projectId: "898931321",
-      },
-      oktaApp: {
-        appId: "a9dfas0f678asdf67867",
-      },
-      oktaStandardRole: {
-        roleType: "ORG_ADMIN",
-      },
-      oktaCustomRole: {
-        roleId: "a9dfas0f678asdf67867",
-      },
-      pagerdutyRole: {
-        roleName: "owner",
-      },
-      salesforcePermissionSet: {
-        permissionSetId: "0PS5Y090202wOV7WAM",
-      },
-      salesforceProfile: {
-        profileId: "0PS5Y090202wOV7WAM",
-        userLicenseId: "1005Y030081Qb5XJHS",
-      },
-      salesforceRole: {
-        roleId: "0PS5Y090202wOV7WAM",
-      },
-      teleportRole: {
-        roleName: "admin_role",
-      },
-    },
     remoteResourceId: "API_ACCESS_MANAGEMENT_ADMIN-51d203da-313a-4fd9-8fcf-420ce6312345",
     metadata: "{\n" +
     "  \"okta_directory_role\":\n" +
@@ -341,7 +262,6 @@ async function run() {
     "      \"role_type\": \"SUPER_ADMIN\",\n" +
     "    },\n" +
     "}",
-    customRequestNotification: "Check your email to register your account.",
   });
 
   // Handle the result
@@ -367,107 +287,10 @@ const opalMcp = new OpalMcpCore({
 
 async function run() {
   const res = await resourcesCreateResource(opalMcp, {
-    name: "mongo-db-prod",
-    description: "Engineering team Okta role.",
-    resourceType: "AWS_IAM_ROLE",
+    name: "Okta Engineering Super Admin",
+    description: "Okta super admin role.",
+    resourceType: "OKTA_ROLE",
     appId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
-    remoteInfo: {
-      awsAccount: {
-        accountId: "234234234234",
-      },
-      awsPermissionSet: {
-        arn: "arn:aws:sso:::permissionSet/asdf-32139302d201d32/ps-f03323201211e1b9",
-        accountId: "234234234234",
-      },
-      awsIamRole: {
-        arn: "arn:aws:iam::179308207300:role/MyRole",
-        accountId: "234234234234",
-      },
-      awsEc2Instance: {
-        instanceId: "i-13f1a1e2899f9e93a",
-        region: "us-east-2",
-        accountId: "234234234234",
-      },
-      awsRdsInstance: {
-        instanceId: "demo-mysql-db",
-        region: "us-east-2",
-        resourceId: "db-AOO8V0XUCNU13XLZXQDQRSN0NQ",
-        accountId: "234234234234",
-      },
-      awsEksCluster: {
-        arn: "arn:aws:eks:us-east-2:234234234234:cluster/testcluster",
-        accountId: "234234234234",
-      },
-      gcpOrganization: {
-        organizationId: "organizations/898931321",
-      },
-      gcpBucket: {
-        bucketId: "example-bucket-898931321",
-      },
-      gcpComputeInstance: {
-        instanceId: "example-instance-898931321",
-        projectId: "example-project-898931321",
-        zone: "us-central1-a",
-      },
-      gcpBigQueryDataset: {
-        projectId: "example-project-898931321",
-        datasetId: "example-dataset-898931321",
-      },
-      gcpBigQueryTable: {
-        projectId: "example-project-898931321",
-        datasetId: "example-dataset-898931321",
-        tableId: "example-table-898931321",
-      },
-      gcpFolder: {
-        folderId: "folder/898931321",
-      },
-      gcpGkeCluster: {
-        clusterName: "example-cluster-898931321",
-      },
-      gcpProject: {
-        projectId: "example-project-898931321",
-      },
-      gcpSqlInstance: {
-        instanceId: "example-sql-898931321",
-        projectId: "example-project-898931321",
-      },
-      gcpServiceAccount: {
-        email: "production@project.iam.gserviceaccount.com",
-        serviceAccountId: "103561576023829460000",
-        projectId: "example-project-898931321",
-      },
-      githubRepo: {
-        repoName: "Opal Security",
-      },
-      gitlabProject: {
-        projectId: "898931321",
-      },
-      oktaApp: {
-        appId: "a9dfas0f678asdf67867",
-      },
-      oktaStandardRole: {
-        roleType: "ORG_ADMIN",
-      },
-      oktaCustomRole: {
-        roleId: "a9dfas0f678asdf67867",
-      },
-      pagerdutyRole: {
-        roleName: "owner",
-      },
-      salesforcePermissionSet: {
-        permissionSetId: "0PS5Y090202wOV7WAM",
-      },
-      salesforceProfile: {
-        profileId: "0PS5Y090202wOV7WAM",
-        userLicenseId: "1005Y030081Qb5XJHS",
-      },
-      salesforceRole: {
-        roleId: "0PS5Y090202wOV7WAM",
-      },
-      teleportRole: {
-        roleName: "admin_role",
-      },
-    },
     remoteResourceId: "API_ACCESS_MANAGEMENT_ADMIN-51d203da-313a-4fd9-8fcf-420ce6312345",
     metadata: "{\n" +
     "  \"okta_directory_role\":\n" +
@@ -476,7 +299,6 @@ async function run() {
     "      \"role_type\": \"SUPER_ADMIN\",\n" +
     "    },\n" +
     "}",
-    customRequestNotification: "Check your email to register your account.",
   });
 
   if (!res.ok) {

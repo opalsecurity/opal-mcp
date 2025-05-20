@@ -107,14 +107,24 @@ const opalMcp = new OpalMcp({
 
 async function run() {
   const result = await opalMcp.requests.createRequest({
-    resources: [
+    resources: [],
+    groups: [
       {
-        id: "group283-ca87-4a8a-bdbb-df212eca5353",
+        id: "f454d283-ca87-4a8a-bdbb-df212eca5353",
+        accessLevelRemoteId: "arn:aws:iam::490306337630:role/SupportUser",
+        accessLevelName: "arn:aws:iam::490306337630:role/SupportUser",
+      },
+      {
+        id: "f454d283-ca87-4a8a-bdbb-df212eca5353",
+        accessLevelRemoteId: "arn:aws:iam::490306337630:role/SupportUser",
+        accessLevelName: "arn:aws:iam::490306337630:role/SupportUser",
+      },
+      {
+        id: "f454d283-ca87-4a8a-bdbb-df212eca5353",
         accessLevelRemoteId: "arn:aws:iam::490306337630:role/SupportUser",
         accessLevelName: "arn:aws:iam::490306337630:role/SupportUser",
       },
     ],
-    groups: [],
     targetUserId: "userd283-ca87-4a8a-bdbb-df212eca5353",
     targetGroupId: "userd283-ca87-4a8a-bdbb-df212eca5353",
     reason: "<value>",
@@ -122,9 +132,9 @@ async function run() {
       ticketingProvider: "LINEAR",
       remoteId: "<id>",
       identifier: "<value>",
-      url: "https://bleak-fowl.net",
+      url: "https://remarkable-smoke.net/",
     },
-    durationMinutes: 523545,
+    durationMinutes: 931503,
   });
 
   // Handle the result
@@ -150,14 +160,24 @@ const opalMcp = new OpalMcpCore({
 
 async function run() {
   const res = await requestsCreateRequest(opalMcp, {
-    resources: [
+    resources: [],
+    groups: [
       {
-        id: "group283-ca87-4a8a-bdbb-df212eca5353",
+        id: "f454d283-ca87-4a8a-bdbb-df212eca5353",
+        accessLevelRemoteId: "arn:aws:iam::490306337630:role/SupportUser",
+        accessLevelName: "arn:aws:iam::490306337630:role/SupportUser",
+      },
+      {
+        id: "f454d283-ca87-4a8a-bdbb-df212eca5353",
+        accessLevelRemoteId: "arn:aws:iam::490306337630:role/SupportUser",
+        accessLevelName: "arn:aws:iam::490306337630:role/SupportUser",
+      },
+      {
+        id: "f454d283-ca87-4a8a-bdbb-df212eca5353",
         accessLevelRemoteId: "arn:aws:iam::490306337630:role/SupportUser",
         accessLevelName: "arn:aws:iam::490306337630:role/SupportUser",
       },
     ],
-    groups: [],
     targetUserId: "userd283-ca87-4a8a-bdbb-df212eca5353",
     targetGroupId: "userd283-ca87-4a8a-bdbb-df212eca5353",
     reason: "<value>",
@@ -165,9 +185,9 @@ async function run() {
       ticketingProvider: "LINEAR",
       remoteId: "<id>",
       identifier: "<value>",
-      url: "https://bleak-fowl.net",
+      url: "https://remarkable-smoke.net/",
     },
-    durationMinutes: 523545,
+    durationMinutes: 931503,
   });
 
   if (!res.ok) {
@@ -305,7 +325,7 @@ const opalMcp = new OpalMcp({
 
 async function run() {
   const result = await opalMcp.requests.approveRequest({
-    id: "c0f3ec67-1160-46ca-a9ce-15c81cc6d9e2",
+    id: "5ee691eb-6bcb-4d2a-a747-6d792f2ebd23",
     requestBody: {
       level: "REGULAR",
       comment: "Approved after security review",
@@ -335,7 +355,7 @@ const opalMcp = new OpalMcpCore({
 
 async function run() {
   const res = await requestsApproveRequest(opalMcp, {
-    id: "c0f3ec67-1160-46ca-a9ce-15c81cc6d9e2",
+    id: "5ee691eb-6bcb-4d2a-a747-6d792f2ebd23",
     requestBody: {
       level: "REGULAR",
       comment: "Approved after security review",
