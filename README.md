@@ -34,13 +34,7 @@ The AI assistant will use the appropriate SDK functions through the MCP server t
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [Opal MCP (Management Control Plane)](#opal-mcp-management-control-plane)
-  * [Architecture Overview](#architecture-overview)
-  * [OpenAPI to SDK Generation](#openapi-to-sdk-generation)
-  * [Using the Generated SDK](#using-the-generated-sdk)
-  * [Development](#development)
-  * [Contributing](#contributing)
-  * [Documentation](#documentation)
+
 * [opal-mcp](#opal-mcp)
   * [SDK Installation](#sdk-installation)
   * [Requirements](#requirements)
@@ -53,9 +47,14 @@ The AI assistant will use the appropriate SDK functions through the MCP server t
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
-* [Development](#development-1)
+  * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
+  * [Architecture Overview](#architecture-overview)
+  * [OpenAPI to SDK Generation](#openapi-to-sdk-generation)
+  * [Using the Generated SDK](#using-the-generated-sdk)
+  * [Documentation](#documentation)
+  * [Contributing](#contributing)
 
 <!-- End Table of Contents [toc] -->
 
@@ -105,11 +104,6 @@ To authenticate with the Opal API, you'll need to generate an API token:
 6. Set an expiration date (optional but recommended for security)
 7. Add a descriptive label to identify the token's purpose
 8. Save the token securely - it will only be displayed once
-
-When making API requests, include the token in the Authorization header:
-```
-Authorization: Bearer your_api_token_here
-```
 
 If a token is compromised, you can revoke it at any time from the Opal Admin page.
 
@@ -920,6 +914,16 @@ You can also enable a default debug logger by setting an environment variable `O
 
 # Development
 
+### Prerequisites
+- Node.js
+- TypeScript
+- Speakeasy CLI (for local generation)
+
+### Local Development
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Build the SDK: `npm run build`
+
 ## Maturity
 
 This SDK is in beta, and there may be breaking changes between versions without a major version update. Therefore, we recommend pinning usage
@@ -1002,24 +1006,12 @@ The generated TypeScript SDK provides strongly-typed client interfaces for inter
 3. **Customization**: Overlay system allows for precise control over the generated SDK
 4. **Documentation**: Automated generation of code samples and documentation
 
-## Development
-
-### Prerequisites
-- Node.js
-- TypeScript
-- Speakeasy CLI (for local generation)
-
-### Local Development
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Build the SDK: `npm run build`
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on contributing to this project.
-
 ## Documentation
 
 - [Functions Documentation](FUNCTIONS.md)
 - [Runtimes Documentation](RUNTIMES.md)
 - [Usage Guide](USAGE.md)
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on contributing to this project.
