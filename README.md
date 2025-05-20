@@ -36,6 +36,7 @@ The AI assistant will use the appropriate SDK functions through the MCP server t
 <!-- $toc-max-depth=2 -->
 
 * [opal-mcp](#opal-mcp)
+  * [Summary](#summary)
   * [SDK Installation](#sdk-installation)
   * [Requirements](#requirements)
   * [SDK Example Usage](#sdk-example-usage)
