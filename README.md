@@ -1,93 +1,3 @@
-# Opal MCP (Management Control Plane)
-
-This repository serves two main purposes:
-1. Generating a TypeScript SDK from Opal's public OpenAPI specification
-2. Using this SDK to implement the MCP server
-
-## Architecture Overview
-
-```mermaid
-graph LR
-    A[OpenAPI Spec<br/>app.opal.dev/openapi.yaml] --> B[Overlay Files]
-    B --> C[Speakeasy Generator]
-    C --> D[TypeScript SDK]
-    D --> E[MCP Server Implementation]
-    
-    subgraph Overlay Files
-        F[Field Visibility]
-        G[Scopes & Endpoints]
-        H[Documentation]
-    end
-```
-
-## OpenAPI to SDK Generation
-
-### Source Specification
-The base OpenAPI specification is fetched from `https://app.opal.dev/openapi.yaml`. This specification defines all public endpoints, models, and operations available in the Opal API.
-
-### Overlay System
-We use several overlay files to customize the OpenAPI specification for our specific needs:
-
-1. **Field Visibility Overlay** (`mcp-field-visibility-overlay.yaml`)
-   - Removes irrelevant or internal fields from various schemas
-   - Helps maintain a clean and focused public API surface
-
-2. **Scopes and Endpoints Overlay** (`mcp-scopes-and-endpoints-overlay.yaml`)
-   - Configures authentication scopes for endpoints
-   - May modify endpoint visibility or requirements
-
-3. **Documentation Overlay** (`mcp-documentation-overlay.yaml`)
-   - Enhances API documentation
-   - Provides additional context and examples
-
-### SDK Generation Process
-
-The SDK generation is automated through GitHub Actions and Speakeasy:
-
-1. **Workflow Configuration** (`.speakeasy/workflow.yaml`)
-   - Defines the input OpenAPI specification
-   - Applies the overlay files in sequence
-   - Configures TypeScript as the target language
-   - Sets up code sample generation
-
-2. **CI/CD Integration** (`.github/workflows/sdk_generation.yaml`)
-   - Runs daily to check for API changes
-   - Can be manually triggered with optional version control
-   - Creates pull requests for SDK updates
-
-## Using the Generated SDK
-
-The generated TypeScript SDK provides strongly-typed client interfaces for interacting with the Opal API. This SDK is then used to implement the MCP server, ensuring type safety and maintaining consistency with the public API specification.
-
-### Key Benefits
-
-1. **Type Safety**: Full TypeScript support with generated types matching the API specification
-2. **Auto-updates**: Daily checks for API changes ensure the SDK stays in sync
-3. **Customization**: Overlay system allows for precise control over the generated SDK
-4. **Documentation**: Automated generation of code samples and documentation
-
-## Development
-
-### Prerequisites
-- Node.js
-- TypeScript
-- Speakeasy CLI (for local generation)
-
-### Local Development
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Build the SDK: `npm run build`
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on contributing to this project.
-
-## Documentation
-
-- [Functions Documentation](FUNCTIONS.md)
-- [Runtimes Documentation](RUNTIMES.md)
-- [Usage Guide](USAGE.md)
-
 # opal-mcp
 
 Developer-friendly & type-safe Typescript SDK specifically catered to leverage *opal-mcp* API.
@@ -99,16 +9,27 @@ Developer-friendly & type-safe Typescript SDK specifically catered to leverage *
     </a>
 </div>
 
-
-<br /><br />
-> [!IMPORTANT]
-> This SDK is not yet ready for production use. To complete setup please follow the steps outlined in your [workspace](https://app.speakeasy.com/org/opal/opal). Delete this section before > publishing to a package manager.
-
 <!-- Start Summary [summary] -->
 ## Summary
 
 Opal API: The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
-<!-- End Summary [summary] -->
+
+The MCP (Model Context Protocol) server is a standardized way for AI systems to interact with external tools and services. This opal-mcp package provides a fully-featured MCP server implementation that allows AI assistants like Claude, GitHub Copilot, and other LLM-based tools to securely interact with the Opal Security platform. With this MCP server, AI assistants can:
+
+- Retrieve information about users, groups, resources, and access policies
+- Create and manage access requests
+- Automate identity and access management workflows
+
+For example, you can ask an AI assistant connected to this MCP server to:
+
+```
+"Show me all users in the Engineering group"
+"Create an access request for the Production database"
+"Review the recent access changes for our AWS resources"
+"Get information about which users have access to the financial reporting resources"
+```
+
+The AI assistant will use the appropriate SDK functions through the MCP server to retrieve or modify data in your Opal environment, making it easy to manage access control through natural language conversations.<!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
@@ -169,6 +90,30 @@ yarn add opal-mcp zod
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
 ```
+
+### Generating an API Key
+
+To authenticate with the Opal API, you'll need to generate an API token:
+
+1. Log in to the Opal dashboard as an Admin
+2. Navigate to the **Settings** page
+3. Select the API Tokens section
+4. Click "Generate new token"
+5. Choose the appropriate access level:
+   - **Read-only**: For applications that only need to view resources
+   - **Full-access**: For applications that need to create or modify resources
+6. Set an expiration date (optional but recommended for security)
+7. Add a descriptive label to identify the token's purpose
+8. Save the token securely - it will only be displayed once
+
+When making API requests, include the token in the Authorization header:
+```
+Authorization: Bearer your_api_token_here
+```
+
+If a token is compromised, you can revoke it at any time from the Opal Admin page.
+
+For more information, see the [Opal API Authentication Documentation](https://docs.opal.dev/reference/authentication).
 
 > [!NOTE]
 > This package is published with CommonJS and ES Modules (ESM) support.
@@ -255,6 +200,51 @@ For a full list of server arguments, run:
 
 ```sh
 npx -y --package opal-mcp -- mcp start --help
+```
+
+### Running the MCP Server with Docker
+
+The SDK includes a Dockerfile and docker-compose.yaml for easy containerization and deployment.
+
+#### Using docker-compose
+
+1. Create a `.env` file with your configuration:
+   ```
+   BEARER_AUTH=your_api_key_here
+   PORT=32000
+   SERVER_URL=https://api.opal.dev/v1
+   LOG_LEVEL=info
+   ```
+
+2. Run the server using docker-compose:
+   ```bash
+   docker-compose up -d
+   ```
+
+3. Configure your MCP client to connect to the server by adding the following to your configuration file:
+   ```json
+   {
+     "mcpServers": {
+       "opal-mcp": {
+         "url": "http://localhost:32000/sse",
+         "env": {
+           "API_KEY": "your_api_key_here"
+         }
+       }
+     }
+   }
+   ```
+
+#### Building and running manually
+
+You can also build and run the Docker image directly:
+
+```bash
+# Build the image
+docker build -t opal-mcp-server .
+
+# Run the container
+docker run -p 32000:32000 -e BEARER_AUTH=your_api_key_here opal-mcp-server
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -942,3 +932,94 @@ While we value open-source contributions to this SDK, this library is generated 
 We look forward to hearing your feedback. Feel free to open a PR or an issue with a proof of concept and we'll do our best to include it in a future release. 
 
 ### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=opal-mcp&utm_campaign=typescript)
+
+# Opal MCP Generation
+
+This repository serves two main purposes:
+1. Generating a TypeScript SDK from Opal's public OpenAPI specification
+2. Using this SDK to implement the MCP server
+
+
+## Architecture Overview
+
+```mermaid
+graph LR
+    A[OpenAPI Spec<br/>app.opal.dev/openapi.yaml] --> B[Overlay Files]
+    B --> C[Speakeasy Generator]
+    C --> D[TypeScript SDK]
+    D --> E[MCP Server Implementation]
+    
+    subgraph Overlay Files
+        F[Field Visibility]
+        G[Scopes & Endpoints]
+        H[Documentation]
+    end
+```
+
+## OpenAPI to SDK Generation
+
+### Source Specification
+The base OpenAPI specification is fetched from `https://app.opal.dev/openapi.yaml`. This specification defines all public endpoints, models, and operations available in the Opal API.
+
+### Overlay System
+We use several overlay files to customize the OpenAPI specification for our specific needs:
+
+1. **Field Visibility Overlay** (`mcp-field-visibility-overlay.yaml`)
+   - Removes irrelevant or internal fields from various schemas
+   - Helps maintain a clean and focused public API surface
+
+2. **Scopes and Endpoints Overlay** (`mcp-scopes-and-endpoints-overlay.yaml`)
+   - Configures authentication scopes for endpoints
+   - May modify endpoint visibility or requirements
+
+3. **Documentation Overlay** (`mcp-documentation-overlay.yaml`)
+   - Enhances API documentation
+   - Provides additional context and examples
+
+### SDK Generation Process
+
+The SDK generation is automated through GitHub Actions and Speakeasy:
+
+1. **Workflow Configuration** (`.speakeasy/workflow.yaml`)
+   - Defines the input OpenAPI specification
+   - Applies the overlay files in sequence
+   - Configures TypeScript as the target language
+   - Sets up code sample generation
+
+2. **CI/CD Integration** (`.github/workflows/sdk_generation.yaml`)
+   - Runs daily to check for API changes
+   - Can be manually triggered with optional version control
+   - Creates pull requests for SDK updates
+
+## Using the Generated SDK
+
+The generated TypeScript SDK provides strongly-typed client interfaces for interacting with the Opal API. This SDK is then used to implement the MCP server, ensuring type safety and maintaining consistency with the public API specification.
+
+### Key Benefits
+
+1. **Type Safety**: Full TypeScript support with generated types matching the API specification
+2. **Auto-updates**: Daily checks for API changes ensure the SDK stays in sync
+3. **Customization**: Overlay system allows for precise control over the generated SDK
+4. **Documentation**: Automated generation of code samples and documentation
+
+## Development
+
+### Prerequisites
+- Node.js
+- TypeScript
+- Speakeasy CLI (for local generation)
+
+### Local Development
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Build the SDK: `npm run build`
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on contributing to this project.
+
+## Documentation
+
+- [Functions Documentation](FUNCTIONS.md)
+- [Runtimes Documentation](RUNTIMES.md)
+- [Usage Guide](USAGE.md)
