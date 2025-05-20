@@ -4,7 +4,7 @@
 
 import * as z from "zod";
 import { OpalMcpCore } from "../core.js";
-import { encodeSimple } from "../lib/encodings.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -78,7 +78,7 @@ async function $do(
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload.RequestBody, { explode: true });
 
   const pathParams = {
     tag_id: encodeSimple("tag_id", payload.tag_id, {
@@ -94,6 +94,7 @@ async function $do(
   const path = pathToFunc("/tags/{tag_id}/users/{user_id}")(pathParams);
 
   const headers = new Headers(compactMap({
+    "Content-Type": "application/json",
     Accept: "*/*",
   }));
 

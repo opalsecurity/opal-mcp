@@ -114,9 +114,9 @@ const opalMcp = new OpalMcp({
 
 async function run() {
   const result = await opalMcp.bundles.createBundle({
-    name: "Test Bundle",
-    description: "This is a test bundle",
-    adminOwnerId: "7c86c85d-0651-43e2-a748-d69d658418e8",
+    name: "Engineering Team Bundle",
+    description: "Engineering team bundle.",
+    adminOwnerId: "7870617d-e72a-47f5-a84c-693817ab4567",
   });
 
   // Handle the result
@@ -142,9 +142,9 @@ const opalMcp = new OpalMcpCore({
 
 async function run() {
   const res = await bundlesCreateBundle(opalMcp, {
-    name: "Test Bundle",
-    description: "This is a test bundle",
-    adminOwnerId: "7c86c85d-0651-43e2-a748-d69d658418e8",
+    name: "Engineering Team Bundle",
+    description: "Engineering team bundle.",
+    adminOwnerId: "7870617d-e72a-47f5-a84c-693817ab4567",
   });
 
   if (!res.ok) {
