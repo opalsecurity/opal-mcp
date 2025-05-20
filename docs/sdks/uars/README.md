@@ -114,29 +114,13 @@ async function run() {
       1,
       0,
     ],
-    reminderIncludeManager: false,
+    reminderIncludeManager: true,
     uarScope: {
       groupVisibility: "STRICT",
-      users: [
-        "userd283-ca87-4a8a-bdbb-df212eca5353",
-      ],
-      filterOperator: "ANY",
-      entities: [
-        "f454d283-as87-4a8a-bdbb-df212eca5353",
-      ],
-      apps: [
-        "pas2d283-ca87-4a8a-bdbb-df212eca5353",
-      ],
       admins: [
         "f454d283-ca87-4a8a-bdbb-df212eca5353",
+        "8763d283-ca87-4a8a-bdbb-df212ecab139",
       ],
-      groupTypes: [
-        "OPAL_GROUP",
-      ],
-      resourceTypes: [
-        "AWS_IAM_ROLE",
-      ],
-      includeGroupBindings: false,
       tags: [
         {
           key: "uar_scope",
@@ -145,6 +129,7 @@ async function run() {
       ],
       names: [
         "demo",
+        "api",
       ],
     },
   });
@@ -184,29 +169,13 @@ async function run() {
       1,
       0,
     ],
-    reminderIncludeManager: false,
+    reminderIncludeManager: true,
     uarScope: {
       groupVisibility: "STRICT",
-      users: [
-        "userd283-ca87-4a8a-bdbb-df212eca5353",
-      ],
-      filterOperator: "ANY",
-      entities: [
-        "f454d283-as87-4a8a-bdbb-df212eca5353",
-      ],
-      apps: [
-        "pas2d283-ca87-4a8a-bdbb-df212eca5353",
-      ],
       admins: [
         "f454d283-ca87-4a8a-bdbb-df212eca5353",
+        "8763d283-ca87-4a8a-bdbb-df212ecab139",
       ],
-      groupTypes: [
-        "OPAL_GROUP",
-      ],
-      resourceTypes: [
-        "AWS_IAM_ROLE",
-      ],
-      includeGroupBindings: false,
       tags: [
         {
           key: "uar_scope",
@@ -215,6 +184,7 @@ async function run() {
       ],
       names: [
         "demo",
+        "api",
       ],
     },
   });

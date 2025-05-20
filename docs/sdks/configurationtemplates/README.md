@@ -99,10 +99,6 @@ async function run() {
     adminOwnerId: "7c86c85d-0651-43e2-a748-d69d658418e8",
     visibility: {
       visibility: "GLOBAL",
-      visibilityGroupIds: [
-        "7870617d-e72a-47f5-a84c-693817ab4567",
-        "1520617d-e72a-47f5-a84c-693817ab48ad2",
-      ],
     },
     linkedAuditMessageChannelIds: [
       "37cb7e41-12ba-46da-92ff-030abe0450b1",
@@ -119,56 +115,6 @@ async function run() {
     requireMfaToApprove: false,
     requireMfaToConnect: false,
     name: "Prod AWS Template",
-    requestConfigurations: [
-      {
-        allowRequests: true,
-        autoApproval: false,
-        requireMfaToRequest: false,
-        maxDurationMinutes: 120,
-        recommendedDurationMinutes: 120,
-        requireSupportTicket: false,
-        reviewerStages: [
-          {
-            requireManagerApproval: false,
-            operator: "AND",
-            ownerIds: [
-              "37cb7e41-12ba-46da-92ff-030abe0450b1",
-              "37cb7e41-12ba-46da-92ff-030abe0450b2",
-            ],
-          },
-        ],
-        priority: 1,
-      },
-    ],
-    requestConfigurationList: {
-      requestConfigurations: [
-        {
-          allowRequests: true,
-          autoApproval: false,
-          requireMfaToRequest: false,
-          maxDurationMinutes: 120,
-          recommendedDurationMinutes: 120,
-          requireSupportTicket: false,
-          reviewerStages: [
-            {
-              requireManagerApproval: false,
-              operator: "AND",
-              ownerIds: [
-                "37cb7e41-12ba-46da-92ff-030abe0450b1",
-                "37cb7e41-12ba-46da-92ff-030abe0450b2",
-              ],
-            },
-          ],
-          priority: 1,
-        },
-      ],
-    },
-    ticketPropagation: {
-      enabledOnGrant: false,
-      enabledOnRevocation: true,
-      ticketProvider: "LINEAR",
-    },
-    customRequestNotification: "Check your email to register your account.",
   });
 
   // Handle the result
@@ -197,10 +143,6 @@ async function run() {
     adminOwnerId: "7c86c85d-0651-43e2-a748-d69d658418e8",
     visibility: {
       visibility: "GLOBAL",
-      visibilityGroupIds: [
-        "7870617d-e72a-47f5-a84c-693817ab4567",
-        "1520617d-e72a-47f5-a84c-693817ab48ad2",
-      ],
     },
     linkedAuditMessageChannelIds: [
       "37cb7e41-12ba-46da-92ff-030abe0450b1",
@@ -217,56 +159,6 @@ async function run() {
     requireMfaToApprove: false,
     requireMfaToConnect: false,
     name: "Prod AWS Template",
-    requestConfigurations: [
-      {
-        allowRequests: true,
-        autoApproval: false,
-        requireMfaToRequest: false,
-        maxDurationMinutes: 120,
-        recommendedDurationMinutes: 120,
-        requireSupportTicket: false,
-        reviewerStages: [
-          {
-            requireManagerApproval: false,
-            operator: "AND",
-            ownerIds: [
-              "37cb7e41-12ba-46da-92ff-030abe0450b1",
-              "37cb7e41-12ba-46da-92ff-030abe0450b2",
-            ],
-          },
-        ],
-        priority: 1,
-      },
-    ],
-    requestConfigurationList: {
-      requestConfigurations: [
-        {
-          allowRequests: true,
-          autoApproval: false,
-          requireMfaToRequest: false,
-          maxDurationMinutes: 120,
-          recommendedDurationMinutes: 120,
-          requireSupportTicket: false,
-          reviewerStages: [
-            {
-              requireManagerApproval: false,
-              operator: "AND",
-              ownerIds: [
-                "37cb7e41-12ba-46da-92ff-030abe0450b1",
-                "37cb7e41-12ba-46da-92ff-030abe0450b2",
-              ],
-            },
-          ],
-          priority: 1,
-        },
-      ],
-    },
-    ticketPropagation: {
-      enabledOnGrant: false,
-      enabledOnRevocation: true,
-      ticketProvider: "LINEAR",
-    },
-    customRequestNotification: "Check your email to register your account.",
   });
 
   if (!res.ok) {
@@ -321,62 +213,14 @@ async function run() {
     adminOwnerId: "7c86c85d-0651-43e2-a748-d69d658418e8",
     visibility: {
       visibility: "GLOBAL",
-      visibilityGroupIds: [
-        "7870617d-e72a-47f5-a84c-693817ab4567",
-        "1520617d-e72a-47f5-a84c-693817ab48ad2",
-      ],
     },
     linkedAuditMessageChannelIds: [
       "37cb7e41-12ba-46da-92ff-030abe0450b1",
       "37cb7e41-12ba-46da-92ff-030abe0450b2",
     ],
-    requestConfigurations: [
-      {
-        allowRequests: true,
-        autoApproval: false,
-        requireMfaToRequest: false,
-        maxDurationMinutes: 120,
-        recommendedDurationMinutes: 120,
-        requireSupportTicket: false,
-        reviewerStages: [
-          {
-            requireManagerApproval: false,
-            operator: "AND",
-            ownerIds: [
-              "37cb7e41-12ba-46da-92ff-030abe0450b1",
-              "37cb7e41-12ba-46da-92ff-030abe0450b2",
-            ],
-          },
-        ],
-        priority: 1,
-      },
-    ],
-    requestConfigurationList: {
-      requestConfigurations: [
-        {
-          allowRequests: true,
-          autoApproval: false,
-          requireMfaToRequest: false,
-          maxDurationMinutes: 120,
-          recommendedDurationMinutes: 120,
-          requireSupportTicket: false,
-          reviewerStages: [
-            {
-              requireManagerApproval: false,
-              operator: "AND",
-              ownerIds: [
-                "37cb7e41-12ba-46da-92ff-030abe0450b1",
-                "37cb7e41-12ba-46da-92ff-030abe0450b2",
-              ],
-            },
-          ],
-          priority: 1,
-        },
-      ],
-    },
     memberOncallScheduleIds: [
       "37cb7e41-12ba-46da-92ff-030abe0450b1",
-      "7c86c85d-0651-43e2-a748-d69d658418e8",
+      "37cb7e41-12ba-46da-92ff-030abe0450b2",
     ],
     breakGlassUserIds: [
       "37cb7e41-12ba-46da-92ff-030abe0450b1",
@@ -384,12 +228,6 @@ async function run() {
     ],
     requireMfaToApprove: false,
     requireMfaToConnect: false,
-    ticketPropagation: {
-      enabledOnGrant: false,
-      enabledOnRevocation: false,
-      ticketProvider: "LINEAR",
-    },
-    customRequestNotification: "Check your email to register your account.",
   });
 
   // Handle the result
@@ -420,62 +258,14 @@ async function run() {
     adminOwnerId: "7c86c85d-0651-43e2-a748-d69d658418e8",
     visibility: {
       visibility: "GLOBAL",
-      visibilityGroupIds: [
-        "7870617d-e72a-47f5-a84c-693817ab4567",
-        "1520617d-e72a-47f5-a84c-693817ab48ad2",
-      ],
     },
     linkedAuditMessageChannelIds: [
       "37cb7e41-12ba-46da-92ff-030abe0450b1",
       "37cb7e41-12ba-46da-92ff-030abe0450b2",
     ],
-    requestConfigurations: [
-      {
-        allowRequests: true,
-        autoApproval: false,
-        requireMfaToRequest: false,
-        maxDurationMinutes: 120,
-        recommendedDurationMinutes: 120,
-        requireSupportTicket: false,
-        reviewerStages: [
-          {
-            requireManagerApproval: false,
-            operator: "AND",
-            ownerIds: [
-              "37cb7e41-12ba-46da-92ff-030abe0450b1",
-              "37cb7e41-12ba-46da-92ff-030abe0450b2",
-            ],
-          },
-        ],
-        priority: 1,
-      },
-    ],
-    requestConfigurationList: {
-      requestConfigurations: [
-        {
-          allowRequests: true,
-          autoApproval: false,
-          requireMfaToRequest: false,
-          maxDurationMinutes: 120,
-          recommendedDurationMinutes: 120,
-          requireSupportTicket: false,
-          reviewerStages: [
-            {
-              requireManagerApproval: false,
-              operator: "AND",
-              ownerIds: [
-                "37cb7e41-12ba-46da-92ff-030abe0450b1",
-                "37cb7e41-12ba-46da-92ff-030abe0450b2",
-              ],
-            },
-          ],
-          priority: 1,
-        },
-      ],
-    },
     memberOncallScheduleIds: [
       "37cb7e41-12ba-46da-92ff-030abe0450b1",
-      "7c86c85d-0651-43e2-a748-d69d658418e8",
+      "37cb7e41-12ba-46da-92ff-030abe0450b2",
     ],
     breakGlassUserIds: [
       "37cb7e41-12ba-46da-92ff-030abe0450b1",
@@ -483,12 +273,6 @@ async function run() {
     ],
     requireMfaToApprove: false,
     requireMfaToConnect: false,
-    ticketPropagation: {
-      enabledOnGrant: false,
-      enabledOnRevocation: false,
-      ticketProvider: "LINEAR",
-    },
-    customRequestNotification: "Check your email to register your account.",
   });
 
   if (!res.ok) {
