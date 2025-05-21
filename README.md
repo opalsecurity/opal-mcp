@@ -48,10 +48,8 @@ The AI assistant will use the appropriate SDK functions through the MCP server t
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
-  * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
-  * [Documentation](#documentation)
   * [Contributing](#contributing)
 
 <!-- End Table of Contents [toc] -->
@@ -922,12 +920,6 @@ While we value open-source contributions to this SDK, this library is generated 
 We look forward to hearing your feedback. Feel free to open a PR or an issue with a proof of concept and we'll do our best to include it in a future release. 
 
 ### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=opal-mcp&utm_campaign=typescript)
-
-## Documentation
-
-- [Functions Documentation](FUNCTIONS.md)
-- [Runtimes Documentation](RUNTIMES.md)
-- [Usage Guide](USAGE.md)
 
 ## Contributing
 
