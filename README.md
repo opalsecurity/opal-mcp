@@ -51,9 +51,6 @@ The AI assistant will use the appropriate SDK functions through the MCP server t
   * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
-  * [Architecture Overview](#architecture-overview)
-  * [OpenAPI to SDK Generation](#openapi-to-sdk-generation)
-  * [Using the Generated SDK](#using-the-generated-sdk)
   * [Documentation](#documentation)
   * [Contributing](#contributing)
 
@@ -171,7 +168,7 @@ You can also run MCP servers as a standalone binary with no additional dependenc
 
 ```bash
 curl -L -o mcp-server \
-    https://github.com/{org}/{repo}/releases/download/{tag}/mcp-server-bun-darwin-arm64 && \
+    https://github.com/opalsecurity/opal-mcp/releases/download/v0.0.6/mcp-server-bun-darwin-arm64 && \
 chmod +x mcp-server
 ```
 
@@ -913,18 +910,6 @@ You can also enable a default debug logger by setting an environment variable `O
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
-# Development
-
-### Prerequisites
-- Node.js
-- TypeScript
-- Speakeasy CLI (for local generation)
-
-### Local Development
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Build the SDK: `npm run build`
-
 ## Maturity
 
 This SDK is in beta, and there may be breaking changes between versions without a major version update. Therefore, we recommend pinning usage
@@ -937,75 +922,6 @@ While we value open-source contributions to this SDK, this library is generated 
 We look forward to hearing your feedback. Feel free to open a PR or an issue with a proof of concept and we'll do our best to include it in a future release. 
 
 ### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=opal-mcp&utm_campaign=typescript)
-
-# Opal MCP Generation
-
-This repository serves two main purposes:
-1. Generating a TypeScript SDK from Opal's public OpenAPI specification
-2. Using this SDK to implement the MCP server
-
-
-## Architecture Overview
-
-```mermaid
-graph LR
-    A[OpenAPI Spec<br/>app.opal.dev/openapi.yaml] --> B[Overlay Files]
-    B --> C[Speakeasy Generator]
-    C --> D[TypeScript SDK]
-    D --> E[MCP Server Implementation]
-    
-    subgraph Overlay Files
-        F[Field Visibility]
-        G[Scopes & Endpoints]
-        H[Documentation]
-    end
-```
-
-## OpenAPI to SDK Generation
-
-### Source Specification
-The base OpenAPI specification is fetched from `https://app.opal.dev/openapi.yaml`. This specification defines all public endpoints, models, and operations available in the Opal API.
-
-### Overlay System
-We use several overlay files to customize the OpenAPI specification for our specific needs:
-
-1. **Field Visibility Overlay** (`mcp-field-visibility-overlay.yaml`)
-   - Removes irrelevant or internal fields from various schemas
-   - Helps maintain a clean and focused public API surface
-
-2. **Scopes and Endpoints Overlay** (`mcp-scopes-and-endpoints-overlay.yaml`)
-   - Configures authentication scopes for endpoints
-   - May modify endpoint visibility or requirements
-
-3. **Documentation Overlay** (`mcp-documentation-overlay.yaml`)
-   - Enhances API documentation
-   - Provides additional context and examples
-
-### SDK Generation Process
-
-The SDK generation is automated through GitHub Actions and Speakeasy:
-
-1. **Workflow Configuration** (`.speakeasy/workflow.yaml`)
-   - Defines the input OpenAPI specification
-   - Applies the overlay files in sequence
-   - Configures TypeScript as the target language
-   - Sets up code sample generation
-
-2. **CI/CD Integration** (`.github/workflows/sdk_generation.yaml`)
-   - Runs daily to check for API changes
-   - Can be manually triggered with optional version control
-   - Creates pull requests for SDK updates
-
-## Using the Generated SDK
-
-The generated TypeScript SDK provides strongly-typed client interfaces for interacting with the Opal API. This SDK is then used to implement the MCP server, ensuring type safety and maintaining consistency with the public API specification.
-
-### Key Benefits
-
-1. **Type Safety**: Full TypeScript support with generated types matching the API specification
-2. **Auto-updates**: Daily checks for API changes ensure the SDK stays in sync
-3. **Customization**: Overlay system allows for precise control over the generated SDK
-4. **Documentation**: Automated generation of code samples and documentation
 
 ## Documentation
 
