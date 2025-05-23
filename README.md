@@ -13,30 +13,12 @@ Developer-friendly & type-safe Typescript SDK specifically catered to leverage *
 ## Summary
 
 Opal API: The Opal API is a RESTful API that allows you to interact with the Opal Security platform programmatically.
-
-The MCP (Model Context Protocol) server is a standardized way for AI systems to interact with external tools and services. This opal-mcp package provides a fully-featured MCP server implementation that allows AI assistants like Claude, GitHub Copilot, and other LLM-based tools to securely interact with the Opal Security platform. With this MCP server, AI assistants can:
-
-- Retrieve information about users, groups, resources, and access policies
-- Create and manage access requests
-- Automate identity and access management workflows
-
-For example, you can ask an AI assistant connected to this MCP server to:
-
-```
-"Show me all users in the Engineering group"
-"Create an access request for the Production database"
-"Review the recent access changes for our AWS resources"
-"Get information about which users have access to the financial reporting resources"
-```
-
-The AI assistant will use the appropriate SDK functions through the MCP server to retrieve or modify data in your Opal environment, making it easy to manage access control through natural language conversations.<!-- End Summary [summary] -->
+<!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-
 * [opal-mcp](#opal-mcp)
-  * [Summary](#summary)
   * [SDK Installation](#sdk-installation)
   * [Requirements](#requirements)
   * [SDK Example Usage](#sdk-example-usage)
@@ -54,39 +36,9 @@ The AI assistant will use the appropriate SDK functions through the MCP server t
 
 <!-- End Table of Contents [toc] -->
 
-<!-- Start SDK Installation [installation] -->
-## SDK Installation
+<!-- Start Generating an API Key [api] --> 
 
-The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
-
-### NPM
-
-```bash
-npm add opal-mcp
-```
-
-### PNPM
-
-```bash
-pnpm add opal-mcp
-```
-
-### Bun
-
-```bash
-bun add opal-mcp
-```
-
-### Yarn
-
-```bash
-yarn add opal-mcp zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
-```
-
-### Generating an API Key
+## Generating an API Key
 
 To authenticate with the Opal API, you'll need to generate an API token:
 
@@ -105,8 +57,9 @@ If a token is compromised, you can revoke it at any time from the Opal Admin pag
 
 For more information, see the [Opal API Authentication Documentation](https://docs.opal.dev/reference/authentication).
 
-> [!NOTE]
-> This package is published with CommonJS and ES Modules (ESM) support.
+<!-- End Generating an API Key [api] -->
+
+<!-- Start Running MCP [run-mcp] -->
 
 
 ### Model Context Protocol (MCP) Server
@@ -236,6 +189,42 @@ docker build -t opal-mcp-server .
 # Run the container
 docker run -p 32000:32000 -e BEARER_AUTH=your_api_key_here opal-mcp-server
 ```
+<!-- End  Running MCP [run-mcp] -->
+
+<!-- Start SDK Installation [installation] -->
+## SDK Installation
+
+The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
+
+### NPM
+
+```bash
+npm add opal-mcp
+```
+
+### PNPM
+
+```bash
+pnpm add opal-mcp
+```
+
+### Bun
+
+```bash
+bun add opal-mcp
+```
+
+### Yarn
+
+```bash
+yarn add opal-mcp zod
+
+# Note that Yarn does not install peer dependencies automatically. You will need
+# to install zod as shown above.
+```
+
+> [!NOTE]
+> This package is published with CommonJS and ES Modules (ESM) support.
 <!-- End SDK Installation [installation] -->
 
 <!-- Start Requirements [requirements] -->
@@ -390,6 +379,7 @@ run();
 * [~~setGroupReviewerStages~~](docs/sdks/groups/README.md#setgroupreviewerstages) - Sets the list of reviewer stages for a group. :warning: **Deprecated**
 * [getGroupTags](docs/sdks/groups/README.md#getgrouptags) - Returns all tags applied to the group.
 * [getGroupUsers](docs/sdks/groups/README.md#getgroupusers) - Gets the list of users for this group.
+* [updateGroupUser](docs/sdks/groups/README.md#updategroupuser) - Updates a user's access level or duration in this group.
 * [addGroupUser](docs/sdks/groups/README.md#addgroupuser) - Adds a user to this group.
 * [deleteGroupUser](docs/sdks/groups/README.md#deletegroupuser) - Removes a user's access from this group.
 
@@ -506,155 +496,8 @@ Authentication:
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
-<!-- Start Standalone functions [standalone-funcs] -->
-## Standalone functions
 
-All the methods listed above are available as standalone functions. These
-functions are ideal for use in applications running in the browser, serverless
-runtimes or other environments where application bundle size is a primary
-concern. When using a bundler to build your application, all unused
-functionality will be either excluded from the final bundle or tree-shaken away.
-
-To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
-
-<details>
-
-<summary>Available standalone functions</summary>
-
-- [`accessRulesCreateAccessRule`](docs/sdks/accessrules/README.md#createaccessrule) - Creates a new access rule config for the given group_id.
-- [`accessRulesGetAccessRule`](docs/sdks/accessrules/README.md#getaccessrule) - Returns a list of access rule config given the group_id of the access rule.
-- [`accessRulesUpdateAccessRule`](docs/sdks/accessrules/README.md#updateaccessrule) - Updates the access rule config for the given group_id.
-- [`appsGetApp`](docs/sdks/apps/README.md#getapp) - Returns an `App` object.
-- [`appsGetApps`](docs/sdks/apps/README.md#getapps) - Returns a list of `App` objects.
-- [`appsGetSyncErrors`](docs/sdks/apps/README.md#getsyncerrors) - Returns a list of recent sync errors that have occurred since the last successful sync.
-- [`bundlesAddBundleGroup`](docs/sdks/bundles/README.md#addbundlegroup) - Adds a group to a bundle.
-- [`bundlesAddBundleResource`](docs/sdks/bundles/README.md#addbundleresource) - Adds a resource to a bundle.
-- [`bundlesCreateBundle`](docs/sdks/bundles/README.md#createbundle) - Creates a bundle.
-- [`bundlesDeleteBundle`](docs/sdks/bundles/README.md#deletebundle) - Deletes a bundle.
-- [`bundlesGetBundle`](docs/sdks/bundles/README.md#getbundle) - Returns a `Bundle` object.
-- [`bundlesGetBundleGroups`](docs/sdks/bundles/README.md#getbundlegroups) - Returns a list of `Group` objects in a given bundle.
-- [`bundlesGetBundleResources`](docs/sdks/bundles/README.md#getbundleresources) - Returns a list of `Resource` objects in a given bundle.
-- [`bundlesGetBundles`](docs/sdks/bundles/README.md#getbundles) - Returns a list of `Bundle` objects.
-- [`bundlesGetBundleVisibility`](docs/sdks/bundles/README.md#getbundlevisibility) - Gets the visibility of the bundle.
-- [`bundlesRemoveBundleGroup`](docs/sdks/bundles/README.md#removebundlegroup) - Removes a group from a bundle.
-- [`bundlesRemoveBundleResource`](docs/sdks/bundles/README.md#removebundleresource) - Removes a resource from a bundle.
-- [`bundlesSetBundleVisibility`](docs/sdks/bundles/README.md#setbundlevisibility) - Sets the visibility of the bundle.
-- [`bundlesUpdateBundle`](docs/sdks/bundles/README.md#updatebundle) - Updates a bundle.
-- [`configurationTemplatesCreateConfigurationTemplate`](docs/sdks/configurationtemplates/README.md#createconfigurationtemplate) - Creates a configuration template.
-- [`configurationTemplatesDeleteConfigurationTemplate`](docs/sdks/configurationtemplates/README.md#deleteconfigurationtemplate) - Deletes a configuration template.
-- [`configurationTemplatesGetConfigurationTemplates`](docs/sdks/configurationtemplates/README.md#getconfigurationtemplates) - Returns a list of `ConfigurationTemplate` objects.
-- [`configurationTemplatesUpdateConfigurationTemplate`](docs/sdks/configurationtemplates/README.md#updateconfigurationtemplate) - Update a configuration template.
-- [`eventsEvents`](docs/sdks/events/README.md#events) - Returns a list of `Event` objects.
-- [`groupBindingsCreateGroupBinding`](docs/sdks/groupbindings/README.md#creategroupbinding) - Creates a group binding.
-- [`groupBindingsDeleteGroupBinding`](docs/sdks/groupbindings/README.md#deletegroupbinding) - Deletes a group binding.
-- [`groupBindingsGetGroupBinding`](docs/sdks/groupbindings/README.md#getgroupbinding) - Returns a `GroupBinding` object.
-- [`groupBindingsGetGroupBindings`](docs/sdks/groupbindings/README.md#getgroupbindings) - Returns a list of `GroupBinding` objects.
-- [`groupBindingsUpdateGroupBindings`](docs/sdks/groupbindings/README.md#updategroupbindings) - Bulk updates a list of group bindings.
-- [`groupsAddGroupContainingGroup`](docs/sdks/groups/README.md#addgroupcontaininggroup) - Creates a new containing group.
-- [`groupsAddGroupResource`](docs/sdks/groups/README.md#addgroupresource) - Adds a resource to a group.
-- [`groupsAddGroupUser`](docs/sdks/groups/README.md#addgroupuser) - Adds a user to this group.
-- [`groupsCreateGroup`](docs/sdks/groups/README.md#creategroup) - Creates an Opal group or [imports a remote group](https://docs.opal.dev/reference/end-system-objects).
-- [`groupsDeleteGroup`](docs/sdks/groups/README.md#deletegroup) - Deletes a group.
-- [`groupsDeleteGroupUser`](docs/sdks/groups/README.md#deletegroupuser) - Removes a user's access from this group.
-- [`groupsGetGroup`](docs/sdks/groups/README.md#getgroup) - Returns a `Group` object.
-- [`groupsGetGroupContainingGroup`](docs/sdks/groups/README.md#getgroupcontaininggroup) - Gets a specific containing group for a group.
-- [`groupsGetGroupContainingGroups`](docs/sdks/groups/README.md#getgroupcontaininggroups) - Gets the list of groups that the group gives access to.
-- [`groupsGetGroupMessageChannels`](docs/sdks/groups/README.md#getgroupmessagechannels) - Gets the list of audit and reviewer message channels attached to a group.
-- [`groupsGetGroupOnCallSchedules`](docs/sdks/groups/README.md#getgrouponcallschedules) - Gets the list of on call schedules attached to a group.
-- [`groupsGetGroupResources`](docs/sdks/groups/README.md#getgroupresources) - Gets the list of resources that the group gives access to.
-- [`groupsGetGroups`](docs/sdks/groups/README.md#getgroups) - Returns a list of groups for your organization.
-- [`groupsGetGroupTags`](docs/sdks/groups/README.md#getgrouptags) - Returns all tags applied to the group.
-- [`groupsGetGroupUsers`](docs/sdks/groups/README.md#getgroupusers) - Gets the list of users for this group.
-- [`groupsGetGroupVisibility`](docs/sdks/groups/README.md#getgroupvisibility) - Gets the visibility of this group.
-- [`groupsRemoveGroupContainingGroup`](docs/sdks/groups/README.md#removegroupcontaininggroup) - Removes a containing group from a group.
-- [`groupsSetGroupMessageChannels`](docs/sdks/groups/README.md#setgroupmessagechannels) - Sets the list of audit message channels attached to a group.
-- [`groupsSetGroupOnCallSchedules`](docs/sdks/groups/README.md#setgrouponcallschedules) - Sets the list of on call schedules attached to a group.
-- [`groupsSetGroupResources`](docs/sdks/groups/README.md#setgroupresources) - Sets the list of resources that the group gives access to.
-- [`groupsSetGroupVisibility`](docs/sdks/groups/README.md#setgroupvisibility) - Sets the visibility of this group.
-- [`groupsUpdateGroups`](docs/sdks/groups/README.md#updategroups) - Bulk updates a list of groups.
-- [`idpGroupMappingsDeleteIdpGroupMappings`](docs/sdks/idpgroupmappings/README.md#deleteidpgroupmappings) - Deletes an `IdpGroupMapping` object.
-- [`idpGroupMappingsGetIdpGroupMappings`](docs/sdks/idpgroupmappings/README.md#getidpgroupmappings) - Returns the configured set of available `IdpGroupMapping` objects for an Okta app.
-- [`idpGroupMappingsUpdateIdpGroupMappings`](docs/sdks/idpgroupmappings/README.md#updateidpgroupmappings) - Updates the list of available `IdpGroupMapping` objects for an Okta app.
-- [`messageChannelsCreateMessageChannel`](docs/sdks/messagechannels/README.md#createmessagechannel) - Creates a `MessageChannel` objects.
-- [`messageChannelsGetMessageChannel`](docs/sdks/messagechannels/README.md#getmessagechannel) - Gets a `MessageChannel` object.
-- [`messageChannelsGetMessageChannels`](docs/sdks/messagechannels/README.md#getmessagechannels) - Returns a list of `MessageChannel` objects.
-- [`nonHumanIdentitiesGetNhis`](docs/sdks/nonhumanidentities/README.md#getnhis) - Returns a list of non-human identities for your organization.
-- [`onCallSchedulesCreateOnCallSchedule`](docs/sdks/oncallschedules/README.md#createoncallschedule) - Creates a `OnCallSchedule` objects.
-- [`onCallSchedulesGetOnCallSchedule`](docs/sdks/oncallschedules/README.md#getoncallschedule) - Gets a `OnCallSchedule` object.
-- [`onCallSchedulesGetOnCallSchedules`](docs/sdks/oncallschedules/README.md#getoncallschedules) - Returns a list of `OnCallSchedule` objects.
-- [`ownersCreateOwner`](docs/sdks/owners/README.md#createowner) - Creates an owner.
-- [`ownersDeleteOwner`](docs/sdks/owners/README.md#deleteowner) - Deletes an owner.
-- [`ownersGetOwner`](docs/sdks/owners/README.md#getowner) - Returns an `Owner` object.
-- [`ownersGetOwnerFromName`](docs/sdks/owners/README.md#getownerfromname) - Returns an `Owner` object. Does not support owners with `/` in their name, use /owners?name=... instead.
-- [`ownersGetOwners`](docs/sdks/owners/README.md#getowners) - Returns a list of `Owner` objects.
-- [`ownersGetOwnerUsers`](docs/sdks/owners/README.md#getownerusers) - Gets the list of users for this owner, in escalation priority order if applicable.
-- [`ownersSetOwnerUsers`](docs/sdks/owners/README.md#setownerusers) - Sets the list of users for this owner. If escalation is enabled, the order of this list is the escalation priority order of the users. If the owner has a source group, adding or removing users from this list won't be possible.
-- [`ownersUpdateOwners`](docs/sdks/owners/README.md#updateowners) - Bulk updates a list of owners.
-- [`requestsApproveRequest`](docs/sdks/requests/README.md#approverequest) - Approve an access request
-- [`requestsCreateRequest`](docs/sdks/requests/README.md#createrequest) - Create an access request
-- [`requestsGetRequests`](docs/sdks/requests/README.md#getrequests) - Returns a list of requests for your organization that is visible by the admin.
-- [`requestsGetRequestsRelay`](docs/sdks/requests/README.md#getrequestsrelay) - Returns a paginated list of requests using Relay-style cursor pagination.
-- [`resourcesAddResourceNhi`](docs/sdks/resources/README.md#addresourcenhi) - Gives a non-human identity access to this resource.
-- [`resourcesAddResourceUser`](docs/sdks/resources/README.md#addresourceuser) - Adds a user to this resource.
-- [`resourcesCreateResource`](docs/sdks/resources/README.md#createresource) - Creates a resource. See [here](https://docs.opal.dev/reference/end-system-objects) for details about importing resources.
-- [`resourcesDeleteResource`](docs/sdks/resources/README.md#deleteresource) - Deletes a resource.
-- [`resourcesDeleteResourceNhi`](docs/sdks/resources/README.md#deleteresourcenhi) - Removes a non-human identity's direct access from this resource.
-- [`resourcesDeleteResourceUser`](docs/sdks/resources/README.md#deleteresourceuser) - Removes a user's direct access from this resource.
-- [`resourcesGetResource`](docs/sdks/resources/README.md#getresource) - Retrieves a resource.
-- [`resourcesGetResourceMessageChannels`](docs/sdks/resources/README.md#getresourcemessagechannels) - Gets the list of audit message channels attached to a resource.
-- [`resourcesGetResourceNhis`](docs/sdks/resources/README.md#getresourcenhis) - Gets the list of non-human identities with access to this resource.
-- [`resourcesGetResourceReviewers`](docs/sdks/resources/README.md#getresourcereviewers) - Gets the list of owner IDs of the reviewers for a resource.
-- [`resourcesGetResourceReviewerStages`](docs/sdks/resources/README.md#getresourcereviewerstages) - Gets the list reviewer stages for a resource.
-- [`resourcesGetResources`](docs/sdks/resources/README.md#getresources) - Returns a list of resources for your organization.
-- [`resourcesGetResourceTags`](docs/sdks/resources/README.md#getresourcetags) - Returns all tags applied to the resource.
-- [`resourcesGetResourceUser`](docs/sdks/resources/README.md#getresourceuser) - Returns information about a specific user's access to a resource.
-- [`resourcesGetResourceUsers`](docs/sdks/resources/README.md#getresourceusers) - Gets the list of users for this resource.
-- [`resourcesGetResourceVisibility`](docs/sdks/resources/README.md#getresourcevisibility) - Gets the visibility of this resource.
-- [`resourcesSetResourceMessageChannels`](docs/sdks/resources/README.md#setresourcemessagechannels) - Sets the list of audit message channels attached to a resource.
-- [`resourcesSetResourceReviewers`](docs/sdks/resources/README.md#setresourcereviewers) - Sets the list of reviewers for a resource.
-- [`resourcesSetResourceReviewerStages`](docs/sdks/resources/README.md#setresourcereviewerstages) - Sets the list of reviewer stages for a resource.
-- [`resourcesSetResourceVisibility`](docs/sdks/resources/README.md#setresourcevisibility) - Sets the visibility of this resource.
-- [`resourcesUpdateResources`](docs/sdks/resources/README.md#updateresources) - Bulk updates a list of resources.
-- [`resourcesUpdateResourceUser`](docs/sdks/resources/README.md#updateresourceuser) - Updates a user's access level or duration on this resource.
-- [`sessionsSessions`](docs/sdks/sessions/README.md#sessions) - Returns a list of `Session` objects.
-- [`tagsAddGroupTag`](docs/sdks/tags/README.md#addgrouptag) - Applies a tag to a group.
-- [`tagsAddResourceTag`](docs/sdks/tags/README.md#addresourcetag) - Applies a tag to a resource.
-- [`tagsAddUserTag`](docs/sdks/tags/README.md#addusertag) - Applies a tag to a user.
-- [`tagsCreateTag`](docs/sdks/tags/README.md#createtag) - Creates a tag with the given key and value.
-- [`tagsDeleteTagByID`](docs/sdks/tags/README.md#deletetagbyid) - UNSTABLE. May be removed at any time. Deletes a tag with the given id.
-- [`tagsGetTag`](docs/sdks/tags/README.md#gettag) - Gets a tag with the given key and value.
-- [`tagsGetTagByID`](docs/sdks/tags/README.md#gettagbyid) - UNSTABLE. May be removed at any time. Gets a tag with the given id.
-- [`tagsGetTags`](docs/sdks/tags/README.md#gettags) - Returns a list of tags created by your organization.
-- [`tagsRemoveGroupTag`](docs/sdks/tags/README.md#removegrouptag) - Removes a tag from a group.
-- [`tagsRemoveResourceTag`](docs/sdks/tags/README.md#removeresourcetag) - Removes a tag from a resource.
-- [`tagsRemoveUserTag`](docs/sdks/tags/README.md#removeusertag) - Removes a tag from a user.
-- [`uarsCreateUar`](docs/sdks/uars/README.md#createuar) - Starts a User Access Review.
-- [`uarsGetUar`](docs/sdks/uars/README.md#getuar) - Retrieves a specific UAR.
-- [`uarsGetUARs`](docs/sdks/uars/README.md#getuars) - Returns a list of `UAR` objects.
-- [`usersGetUsers`](docs/sdks/users/README.md#getusers) - Returns a list of users for your organization.
-- [`usersGetUserTags`](docs/sdks/users/README.md#getusertags) - Returns all tags applied to the user.
-- [`usersUser`](docs/sdks/users/README.md#user) - Retrieves detailed user information from Opal. This endpoint is designed to fetch user details by
-either user ID (UUID) or email address. The endpoint follows a strict precedence rule where
-user_id takes priority over email if both are provided.
-
-Key Implementation Notes:
-- Exactly one identifier (user_id OR email) must be provided
-- Returns a complete User object with all associated metadata
-- Suitable for user verification and profile data retrieval
-- Recommended for MCP user synchronization workflows
-
-Authentication:
-- Requires valid API authentication
-- Respects standard Opal authorization rules
-
-- ~~[`groupsGetGroupReviewers`](docs/sdks/groups/README.md#getgroupreviewers)~~ - Gets the list of owner IDs of the reviewers for a group. :warning: **Deprecated**
-- ~~[`groupsGetGroupReviewerStages`](docs/sdks/groups/README.md#getgroupreviewerstages)~~ - Gets the list of reviewer stages for a group. :warning: **Deprecated**
-- ~~[`groupsSetGroupReviewers`](docs/sdks/groups/README.md#setgroupreviewers)~~ - Sets the list of reviewers for a group. :warning: **Deprecated**
-- ~~[`groupsSetGroupReviewerStages`](docs/sdks/groups/README.md#setgroupreviewerstages)~~ - Sets the list of reviewer stages for a group. :warning: **Deprecated**
-- ~~[`resourcesResourceUserAccessStatusRetrieve`](docs/sdks/resources/README.md#resourceuseraccessstatusretrieve)~~ - Get user's access status to a resource. :warning: **Deprecated**
-
-</details>
-<!-- End Standalone functions [standalone-funcs] -->
+<!-- No Standalone functions [standalone-funcs] -->
 
 <!-- Start Retries [retries] -->
 ## Retries
