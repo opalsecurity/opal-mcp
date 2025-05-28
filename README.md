@@ -22,7 +22,7 @@ Opal API: The Opal API is a RESTful API that allows you to interact with the Opa
   * [Model Context Protocol (MCP) Server](#model-context-protocol-mcp-server)
     * [Generating an API Key](#generating-an-api-key)
     * [Environment Variables](#environment-variables)
-    * [Instillation](#instillation)
+    * [Installation](#installation)
     * [Troubleshooting MCP](#troubleshooting-mcp)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Maturity](#maturity)
@@ -71,7 +71,7 @@ The following environment variables can be used to configure the SDK and MCP ser
 | `SERVER_URL` | The base URL for the Opal API | `https://api.opal.dev/v1` |
 | `LOG_LEVEL` | Logging level for the MCP server | `info` |
 
-### Instillation
+### Installation
 The library can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
 
 ### NPM
@@ -504,7 +504,5 @@ While we value open-source contributions to this SDK, this library is generated 
 We look forward to hearing your feedback. Feel free to open a PR or an issue with a proof of concept and we'll do our best to include it in a future release. 
 
 ### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=opal-mcp&utm_campaign=typescript)
-
-## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on contributing to this project.
