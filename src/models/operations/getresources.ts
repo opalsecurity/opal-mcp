@@ -34,6 +34,10 @@ export type GetResourcesRequest = {
    * The parent resource id to filter by.
    */
   parentResourceId?: string | undefined;
+  /**
+   * The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource.
+   */
+  ancestorResourceId?: string | undefined;
 };
 
 /** @internal */
@@ -48,6 +52,7 @@ export const GetResourcesRequest$inboundSchema: z.ZodType<
   resource_ids: z.array(z.string()).optional(),
   resource_name: z.string().optional(),
   parent_resource_id: z.string().optional(),
+  ancestor_resource_id: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "page_size": "pageSize",
@@ -55,6 +60,7 @@ export const GetResourcesRequest$inboundSchema: z.ZodType<
     "resource_ids": "resourceIds",
     "resource_name": "resourceName",
     "parent_resource_id": "parentResourceId",
+    "ancestor_resource_id": "ancestorResourceId",
   });
 });
 
@@ -66,6 +72,7 @@ export type GetResourcesRequest$Outbound = {
   resource_ids?: Array<string> | undefined;
   resource_name?: string | undefined;
   parent_resource_id?: string | undefined;
+  ancestor_resource_id?: string | undefined;
 };
 
 /** @internal */
@@ -80,6 +87,7 @@ export const GetResourcesRequest$outboundSchema: z.ZodType<
   resourceIds: z.array(z.string()).optional(),
   resourceName: z.string().optional(),
   parentResourceId: z.string().optional(),
+  ancestorResourceId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     pageSize: "page_size",
@@ -87,6 +95,7 @@ export const GetResourcesRequest$outboundSchema: z.ZodType<
     resourceIds: "resource_ids",
     resourceName: "resource_name",
     parentResourceId: "parent_resource_id",
+    ancestorResourceId: "ancestor_resource_id",
   });
 });
 

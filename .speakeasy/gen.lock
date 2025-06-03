@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f4a8d8c-90c5-4992-8800-17a249fd1e0f
 management:
-  docChecksum: d4bae26bf2332d76e1512782c1eb0faa
+  docChecksum: b669bab783f793175caee4ed8581b584
   docVersion: "1.0"
-  speakeasyVersion: 1.548.1
-  generationVersion: 2.605.0
-  releaseVersion: 0.0.6
-  configChecksum: 916eba046724c31f027edc5aff50ac0f
+  speakeasyVersion: 1.555.0
+  generationVersion: 2.618.0
+  releaseVersion: 0.1.0
+  configChecksum: cfe2f69674705f40f38bcc134f539aff
   repoURL: https://github.com/opalsecurity/opal-mcp.git
   installationURL: https://github.com/opalsecurity/opal-mcp
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
-    core: 3.21.8
+    core: 3.21.10
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     devContainers: 2.90.0
@@ -25,11 +25,10 @@ features:
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.5
     inputOutputModels: 2.82.0
-    mcpServer: 0.9.2
     nullables: 0.1.1
     responseFormat: 0.2.3
     retries: 2.83.0
-    sdkHooks: 0.2.0
+    sdkHooks: 0.3.0
     unions: 2.85.8
 generatedFiles:
   - .devcontainer/README.md
@@ -331,6 +330,8 @@ generatedFiles:
   - docs/models/operations/setresourcevisibilityrequest.md
   - docs/models/operations/updateaccessrulerequest.md
   - docs/models/operations/updatebundlerequest.md
+  - docs/models/operations/updategroupuserrequest.md
+  - docs/models/operations/updategroupuserrequestbody.md
   - docs/models/operations/updateidpgroupmappingsrequest.md
   - docs/models/operations/updateidpgroupmappingsrequestbody.md
   - docs/models/operations/updateresourceuserrequest.md
@@ -413,6 +414,7 @@ generatedFiles:
   - src/funcs/groupsSetGroupReviewerStages.ts
   - src/funcs/groupsSetGroupReviewers.ts
   - src/funcs/groupsSetGroupVisibility.ts
+  - src/funcs/groupsUpdateGroupUser.ts
   - src/funcs/groupsUpdateGroups.ts
   - src/funcs/idpGroupMappingsDeleteIdpGroupMappings.ts
   - src/funcs/idpGroupMappingsGetIdpGroupMappings.ts
@@ -497,137 +499,6 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
-  - src/mcp-server/build.mts
-  - src/mcp-server/cli.ts
-  - src/mcp-server/cli/start/command.ts
-  - src/mcp-server/cli/start/impl.ts
-  - src/mcp-server/console-logger.ts
-  - src/mcp-server/extensions.ts
-  - src/mcp-server/mcp-server.ts
-  - src/mcp-server/prompts.ts
-  - src/mcp-server/resources.ts
-  - src/mcp-server/scopes.ts
-  - src/mcp-server/server.ts
-  - src/mcp-server/shared.ts
-  - src/mcp-server/tools.ts
-  - src/mcp-server/tools/accessRulesCreateAccessRule.ts
-  - src/mcp-server/tools/accessRulesGetAccessRule.ts
-  - src/mcp-server/tools/accessRulesUpdateAccessRule.ts
-  - src/mcp-server/tools/appsGetApp.ts
-  - src/mcp-server/tools/appsGetApps.ts
-  - src/mcp-server/tools/appsGetSyncErrors.ts
-  - src/mcp-server/tools/bundlesAddBundleGroup.ts
-  - src/mcp-server/tools/bundlesAddBundleResource.ts
-  - src/mcp-server/tools/bundlesCreateBundle.ts
-  - src/mcp-server/tools/bundlesDeleteBundle.ts
-  - src/mcp-server/tools/bundlesGetBundle.ts
-  - src/mcp-server/tools/bundlesGetBundleGroups.ts
-  - src/mcp-server/tools/bundlesGetBundleResources.ts
-  - src/mcp-server/tools/bundlesGetBundleVisibility.ts
-  - src/mcp-server/tools/bundlesGetBundles.ts
-  - src/mcp-server/tools/bundlesRemoveBundleGroup.ts
-  - src/mcp-server/tools/bundlesRemoveBundleResource.ts
-  - src/mcp-server/tools/bundlesSetBundleVisibility.ts
-  - src/mcp-server/tools/bundlesUpdateBundle.ts
-  - src/mcp-server/tools/configurationTemplatesCreateConfigurationTemplate.ts
-  - src/mcp-server/tools/configurationTemplatesDeleteConfigurationTemplate.ts
-  - src/mcp-server/tools/configurationTemplatesGetConfigurationTemplates.ts
-  - src/mcp-server/tools/configurationTemplatesUpdateConfigurationTemplate.ts
-  - src/mcp-server/tools/eventsEvents.ts
-  - src/mcp-server/tools/groupBindingsCreateGroupBinding.ts
-  - src/mcp-server/tools/groupBindingsDeleteGroupBinding.ts
-  - src/mcp-server/tools/groupBindingsGetGroupBinding.ts
-  - src/mcp-server/tools/groupBindingsGetGroupBindings.ts
-  - src/mcp-server/tools/groupBindingsUpdateGroupBindings.ts
-  - src/mcp-server/tools/groupsAddGroupContainingGroup.ts
-  - src/mcp-server/tools/groupsAddGroupResource.ts
-  - src/mcp-server/tools/groupsAddGroupUser.ts
-  - src/mcp-server/tools/groupsCreateGroup.ts
-  - src/mcp-server/tools/groupsDeleteGroup.ts
-  - src/mcp-server/tools/groupsDeleteGroupUser.ts
-  - src/mcp-server/tools/groupsGetGroup.ts
-  - src/mcp-server/tools/groupsGetGroupContainingGroup.ts
-  - src/mcp-server/tools/groupsGetGroupContainingGroups.ts
-  - src/mcp-server/tools/groupsGetGroupMessageChannels.ts
-  - src/mcp-server/tools/groupsGetGroupOnCallSchedules.ts
-  - src/mcp-server/tools/groupsGetGroupResources.ts
-  - src/mcp-server/tools/groupsGetGroupReviewerStages.ts
-  - src/mcp-server/tools/groupsGetGroupReviewers.ts
-  - src/mcp-server/tools/groupsGetGroupTags.ts
-  - src/mcp-server/tools/groupsGetGroupUsers.ts
-  - src/mcp-server/tools/groupsGetGroupVisibility.ts
-  - src/mcp-server/tools/groupsGetGroups.ts
-  - src/mcp-server/tools/groupsRemoveGroupContainingGroup.ts
-  - src/mcp-server/tools/groupsSetGroupMessageChannels.ts
-  - src/mcp-server/tools/groupsSetGroupOnCallSchedules.ts
-  - src/mcp-server/tools/groupsSetGroupResources.ts
-  - src/mcp-server/tools/groupsSetGroupReviewerStages.ts
-  - src/mcp-server/tools/groupsSetGroupReviewers.ts
-  - src/mcp-server/tools/groupsSetGroupVisibility.ts
-  - src/mcp-server/tools/groupsUpdateGroups.ts
-  - src/mcp-server/tools/idpGroupMappingsDeleteIdpGroupMappings.ts
-  - src/mcp-server/tools/idpGroupMappingsGetIdpGroupMappings.ts
-  - src/mcp-server/tools/idpGroupMappingsUpdateIdpGroupMappings.ts
-  - src/mcp-server/tools/messageChannelsCreateMessageChannel.ts
-  - src/mcp-server/tools/messageChannelsGetMessageChannel.ts
-  - src/mcp-server/tools/messageChannelsGetMessageChannels.ts
-  - src/mcp-server/tools/nonHumanIdentitiesGetNhis.ts
-  - src/mcp-server/tools/onCallSchedulesCreateOnCallSchedule.ts
-  - src/mcp-server/tools/onCallSchedulesGetOnCallSchedule.ts
-  - src/mcp-server/tools/onCallSchedulesGetOnCallSchedules.ts
-  - src/mcp-server/tools/ownersCreateOwner.ts
-  - src/mcp-server/tools/ownersDeleteOwner.ts
-  - src/mcp-server/tools/ownersGetOwner.ts
-  - src/mcp-server/tools/ownersGetOwnerFromName.ts
-  - src/mcp-server/tools/ownersGetOwnerUsers.ts
-  - src/mcp-server/tools/ownersGetOwners.ts
-  - src/mcp-server/tools/ownersSetOwnerUsers.ts
-  - src/mcp-server/tools/ownersUpdateOwners.ts
-  - src/mcp-server/tools/requestsApproveRequest.ts
-  - src/mcp-server/tools/requestsCreateRequest.ts
-  - src/mcp-server/tools/requestsGetRequests.ts
-  - src/mcp-server/tools/requestsGetRequestsRelay.ts
-  - src/mcp-server/tools/resourcesAddResourceNhi.ts
-  - src/mcp-server/tools/resourcesAddResourceUser.ts
-  - src/mcp-server/tools/resourcesCreateResource.ts
-  - src/mcp-server/tools/resourcesDeleteResource.ts
-  - src/mcp-server/tools/resourcesDeleteResourceNhi.ts
-  - src/mcp-server/tools/resourcesDeleteResourceUser.ts
-  - src/mcp-server/tools/resourcesGetResource.ts
-  - src/mcp-server/tools/resourcesGetResourceMessageChannels.ts
-  - src/mcp-server/tools/resourcesGetResourceNhis.ts
-  - src/mcp-server/tools/resourcesGetResourceReviewerStages.ts
-  - src/mcp-server/tools/resourcesGetResourceReviewers.ts
-  - src/mcp-server/tools/resourcesGetResourceTags.ts
-  - src/mcp-server/tools/resourcesGetResourceUser.ts
-  - src/mcp-server/tools/resourcesGetResourceUsers.ts
-  - src/mcp-server/tools/resourcesGetResourceVisibility.ts
-  - src/mcp-server/tools/resourcesGetResources.ts
-  - src/mcp-server/tools/resourcesResourceUserAccessStatusRetrieve.ts
-  - src/mcp-server/tools/resourcesSetResourceMessageChannels.ts
-  - src/mcp-server/tools/resourcesSetResourceReviewerStages.ts
-  - src/mcp-server/tools/resourcesSetResourceReviewers.ts
-  - src/mcp-server/tools/resourcesSetResourceVisibility.ts
-  - src/mcp-server/tools/resourcesUpdateResourceUser.ts
-  - src/mcp-server/tools/resourcesUpdateResources.ts
-  - src/mcp-server/tools/sessionsSessions.ts
-  - src/mcp-server/tools/tagsAddGroupTag.ts
-  - src/mcp-server/tools/tagsAddResourceTag.ts
-  - src/mcp-server/tools/tagsAddUserTag.ts
-  - src/mcp-server/tools/tagsCreateTag.ts
-  - src/mcp-server/tools/tagsDeleteTagByID.ts
-  - src/mcp-server/tools/tagsGetTag.ts
-  - src/mcp-server/tools/tagsGetTagByID.ts
-  - src/mcp-server/tools/tagsGetTags.ts
-  - src/mcp-server/tools/tagsRemoveGroupTag.ts
-  - src/mcp-server/tools/tagsRemoveResourceTag.ts
-  - src/mcp-server/tools/tagsRemoveUserTag.ts
-  - src/mcp-server/tools/uarsCreateUar.ts
-  - src/mcp-server/tools/uarsGetUARs.ts
-  - src/mcp-server/tools/uarsGetUar.ts
-  - src/mcp-server/tools/usersGetUserTags.ts
-  - src/mcp-server/tools/usersGetUsers.ts
-  - src/mcp-server/tools/usersUser.ts
   - src/models/components/access.ts
   - src/models/components/accesslist.ts
   - src/models/components/accessrule.ts
@@ -861,6 +732,7 @@ generatedFiles:
   - src/models/operations/setresourcevisibility.ts
   - src/models/operations/updateaccessrule.ts
   - src/models/operations/updatebundle.ts
+  - src/models/operations/updategroupuser.ts
   - src/models/operations/updateidpgroupmappings.ts
   - src/models/operations/updateresourceuser.ts
   - src/models/operations/user.ts
@@ -1513,6 +1385,7 @@ examples:
           resource_ids: ["4baf8423-db0a-4037-a4cf-f79c60cb67a5", "1b978423-db0a-4037-a4cf-f79c60cb67b3"]
           resource_name: "example-name"
           parent_resource_id: "[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]"
+          ancestor_resource_id: "[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]"
       responses:
         "200":
           application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "results": [{"resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5353", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "parent_resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5345"}, {"resource_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "description": "This resource represents GCP project \"app-demo\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 360, "require_manager_approval": false, "require_support_ticket": true}]}
@@ -1931,5 +1804,16 @@ examples:
       responses:
         "200":
           application/json: {"uar_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "Monthly UAR (July)", "reviewer_assignment_policy": "MANUALLY", "send_reviewer_assignment_notification": false, "deadline": "2022-07-14T06:59:59Z", "time_zone": "America/Los_Angeles", "self_review_allowed": false, "uar_scope": {"admins": ["f454d283-ca87-4a8a-bdbb-df212eca5353", "8763d283-ca87-4a8a-bdbb-df212ecab139"], "tags": [{"key": "uar_scope", "value": "high_priority"}], "names": ["demo", "api"]}}
+  update_group_user:
+    "":
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+          user_id: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06"
+      requestBody:
+        application/json: {"duration_minutes": 60, "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}
+      responses:
+        "200":
+          application/json: {"group_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "full_name": "Jake Barnes", "email": "jake@company.dev", "expiration_date": "2022-01-23T04:56:07Z"}
 examplesVersion: 1.0.2
 generatedTests: {}

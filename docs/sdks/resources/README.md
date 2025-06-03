@@ -53,6 +53,7 @@ async function run() {
     ],
     resourceName: "example-name",
     parentResourceId: "[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]",
+    ancestorResourceId: "[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]",
   });
 
   // Handle the result
@@ -87,6 +88,7 @@ async function run() {
     ],
     resourceName: "example-name",
     parentResourceId: "[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]",
+    ancestorResourceId: "[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]",
   });
 
   if (!res.ok) {

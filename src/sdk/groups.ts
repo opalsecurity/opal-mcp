@@ -28,6 +28,7 @@ import { groupsSetGroupReviewers } from "../funcs/groupsSetGroupReviewers.js";
 import { groupsSetGroupReviewerStages } from "../funcs/groupsSetGroupReviewerStages.js";
 import { groupsSetGroupVisibility } from "../funcs/groupsSetGroupVisibility.js";
 import { groupsUpdateGroups } from "../funcs/groupsUpdateGroups.js";
+import { groupsUpdateGroupUser } from "../funcs/groupsUpdateGroupUser.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
@@ -372,6 +373,20 @@ export class Groups extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.GroupUserList> {
     return unwrapAsync(groupsGetGroupUsers(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Updates a user's access level or duration in this group.
+   */
+  async updateGroupUser(
+    request: operations.UpdateGroupUserRequest,
+    options?: RequestOptions,
+  ): Promise<components.GroupUser> {
+    return unwrapAsync(groupsUpdateGroupUser(
       this,
       request,
       options,
