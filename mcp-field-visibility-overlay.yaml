@@ -6,6 +6,7 @@ info:
 actions:
   - target: "#/components/schemas/AddResourceUserRequest/properties/durationMinutes"
     remove: true
+
   - target: "#/components/schemas/AddResourceUserRequest/properties/accessLevelRemoteId"
     remove: true
 

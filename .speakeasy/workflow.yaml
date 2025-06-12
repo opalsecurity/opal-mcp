@@ -3,11 +3,12 @@ speakeasyVersion: latest
 sources:
     Opal API:
         inputs:
-            - location: https://dev.opal.dev/openapi.yaml
+            - location: https://app.opal.dev/openapi.yaml
         overlays:
             - location: mcp-scopes-and-endpoints-overlay.yaml
             - location: mcp-field-visibility-overlay.yaml
             - location: mcp-documentation-overlay.yaml
+        output: openapi.yaml
         registry:
             location: registry.speakeasyapi.dev/opal/opal/opal-api
 targets:

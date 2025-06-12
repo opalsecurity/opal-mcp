@@ -2,31 +2,31 @@ speakeasyVersion: 1.561.0
 sources:
     Opal API:
         sourceNamespace: opal-api
-        sourceRevisionDigest: sha256:31def051952fc132f7e333151acfd2da160a05dc263fb4331be9b1f981dda80f
-        sourceBlobDigest: sha256:4d362d8753939ec7bee928b342a1136afcc7da89dfab68e8c1a15dd025f521d0
+        sourceRevisionDigest: sha256:1fdd8c27236a9027881385b6639278ce0427267c3ebf65716fb68c1c9a11cf50
+        sourceBlobDigest: sha256:b25c0d572405319604a058093680a7fab5ba152bd2c55232be98f78e73023961
         tags:
             - latest
-            - speakeasy-sdk-regen-1749691446
             - "1.0"
 targets:
     opal-mcp:
         source: Opal API
         sourceNamespace: opal-api
-        sourceRevisionDigest: sha256:31def051952fc132f7e333151acfd2da160a05dc263fb4331be9b1f981dda80f
-        sourceBlobDigest: sha256:4d362d8753939ec7bee928b342a1136afcc7da89dfab68e8c1a15dd025f521d0
+        sourceRevisionDigest: sha256:1fdd8c27236a9027881385b6639278ce0427267c3ebf65716fb68c1c9a11cf50
+        sourceBlobDigest: sha256:b25c0d572405319604a058093680a7fab5ba152bd2c55232be98f78e73023961
         codeSamplesNamespace: opal-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:4d880d83a9b9812e378434dc51b783128409a615c750631e8bfac928fa02eb08
+        codeSamplesRevisionDigest: sha256:959aa2e08e579270541d2411016d735d2a085d333207d82c51b547eed1444dbf
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         Opal API:
             inputs:
-                - location: https://dev.opal.dev/openapi.yaml
+                - location: https://app.opal.dev/openapi.yaml
             overlays:
                 - location: mcp-scopes-and-endpoints-overlay.yaml
                 - location: mcp-field-visibility-overlay.yaml
                 - location: mcp-documentation-overlay.yaml
+            output: openapi.yaml
             registry:
                 location: registry.speakeasyapi.dev/opal/opal/opal-api
     targets:

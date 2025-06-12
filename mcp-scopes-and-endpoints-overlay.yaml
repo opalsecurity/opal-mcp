@@ -9,21 +9,34 @@ actions:
     update:
       x-speakeasy-mcp:
         scopes: [read]
+        disabled: false
+  
   - target: $.paths.*["post","put","delete","patch"]
     update:
       x-speakeasy-mcp:
         scopes: [write]
-  # Disable depricated endpoints that should not be used by the MCP server
-  - target: $.paths["/groups/{group_id}/reviewers"].*
-    update: 
-      x-speakeasy-mcp:
-        disabled: true
-  - target: $.paths["/groups/{group_id}/reviewer-stages"].*
-    update: 
-      x-speakeasy-mcp: 
-        disabled: true
+        disabled: false
+  
+  # # Disable depricated endpoints that should not be used by the MCP server
+  # - target: $.paths["/groups/{group_id}/reviewers"].get
+  #   update: 
+  #     x-speakeasy-mcp:
+  #       disabled: true
+  # - target: $.paths["/groups/{group_id}/reviewers"].put
+  #   update: 
+  #     x-speakeasy-mcp:
+  #       disabled: true
+  # - target: $.paths["/groups/{group_id}/reviewer-stages"].get
+  #   update: 
+  #     x-speakeasy-mcp: 
+  #       disabled: true
+  # - target: $.paths["/groups/{group_id}/reviewer-stages"].put
+  #   update: 
+  #     x-speakeasy-mcp: 
+  #       disabled: true
+  
   # Disable endpoints that are not relevant for the MCP server
-  - target: $.paths["/sessions"].get
-    update: 
-      x-speakeasy-mcp:
-        disabled: true
+  # - target: $.paths["/sessions"].get
+  #   update: 
+  #     x-speakeasy-mcp:
+  #       disabled: true
