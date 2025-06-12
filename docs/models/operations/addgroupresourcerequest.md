@@ -8,10 +8,6 @@ import { AddGroupResourceRequest } from "opal-mcp/models/operations";
 let value: AddGroupResourceRequest = {
   groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
-  requestBody: {
-    accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
-    durationMinutes: 60,
-  },
 };
 ```
 

@@ -26,7 +26,6 @@ async function run() {
     userId: "32acc112-21ff-4669-91c2-21e27683eaa1",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -52,15 +51,12 @@ async function run() {
     resourceId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
     userId: "32acc112-21ff-4669-91c2-21e27683eaa1",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("sessionsSessions failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

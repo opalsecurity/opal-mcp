@@ -8,10 +8,6 @@ import { AddResourceUserRequest } from "opal-mcp/models/operations";
 let value: AddResourceUserRequest = {
   resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   userId: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06",
-  requestBody: {
-    durationMinutes: 60,
-    accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
-  },
 };
 ```
 

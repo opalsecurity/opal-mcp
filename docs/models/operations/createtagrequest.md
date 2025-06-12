@@ -5,12 +5,7 @@
 ```typescript
 import { CreateTagRequest } from "opal-mcp/models/operations";
 
-let value: CreateTagRequest = {
-  createTagInfo: {
-    tagKey: "api-scope",
-    tagValue: "production",
-  },
-};
+let value: CreateTagRequest = {};
 ```
 
 ## Fields

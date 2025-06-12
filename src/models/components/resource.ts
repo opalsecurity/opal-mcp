@@ -181,6 +181,14 @@ export type Resource = {
    * Information that defines the remote resource. This replaces the deprecated remote_id and metadata fields.
    */
   remoteInfo?: ResourceRemoteInfo | undefined;
+  /**
+   * List of resource IDs that are ancestors of this resource.
+   */
+  ancestorResourceIds?: Array<string> | undefined;
+  /**
+   * List of resource IDs that are descendants of this resource.
+   */
+  descendantResourceIds?: Array<string> | undefined;
 };
 
 /** @internal */
@@ -240,6 +248,8 @@ export const Resource$inboundSchema: z.ZodType<
   risk_sensitivity_override: RiskSensitivityEnum$inboundSchema.optional(),
   metadata: z.string().optional(),
   remote_info: ResourceRemoteInfo$inboundSchema.optional(),
+  ancestor_resource_ids: z.array(z.string()).optional(),
+  descendant_resource_ids: z.array(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     "resource_id": "resourceId",
@@ -267,6 +277,8 @@ export const Resource$inboundSchema: z.ZodType<
     "risk_sensitivity": "riskSensitivity",
     "risk_sensitivity_override": "riskSensitivityOverride",
     "remote_info": "remoteInfo",
+    "ancestor_resource_ids": "ancestorResourceIds",
+    "descendant_resource_ids": "descendantResourceIds",
   });
 });
 
@@ -300,6 +312,8 @@ export type Resource$Outbound = {
   risk_sensitivity_override?: string | undefined;
   metadata?: string | undefined;
   remote_info?: ResourceRemoteInfo$Outbound | undefined;
+  ancestor_resource_ids?: Array<string> | undefined;
+  descendant_resource_ids?: Array<string> | undefined;
 };
 
 /** @internal */
@@ -338,6 +352,8 @@ export const Resource$outboundSchema: z.ZodType<
   riskSensitivityOverride: RiskSensitivityEnum$outboundSchema.optional(),
   metadata: z.string().optional(),
   remoteInfo: ResourceRemoteInfo$outboundSchema.optional(),
+  ancestorResourceIds: z.array(z.string()).optional(),
+  descendantResourceIds: z.array(z.string()).optional(),
 }).transform((v) => {
   return remap$(v, {
     resourceId: "resource_id",
@@ -365,6 +381,8 @@ export const Resource$outboundSchema: z.ZodType<
     riskSensitivity: "risk_sensitivity",
     riskSensitivityOverride: "risk_sensitivity_override",
     remoteInfo: "remote_info",
+    ancestorResourceIds: "ancestor_resource_ids",
+    descendantResourceIds: "descendant_resource_ids",
   });
 });
 

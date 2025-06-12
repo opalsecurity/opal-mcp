@@ -39,7 +39,6 @@ async function run() {
     contains: "Engineering",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -66,15 +65,12 @@ async function run() {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     contains: "Engineering",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("bundlesGetBundles failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -119,7 +115,6 @@ async function run() {
     adminOwnerId: "7870617d-e72a-47f5-a84c-693817ab4567",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -146,15 +141,12 @@ async function run() {
     description: "Engineering team bundle.",
     adminOwnerId: "7870617d-e72a-47f5-a84c-693817ab4567",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("bundlesCreateBundle failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -197,7 +189,6 @@ async function run() {
     bundleId: "32acc112-21ff-4669-91c2-21e27683eaa1",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -222,15 +213,12 @@ async function run() {
   const res = await bundlesGetBundle(opalMcp, {
     bundleId: "32acc112-21ff-4669-91c2-21e27683eaa1",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("bundlesGetBundle failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -297,14 +285,12 @@ async function run() {
   const res = await bundlesDeleteBundle(opalMcp, {
     bundleId: "32acc112-21ff-4669-91c2-21e27683eaa1",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("bundlesDeleteBundle failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -352,7 +338,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -382,15 +367,12 @@ async function run() {
       adminOwnerId: "4aed3e8a-727b-4d72-8010-3b8710c50bec",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("bundlesUpdateBundle failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -435,7 +417,6 @@ async function run() {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -462,15 +443,12 @@ async function run() {
     pageSize: 200,
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("bundlesGetBundleResources failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -518,7 +496,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -548,15 +525,12 @@ async function run() {
       accessLevelName: "AdministratorAccess",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("bundlesAddBundleResource failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -627,14 +601,12 @@ async function run() {
     resourceId: "72e75a6f-7183-48c5-94ff-6013f213314b",
     accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("bundlesRemoveBundleResource failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -679,7 +651,6 @@ async function run() {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -706,15 +677,12 @@ async function run() {
     pageSize: 200,
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("bundlesGetBundleGroups failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -762,7 +730,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -792,15 +759,12 @@ async function run() {
       accessLevelName: "AdministratorAccess",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("bundlesAddBundleGroup failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -871,14 +835,12 @@ async function run() {
     groupId: "72e75a6f-7183-48c5-94ff-6013f213314b",
     accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("bundlesRemoveBundleGroup failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -921,7 +883,6 @@ async function run() {
     bundleId: "32acc112-21ff-4669-91c2-21e27683eaa1",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -946,15 +907,12 @@ async function run() {
   const res = await bundlesGetBundleVisibility(opalMcp, {
     bundleId: "32acc112-21ff-4669-91c2-21e27683eaa1",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("bundlesGetBundleVisibility failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1035,14 +993,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("bundlesSetBundleVisibility failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();

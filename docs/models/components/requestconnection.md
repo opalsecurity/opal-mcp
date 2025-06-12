@@ -51,10 +51,10 @@ let value: RequestConnection = {
   pageInfo: {
     hasNextPage: false,
     endCursor: "<value>",
-    hasPreviousPage: false,
+    hasPreviousPage: true,
     startCursor: "<value>",
   },
-  totalCount: 835735,
+  totalCount: 430701,
 };
 ```
 

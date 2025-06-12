@@ -7,11 +7,6 @@ import { UpdateIdpGroupMappingsRequest } from "opal-mcp/models/operations";
 
 let value: UpdateIdpGroupMappingsRequest = {
   appResourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
-  requestBody: {
-    mappings: [
-      {},
-    ],
-  },
 };
 ```
 

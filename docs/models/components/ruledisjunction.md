@@ -10,7 +10,7 @@ let value: RuleDisjunction = {
     {
       key: "<key>",
       value: "<value>",
-      connectionId: "c145a004-7806-4fe7-bb37-9277359f1433",
+      connectionId: "145a0047-806f-4e7b-8379-277359f1433c",
     },
   ],
 };

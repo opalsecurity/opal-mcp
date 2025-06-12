@@ -13,7 +13,7 @@ Returned from the `GET Requests` endpoint.
 import { RequestedItem } from "opal-mcp/models/components";
 
 let value: RequestedItem = {
-  resourceId: null,
+  resourceId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
   groupId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
   accessLevelName: "admin",
   accessLevelRemoteId: "arn:aws:iam::490306337630:role/SupportUser",

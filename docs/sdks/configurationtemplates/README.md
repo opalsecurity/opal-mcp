@@ -26,7 +26,6 @@ const opalMcp = new OpalMcp({
 async function run() {
   const result = await opalMcp.configurationTemplates.getConfigurationTemplates();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -49,15 +48,12 @@ const opalMcp = new OpalMcpCore({
 
 async function run() {
   const res = await configurationTemplatesGetConfigurationTemplates(opalMcp);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("configurationTemplatesGetConfigurationTemplates failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -117,7 +113,6 @@ async function run() {
     name: "Prod AWS Template",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -160,15 +155,12 @@ async function run() {
     requireMfaToConnect: false,
     name: "Prod AWS Template",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("configurationTemplatesCreateConfigurationTemplate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -230,7 +222,6 @@ async function run() {
     requireMfaToConnect: false,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -274,15 +265,12 @@ async function run() {
     requireMfaToApprove: false,
     requireMfaToConnect: false,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("configurationTemplatesUpdateConfigurationTemplate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -349,14 +337,12 @@ async function run() {
   const res = await configurationTemplatesDeleteConfigurationTemplate(opalMcp, {
     configurationTemplateId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("configurationTemplatesDeleteConfigurationTemplate failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();

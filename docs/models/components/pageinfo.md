@@ -8,7 +8,7 @@ import { PageInfo } from "opal-mcp/models/components";
 let value: PageInfo = {
   hasNextPage: false,
   endCursor: "<value>",
-  hasPreviousPage: false,
+  hasPreviousPage: true,
   startCursor: "<value>",
 };
 ```

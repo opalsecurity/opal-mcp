@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f4a8d8c-90c5-4992-8800-17a249fd1e0f
 management:
-  docChecksum: d4bae26bf2332d76e1512782c1eb0faa
+  docChecksum: 88bff4e49fbd66ccd533b7bdf1de8675
   docVersion: "1.0"
-  speakeasyVersion: 1.548.1
-  generationVersion: 2.605.0
-  releaseVersion: 0.0.6
-  configChecksum: 916eba046724c31f027edc5aff50ac0f
+  speakeasyVersion: 1.561.0
+  generationVersion: 2.628.0
+  releaseVersion: 0.1.0
+  configChecksum: 95304a14a6c5c6d829cd86b139d15d4e
   repoURL: https://github.com/opalsecurity/opal-mcp.git
   installationURL: https://github.com/opalsecurity/opal-mcp
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
-    core: 3.21.8
+    core: 3.21.11
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     devContainers: 2.90.0
@@ -25,12 +25,11 @@ features:
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.5
     inputOutputModels: 2.82.0
-    mcpServer: 0.9.2
     nullables: 0.1.1
     responseFormat: 0.2.3
     retries: 2.83.0
-    sdkHooks: 0.2.0
-    unions: 2.85.8
+    sdkHooks: 0.3.0
+    unions: 2.85.9
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -331,6 +330,8 @@ generatedFiles:
   - docs/models/operations/setresourcevisibilityrequest.md
   - docs/models/operations/updateaccessrulerequest.md
   - docs/models/operations/updatebundlerequest.md
+  - docs/models/operations/updategroupuserrequest.md
+  - docs/models/operations/updategroupuserrequestbody.md
   - docs/models/operations/updateidpgroupmappingsrequest.md
   - docs/models/operations/updateidpgroupmappingsrequestbody.md
   - docs/models/operations/updateresourceuserrequest.md
@@ -413,6 +414,7 @@ generatedFiles:
   - src/funcs/groupsSetGroupReviewerStages.ts
   - src/funcs/groupsSetGroupReviewers.ts
   - src/funcs/groupsSetGroupVisibility.ts
+  - src/funcs/groupsUpdateGroupUser.ts
   - src/funcs/groupsUpdateGroups.ts
   - src/funcs/idpGroupMappingsDeleteIdpGroupMappings.ts
   - src/funcs/idpGroupMappingsGetIdpGroupMappings.ts
@@ -497,137 +499,6 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
-  - src/mcp-server/build.mts
-  - src/mcp-server/cli.ts
-  - src/mcp-server/cli/start/command.ts
-  - src/mcp-server/cli/start/impl.ts
-  - src/mcp-server/console-logger.ts
-  - src/mcp-server/extensions.ts
-  - src/mcp-server/mcp-server.ts
-  - src/mcp-server/prompts.ts
-  - src/mcp-server/resources.ts
-  - src/mcp-server/scopes.ts
-  - src/mcp-server/server.ts
-  - src/mcp-server/shared.ts
-  - src/mcp-server/tools.ts
-  - src/mcp-server/tools/accessRulesCreateAccessRule.ts
-  - src/mcp-server/tools/accessRulesGetAccessRule.ts
-  - src/mcp-server/tools/accessRulesUpdateAccessRule.ts
-  - src/mcp-server/tools/appsGetApp.ts
-  - src/mcp-server/tools/appsGetApps.ts
-  - src/mcp-server/tools/appsGetSyncErrors.ts
-  - src/mcp-server/tools/bundlesAddBundleGroup.ts
-  - src/mcp-server/tools/bundlesAddBundleResource.ts
-  - src/mcp-server/tools/bundlesCreateBundle.ts
-  - src/mcp-server/tools/bundlesDeleteBundle.ts
-  - src/mcp-server/tools/bundlesGetBundle.ts
-  - src/mcp-server/tools/bundlesGetBundleGroups.ts
-  - src/mcp-server/tools/bundlesGetBundleResources.ts
-  - src/mcp-server/tools/bundlesGetBundleVisibility.ts
-  - src/mcp-server/tools/bundlesGetBundles.ts
-  - src/mcp-server/tools/bundlesRemoveBundleGroup.ts
-  - src/mcp-server/tools/bundlesRemoveBundleResource.ts
-  - src/mcp-server/tools/bundlesSetBundleVisibility.ts
-  - src/mcp-server/tools/bundlesUpdateBundle.ts
-  - src/mcp-server/tools/configurationTemplatesCreateConfigurationTemplate.ts
-  - src/mcp-server/tools/configurationTemplatesDeleteConfigurationTemplate.ts
-  - src/mcp-server/tools/configurationTemplatesGetConfigurationTemplates.ts
-  - src/mcp-server/tools/configurationTemplatesUpdateConfigurationTemplate.ts
-  - src/mcp-server/tools/eventsEvents.ts
-  - src/mcp-server/tools/groupBindingsCreateGroupBinding.ts
-  - src/mcp-server/tools/groupBindingsDeleteGroupBinding.ts
-  - src/mcp-server/tools/groupBindingsGetGroupBinding.ts
-  - src/mcp-server/tools/groupBindingsGetGroupBindings.ts
-  - src/mcp-server/tools/groupBindingsUpdateGroupBindings.ts
-  - src/mcp-server/tools/groupsAddGroupContainingGroup.ts
-  - src/mcp-server/tools/groupsAddGroupResource.ts
-  - src/mcp-server/tools/groupsAddGroupUser.ts
-  - src/mcp-server/tools/groupsCreateGroup.ts
-  - src/mcp-server/tools/groupsDeleteGroup.ts
-  - src/mcp-server/tools/groupsDeleteGroupUser.ts
-  - src/mcp-server/tools/groupsGetGroup.ts
-  - src/mcp-server/tools/groupsGetGroupContainingGroup.ts
-  - src/mcp-server/tools/groupsGetGroupContainingGroups.ts
-  - src/mcp-server/tools/groupsGetGroupMessageChannels.ts
-  - src/mcp-server/tools/groupsGetGroupOnCallSchedules.ts
-  - src/mcp-server/tools/groupsGetGroupResources.ts
-  - src/mcp-server/tools/groupsGetGroupReviewerStages.ts
-  - src/mcp-server/tools/groupsGetGroupReviewers.ts
-  - src/mcp-server/tools/groupsGetGroupTags.ts
-  - src/mcp-server/tools/groupsGetGroupUsers.ts
-  - src/mcp-server/tools/groupsGetGroupVisibility.ts
-  - src/mcp-server/tools/groupsGetGroups.ts
-  - src/mcp-server/tools/groupsRemoveGroupContainingGroup.ts
-  - src/mcp-server/tools/groupsSetGroupMessageChannels.ts
-  - src/mcp-server/tools/groupsSetGroupOnCallSchedules.ts
-  - src/mcp-server/tools/groupsSetGroupResources.ts
-  - src/mcp-server/tools/groupsSetGroupReviewerStages.ts
-  - src/mcp-server/tools/groupsSetGroupReviewers.ts
-  - src/mcp-server/tools/groupsSetGroupVisibility.ts
-  - src/mcp-server/tools/groupsUpdateGroups.ts
-  - src/mcp-server/tools/idpGroupMappingsDeleteIdpGroupMappings.ts
-  - src/mcp-server/tools/idpGroupMappingsGetIdpGroupMappings.ts
-  - src/mcp-server/tools/idpGroupMappingsUpdateIdpGroupMappings.ts
-  - src/mcp-server/tools/messageChannelsCreateMessageChannel.ts
-  - src/mcp-server/tools/messageChannelsGetMessageChannel.ts
-  - src/mcp-server/tools/messageChannelsGetMessageChannels.ts
-  - src/mcp-server/tools/nonHumanIdentitiesGetNhis.ts
-  - src/mcp-server/tools/onCallSchedulesCreateOnCallSchedule.ts
-  - src/mcp-server/tools/onCallSchedulesGetOnCallSchedule.ts
-  - src/mcp-server/tools/onCallSchedulesGetOnCallSchedules.ts
-  - src/mcp-server/tools/ownersCreateOwner.ts
-  - src/mcp-server/tools/ownersDeleteOwner.ts
-  - src/mcp-server/tools/ownersGetOwner.ts
-  - src/mcp-server/tools/ownersGetOwnerFromName.ts
-  - src/mcp-server/tools/ownersGetOwnerUsers.ts
-  - src/mcp-server/tools/ownersGetOwners.ts
-  - src/mcp-server/tools/ownersSetOwnerUsers.ts
-  - src/mcp-server/tools/ownersUpdateOwners.ts
-  - src/mcp-server/tools/requestsApproveRequest.ts
-  - src/mcp-server/tools/requestsCreateRequest.ts
-  - src/mcp-server/tools/requestsGetRequests.ts
-  - src/mcp-server/tools/requestsGetRequestsRelay.ts
-  - src/mcp-server/tools/resourcesAddResourceNhi.ts
-  - src/mcp-server/tools/resourcesAddResourceUser.ts
-  - src/mcp-server/tools/resourcesCreateResource.ts
-  - src/mcp-server/tools/resourcesDeleteResource.ts
-  - src/mcp-server/tools/resourcesDeleteResourceNhi.ts
-  - src/mcp-server/tools/resourcesDeleteResourceUser.ts
-  - src/mcp-server/tools/resourcesGetResource.ts
-  - src/mcp-server/tools/resourcesGetResourceMessageChannels.ts
-  - src/mcp-server/tools/resourcesGetResourceNhis.ts
-  - src/mcp-server/tools/resourcesGetResourceReviewerStages.ts
-  - src/mcp-server/tools/resourcesGetResourceReviewers.ts
-  - src/mcp-server/tools/resourcesGetResourceTags.ts
-  - src/mcp-server/tools/resourcesGetResourceUser.ts
-  - src/mcp-server/tools/resourcesGetResourceUsers.ts
-  - src/mcp-server/tools/resourcesGetResourceVisibility.ts
-  - src/mcp-server/tools/resourcesGetResources.ts
-  - src/mcp-server/tools/resourcesResourceUserAccessStatusRetrieve.ts
-  - src/mcp-server/tools/resourcesSetResourceMessageChannels.ts
-  - src/mcp-server/tools/resourcesSetResourceReviewerStages.ts
-  - src/mcp-server/tools/resourcesSetResourceReviewers.ts
-  - src/mcp-server/tools/resourcesSetResourceVisibility.ts
-  - src/mcp-server/tools/resourcesUpdateResourceUser.ts
-  - src/mcp-server/tools/resourcesUpdateResources.ts
-  - src/mcp-server/tools/sessionsSessions.ts
-  - src/mcp-server/tools/tagsAddGroupTag.ts
-  - src/mcp-server/tools/tagsAddResourceTag.ts
-  - src/mcp-server/tools/tagsAddUserTag.ts
-  - src/mcp-server/tools/tagsCreateTag.ts
-  - src/mcp-server/tools/tagsDeleteTagByID.ts
-  - src/mcp-server/tools/tagsGetTag.ts
-  - src/mcp-server/tools/tagsGetTagByID.ts
-  - src/mcp-server/tools/tagsGetTags.ts
-  - src/mcp-server/tools/tagsRemoveGroupTag.ts
-  - src/mcp-server/tools/tagsRemoveResourceTag.ts
-  - src/mcp-server/tools/tagsRemoveUserTag.ts
-  - src/mcp-server/tools/uarsCreateUar.ts
-  - src/mcp-server/tools/uarsGetUARs.ts
-  - src/mcp-server/tools/uarsGetUar.ts
-  - src/mcp-server/tools/usersGetUserTags.ts
-  - src/mcp-server/tools/usersGetUsers.ts
-  - src/mcp-server/tools/usersUser.ts
   - src/models/components/access.ts
   - src/models/components/accesslist.ts
   - src/models/components/accessrule.ts
@@ -762,6 +633,8 @@ generatedFiles:
   - src/models/errors/apierror.ts
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/index.ts
+  - src/models/errors/opalmcperror.ts
+  - src/models/errors/responsevalidationerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/models/operations/addbundlegroup.ts
   - src/models/operations/addbundleresource.ts
@@ -861,6 +734,7 @@ generatedFiles:
   - src/models/operations/setresourcevisibility.ts
   - src/models/operations/updateaccessrule.ts
   - src/models/operations/updatebundle.ts
+  - src/models/operations/updategroupuser.ts
   - src/models/operations/updateidpgroupmappings.ts
   - src/models/operations/updateresourceuser.ts
   - src/models/operations/user.ts
@@ -904,8 +778,23 @@ examples:
       responses:
         "200":
           application/json: {"apps": [{"app_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "Okta Org", "description": "Okta directory for the engineering team.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "app_type": "OKTA_DIRECTORY"}]}
+    speakeasy-default-get-apps:
+      parameters:
+        query:
+          app_type_filter: ["OKTA_DIRECTORY", "GIT_HUB"]
+          owner_filter: "29827fb8-f2dd-4e80-9576-28e31e9934ac"
+      responses:
+        "200":
+          application/json: {"apps": [{"app_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "Okta Org", "description": "Okta directory for the engineering team.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "app_type": "OKTA_DIRECTORY"}]}
   getApp:
     "":
+      parameters:
+        path:
+          app_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+      responses:
+        "200":
+          application/json: {"app_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "Okta Org", "description": "Okta directory for the engineering team.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "app_type": "OKTA_DIRECTORY"}
+    speakeasy-default-get-app:
       parameters:
         path:
           app_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
@@ -922,8 +811,26 @@ examples:
       responses:
         "200":
           application/json: [{"sync_errors": [{"first_seen": "2022-07-14T06:59:59Z", "last_seen": "2022-08-23T04:32:46Z", "error_message": "Failed to connect to the remote system - insufficient credentials.", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd"}, {"first_seen": "2023-04-24T06:59:59Z", "last_seen": "2024-08-21T04:32:46Z", "error_message": "Resource not found.", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd"}]}]
+    speakeasy-default-get-sync-errors:
+      parameters:
+        query:
+          app_id: "29827fb8-f2dd-4e80-9576-28e31e9934ac"
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+          group_id: "9546209c-42c2-4801-96d7-9ec42df0f59c"
+      responses:
+        "200":
+          application/json: [{"sync_errors": [{"first_seen": "2022-07-14T06:59:59Z", "last_seen": "2022-08-23T04:32:46Z", "error_message": "Failed to connect to the remote system - insufficient credentials.", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd"}, {"first_seen": "2023-04-24T06:59:59Z", "last_seen": "2024-08-21T04:32:46Z", "error_message": "Resource not found.", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd"}]}]
   getBundles:
     "":
+      parameters:
+        query:
+          page_size: 200
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          contains: "Engineering"
+      responses:
+        "200":
+          application/json: {"previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "bundles": [{"name": "Bundle 1", "description": "Description of bundle 1", "admin_owner_id": "4aed3e8a-727b-4d72-8010-3b8710c50bec", "total_num_items": 0, "total_num_resources": 0, "total_num_groups": 0}, {"name": "Bundle 2", "description": "Description of bundle 2", "admin_owner_id": "4aed3e8a-727b-4d72-8010-3b8710c50bec", "total_num_items": 0, "total_num_resources": 0, "total_num_groups": 0}]}
+    speakeasy-default-get-bundles:
       parameters:
         query:
           page_size: 200
@@ -947,13 +854,33 @@ examples:
       responses:
         "200":
           application/json: {"bundle_id": "a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1", "name": "Bundle 1", "description": "Description of bundle 1", "admin_owner_id": "4aed3e8a-727b-4d72-8010-3b8710c50bec", "total_num_items": 15, "total_num_resources": 10, "total_num_groups": 5}
+    speakeasy-default-get-bundle:
+      parameters:
+        path:
+          bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+      responses:
+        "200":
+          application/json: {"bundle_id": "a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1", "name": "Bundle 1", "description": "Description of bundle 1", "admin_owner_id": "4aed3e8a-727b-4d72-8010-3b8710c50bec", "total_num_items": 15, "total_num_resources": 10, "total_num_groups": 5}
   deleteBundle:
     "":
       parameters:
         path:
           bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+    speakeasy-default-delete-bundle:
+      parameters:
+        path:
+          bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
   updateBundle:
     "":
+      parameters:
+        path:
+          bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+      requestBody:
+        application/json: {"name": "Bundle 1", "description": "Description of bundle 1", "admin_owner_id": "4aed3e8a-727b-4d72-8010-3b8710c50bec"}
+      responses:
+        "200":
+          application/json: {"bundle_id": "a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1", "name": "Bundle 1", "description": "Description of bundle 1", "admin_owner_id": "4aed3e8a-727b-4d72-8010-3b8710c50bec", "total_num_items": 15, "total_num_resources": 10, "total_num_groups": 5}
+    speakeasy-default-update-bundle:
       parameters:
         path:
           bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
@@ -973,8 +900,27 @@ examples:
       responses:
         "200":
           application/json: {"previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "total_count": 3, "bundle_resources": [{"access_level_name": "read", "access_level_remote_id": "pull"}]}
+    speakeasy-default-get-bundle-resources:
+      parameters:
+        path:
+          bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+        query:
+          page_size: 200
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+      responses:
+        "200":
+          application/json: {"previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "total_count": 3, "bundle_resources": [{"access_level_name": "read", "access_level_remote_id": "pull"}]}
   addBundleResource:
     "":
+      parameters:
+        path:
+          bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+      requestBody:
+        application/json: {"resource_id": "72e75a6f-7183-48c5-94ff-6013f213314b", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess", "access_level_name": "AdministratorAccess"}
+      responses:
+        "201":
+          application/json: {"bundle_id": "a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1", "resource_id": "a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1", "access_level_name": "Read", "access_level_remote_id": "arn:aws:iam::490306337630:role/SupportUser"}
+    speakeasy-default-add-bundle-resource:
       parameters:
         path:
           bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
@@ -991,8 +937,25 @@ examples:
           resource_id: "72e75a6f-7183-48c5-94ff-6013f213314b"
         query:
           access_level_remote_id: "arn:aws:iam::590304332660:role/AdministratorAccess"
+    speakeasy-default-remove-bundle-resource:
+      parameters:
+        path:
+          bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+          resource_id: "72e75a6f-7183-48c5-94ff-6013f213314b"
+        query:
+          access_level_remote_id: "arn:aws:iam::590304332660:role/AdministratorAccess"
   getBundleGroups:
     "":
+      parameters:
+        path:
+          bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+        query:
+          page_size: 200
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+      responses:
+        "200":
+          application/json: {"previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "total_count": 2, "bundle_groups": [{}, {}]}
+    speakeasy-default-get-bundle-groups:
       parameters:
         path:
           bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
@@ -1012,8 +975,24 @@ examples:
       responses:
         "201":
           application/json: {"bundle_id": "a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1", "group_id": "a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1", "access_level_name": "Read", "access_level_remote_id": "arn:aws:iam::490306337630:role/SupportUser"}
+    speakeasy-default-add-bundle-group:
+      parameters:
+        path:
+          bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+      requestBody:
+        application/json: {"group_id": "72e75a6f-7183-48c5-94ff-6013f213314b", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess", "access_level_name": "AdministratorAccess"}
+      responses:
+        "201":
+          application/json: {"bundle_id": "a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1", "group_id": "a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1", "access_level_name": "Read", "access_level_remote_id": "arn:aws:iam::490306337630:role/SupportUser"}
   removeBundleGroup:
     "":
+      parameters:
+        path:
+          bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+          group_id: "72e75a6f-7183-48c5-94ff-6013f213314b"
+        query:
+          access_level_remote_id: "arn:aws:iam::590304332660:role/AdministratorAccess"
+    speakeasy-default-remove-bundle-group:
       parameters:
         path:
           bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
@@ -1028,8 +1007,21 @@ examples:
       responses:
         "200":
           application/json: {"visibility": "LIMITED", "visibility_group_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
+    speakeasy-default-get-bundle-visibility:
+      parameters:
+        path:
+          bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+      responses:
+        "200":
+          application/json: {"visibility": "LIMITED", "visibility_group_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
   setBundleVisibility:
     "":
+      parameters:
+        path:
+          bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+      requestBody:
+        application/json: {"visibility": "LIMITED", "visibility_group_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
+    speakeasy-default-set-bundle-visibility:
       parameters:
         path:
           bundle_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
@@ -1056,6 +1048,10 @@ examples:
           application/json: {"configuration_template_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Prod AWS Template", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "visibility": {"visibility": "GLOBAL"}, "linked_audit_message_channel_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "request_configuration_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "member_oncall_schedule_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "break_glass_user_ids": ["37cb7e41-12ba-46da-92ff-030abe0450b1", "37cb7e41-12ba-46da-92ff-030abe0450b2"], "require_mfa_to_approve": false, "require_mfa_to_connect": false}
   deleteConfigurationTemplate:
     "":
+      parameters:
+        path:
+          configuration_template_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+    speakeasy-default-delete-configuration-template:
       parameters:
         path:
           configuration_template_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1100,8 +1096,31 @@ examples:
       responses:
         "200":
           application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "results": [{"event_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "actor_user_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "actor_name": "John Smith", "event_type": "USERS_CREATED", "created_at": "2022-01-23T04:56:07Z"}, {"event_id": "7646aa9a-e2ee-4eb5-8c62-91f29038a373", "actor_user_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "actor_name": "John Smith", "event_type": "USER_TEAM_UPDATED", "created_at": "2022-02-03T12:33:02Z"}]}
+    speakeasy-default-events:
+      parameters:
+        query:
+          actor_filter: "29827fb8-f2dd-4e80-9576-28e31e9934ac"
+          object_filter: "29827fb8-f2dd-4e80-9576-28e31e9934ac"
+          event_type_filter: "USER_MFA_RESET"
+          api_token_filter: "fullaccess:**************************M_g=="
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          page_size: 200
+      responses:
+        "200":
+          application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "results": [{"event_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "actor_user_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "actor_name": "John Smith", "event_type": "USERS_CREATED", "created_at": "2022-01-23T04:56:07Z"}, {"event_id": "7646aa9a-e2ee-4eb5-8c62-91f29038a373", "actor_user_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "actor_name": "John Smith", "event_type": "USER_TEAM_UPDATED", "created_at": "2022-02-03T12:33:02Z"}]}
   getGroups:
     "":
+      parameters:
+        query:
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          page_size: 200
+          group_type_filter: "OPAL_GROUP"
+          group_ids: ["4baf8423-db0a-4037-a4cf-f79c60cb67a5", "1b978423-db0a-4037-a4cf-f79c60cb67b3"]
+          group_name: "example-name"
+      responses:
+        "200":
+          application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "results": [{"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "description": "This group represents Active Directory group \"Payments Production Admin\". We use this AD group to facilitate staging deployments and qualifying new releases.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false}, {"group_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "description": "Manages the Integrations Team on-call privileged resources. This group is automatically synced with the on-call rotation defined in PagerDuty.", "admin_owner_id": "4220bc12-ab8a-4b5d-be7b-f6bbcf9159f3", "max_duration": 360, "require_manager_approval": false, "require_support_ticket": true}]}
+    speakeasy-default-get-groups:
       parameters:
         query:
           cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
@@ -1134,13 +1153,31 @@ examples:
       responses:
         "200":
           application/json: {"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "description": "This group represents Active Directory group \"Payments Production Admin\". We use this AD group to facilitate staging deployments and qualifying new releases.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "remote_id": "037m2jsg218b2wb", "remote_name": "Finance Team", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false}
+    speakeasy-default-get-group:
+      parameters:
+        path:
+          group_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+      responses:
+        "200":
+          application/json: {"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "description": "This group represents Active Directory group \"Payments Production Admin\". We use this AD group to facilitate staging deployments and qualifying new releases.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "remote_id": "037m2jsg218b2wb", "remote_name": "Finance Team", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false}
   delete_group:
     "":
       parameters:
         path:
           group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+    speakeasy-default-delete-group:
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
   get_group_message_channels:
     "":
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"channels": [{"message_channel_id": "7870617d-e72a-47f5-a84c-693817ab4567", "third_party_provider": "SLACK", "remote_id": "C03FJR97276", "name": "api-team-audit-channel", "is_private": false}, {"message_channel_id": "1520617d-e72a-47f5-a84c-693817ab48ad2", "third_party_provider": "SLACK", "remote_id": "A4FJR97365D", "name": "api-team-monitor-channel", "is_private": false}]}
+    speakeasy-default-get-group-message-channels:
       parameters:
         path:
           group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1157,8 +1194,24 @@ examples:
       responses:
         "200":
           application/json: ["1b978423-db0a-4037-a4cf-f79c60cb67b3"]
+    speakeasy-default-set-group-message-channels:
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      requestBody:
+        application/json: {"message_channel_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
+      responses:
+        "200":
+          application/json: ["1b978423-db0a-4037-a4cf-f79c60cb67b3"]
   get_group_on_call_schedules:
     "":
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"on_call_schedules": [{"on_call_schedule_id": "50d5e9f6-f23f-4d5a-ae91-b2640cf3975e", "third_party_provider": "PAGER_DUTY", "remote_id": "P7OWH2R", "name": "Customer Support On-Call"}, {"on_call_schedule_id": "4d61592c-ed61-4b13-8f22-2fac1c49f574", "third_party_provider": "OPSGENIE", "remote_id": "72a8cb04-9e25-465d-a932-992f72077c61", "name": "Opal Backend On-Call"}]}
+    speakeasy-default-get-group-on-call-schedules:
       parameters:
         path:
           group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1175,8 +1228,24 @@ examples:
       responses:
         "200":
           application/json: ["bb0197c0-5ea5-45d9-b3b7-b6c439be6435"]
+    speakeasy-default-set-group-on-call-schedules:
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      requestBody:
+        application/json: {"on_call_schedule_ids": ["9546209c-42c2-4801-96d7-9ec42df0f59c", "bb0197c0-5ea5-45d9-b3b7-b6c439be6435"]}
+      responses:
+        "200":
+          application/json: ["bb0197c0-5ea5-45d9-b3b7-b6c439be6435"]
   get_group_resources:
     "":
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"group_resources": [{"group_id": "7870617d-e72a-47f5-a84c-693817ab4567", "resource_id": "1520617d-e72a-47f5-a84c-693817ab48ad2", "access_level": {"access_level_name": "AdminRole", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}}, {"group_id": "50333e67-73ce-47ab-b049-d8abcd45f7a1", "resource_id": "6f99639b-7928-4043-8184-47cbc6766145", "access_level": {"access_level_name": "AdminRole", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}}]}
+    speakeasy-default-get-group-resources:
       parameters:
         path:
           group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1190,6 +1259,12 @@ examples:
           group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
       requestBody:
         application/json: {"resources": [{"resource_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "access_level_remote_id": "write"}]}
+    speakeasy-default-set-group-resources:
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      requestBody:
+        application/json: {"resources": [{"resource_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "access_level_remote_id": "write"}]}
   get_group_containing_groups:
     "":
       parameters:
@@ -1198,8 +1273,24 @@ examples:
       responses:
         "200":
           application/json: {"containing_groups": [{"containing_group_id": "7870617d-e72a-47f5-a84c-693817ab4567"}, {"containing_group_id": "50333e67-73ce-47ab-b049-d8abcd45f7a1"}]}
+    speakeasy-default-get-group-containing-groups:
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"containing_groups": [{"containing_group_id": "7870617d-e72a-47f5-a84c-693817ab4567"}, {"containing_group_id": "50333e67-73ce-47ab-b049-d8abcd45f7a1"}]}
   add_group_containing_group:
     "":
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      requestBody:
+        application/json: {"containing_group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353"}
+      responses:
+        "200":
+          application/json: {"containing_group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353"}
+    speakeasy-default-add-group-containing-group:
       parameters:
         path:
           group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1217,8 +1308,21 @@ examples:
       responses:
         "200":
           application/json: {"containing_group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353"}
+    speakeasy-default-get-group-containing-group:
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+          containing_group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"containing_group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353"}
   remove_group_containing_group:
     "":
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+          containing_group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+    speakeasy-default-remove-group-containing-group:
       parameters:
         path:
           group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1236,8 +1340,25 @@ examples:
       responses:
         "200":
           application/json: {"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "resource_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "access_level": {"access_level_name": "AdminRole", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}}
+    speakeasy-default-add-group-resource:
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      requestBody:
+        application/json: {"access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess", "duration_minutes": 60}
+      responses:
+        "200":
+          application/json: {"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "resource_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "access_level": {"access_level_name": "AdminRole", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}}
   get_group_visibility:
     "":
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"visibility": "LIMITED", "visibility_group_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
+    speakeasy-default-get-group-visibility:
       parameters:
         path:
           group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1254,8 +1375,24 @@ examples:
       responses:
         "200":
           application/json: {"visibility": "LIMITED", "visibility_group_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
+    speakeasy-default-set-group-visibility:
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      requestBody:
+        application/json: {"visibility": "LIMITED", "visibility_group_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
+      responses:
+        "200":
+          application/json: {"visibility": "LIMITED", "visibility_group_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
   get_group_reviewers:
     "":
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: ["1b978423-db0a-4037-a4cf-f79c60cb67b3"]
+    speakeasy-default-get-group-reviewers:
       parameters:
         path:
           group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1272,8 +1409,24 @@ examples:
       responses:
         "200":
           application/json: ["1b978423-db0a-4037-a4cf-f79c60cb67b3"]
+    speakeasy-default-set-group-reviewers:
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      requestBody:
+        application/json: {"reviewer_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
+      responses:
+        "200":
+          application/json: ["1b978423-db0a-4037-a4cf-f79c60cb67b3"]
   get_group_reviewer_stages:
     "":
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: [{"require_manager_approval": false, "operator": "AND", "owner_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}]
+    speakeasy-default-get-group-reviewer-stages:
       parameters:
         path:
           group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1290,6 +1443,15 @@ examples:
       responses:
         "200":
           application/json: [{"require_manager_approval": false, "operator": "AND", "owner_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}]
+    speakeasy-default-set-group-reviewer-stages:
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      requestBody:
+        application/json: {"stages": [{"require_manager_approval": false, "operator": "AND", "owner_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}]}
+      responses:
+        "200":
+          application/json: [{"require_manager_approval": false, "operator": "AND", "owner_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}]
   get_group_tags:
     "":
       parameters:
@@ -1298,8 +1460,22 @@ examples:
       responses:
         "200":
           application/json: {"tags": [{"tag_id": "f290a738-5f9f-43c2-ad67-fa31ff0eb946", "created_at": "2022-01-23T04:56:07Z", "updated_at": "2022-02-23T01:34:07Z", "user_creator_id": "d4a7d928-783e-4599-8ec6-088d635a5bcc", "key": "database-name", "value": "redis_db"}]}
+    speakeasy-default-get-group-tags:
+      parameters:
+        path:
+          group_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+      responses:
+        "200":
+          application/json: {"tags": [{"tag_id": "f290a738-5f9f-43c2-ad67-fa31ff0eb946", "created_at": "2022-01-23T04:56:07Z", "updated_at": "2022-02-23T01:34:07Z", "user_creator_id": "d4a7d928-783e-4599-8ec6-088d635a5bcc", "key": "database-name", "value": "redis_db"}]}
   get_group_users:
     "":
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"results": [{"group_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "full_name": "Jake Barnes", "email": "jake@company.dev", "expiration_date": "2022-01-23T04:56:07Z"}, {"group_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "7646aa9a-e2ee-4eb5-8c62-91f29038a373", "full_name": "Brett Ashley", "email": "brett@company.dev", "expiration_date": "2022-02-03T12:33:02Z"}]}
+    speakeasy-default-get-group-users:
       parameters:
         path:
           group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1320,14 +1496,37 @@ examples:
       responses:
         "200":
           application/json: {"group_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "full_name": "Jake Barnes", "email": "jake@company.dev", "expiration_date": "2022-01-23T04:56:07Z"}
+    speakeasy-default-add-group-user:
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+          user_id: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06"
+      requestBody:
+        application/json: {"duration_minutes": 60, "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}
+      responses:
+        "200":
+          application/json: {"group_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "full_name": "Jake Barnes", "email": "jake@company.dev", "expiration_date": "2022-01-23T04:56:07Z"}
   delete_group_user:
     "":
       parameters:
         path:
           group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
           user_id: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06"
+    speakeasy-default-delete-group-user:
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+          user_id: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06"
   getGroupBindings:
     "":
+      parameters:
+        query:
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          page_size: 200
+      responses:
+        "200":
+          application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWtJ", "results": [{"group_binding_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "created_by_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "created_at": "2022-01-23T04:56:07Z", "source_group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "groups": [{"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "group_type": "OKTA_GROUP"}, {"group_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "group_type": "AWS_SSO_GROUP"}]}, {"group_binding_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "created_by_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "created_at": "2022-01-23T04:56:07Z", "source_group_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "groups": [{"group_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "group_type": "AWS_SSO_GROUP"}, {"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "group_type": "OKTA_GROUP"}]}]}
+    speakeasy-default-get-group-bindings:
       parameters:
         query:
           cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
@@ -1354,13 +1553,31 @@ examples:
       responses:
         "200":
           application/json: {"group_binding_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "created_by_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "created_at": "2022-01-23T04:56:07Z", "source_group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "groups": [{"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "group_type": "OKTA_GROUP"}, {"group_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "group_type": "AWS_SSO_GROUP"}]}
+    speakeasy-default-get-group-binding:
+      parameters:
+        path:
+          group_binding_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+      responses:
+        "200":
+          application/json: {"group_binding_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "created_by_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "created_at": "2022-01-23T04:56:07Z", "source_group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "groups": [{"group_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "group_type": "OKTA_GROUP"}, {"group_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "group_type": "AWS_SSO_GROUP"}]}
   deleteGroupBinding:
     "":
       parameters:
         path:
           group_binding_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+    speakeasy-default-delete-group-binding:
+      parameters:
+        path:
+          group_binding_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
   getIdpGroupMappings:
     "":
+      parameters:
+        path:
+          app_resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"mappings": [{"group_id": "6f99639b-7928-4043-8184-47cbc6766145", "alias": "finance-team", "hidden_from_end_user": false}, {"group_id": "7870617d-e72a-47f5-a84c-693817ab4567", "alias": "engineering-team", "hidden_from_end_user": false}]}
+    speakeasy-default-get-idp-group-mappings:
       parameters:
         path:
           app_resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1374,14 +1591,34 @@ examples:
           app_resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
       requestBody:
         application/json: {"mappings": [{}, {}, {}]}
+    speakeasy-default-update-idp-group-mappings:
+      parameters:
+        path:
+          app_resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      requestBody:
+        application/json: {"mappings": [{}]}
   delete_idp_group_mappings:
     "":
       parameters:
         path:
           app_resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
           group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+    speakeasy-default-delete-idp-group-mappings:
+      parameters:
+        path:
+          app_resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
   get_owners:
     "":
+      parameters:
+        query:
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          page_size: 200
+          name: "200"
+      responses:
+        "200":
+          application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "results": [{"owner_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "API Owner", "description": "This owner represents the API team owners.", "access_request_escalation_period": 120}, {"owner_id": "e8581682-04f7-473a-a419-472f0fb26d46", "name": "Finance Owner", "description": "This owner represents the Finance team owners.", "access_request_escalation_period": 120}]}
+    speakeasy-default-get-owners:
       parameters:
         query:
           cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
@@ -1412,13 +1649,31 @@ examples:
       responses:
         "200":
           application/json: {"owner_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "API Owner", "description": "This owner represents the API team owners.", "access_request_escalation_period": 120}
+    speakeasy-default-get-owner:
+      parameters:
+        path:
+          owner_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+      responses:
+        "200":
+          application/json: {"owner_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "API Owner", "description": "This owner represents the API team owners.", "access_request_escalation_period": 120}
   delete_owner:
     "":
       parameters:
         path:
           owner_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+    speakeasy-default-delete-owner:
+      parameters:
+        path:
+          owner_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
   getOwnerFromName:
     "":
+      parameters:
+        path:
+          owner_name: "MyOwner"
+      responses:
+        "200":
+          application/json: {"owner_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "API Owner", "description": "This owner represents the API team owners.", "access_request_escalation_period": 120}
+    speakeasy-default-get-owner-from-name:
       parameters:
         path:
           owner_name: "MyOwner"
@@ -1433,8 +1688,24 @@ examples:
       responses:
         "200":
           application/json: {"users": [{"user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "email": "john.doe@company.dev", "full_name": "John Doe", "first_name": "John", "last_name": "Doe", "position": "Engineer"}]}
+    speakeasy-default-get-owner-users:
+      parameters:
+        path:
+          owner_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"users": [{"user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "email": "john.doe@company.dev", "full_name": "John Doe", "first_name": "John", "last_name": "Doe", "position": "Engineer"}]}
   set_owner_users:
     "":
+      parameters:
+        path:
+          owner_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      requestBody:
+        application/json: {"user_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
+      responses:
+        "200":
+          application/json: {"users": [{"user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "email": "john.doe@company.dev", "full_name": "John Doe", "first_name": "John", "last_name": "Doe", "position": "Engineer"}]}
+    speakeasy-default-set-owner-users:
       parameters:
         path:
           owner_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1472,6 +1743,14 @@ examples:
       responses:
         "200":
           application/json: {"requests": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "g86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING", "reason": "I need this resource.", "duration_minutes": 1440}], "cursor": "eyJjcmVhdGVkX2F0IjoiMjAyMS0wMS0wNlQyMDo0NzowMFoiLCJ2YWx1ZSI6ImFkbWluIn0="}
+    speakeasy-default-get-requests:
+      parameters:
+        query:
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          page_size: 200
+      responses:
+        "200":
+          application/json: {"requests": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "g86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING", "reason": "I need this resource.", "duration_minutes": 1440}], "cursor": "eyJjcmVhdGVkX2F0IjoiMjAyMS0wMS0wNlQyMDo0NzowMFoiLCJ2YWx1ZSI6ImFkbWluIn0="}
   createRequest:
     speakeasy-default-create-request:
       requestBody:
@@ -1493,6 +1772,19 @@ examples:
       responses:
         "200":
           application/json: {"edges": [{"node": {"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "r86c85d-0651-43e2-a748-d69d658418e8", "status": "CANCELED", "reason": "I need this resource.", "duration_minutes": 1440, "stages": {"requestedRoleName": "Admin", "requestedItemName": "AWS Production Account", "stages": [{"stage": 1, "operator": "AND", "reviewers": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING"}]}, {"stage": 2, "operator": "OR", "reviewers": [{"id": "8d86c85d-0651-43e2-a748-d69d658418e9", "status": "APPROVED"}]}]}}, "cursor": "<value>"}, {"node": {"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "r86c85d-0651-43e2-a748-d69d658418e8", "status": "CANCELED", "reason": "I need this resource.", "duration_minutes": 1440, "stages": {"requestedRoleName": "Admin", "requestedItemName": "AWS Production Account", "stages": [{"stage": 1, "operator": "AND", "reviewers": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING"}]}, {"stage": 2, "operator": "OR", "reviewers": [{"id": "8d86c85d-0651-43e2-a748-d69d658418e9", "status": "APPROVED"}]}]}}, "cursor": "<value>"}], "pageInfo": {"hasNextPage": false, "endCursor": "<value>", "hasPreviousPage": false, "startCursor": "<value>"}, "totalCount": 774565}
+    speakeasy-default-get-requests-relay:
+      parameters:
+        query:
+          first: 10
+          after: "Y3Vyc29yOnYyOpK5MjAyMS0wMS0wN1QwNzo0MToyNy4xMTlaFjYwZmM2YmJlZjk4YzE1N2ZhNjFhYjk4Nw=="
+          last: 10
+          before: "Y3Vyc29yOnYyOpK5MjAyMS0wMS0wN1QwNzo0MToyNy4xMTlaFjYwZmM2YmJlZjk4YzE1N2ZhNjFhYjk4Nw=="
+          status: "PENDING"
+          to: "37cb7e41-12ba-46da-92ff-030abe0450b1"
+          from: "37cb7e41-12ba-46da-92ff-030abe0450b1"
+      responses:
+        "200":
+          application/json: {"edges": [{"node": {"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "r86c85d-0651-43e2-a748-d69d658418e8", "status": "CANCELED", "reason": "I need this resource.", "duration_minutes": 1440, "stages": {"requestedRoleName": "Admin", "requestedItemName": "AWS Production Account", "stages": [{"stage": 1, "operator": "AND", "reviewers": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING"}]}, {"stage": 2, "operator": "OR", "reviewers": [{"id": "8d86c85d-0651-43e2-a748-d69d658418e9", "status": "APPROVED"}]}]}}, "cursor": "<value>"}], "pageInfo": {"hasNextPage": false, "endCursor": "<value>", "hasPreviousPage": false, "startCursor": "<value>"}, "totalCount": 774565}
   approveRequest:
     speakeasy-default-approve-request:
       parameters:
@@ -1513,6 +1805,19 @@ examples:
           resource_ids: ["4baf8423-db0a-4037-a4cf-f79c60cb67a5", "1b978423-db0a-4037-a4cf-f79c60cb67b3"]
           resource_name: "example-name"
           parent_resource_id: "[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]"
+      responses:
+        "200":
+          application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "results": [{"resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5353", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "parent_resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5345"}, {"resource_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "description": "This resource represents GCP project \"app-demo\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 360, "require_manager_approval": false, "require_support_ticket": true}]}
+    speakeasy-default-get-resources:
+      parameters:
+        query:
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          page_size: 200
+          resource_type_filter: "AWS_IAM_ROLE"
+          resource_ids: ["4baf8423-db0a-4037-a4cf-f79c60cb67a5", "1b978423-db0a-4037-a4cf-f79c60cb67b3"]
+          resource_name: "example-name"
+          parent_resource_id: "[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]"
+          ancestor_resource_id: "[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]"
       responses:
         "200":
           application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "results": [{"resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5353", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "parent_resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5345"}, {"resource_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "description": "This resource represents GCP project \"app-demo\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 360, "require_manager_approval": false, "require_support_ticket": true}]}
@@ -1538,13 +1843,31 @@ examples:
       responses:
         "200":
           application/json: {"resource_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "parent_resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5345"}
+    speakeasy-default-get-resource:
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"resource_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "parent_resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5345"}
   delete_resource:
     "":
       parameters:
         path:
           resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+    speakeasy-default-delete-resource:
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
   get_resource_message_channels:
     "":
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"channels": [{"message_channel_id": "7870617d-e72a-47f5-a84c-693817ab4567", "third_party_provider": "SLACK", "remote_id": "C03FJR97276", "name": "api-team-audit-channel", "is_private": false}, {"message_channel_id": "1520617d-e72a-47f5-a84c-693817ab48ad2", "third_party_provider": "SLACK", "remote_id": "A4FJR97365D", "name": "api-team-monitor-channel", "is_private": false}]}
+    speakeasy-default-get-resource-message-channels:
       parameters:
         path:
           resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1561,8 +1884,24 @@ examples:
       responses:
         "200":
           application/json: ["1b978423-db0a-4037-a4cf-f79c60cb67b3"]
+    speakeasy-default-set-resource-message-channels:
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      requestBody:
+        application/json: {"message_channel_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
+      responses:
+        "200":
+          application/json: ["1b978423-db0a-4037-a4cf-f79c60cb67b3"]
   get_resource_visibility:
     "":
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"visibility": "LIMITED", "visibility_group_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
+    speakeasy-default-get-resource-visibility:
       parameters:
         path:
           resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1579,8 +1918,24 @@ examples:
       responses:
         "200":
           application/json: {"visibility": "LIMITED", "visibility_group_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
+    speakeasy-default-set-resource-visibility:
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      requestBody:
+        application/json: {"visibility": "LIMITED", "visibility_group_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
+      responses:
+        "200":
+          application/json: {"visibility": "LIMITED", "visibility_group_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
   get_resource_reviewers:
     "":
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: ["1b978423-db0a-4037-a4cf-f79c60cb67b3"]
+    speakeasy-default-get-resource-reviewers:
       parameters:
         path:
           resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1597,6 +1952,15 @@ examples:
       responses:
         "200":
           application/json: ["1b978423-db0a-4037-a4cf-f79c60cb67b3"]
+    speakeasy-default-set-resource-reviewers:
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      requestBody:
+        application/json: {"reviewer_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}
+      responses:
+        "200":
+          application/json: ["1b978423-db0a-4037-a4cf-f79c60cb67b3"]
   get_resource_reviewer_stages:
     "":
       parameters:
@@ -1605,8 +1969,24 @@ examples:
       responses:
         "200":
           application/json: [{"require_manager_approval": false, "operator": "AND", "owner_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}]
+    speakeasy-default-get-resource-reviewer-stages:
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: [{"require_manager_approval": false, "operator": "AND", "owner_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}]
   set_resource_reviewer_stages:
     "":
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      requestBody:
+        application/json: {"stages": [{"require_manager_approval": false, "operator": "AND", "owner_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}]}
+      responses:
+        "200":
+          application/json: [{"require_manager_approval": false, "operator": "AND", "owner_ids": ["7870617d-e72a-47f5-a84c-693817ab4567", "1520617d-e72a-47f5-a84c-693817ab48ad2"]}]
+    speakeasy-default-set-resource-reviewer-stages:
       parameters:
         path:
           resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1625,8 +2005,26 @@ examples:
       responses:
         "200":
           application/json: {"results": [{"principal_id": "74908af0-9383-4feb-b7ea-8b305d737338", "principal_type": "RESOURCE", "entity_id": "db04925a-635d-4764-870e-500b9b035c8e", "entity_type": "RESOURCE", "expiration_date": "2022-01-23T04:56:07Z", "has_direct_access": true, "num_access_paths": 3}, {"principal_id": "d940df34-726a-4403-864e-16cb2a0d6793", "principal_type": "RESOURCE", "entity_id": "c26cd16c-a3fa-4b82-96b1-32177f8b8f59", "entity_type": "RESOURCE", "expiration_date": "2022-01-23T04:56:07Z", "has_direct_access": true, "num_access_paths": 3}]}
+    speakeasy-default-get-resource-nhis:
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+        query:
+          limit: 200
+      responses:
+        "200":
+          application/json: {"results": [{"principal_id": "74908af0-9383-4feb-b7ea-8b305d737338", "principal_type": "RESOURCE", "entity_id": "db04925a-635d-4764-870e-500b9b035c8e", "entity_type": "RESOURCE", "expiration_date": "2022-01-23T04:56:07Z", "has_direct_access": true, "num_access_paths": 3}, {"principal_id": "d940df34-726a-4403-864e-16cb2a0d6793", "principal_type": "RESOURCE", "entity_id": "c26cd16c-a3fa-4b82-96b1-32177f8b8f59", "entity_type": "RESOURCE", "expiration_date": "2022-01-23T04:56:07Z", "has_direct_access": true, "num_access_paths": 3}]}
   get_resource_users:
     "":
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+        query:
+          limit: 200
+      responses:
+        "200":
+          application/json: {"results": [{"resource_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "access_level": {"access_level_name": "AdminRole", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}, "full_name": "Jake Barnes", "email": "jake@company.dev", "expiration_date": "2022-01-23T04:56:07Z", "has_direct_access": true, "num_access_paths": 2}, {"resource_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "7646aa9a-e2ee-4eb5-8c62-91f29038a373", "access_level": {"access_level_name": "AdminRole", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}, "full_name": "Brett Ashley", "email": "brett@company.dev", "expiration_date": "2022-02-03T12:33:02Z", "has_direct_access": true, "num_access_paths": 3}]}
+    speakeasy-default-get-resource-users:
       parameters:
         path:
           resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1646,8 +2044,25 @@ examples:
       responses:
         "200":
           application/json: {"resource_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "non_human_identity_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "expiration_date": "2022-01-23T04:56:07Z"}
+    speakeasy-default-add-resource-nhi:
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+          non_human_identity_id: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06"
+      requestBody:
+        application/json: {"duration_minutes": 60, "access_level_remote_id": "roles/cloudsql.instanceUser"}
+      responses:
+        "200":
+          application/json: {"resource_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "non_human_identity_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "expiration_date": "2022-01-23T04:56:07Z"}
   delete_resource_nhi:
     "":
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+          non_human_identity_id: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06"
+        query:
+          access_level_remote_id: "roles/cloudsql.instanceUser"
+    speakeasy-default-delete-resource-nhi:
       parameters:
         path:
           resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1668,8 +2083,28 @@ examples:
       responses:
         "200":
           application/json: {"resource_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "access_level": {"access_level_name": "AdminRole", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}, "full_name": "Jake Barnes", "email": "jake@company.dev", "expiration_date": "2022-01-23T04:56:07Z"}
+    speakeasy-default-add-resource-user:
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+          user_id: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06"
+      requestBody:
+        application/json: {"duration_minutes": 60, "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}
+      responses:
+        "200":
+          application/json: {"resource_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "access_level": {"access_level_name": "AdminRole", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}, "full_name": "Jake Barnes", "email": "jake@company.dev", "expiration_date": "2022-01-23T04:56:07Z"}
   update_resource_user:
     "":
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+          user_id: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06"
+      requestBody:
+        application/json: {"duration_minutes": 60, "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}
+      responses:
+        "200":
+          application/json: {"resource_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "access_level": {"access_level_name": "AdminRole", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}, "full_name": "Jake Barnes", "email": "jake@company.dev", "expiration_date": "2022-01-23T04:56:07Z"}
+    speakeasy-default-update-resource-user:
       parameters:
         path:
           resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1687,8 +2122,25 @@ examples:
           user_id: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06"
         query:
           access_level_remote_id: "arn:aws:iam::590304332660:role/AdministratorAccess"
+    speakeasy-default-delete-resource-user:
+      parameters:
+        path:
+          resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+          user_id: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06"
+        query:
+          access_level_remote_id: "arn:aws:iam::590304332660:role/AdministratorAccess"
   getResourceUser:
     "":
+      parameters:
+        path:
+          resource_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+          user_id: "29827fb8-f2dd-4e80-9576-28e31e9934ac"
+        query:
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+      responses:
+        "200":
+          application/json: {"data": [{"resource_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "access_level": {"access_level_name": "AdminRole", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}, "full_name": "Jake Barnes", "email": "jake@company.dev", "expiration_date": "2022-01-23T04:56:07Z"}], "cursor": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "total_count": 120}
+    speakeasy-default-get-resource-user:
       parameters:
         path:
           resource_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
@@ -1711,6 +2163,18 @@ examples:
       responses:
         "200":
           application/json: {"resource_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "status": "AUTHORIZED", "expiration_date": "2022-01-23T04:56:07Z"}
+    speakeasy-default-resource-user-access-status-retrieve:
+      parameters:
+        path:
+          resource_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+          user_id: "29827fb8-f2dd-4e80-9576-28e31e9934ac"
+        query:
+          access_level_remote_id: "arn:aws:iam::590304332660:role/AdministratorAccess"
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          page_size: 200
+      responses:
+        "200":
+          application/json: {"resource_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "status": "AUTHORIZED", "expiration_date": "2022-01-23T04:56:07Z"}
   get_resource_tags:
     "":
       parameters:
@@ -1719,8 +2183,23 @@ examples:
       responses:
         "200":
           application/json: {"tags": [{"tag_id": "f290a738-5f9f-43c2-ad67-fa31ff0eb946", "created_at": "2022-01-23T04:56:07Z", "updated_at": "2022-02-23T01:34:07Z", "user_creator_id": "d4a7d928-783e-4599-8ec6-088d635a5bcc", "key": "database-name", "value": "redis_db"}]}
+    speakeasy-default-get-resource-tags:
+      parameters:
+        path:
+          resource_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+      responses:
+        "200":
+          application/json: {"tags": [{"tag_id": "f290a738-5f9f-43c2-ad67-fa31ff0eb946", "created_at": "2022-01-23T04:56:07Z", "updated_at": "2022-02-23T01:34:07Z", "user_creator_id": "d4a7d928-783e-4599-8ec6-088d635a5bcc", "key": "database-name", "value": "redis_db"}]}
   get_nhis:
     "":
+      parameters:
+        query:
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          page_size: 200
+      responses:
+        "200":
+          application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "results": [{"resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5353", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "parent_resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5345"}, {"resource_id": "99d0b81d-14be-4cf6-bd27-348b4af1d11b", "description": "This resource represents GCP project \"app-demo\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 360, "require_manager_approval": false, "require_support_ticket": true}]}
+    speakeasy-default-get-nhis:
       parameters:
         query:
           cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
@@ -1737,8 +2216,24 @@ examples:
       responses:
         "200":
           application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "results": [{"connection_id": "h0z968412-2451-4bbd-42h4-057l715d917m", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "resource_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "access_level": {"access_level_name": "AdminRole", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}, "expiration_date": "2022-01-23T04:56:07Z"}, {"connection_id": "6e6b5597-bd36-4f4c-a629-01e3fa791932", "user_id": "b031c922-b84f-4424-9f4f-c49c05871bfe", "resource_id": "77eb1ab7-2c27-4fc4-afdb-137e1265cddd", "access_level": {"access_level_name": "AdminRole", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}, "expiration_date": "2022-03-12T07:22:18Z"}]}
+    speakeasy-default-sessions:
+      parameters:
+        query:
+          resource_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+          user_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+      responses:
+        "200":
+          application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "results": [{"connection_id": "h0z968412-2451-4bbd-42h4-057l715d917m", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "resource_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "access_level": {"access_level_name": "AdminRole", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}, "expiration_date": "2022-01-23T04:56:07Z"}, {"connection_id": "6e6b5597-bd36-4f4c-a629-01e3fa791932", "user_id": "b031c922-b84f-4424-9f4f-c49c05871bfe", "resource_id": "77eb1ab7-2c27-4fc4-afdb-137e1265cddd", "access_level": {"access_level_name": "AdminRole", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}, "expiration_date": "2022-03-12T07:22:18Z"}]}
   user:
     "":
+      parameters:
+        query:
+          user_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+          email: "johndoe@domain.org"
+      responses:
+        "200":
+          application/json: {"user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "email": "john.doe@company.dev", "full_name": "John Doe", "first_name": "John", "last_name": "Doe", "position": "Engineer"}
+    speakeasy-default-user:
       parameters:
         query:
           user_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
@@ -1755,8 +2250,23 @@ examples:
       responses:
         "200":
           application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "results": [{"user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "email": "john.doe@company.dev", "full_name": "John Doe", "first_name": "John", "last_name": "Doe", "position": "Senior Engineer"}, {"user_id": "e8581682-04f7-473a-a419-472f0fb26d46", "email": "jane.smith@company.dev", "full_name": "Jane Smith", "first_name": "John", "last_name": "Doe", "position": "Product Marketing Lead"}]}
+    speakeasy-default-get-users:
+      parameters:
+        query:
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          page_size: 200
+      responses:
+        "200":
+          application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "results": [{"user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "email": "john.doe@company.dev", "full_name": "John Doe", "first_name": "John", "last_name": "Doe", "position": "Senior Engineer"}, {"user_id": "e8581682-04f7-473a-a419-472f0fb26d46", "email": "jane.smith@company.dev", "full_name": "Jane Smith", "first_name": "John", "last_name": "Doe", "position": "Product Marketing Lead"}]}
   get_user_tags:
     "":
+      parameters:
+        path:
+          user_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+      responses:
+        "200":
+          application/json: {"tags": [{"tag_id": "f290a738-5f9f-43c2-ad67-fa31ff0eb946", "created_at": "2022-01-23T04:56:07Z", "updated_at": "2022-02-23T01:34:07Z", "user_creator_id": "d4a7d928-783e-4599-8ec6-088d635a5bcc", "key": "database-name", "value": "redis_db"}]}
+    speakeasy-default-get-user-tags:
       parameters:
         path:
           user_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
@@ -1778,6 +2288,13 @@ examples:
       responses:
         "200":
           application/json: {"access_rule_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Platform Engineering", "description": "This access rule represents all platform engineers in the company.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "ACTIVE", "ruleClauses": {"when": {"clauses": []}}}
+    speakeasy-default-get-access-rule:
+      parameters:
+        path:
+          access_rule_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+      responses:
+        "200":
+          application/json: {"access_rule_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Platform Engineering", "description": "This access rule represents all platform engineers in the company.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "ACTIVE", "ruleClauses": {"when": {"clauses": []}}}
   update_access_rule:
     "":
       parameters:
@@ -1788,8 +2305,24 @@ examples:
       responses:
         "200":
           application/json: {"access_rule_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Platform Engineering", "description": "This access rule represents all platform engineers in the company.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "ACTIVE", "ruleClauses": {"when": {"clauses": [{"selectors": [{"key": "<key>", "value": "<value>", "connection_id": "fb76ee36-3589-45c2-b5e3-11bae3b92e8e"}, {"key": "<key>", "value": "<value>", "connection_id": "fb76ee36-3589-45c2-b5e3-11bae3b92e8e"}]}, {"selectors": [{"key": "<key>", "value": "<value>", "connection_id": "fb76ee36-3589-45c2-b5e3-11bae3b92e8e"}, {"key": "<key>", "value": "<value>", "connection_id": "fb76ee36-3589-45c2-b5e3-11bae3b92e8e"}]}]}}}
+    speakeasy-default-update-access-rule:
+      parameters:
+        path:
+          access_rule_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+      requestBody:
+        application/json: {"name": "Platform Engineering", "description": "This access rule represents all platform engineers in the company.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "ACTIVE", "ruleClauses": {"when": {"clauses": [{"selectors": [{"key": "<key>", "value": "<value>", "connection_id": "fb76ee36-3589-45c2-b5e3-11bae3b92e8e"}]}]}}}
+      responses:
+        "200":
+          application/json: {"access_rule_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "name": "Platform Engineering", "description": "This access rule represents all platform engineers in the company.", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "ACTIVE", "ruleClauses": {"when": {"clauses": [{"selectors": [{"key": "<key>", "value": "<value>", "connection_id": "fb76ee36-3589-45c2-b5e3-11bae3b92e8e"}]}]}}}
   get_tag_by_ID:
     "":
+      parameters:
+        path:
+          tag_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+      responses:
+        "200":
+          application/json: {"tag_id": "f290a738-5f9f-43c2-ad67-fa31ff0eb946", "created_at": "2022-01-23T04:56:07Z", "updated_at": "2022-02-23T01:34:07Z", "user_creator_id": "d4a7d928-783e-4599-8ec6-088d635a5bcc", "key": "database-name", "value": "redis_db"}
+    speakeasy-default-get-tag-by-ID:
       parameters:
         path:
           tag_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
@@ -1801,8 +2334,20 @@ examples:
       parameters:
         path:
           tag_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+    speakeasy-default-delete-tag-by-ID:
+      parameters:
+        path:
+          tag_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
   get_tag:
     "":
+      parameters:
+        query:
+          tag_key: "api-scope"
+          tag_value: "production"
+      responses:
+        "200":
+          application/json: {"tag_id": "f290a738-5f9f-43c2-ad67-fa31ff0eb946", "created_at": "2022-01-23T04:56:07Z", "updated_at": "2022-02-23T01:34:07Z", "user_creator_id": "d4a7d928-783e-4599-8ec6-088d635a5bcc", "key": "database-name", "value": "redis_db"}
+    speakeasy-default-get-tag:
       parameters:
         query:
           tag_key: "api-scope"
@@ -1822,8 +2367,22 @@ examples:
       responses:
         "200":
           application/json: {"tag_id": "f290a738-5f9f-43c2-ad67-fa31ff0eb946", "created_at": "2022-01-23T04:56:07Z", "updated_at": "2022-02-23T01:34:07Z", "user_creator_id": "d4a7d928-783e-4599-8ec6-088d635a5bcc", "key": "database-name", "value": "redis_db"}
+    speakeasy-default-create-tag:
+      requestBody:
+        application/json: {"tag_key": "api-scope", "tag_value": "production"}
+      responses:
+        "200":
+          application/json: {"tag_id": "f290a738-5f9f-43c2-ad67-fa31ff0eb946", "created_at": "2022-01-23T04:56:07Z", "updated_at": "2022-02-23T01:34:07Z", "user_creator_id": "d4a7d928-783e-4599-8ec6-088d635a5bcc", "key": "database-name", "value": "redis_db"}
   getTags:
     "":
+      parameters:
+        query:
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          page_size: 200
+      responses:
+        "200":
+          application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "results": [{"tag_id": "f290a738-5f9f-43c2-ad67-fa31ff0eb946", "created_at": "2022-01-23T04:56:07Z", "updated_at": "2022-02-23T01:34:07Z", "user_creator_id": "d4a7d928-783e-4599-8ec6-088d635a5bcc", "key": "database-name", "value": "redis_db"}, {"tag_id": "92f0a738-5f9f-43c2-ad67-fa31ff0eb052", "created_at": "2022-03-23T04:56:07Z", "updated_at": "2022-04-23T01:34:07Z", "user_creator_id": "a4d7d928-783e-4599-8ec6-088d635af4ac", "key": "database-type", "value": "sql"}]}
+    speakeasy-default-get-tags:
       parameters:
         query:
           cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
@@ -1837,8 +2396,18 @@ examples:
         path:
           tag_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
           user_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+    speakeasy-default-add-user-tag:
+      parameters:
+        path:
+          tag_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+          user_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
   remove_user_tag:
     "":
+      parameters:
+        path:
+          tag_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+          user_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+    speakeasy-default-remove-user-tag:
       parameters:
         path:
           tag_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
@@ -1849,8 +2418,18 @@ examples:
         path:
           tag_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
           group_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+    speakeasy-default-add-group-tag:
+      parameters:
+        path:
+          tag_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+          group_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
   remove_group_tag:
     "":
+      parameters:
+        path:
+          tag_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+          group_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+    speakeasy-default-remove-group-tag:
       parameters:
         path:
           tag_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
@@ -1861,8 +2440,18 @@ examples:
         path:
           tag_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
           resource_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+    speakeasy-default-add-resource-tag:
+      parameters:
+        path:
+          tag_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+          resource_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
   remove_resource_tag:
     "":
+      parameters:
+        path:
+          tag_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+          resource_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+    speakeasy-default-remove-resource-tag:
       parameters:
         path:
           tag_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
@@ -1881,6 +2470,13 @@ examples:
           application/json: {"message_channel_id": "6670617d-e72a-47f5-a84c-693817ab4860", "third_party_provider": "SLACK", "remote_id": "C03FJR97276", "name": "api-team-audit-channel", "is_private": false}
   get_message_channel:
     "":
+      parameters:
+        path:
+          message_channel_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"message_channel_id": "6670617d-e72a-47f5-a84c-693817ab4860", "third_party_provider": "SLACK", "remote_id": "C03FJR97276", "name": "api-team-audit-channel", "is_private": false}
+    speakeasy-default-get-message-channel:
       parameters:
         path:
           message_channel_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
@@ -1907,8 +2503,23 @@ examples:
       responses:
         "200":
           application/json: {"on_call_schedule_id": "50d5e9f6-f23f-4d5a-ae91-b2640cf3975e", "third_party_provider": "PAGER_DUTY", "remote_id": "P7OWH2R", "name": "Customer Support On-Call"}
+    speakeasy-default-get-on-call-schedule:
+      parameters:
+        path:
+          on_call_schedule_id: "9546209c-42c2-4801-96d7-9ec42df0f59c"
+      responses:
+        "200":
+          application/json: {"on_call_schedule_id": "50d5e9f6-f23f-4d5a-ae91-b2640cf3975e", "third_party_provider": "PAGER_DUTY", "remote_id": "P7OWH2R", "name": "Customer Support On-Call"}
   getUARs:
     "":
+      parameters:
+        query:
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          page_size: 200
+      responses:
+        "200":
+          application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "results": [{"uar_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "Monthly UAR (July)", "reviewer_assignment_policy": "MANUALLY", "send_reviewer_assignment_notification": false, "deadline": "2022-07-14T06:59:59Z", "time_zone": "America/Los_Angeles", "self_review_allowed": false, "uar_scope": {"admins": ["f454d283-ca87-4a8a-bdbb-df212eca5353", "8763d283-ca87-4a8a-bdbb-df212ecab139"], "tags": [{"key": "uar_scope", "value": "high_priority"}], "names": ["demo", "api"]}}, {"uar_id": "39a4d283-ca87-4a8a-bdbb-df212eca5fdb", "name": "Monthly UAR (August)", "reviewer_assignment_policy": "MANUALLY", "send_reviewer_assignment_notification": true, "deadline": "2022-08-14T06:59:59Z", "time_zone": "America/Los_Angeles", "self_review_allowed": false, "uar_scope": {"admins": ["f454d283-ca87-4a8a-bdbb-df212eca5353", "8763d283-ca87-4a8a-bdbb-df212ecab139"], "tags": [{"key": "uar_scope", "value": "high_priority"}], "names": ["demo", "api"]}}]}
+    speakeasy-default-get-UA-rs:
       parameters:
         query:
           cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
@@ -1931,5 +2542,23 @@ examples:
       responses:
         "200":
           application/json: {"uar_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "Monthly UAR (July)", "reviewer_assignment_policy": "MANUALLY", "send_reviewer_assignment_notification": false, "deadline": "2022-07-14T06:59:59Z", "time_zone": "America/Los_Angeles", "self_review_allowed": false, "uar_scope": {"admins": ["f454d283-ca87-4a8a-bdbb-df212eca5353", "8763d283-ca87-4a8a-bdbb-df212ecab139"], "tags": [{"key": "uar_scope", "value": "high_priority"}], "names": ["demo", "api"]}}
+    speakeasy-default-get-uar:
+      parameters:
+        path:
+          uar_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"uar_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "name": "Monthly UAR (July)", "reviewer_assignment_policy": "MANUALLY", "send_reviewer_assignment_notification": false, "deadline": "2022-07-14T06:59:59Z", "time_zone": "America/Los_Angeles", "self_review_allowed": false, "uar_scope": {"admins": ["f454d283-ca87-4a8a-bdbb-df212eca5353", "8763d283-ca87-4a8a-bdbb-df212ecab139"], "tags": [{"key": "uar_scope", "value": "high_priority"}], "names": ["demo", "api"]}}
+  update_group_user:
+    speakeasy-default-update-group-user:
+      parameters:
+        path:
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+          user_id: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06"
+      requestBody:
+        application/json: {"duration_minutes": 60, "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}
+      responses:
+        "200":
+          application/json: {"group_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "full_name": "Jake Barnes", "email": "jake@company.dev", "expiration_date": "2022-01-23T04:56:07Z"}
 examplesVersion: 1.0.2
 generatedTests: {}
