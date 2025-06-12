@@ -29,9 +29,9 @@ let value: CreateRequestInfo = {
     ticketingProvider: "LINEAR",
     remoteId: "<id>",
     identifier: "<value>",
-    url: "https://tight-bug.com",
+    url: "https://content-minority.name/",
   },
-  durationMinutes: 577542,
+  durationMinutes: 576363,
 };
 ```
 

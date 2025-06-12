@@ -34,7 +34,6 @@ async function run() {
     name: "200",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -61,15 +60,12 @@ async function run() {
     pageSize: 200,
     name: "200",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ownersGetOwners failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -118,7 +114,6 @@ async function run() {
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -149,15 +144,12 @@ async function run() {
       "1520617d-e72a-47f5-a84c-693817ab48ad2",
     ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ownersCreateOwner failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -213,7 +205,6 @@ async function run() {
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -251,15 +242,12 @@ async function run() {
       },
     ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ownersUpdateOwners failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -302,7 +290,6 @@ async function run() {
     ownerId: "32acc112-21ff-4669-91c2-21e27683eaa1",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -327,15 +314,12 @@ async function run() {
   const res = await ownersGetOwner(opalMcp, {
     ownerId: "32acc112-21ff-4669-91c2-21e27683eaa1",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ownersGetOwner failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -402,14 +386,12 @@ async function run() {
   const res = await ownersDeleteOwner(opalMcp, {
     ownerId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("ownersDeleteOwner failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -452,7 +434,6 @@ async function run() {
     ownerName: "MyOwner",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -477,15 +458,12 @@ async function run() {
   const res = await ownersGetOwnerFromName(opalMcp, {
     ownerName: "MyOwner",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ownersGetOwnerFromName failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -528,7 +506,6 @@ async function run() {
     ownerId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -553,15 +530,12 @@ async function run() {
   const res = await ownersGetOwnerUsers(opalMcp, {
     ownerId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ownersGetOwnerUsers failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -610,7 +584,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -641,15 +614,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ownersSetOwnerUsers failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

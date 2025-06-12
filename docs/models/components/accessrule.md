@@ -21,17 +21,7 @@ let value: AccessRule = {
   status: "ACTIVE",
   ruleClauses: {
     when: {
-      clauses: [
-        {
-          selectors: [
-            {
-              key: "<key>",
-              value: "<value>",
-              connectionId: "257de3fa-3b34-4759-bebd-5056c1e09f65",
-            },
-          ],
-        },
-      ],
+      clauses: [],
     },
   },
 };

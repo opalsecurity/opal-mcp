@@ -19,15 +19,11 @@ Opal API: The Opal API is a RESTful API that allows you to interact with the Opa
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
 * [opal-mcp](#opal-mcp)
-  * [Model Context Protocol (MCP) Server](#model-context-protocol-mcp-server)
-    * [Generating an API Key](#generating-an-api-key)
-    * [Environment Variables](#environment-variables)
-    * [Installation](#installation)
-    * [Troubleshooting MCP](#troubleshooting-mcp)
+* [Build the image](#build-the-image)
+* [Run the container](#run-the-container)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
-  * [Contributing](#contributing)
 
 <!-- End Table of Contents [toc] -->
 

@@ -30,7 +30,6 @@ async function run() {
     pageSize: 200,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -56,15 +55,12 @@ async function run() {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     pageSize: 200,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupBindingsGetGroupBindings failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -115,7 +111,6 @@ async function run() {
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -148,15 +143,12 @@ async function run() {
       },
     ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupBindingsCreateGroupBinding failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -273,14 +265,12 @@ async function run() {
       },
     ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("groupBindingsUpdateGroupBindings failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -323,7 +313,6 @@ async function run() {
     groupBindingId: "32acc112-21ff-4669-91c2-21e27683eaa1",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -348,15 +337,12 @@ async function run() {
   const res = await groupBindingsGetGroupBinding(opalMcp, {
     groupBindingId: "32acc112-21ff-4669-91c2-21e27683eaa1",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupBindingsGetGroupBinding failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -423,14 +409,12 @@ async function run() {
   const res = await groupBindingsDeleteGroupBinding(opalMcp, {
     groupBindingId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("groupBindingsDeleteGroupBinding failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();

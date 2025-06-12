@@ -99,6 +99,7 @@ export * from "./setresourcereviewerstages.js";
 export * from "./setresourcevisibility.js";
 export * from "./updateaccessrule.js";
 export * from "./updatebundle.js";
+export * from "./updategroupuser.js";
 export * from "./updateidpgroupmappings.js";
 export * from "./updateresourceuser.js";
 export * from "./user.js";

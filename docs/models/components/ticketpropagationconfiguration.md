@@ -9,7 +9,7 @@ import { TicketPropagationConfiguration } from "opal-mcp/models/components";
 
 let value: TicketPropagationConfiguration = {
   enabledOnGrant: false,
-  enabledOnRevocation: false,
+  enabledOnRevocation: true,
   ticketProvider: "LINEAR",
 };
 ```

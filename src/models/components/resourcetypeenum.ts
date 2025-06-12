@@ -18,6 +18,7 @@ export const ResourceTypeEnum = {
   AwsRdsMysqlInstance: "AWS_RDS_MYSQL_INSTANCE",
   AwsAccount: "AWS_ACCOUNT",
   AwsSsoPermissionSet: "AWS_SSO_PERMISSION_SET",
+  AwsOrganizationalUnit: "AWS_ORGANIZATIONAL_UNIT",
   AzureManagementGroup: "AZURE_MANAGEMENT_GROUP",
   AzureResourceGroup: "AZURE_RESOURCE_GROUP",
   AzureSubscription: "AZURE_SUBSCRIPTION",

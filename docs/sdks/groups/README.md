@@ -29,6 +29,7 @@
 * [~~setGroupReviewerStages~~](#setgroupreviewerstages) - Sets the list of reviewer stages for a group. :warning: **Deprecated**
 * [getGroupTags](#getgrouptags) - Returns all tags applied to the group.
 * [getGroupUsers](#getgroupusers) - Gets the list of users for this group.
+* [updateGroupUser](#updategroupuser) - Updates a user's access level or duration in this group.
 * [addGroupUser](#addgroupuser) - Adds a user to this group.
 * [deleteGroupUser](#deletegroupuser) - Removes a user's access from this group.
 
@@ -57,7 +58,6 @@ async function run() {
     groupName: "example-name",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -89,15 +89,12 @@ async function run() {
     ],
     groupName: "example-name",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsGetGroups failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -159,7 +156,6 @@ async function run() {
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -203,15 +199,12 @@ async function run() {
       },
     ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsUpdateGroups failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -259,7 +252,6 @@ async function run() {
     metadata: "{ \"okta_directory_group\": { \"group_id\": \"00g4bs66kwtpe1g12345\" } }",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -289,15 +281,12 @@ async function run() {
     remoteGroupId: "00g4fixjd6Bc9w0TT5d7",
     metadata: "{ \"okta_directory_group\": { \"group_id\": \"00g4bs66kwtpe1g12345\" } }",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsCreateGroup failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -340,7 +329,6 @@ async function run() {
     groupId: "32acc112-21ff-4669-91c2-21e27683eaa1",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -365,15 +353,12 @@ async function run() {
   const res = await groupsGetGroup(opalMcp, {
     groupId: "32acc112-21ff-4669-91c2-21e27683eaa1",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsGetGroup failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -440,14 +425,12 @@ async function run() {
   const res = await groupsDeleteGroup(opalMcp, {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("groupsDeleteGroup failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -490,7 +473,6 @@ async function run() {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -515,15 +497,12 @@ async function run() {
   const res = await groupsGetGroupMessageChannels(opalMcp, {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsGetGroupMessageChannels failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -572,7 +551,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -603,15 +581,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsSetGroupMessageChannels failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -654,7 +629,6 @@ async function run() {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -679,15 +653,12 @@ async function run() {
   const res = await groupsGetGroupOnCallSchedules(opalMcp, {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsGetGroupOnCallSchedules failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -736,7 +707,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -767,15 +737,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsSetGroupOnCallSchedules failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -818,7 +785,6 @@ async function run() {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -843,15 +809,12 @@ async function run() {
   const res = await groupsGetGroupResources(opalMcp, {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsGetGroupResources failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -934,14 +897,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("groupsSetGroupResources failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -984,7 +945,6 @@ async function run() {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1009,15 +969,12 @@ async function run() {
   const res = await groupsGetGroupContainingGroups(opalMcp, {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsGetGroupContainingGroups failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1063,7 +1020,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1091,15 +1047,12 @@ async function run() {
       containingGroupId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsAddGroupContainingGroup failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1143,7 +1096,6 @@ async function run() {
     containingGroupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1169,15 +1121,12 @@ async function run() {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
     containingGroupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsGetGroupContainingGroup failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1246,14 +1195,12 @@ async function run() {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
     containingGroupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("groupsRemoveGroupContainingGroup failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -1302,7 +1249,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1333,15 +1279,12 @@ async function run() {
       durationMinutes: 60,
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsAddGroupResource failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1384,7 +1327,6 @@ async function run() {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1409,15 +1351,12 @@ async function run() {
   const res = await groupsGetGroupVisibility(opalMcp, {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsGetGroupVisibility failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1467,7 +1406,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1499,15 +1437,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsSetGroupVisibility failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1552,7 +1487,6 @@ async function run() {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1577,15 +1511,12 @@ async function run() {
   const res = await groupsGetGroupReviewers(opalMcp, {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsGetGroupReviewers failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1636,7 +1567,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1667,15 +1597,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsSetGroupReviewers failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1720,7 +1647,6 @@ async function run() {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1745,15 +1671,12 @@ async function run() {
   const res = await groupsGetGroupReviewerStages(opalMcp, {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsGetGroupReviewerStages failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1810,7 +1733,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1847,15 +1769,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsSetGroupReviewerStages failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1898,7 +1817,6 @@ async function run() {
     groupId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1923,15 +1841,12 @@ async function run() {
   const res = await groupsGetGroupTags(opalMcp, {
     groupId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsGetGroupTags failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1974,7 +1889,6 @@ async function run() {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1999,15 +1913,12 @@ async function run() {
   const res = await groupsGetGroupUsers(opalMcp, {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsGetGroupUsers failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -2025,6 +1936,88 @@ run();
 ### Response
 
 **Promise\<[components.GroupUserList](../../models/components/groupuserlist.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## updateGroupUser
+
+Updates a user's access level or duration in this group.
+
+### Example Usage
+
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.groups.updateGroupUser({
+    groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+    userId: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06",
+    requestBody: {
+      durationMinutes: 60,
+      accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { groupsUpdateGroupUser } from "opal-mcp/funcs/groupsUpdateGroupUser.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await groupsUpdateGroupUser(opalMcp, {
+    groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+    userId: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06",
+    requestBody: {
+      durationMinutes: 60,
+      accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsUpdateGroupUser failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.UpdateGroupUserRequest](../../models/operations/updategroupuserrequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.GroupUser](../../models/components/groupuser.md)\>**
 
 ### Errors
 
@@ -2057,7 +2050,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -2089,15 +2081,12 @@ async function run() {
       accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsAddGroupUser failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -2166,14 +2155,12 @@ async function run() {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
     userId: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("groupsDeleteGroupUser failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();

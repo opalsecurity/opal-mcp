@@ -8,7 +8,7 @@ import { RequestCustomFieldResponse } from "opal-mcp/models/components";
 let value: RequestCustomFieldResponse = {
   fieldName: "<value>",
   fieldType: "SHORT_TEXT",
-  fieldValue: true,
+  fieldValue: "This is a response to a long text or short text or multi choice",
 };
 ```
 
