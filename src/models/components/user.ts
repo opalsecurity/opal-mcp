@@ -17,11 +17,25 @@ import {
  * # User Object
  *
  * @remarks
- * ### Description
- * The `User` object is used to represent a user.
  *
- * ### Usage Example
- * Fetch from the `LIST Sessions` endpoint.
+ * ### Core Properties
+ * - `user_id`: Unique identifier (UUID v4) for the user
+ * - `email`: Primary email address, used for authentication and notifications
+ * - `full_name`: Display name, combining first_name and last_name
+ * - `position`: Organizational role or job title
+ * - `hr_idp_status`: Current provisioning status from HR/IDP system
+ *
+ * ### MCP Integration Guidelines
+ * 1. User Synchronization:
+ *   - Match users by `user_id` as primary key
+ *   - Use email as secondary matching field
+ *   - Maintain hr_idp_status for access control decisions
+ * 2. Status Handling:
+ *   - ACTIVE: Full system access granted
+ *   - SUSPENDED: Temporary access restriction
+ *   - DEPROVISIONED: Access removed but user record maintained
+ *   - DELETED: User record marked for removal
+ *   - NOT_FOUND: User doesn't exist in HR/IDP system
  */
 export type User = {
   /**
@@ -49,7 +63,33 @@ export type User = {
    */
   position: string;
   /**
-   * User status pulled from an HR/IDP provider.
+   * Represents the current status of a user as reported by the HR/IDP provider.
+   *
+   * @remarks
+   *
+   * ### Status Definitions
+   * - `ACTIVE`: User is currently employed and should have appropriate access
+   * - `SUSPENDED`: User access temporarily restricted (e.g., leave of absence)
+   * - `DEPROVISIONED`: User has been offboarded but record retained
+   * - `DELETED`: User record has been removed from HR system
+   * - `NOT_FOUND`: User doesn't exist in HR/IDP system
+   *
+   * ### MCP Status Handling
+   * ```typescript
+   * function handleUserStatusChange(user: User) {
+   *   switch (user.hr_idp_status) {
+   *     case 'ACTIVE':
+   *       return enableUserAccess(user.user_id);
+   *     case 'SUSPENDED':
+   *       return suspendUserAccess(user.user_id);
+   *     case 'DEPROVISIONED':
+   *     case 'DELETED':
+   *       return revokeUserAccess(user.user_id);
+   *     case 'NOT_FOUND':
+   *       return flagUserForReview(user.user_id);
+   *   }
+   * }
+   * ```
    */
   hrIdpStatus?: UserHrIdpStatusEnum | undefined;
 };

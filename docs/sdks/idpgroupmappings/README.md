@@ -27,7 +27,6 @@ async function run() {
     appResourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -52,15 +51,12 @@ async function run() {
   const res = await idpGroupMappingsGetIdpGroupMappings(opalMcp, {
     appResourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("idpGroupMappingsGetIdpGroupMappings failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -141,14 +137,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("idpGroupMappingsUpdateIdpGroupMappings failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -217,14 +211,12 @@ async function run() {
     appResourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("idpGroupMappingsDeleteIdpGroupMappings failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();

@@ -32,7 +32,6 @@ async function run() {
     pageSize: 200,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -64,15 +63,12 @@ async function run() {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     pageSize: 200,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("eventsEvents failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

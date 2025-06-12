@@ -27,7 +27,11 @@ import { CreateRequestConfigurationInfoList } from "opal-mcp/models/components";
 let value: CreateRequestConfigurationInfoList = {
   requestConfigurations: [
     {
-      condition: null,
+      condition: {
+        groupIds: [
+          "1b978423-db0a-4037-a4cf-f79c60cb67b3",
+        ],
+      },
       allowRequests: true,
       autoApproval: false,
       requireMfaToRequest: false,

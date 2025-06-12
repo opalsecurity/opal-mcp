@@ -8,10 +8,6 @@ import { AddResourceNhiRequest } from "opal-mcp/models/operations";
 let value: AddResourceNhiRequest = {
   resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   nonHumanIdentityId: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06",
-  requestBody: {
-    durationMinutes: 60,
-    accessLevelRemoteId: "roles/cloudsql.instanceUser",
-  },
 };
 ```
 

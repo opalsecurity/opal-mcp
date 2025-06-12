@@ -15,7 +15,6 @@ async function run() {
     ownerFilter: "29827fb8-f2dd-4e80-9576-28e31e9934ac",
   });
 
-  // Handle the result
   console.log(result);
 }
 

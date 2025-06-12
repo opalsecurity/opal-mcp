@@ -17,17 +17,7 @@ let value: UpdateAccessRuleInfo = {
   status: "ACTIVE",
   ruleClauses: {
     when: {
-      clauses: [
-        {
-          selectors: [
-            {
-              key: "<key>",
-              value: "<value>",
-              connectionId: "cd47f80e-c21f-4221-82c3-b5100950e3ec",
-            },
-          ],
-        },
-      ],
+      clauses: [],
     },
   },
 };

@@ -31,7 +31,6 @@ async function run() {
     pageSize: 200,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -59,15 +58,12 @@ async function run() {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     pageSize: 200,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("requestsGetRequests failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -137,7 +133,6 @@ async function run() {
     durationMinutes: 931503,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -189,15 +184,12 @@ async function run() {
     },
     durationMinutes: 931503,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("requestsCreateRequest failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -246,7 +238,6 @@ async function run() {
     from: "37cb7e41-12ba-46da-92ff-030abe0450b1",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -277,15 +268,12 @@ async function run() {
     to: "37cb7e41-12ba-46da-92ff-030abe0450b1",
     from: "37cb7e41-12ba-46da-92ff-030abe0450b1",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("requestsGetRequestsRelay failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -332,7 +320,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -361,15 +348,12 @@ async function run() {
       comment: "Approved after security review",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("requestsApproveRequest failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

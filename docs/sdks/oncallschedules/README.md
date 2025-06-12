@@ -25,7 +25,6 @@ const opalMcp = new OpalMcp({
 async function run() {
   const result = await opalMcp.onCallSchedules.getOnCallSchedules();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -48,15 +47,12 @@ const opalMcp = new OpalMcpCore({
 
 async function run() {
   const res = await onCallSchedulesGetOnCallSchedules(opalMcp);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("onCallSchedulesGetOnCallSchedules failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -99,7 +95,6 @@ async function run() {
     remoteId: "PNZNINN",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -125,15 +120,12 @@ async function run() {
     thirdPartyProvider: "PAGER_DUTY",
     remoteId: "PNZNINN",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("onCallSchedulesCreateOnCallSchedule failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -176,7 +168,6 @@ async function run() {
     onCallScheduleId: "9546209c-42c2-4801-96d7-9ec42df0f59c",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -201,15 +192,12 @@ async function run() {
   const res = await onCallSchedulesGetOnCallSchedule(opalMcp, {
     onCallScheduleId: "9546209c-42c2-4801-96d7-9ec42df0f59c",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("onCallSchedulesGetOnCallSchedule failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

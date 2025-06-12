@@ -53,9 +53,9 @@ async function run() {
     ],
     resourceName: "example-name",
     parentResourceId: "[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]",
+    ancestorResourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -87,16 +87,14 @@ async function run() {
     ],
     resourceName: "example-name",
     parentResourceId: "[\"4baf8423-db0a-4037-a4cf-f79c60cb67a5\"]",
+    ancestorResourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesGetResources failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -158,7 +156,6 @@ async function run() {
     ],
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -202,15 +199,12 @@ async function run() {
       },
     ],
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesUpdateResources failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -264,7 +258,6 @@ async function run() {
     "}",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -300,15 +293,12 @@ async function run() {
     "    },\n" +
     "}",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesCreateResource failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -351,7 +341,6 @@ async function run() {
     resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -376,15 +365,12 @@ async function run() {
   const res = await resourcesGetResource(opalMcp, {
     resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesGetResource failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -451,14 +437,12 @@ async function run() {
   const res = await resourcesDeleteResource(opalMcp, {
     resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("resourcesDeleteResource failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -501,7 +485,6 @@ async function run() {
     resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -526,15 +509,12 @@ async function run() {
   const res = await resourcesGetResourceMessageChannels(opalMcp, {
     resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesGetResourceMessageChannels failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -583,7 +563,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -614,15 +593,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesSetResourceMessageChannels failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -665,7 +641,6 @@ async function run() {
     resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -690,15 +665,12 @@ async function run() {
   const res = await resourcesGetResourceVisibility(opalMcp, {
     resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesGetResourceVisibility failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -748,7 +720,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -780,15 +751,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesSetResourceVisibility failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -831,7 +799,6 @@ async function run() {
     resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -856,15 +823,12 @@ async function run() {
   const res = await resourcesGetResourceReviewers(opalMcp, {
     resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesGetResourceReviewers failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -913,7 +877,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -944,15 +907,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesSetResourceReviewers failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -995,7 +955,6 @@ async function run() {
     resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1020,15 +979,12 @@ async function run() {
   const res = await resourcesGetResourceReviewerStages(opalMcp, {
     resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesGetResourceReviewerStages failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1083,7 +1039,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1120,15 +1075,12 @@ async function run() {
       ],
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesSetResourceReviewerStages failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1172,7 +1124,6 @@ async function run() {
     limit: 200,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1198,15 +1149,12 @@ async function run() {
     resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
     limit: 200,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesGetResourceNhis failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1250,7 +1198,6 @@ async function run() {
     limit: 200,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1276,15 +1223,12 @@ async function run() {
     resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
     limit: 200,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesGetResourceUsers failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1332,7 +1276,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1362,15 +1305,12 @@ async function run() {
       accessLevelRemoteId: "roles/cloudsql.instanceUser",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesAddResourceNhi failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1441,14 +1381,12 @@ async function run() {
     nonHumanIdentityId: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06",
     accessLevelRemoteId: "roles/cloudsql.instanceUser",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("resourcesDeleteResourceNhi failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -1498,7 +1436,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1530,15 +1467,12 @@ async function run() {
       accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesAddResourceUser failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1586,7 +1520,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1616,15 +1549,12 @@ async function run() {
       accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesUpdateResourceUser failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1695,14 +1625,12 @@ async function run() {
     userId: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06",
     accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("resourcesDeleteResourceUser failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -1747,7 +1675,6 @@ async function run() {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1774,15 +1701,12 @@ async function run() {
     userId: "29827fb8-f2dd-4e80-9576-28e31e9934ac",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesGetResourceUser failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1831,7 +1755,6 @@ async function run() {
     pageSize: 200,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1860,15 +1783,12 @@ async function run() {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     pageSize: 200,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesResourceUserAccessStatusRetrieve failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1911,7 +1831,6 @@ async function run() {
     resourceId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1936,15 +1855,12 @@ async function run() {
   const res = await resourcesGetResourceTags(opalMcp, {
     resourceId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesGetResourceTags failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

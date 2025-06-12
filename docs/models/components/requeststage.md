@@ -12,8 +12,8 @@ let value: RequestStage = {
   operator: "OR",
   reviewers: [
     {
-      id: "aad49e31-729f-43a7-8cca-4979dabe188a",
-      status: "REJECTED",
+      id: "ad49e317-29f3-4a7c-bca4-979dabe188a1",
+      status: "APPROVED",
     },
   ],
 };

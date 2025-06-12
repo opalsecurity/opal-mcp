@@ -35,7 +35,6 @@ async function run() {
     tagId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -60,15 +59,12 @@ async function run() {
   const res = await tagsGetTagByID(opalMcp, {
     tagId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("tagsGetTagByID failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -135,14 +131,12 @@ async function run() {
   const res = await tagsDeleteTagByID(opalMcp, {
     tagId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("tagsDeleteTagByID failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -186,7 +180,6 @@ async function run() {
     tagValue: "production",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -212,15 +205,12 @@ async function run() {
     tagKey: "api-scope",
     tagValue: "production",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("tagsGetTag failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -269,7 +259,6 @@ async function run() {
     },
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -300,15 +289,12 @@ async function run() {
       tagValue: "production",
     },
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("tagsCreateTag failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -352,7 +338,6 @@ async function run() {
     pageSize: 200,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -378,15 +363,12 @@ async function run() {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     pageSize: 200,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("tagsGetTags failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -455,14 +437,12 @@ async function run() {
     tagId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
     userId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("tagsAddUserTag failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -531,14 +511,12 @@ async function run() {
     tagId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
     userId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("tagsRemoveUserTag failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -607,14 +585,12 @@ async function run() {
     tagId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
     groupId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("tagsAddGroupTag failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -683,14 +659,12 @@ async function run() {
     tagId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
     groupId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("tagsRemoveGroupTag failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -759,14 +733,12 @@ async function run() {
     tagId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
     resourceId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("tagsAddResourceTag failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();
@@ -835,14 +807,12 @@ async function run() {
     tagId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
     resourceId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("tagsRemoveResourceTag failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  
 }
 
 run();

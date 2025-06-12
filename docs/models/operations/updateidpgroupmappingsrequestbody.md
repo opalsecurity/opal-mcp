@@ -6,9 +6,7 @@
 import { UpdateIdpGroupMappingsRequestBody } from "opal-mcp/models/operations";
 
 let value: UpdateIdpGroupMappingsRequestBody = {
-  mappings: [
-    {},
-  ],
+  mappings: [],
 };
 ```
 

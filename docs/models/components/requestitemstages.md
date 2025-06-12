@@ -11,14 +11,9 @@ let value: RequestItemStages = {
   requestedItemName: "<value>",
   stages: [
     {
-      stage: 724102,
-      operator: "OR",
-      reviewers: [
-        {
-          id: "02fd5ca3-cee8-467f-bba5-34352764c668",
-          status: "PENDING",
-        },
-      ],
+      stage: 759761,
+      operator: "AND",
+      reviewers: [],
     },
   ],
 };

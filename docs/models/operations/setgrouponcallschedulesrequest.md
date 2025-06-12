@@ -7,12 +7,6 @@ import { SetGroupOnCallSchedulesRequest } from "opal-mcp/models/operations";
 
 let value: SetGroupOnCallSchedulesRequest = {
   groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
-  onCallScheduleIDList: {
-    onCallScheduleIds: [
-      "9546209c-42c2-4801-96d7-9ec42df0f59c",
-      "bb0197c0-5ea5-45d9-b3b7-b6c439be6435",
-    ],
-  },
 };
 ```
 

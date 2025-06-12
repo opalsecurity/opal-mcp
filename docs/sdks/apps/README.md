@@ -31,7 +31,6 @@ async function run() {
     ownerFilter: "29827fb8-f2dd-4e80-9576-28e31e9934ac",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -60,15 +59,12 @@ async function run() {
     ],
     ownerFilter: "29827fb8-f2dd-4e80-9576-28e31e9934ac",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("appsGetApps failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -111,7 +107,6 @@ async function run() {
     appId: "32acc112-21ff-4669-91c2-21e27683eaa1",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -136,15 +131,12 @@ async function run() {
   const res = await appsGetApp(opalMcp, {
     appId: "32acc112-21ff-4669-91c2-21e27683eaa1",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("appsGetApp failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -189,7 +181,6 @@ async function run() {
     groupId: "9546209c-42c2-4801-96d7-9ec42df0f59c",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -216,15 +207,12 @@ async function run() {
     resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
     groupId: "9546209c-42c2-4801-96d7-9ec42df0f59c",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("appsGetSyncErrors failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
