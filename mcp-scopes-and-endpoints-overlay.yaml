@@ -4,102 +4,26 @@ info:
   title: Add MCP scopes
   version: 0.0.0
 actions:
+  # Add MCP scopes to all endpoints
   - target: $.paths.*["get","head","query"]
-    update: { "x-speakeasy-mcp": { "scopes": ["read"] } }
-
+    update:
+      x-speakeasy-mcp:
+        scopes: [read]
   - target: $.paths.*["post","put","delete","patch"]
-    update: { "x-speakeasy-mcp": { "scopes": ["write"] } }
-
-  # # Disable deprecated group reviewer endpoints
-  - target: $["paths"]["/groups/{group_id}/reviewers"]["get"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/groups/{group_id}/reviewers"]["put"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/groups/{group_id}/reviewer_stages"]["get"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/groups/{group_id}/reviewer_stages"]["put"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/bundles"]["get"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/bundles"]["post"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/bundles/{bundle_id}"]["get"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/bundles/{bundle_id}"]["delete"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/bundles/{bundle_id}"]["put"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/bundles/{bundle_id}/resources"]["get"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/bundles/{bundle_id}/resources"]["post"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/bundles/{bundle_id}/resources/{resource_id}"]["get"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/bundles/{bundle_id}/resources/{resource_id}"]["delete"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/bundles/{bundle_id}/groups"]["get"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/bundles/{bundle_id}/groups"]["post"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/bundles/{bundle_id}/groups/{group_id}"]["get"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/bundles/{bundle_id}/groups/{group_id}"]["delete"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-    
-  - target: $["paths"]["/bundles/{bundle_id}/visibility"]["get"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/bundles/{bundle_id}/visibility"]["put"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/bundles/{bundle_id}/visibility"]["delete"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/bundles/{bundle_id}/visibility"]["patch"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-  
-  - target: $["paths"]["/idp-group-mappings/{app_resource_id}"]["get"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/idp-group-mappings/{app_resource_id}"]["put"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-  
-  - target: $["paths"]["/resources/{resource_id}/tags"]["get"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/sessions"]["get"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-  
-  - target: $["paths"]["/access-rules"]["post"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-  
-  - target: $["paths"]["/access-rules/{access_rule_id}"]["get"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-  
-  - target: $["paths"]["/access-rules/{access_rule_id}"]["put"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/tag/{tag_id}"]["get"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/tag"]["post"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
-
-  - target: $["paths"]["/tag/{tag_id}"]["delete"]
-    update: { "x-speakeasy-mcp": { "disabled": true } }
+    update:
+      x-speakeasy-mcp:
+        scopes: [write]
+  # Disable depricated endpoints that should not be used by the MCP server
+  - target: $.paths["/groups/{group_id}/reviewers"].*
+    update: 
+      x-speakeasy-mcp:
+        disabled: true
+  - target: $.paths["/groups/{group_id}/reviewer-stages"].*
+    update: 
+      x-speakeasy-mcp: 
+        disabled: true
+  # Disable endpoints that are not relevant for the MCP server
+  - target: $.paths["/sessions"].get
+    update: 
+      x-speakeasy-mcp:
+        disabled: true

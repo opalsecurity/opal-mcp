@@ -4,168 +4,72 @@ info:
   title: Update API documentation for MCP
   version: 0.0.0
 actions:
-  - target: "$.paths['/user'].get"
-    update:
-      description: |
-        Retrieves detailed user information from Opal. This endpoint is designed to fetch user details by
-        either user ID (UUID) or email address. The endpoint follows a strict precedence rule where
-        user_id takes priority over email if both are provided.
+    - target: $.paths['/user'].get
+      update:
+        description: |
+          Retrieves detailed user information from Opal. This endpoint is designed to fetch user details by
+          either user ID (UUID) or email address. The endpoint follows a strict precedence rule where
+          user_id takes priority over email if both are provided.
 
-        Key Implementation Notes:
-        - Exactly one identifier (user_id OR email) must be provided
-        - Returns a complete User object with all associated metadata
-        - Suitable for user verification and profile data retrieval
-        - Recommended for MCP user synchronization workflows
+          Key Implementation Notes:
+          - Exactly one identifier (user_id OR email) must be provided
+          - Returns a complete User object with all associated metadata
+          - Suitable for user verification and profile data retrieval
+          - Recommended for MCP user synchronization workflows
 
-        Authentication:
-        - Requires valid API authentication
-        - Respects standard Opal authorization rules
-      parameters:
-        - name: user_id
-          in: query
-          description: |
-            Unique identifier (UUID) for the target user. When provided, this ID takes precedence over any email parameter.
-            Format: UUID v4
-            Example: "550e8400-e29b-41d4-a716-446655440000"
-          required: false
-          schema:
-            type: string
-            format: uuid
-        - name: email
-          in: query
-          description: |
-            Email address of the target user. Only used when user_id is not provided.
-            Must be a valid email format.
-            Example: "user@example.com"
-            Note: This parameter is ignored if user_id is present.
-          required: false
-          schema:
-            type: string
-            format: email
+          Authentication:
+          - Requires valid API authentication
+          - Respects standard Opal authorization rules
+    - target: $.components.schemas.User
+      update:
+        description: |
+          # User Object
 
-  - target: "#/components/schemas/PaginatedUsersList"
-    update:
-      description: |
-        Retrieves detailed user information from Opal. This endpoint is designed to fetch user details by
-        either user ID (UUID) or email address. The endpoint follows a strict precedence rule where
-        user_id takes priority over email if both are provided.
-
-        Key Implementation Notes:
-        - Exactly one identifier (user_id OR email) must be provided
-        - Returns a complete User object with all associated metadata
-        - Suitable for user verification and profile data retrieval
-        - Recommended for MCP user synchronization workflows
-
-        Authentication:
-        - Requires valid API authentication
-        - Respects standard Opal authorization rules
-
-        Integration Examples:
-        ```typescript
-        // Example 1: Fetch user by ID
-        const response = await opalClient.user.get({
-          userId: "29827fb8-f2dd-4e80-9576-28e31e9934ac"
-        });
-
-        // Example 2: Fetch user by email
-        const response = await opalClient.user.get({
-          email: "john.doe@company.dev"
-        });
-
-        // Example 3: MCP User Sync Implementation
-        async function syncUserWithMCP(mcpUserId: string) {
-          const opalUser = await opalClient.user.get({ userId: mcpUserId });
-          await mcpClient.updateUserAccess({
-            userId: mcpUserId,
-            accessStatus: opalUser.hr_idp_status,
-            metadata: {
-              position: opalUser.position,
-              email: opalUser.email
-            }
-          });
-        }
-        ```
-
-  - target: "#/components/schemas/User"
-    update:
-      description: |
-        # User Object
-        
-        ### Core Properties
-        - `user_id`: Unique identifier (UUID v4) for the user
-        - `email`: Primary email address, used for authentication and notifications
-        - `full_name`: Display name, combining first_name and last_name
-        - `position`: Organizational role or job title
-        - `hr_idp_status`: Current provisioning status from HR/IDP system
-        
-        ### MCP Integration Guidelines
-        1. User Synchronization:
-           - Match users by `user_id` as primary key
-           - Use email as secondary matching field
-           - Maintain hr_idp_status for access control decisions
-        
-        2. Status Handling:
-           - ACTIVE: Full system access granted
-           - SUSPENDED: Temporary access restriction
-           - DEPROVISIONED: Access removed but user record maintained
-           - DELETED: User record marked for removal
-           - NOT_FOUND: User doesn't exist in HR/IDP system
-        
-        ### Implementation Example
-        ```typescript
-        interface MCPUserSync {
-          async function mapOpalToMCPUser(opalUser: User): MCPUser {
-            return {
-              id: opalUser.user_id,
-              email: opalUser.email,
-              displayName: opalUser.full_name,
-              status: mapOpalStatus(opalUser.hr_idp_status),
-              metadata: {
-                position: opalUser.position,
-                firstName: opalUser.first_name,
-                lastName: opalUser.last_name
-              }
-            };
-          }
+          ### Core Properties
+          - `user_id`: Unique identifier (UUID v4) for the user
+          - `email`: Primary email address, used for authentication and notifications
+          - `full_name`: Display name, combining first_name and last_name
+          - `position`: Organizational role or job title
+          - `hr_idp_status`: Current provisioning status from HR/IDP system
           
-          function mapOpalStatus(status: UserHrIdpStatusEnum): MCPUserStatus {
-            const statusMap = {
-              ACTIVE: 'ENABLED',
-              SUSPENDED: 'SUSPENDED',
-              DEPROVISIONED: 'DISABLED',
-              DELETED: 'MARKED_FOR_DELETION',
-              NOT_FOUND: 'UNKNOWN'
-            };
-            return statusMap[status];
-          }
-        }
-        ```
+          ### MCP Integration Guidelines
+          1. User Synchronization:
+            - Match users by `user_id` as primary key
+            - Use email as secondary matching field
+            - Maintain hr_idp_status for access control decisions
+          2. Status Handling:
+            - ACTIVE: Full system access granted
+            - SUSPENDED: Temporary access restriction
+            - DEPROVISIONED: Access removed but user record maintained
+            - DELETED: User record marked for removal
+            - NOT_FOUND: User doesn't exist in HR/IDP system
+    - target: $.components.schemas.UserHrIdpStatusEnum
+      update:
+        description: |
+            Represents the current status of a user as reported by the HR/IDP provider.
 
-  - target: "#/components/schemas/UserHrIdpStatusEnum"
-    update:
-      description: |
-        Represents the current status of a user as reported by the HR/IDP provider.
-        
-        ### Status Definitions
-        - `ACTIVE`: User is currently employed and should have appropriate access
-        - `SUSPENDED`: User access temporarily restricted (e.g., leave of absence)
-        - `DEPROVISIONED`: User has been offboarded but record retained
-        - `DELETED`: User record has been removed from HR system
-        - `NOT_FOUND`: User doesn't exist in HR/IDP system
-        
-        ### MCP Status Handling
-        ```typescript
-        function handleUserStatusChange(user: User) {
-          switch (user.hr_idp_status) {
-            case 'ACTIVE':
-              return enableUserAccess(user.user_id);
-            case 'SUSPENDED':
-              return suspendUserAccess(user.user_id);
-            case 'DEPROVISIONED':
-            case 'DELETED':
-              return revokeUserAccess(user.user_id);
-            case 'NOT_FOUND':
-              return flagUserForReview(user.user_id);
-          }
-        }
-        ```
+            ### Status Definitions
+            - `ACTIVE`: User is currently employed and should have appropriate access
+            - `SUSPENDED`: User access temporarily restricted (e.g., leave of absence)
+            - `DEPROVISIONED`: User has been offboarded but record retained
+            - `DELETED`: User record has been removed from HR system
+            - `NOT_FOUND`: User doesn't exist in HR/IDP system
+
+            ### MCP Status Handling
+            ```typescript
+            function handleUserStatusChange(user: User) {
+              switch (user.hr_idp_status) {
+                case 'ACTIVE':
+                  return enableUserAccess(user.user_id);
+                case 'SUSPENDED':
+                  return suspendUserAccess(user.user_id);
+                case 'DEPROVISIONED':
+                case 'DELETED':
+                  return revokeUserAccess(user.user_id);
+                case 'NOT_FOUND':
+                  return flagUserForReview(user.user_id);
+              }
+            }
+            ```
+    - target: $.paths["/user"]["get"]["parameters"][1]["description"]
+      update: The email of the user. If both user ID and email are provided, user ID will take precedence. If neither are provided, an error will occur.
