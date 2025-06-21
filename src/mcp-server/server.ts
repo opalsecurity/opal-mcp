@@ -143,7 +143,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "OpalMcp",
-    version: "0.6.2",
+    version: "0.6.3",
   });
 
   const client = new OpalMcpCore({
