@@ -114,7 +114,7 @@ Add the following server definition to your `claude_desktop_config.json` file:
         "-y", "--package", "opal-mcp",
         "--",
         "mcp", "start",
-        "--bearer-auth", "..."
+        "--bearer-auth", "<API_TOKEN>"
       ]
     }
   }
@@ -137,7 +137,7 @@ Create a `.cursor/mcp.json` file in your project root with the following content
         "-y", "--package", "opal-mcp",
         "--",
         "mcp", "start",
-        "--bearer-auth", "..."
+        "--bearer-auth", "<API_TOKEN>"
       ]
     }
   }
