@@ -7,10 +7,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  Request,
-  Request$inboundSchema,
-  Request$Outbound,
-  Request$outboundSchema,
+  RequestT,
+  RequestT$inboundSchema,
+  RequestT$Outbound,
+  RequestT$outboundSchema,
 } from "./request.js";
 
 /**
@@ -27,7 +27,7 @@ export type RequestList = {
   /**
    * The list of requests.
    */
-  requests?: Array<Request> | undefined;
+  requests?: Array<RequestT> | undefined;
   /**
    * The cursor to use in the next request to get the next page of results.
    */
@@ -40,13 +40,13 @@ export const RequestList$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  requests: z.array(Request$inboundSchema).optional(),
+  requests: z.array(RequestT$inboundSchema).optional(),
   cursor: z.string().optional(),
 });
 
 /** @internal */
 export type RequestList$Outbound = {
-  requests?: Array<Request$Outbound> | undefined;
+  requests?: Array<RequestT$Outbound> | undefined;
   cursor?: string | undefined;
 };
 
@@ -56,7 +56,7 @@ export const RequestList$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   RequestList
 > = z.object({
-  requests: z.array(Request$outboundSchema).optional(),
+  requests: z.array(RequestT$outboundSchema).optional(),
   cursor: z.string().optional(),
 });
 

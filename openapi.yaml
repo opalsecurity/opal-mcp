@@ -10,6 +10,26 @@ info:
 servers:
   - description: Production
     url: https://api.opal.dev/v1
+# keep tags alphabetized, also add any new tags to the list below
+tags:
+  - name: access-rules
+  - name: apps
+  - name: bundles
+  - name: configuration-templates
+  - name: events
+  - name: groups
+  - name: group-bindings
+  - name: idp-group-mappings
+  - name: message-channels
+  - name: non-human-identities
+  - name: on-call-schedules
+  - name: owners
+  - name: requests
+  - name: resources
+  - name: sessions
+  - name: tags
+  - name: uars
+  - name: users
 paths:
   /apps:
     get:
@@ -6720,16 +6740,54 @@ components:
           type: object
           required:
             - role_id
+        okta_group_rule:
+          description: Remote info for Okta Directory group rule.
+          properties:
+            rule_id:
+              description: The id of the Okta group rule.
+              example: 0pr3f7zMZZHPgUoWO0g4
+              type: string
+          type: object
+          required:
+            - rule_id
+        workday_user_security_group:
+          description: Remote info for Workday User Security group.
+          properties:
+            group_id:
+              description: The id of the Workday User Security group.
+              example: 123abc456def
+              type: string
+          type: object
+          required:
+            - group_id
       type: object
     ResourceRemoteInfo:
       description: Information that defines the remote resource. This replaces the deprecated remote_id and metadata fields.
       properties:
+        aws_organizational_unit:
+          description: Remote info for AWS organizational unit.
+          properties:
+            parent_id:
+              description: The id of the parent organizational unit.
+              example: ou-1234
+              type: string
+            organizational_unit_id:
+              description: The id of the AWS organizational unit that is being created.
+              example: ou-1234
+              type: string
+          type: object
+          required:
+            - organizational_unit_id
         aws_account:
           description: Remote info for AWS account.
           properties:
             account_id:
               description: The id of the AWS account.
               example: 234234234234
+              type: string
+            organizational_unit_id:
+              description: The id of the AWS organizational unit. Required only if customer has OUs enabled.
+              example: ou-1234
               type: string
           type: object
           required:
@@ -6820,6 +6878,21 @@ components:
           type: object
           required:
             - arn
+        custom_connector:
+          description: Remote info for a custom connector resource.
+          properties:
+            remote_resource_id:
+              description: The id of the resource in the end system
+              example: 01fa7402-01d8-103b-8deb-5f3a0ab7884
+              type: string
+            can_have_usage_events:
+              description: A bool representing whether or not the resource can have usage data.
+              example: False
+              type: boolean
+          type: object
+          required:
+            - remote_resource_id
+            - can_have_usage_events
         gcp_organization:
           description: Remote info for GCP organization.
           properties:
@@ -7878,6 +7951,10 @@ components:
         require_manager_approval: False
         require_support_ticket: False
         parent_resource_id: f454d283-ca67-4a8a-bdbb-df212eca5345
+        ancestor_resource_ids:
+          - f454d283-ca67-4a8a-bdbb-df212eca5345
+        descendant_resource_ids:
+          - f454d283-ca67-4a8a-bdbb-df212eca5345
       properties:
         resource_id:
           description: The ID of the resource.
