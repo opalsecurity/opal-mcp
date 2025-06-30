@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f4a8d8c-90c5-4992-8800-17a249fd1e0f
 management:
-  docChecksum: ffe4ac660cd1dd7c56128d992f81eb05
+  docChecksum: 66bcec071f2f8bcf9270d040592d7714
   docVersion: "1.0"
-  speakeasyVersion: 1.561.0
-  generationVersion: 2.628.0
-  releaseVersion: 0.6.2
-  configChecksum: 475ae8407d3b2abbdf5125b9139a66ef
+  speakeasyVersion: 1.571.2
+  generationVersion: 2.640.2
+  releaseVersion: 0.6.3
+  configChecksum: 6fd4487c01debbbe76c51e31e744208b
   repoURL: https://github.com/opalsecurity/opal-mcp.git
   installationURL: https://github.com/opalsecurity/opal-mcp
   published: true
@@ -30,7 +30,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.9
+    unions: 2.85.11
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -56,6 +56,7 @@ generatedFiles:
   - docs/models/components/awsec2instance.md
   - docs/models/components/awsekscluster.md
   - docs/models/components/awsiamrole.md
+  - docs/models/components/awsorganizationalunit.md
   - docs/models/components/awspermissionset.md
   - docs/models/components/awsrdsinstance.md
   - docs/models/components/azureadmicrosoft365group.md
@@ -81,6 +82,7 @@ generatedFiles:
   - docs/models/components/createresourceinfo.md
   - docs/models/components/createtaginfo.md
   - docs/models/components/createuarinfo.md
+  - docs/models/components/customconnector.md
   - docs/models/components/custommetadatum.md
   - docs/models/components/duogroup.md
   - docs/models/components/entitytypeenum.md
@@ -126,6 +128,7 @@ generatedFiles:
   - docs/models/components/oktaapp.md
   - docs/models/components/oktacustomrole.md
   - docs/models/components/oktagroup.md
+  - docs/models/components/oktagrouprule.md
   - docs/models/components/oktastandardrole.md
   - docs/models/components/oncallschedule.md
   - docs/models/components/oncallscheduleidlist.md
@@ -149,7 +152,6 @@ generatedFiles:
   - docs/models/components/paginateduserslist.md
   - docs/models/components/propagationstatus.md
   - docs/models/components/propagationstatusenum.md
-  - docs/models/components/request.md
   - docs/models/components/requestconfiguration.md
   - docs/models/components/requestconnection.md
   - docs/models/components/requestcustomfieldresponse.md
@@ -161,6 +163,7 @@ generatedFiles:
   - docs/models/components/requestreviewerstatus.md
   - docs/models/components/requeststage.md
   - docs/models/components/requeststatusenum.md
+  - docs/models/components/requestt.md
   - docs/models/components/requesttemplatecustomfieldtypeenum.md
   - docs/models/components/resource.md
   - docs/models/components/resourceaccesslevel.md
@@ -222,6 +225,7 @@ generatedFiles:
   - docs/models/components/userlist.md
   - docs/models/components/visibilityinfo.md
   - docs/models/components/visibilitytypeenum.md
+  - docs/models/components/workdayusersecuritygroup.md
   - docs/models/operations/addbundlegrouprequest.md
   - docs/models/operations/addbundlegrouprequestbody.md
   - docs/models/operations/addbundleresourcerequest.md
@@ -1967,7 +1971,7 @@ examples:
         application/json: {"name": "Okta Engineering Super Admin", "description": "Okta super admin role.", "resource_type": "OKTA_ROLE", "app_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "remote_resource_id": "API_ACCESS_MANAGEMENT_ADMIN-51d203da-313a-4fd9-8fcf-420ce6312345", "metadata": "{\n  \"okta_directory_role\":\n    {\n      \"role_id\": \"SUPER_ADMIN-b52aa037-4a35-4ac3-9350-f6260fd12345\",\n      \"role_type\": \"SUPER_ADMIN\",\n    },\n}"}
       responses:
         "200":
-          application/json: {"resource_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "parent_resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5345"}
+          application/json: {"resource_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "parent_resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5345", "ancestor_resource_ids": ["f454d283-ca67-4a8a-bdbb-df212eca5345"], "descendant_resource_ids": ["f454d283-ca67-4a8a-bdbb-df212eca5345"]}
   get_resource:
     "":
       parameters:
@@ -1982,7 +1986,7 @@ examples:
           resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
       responses:
         "200":
-          application/json: {"resource_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "parent_resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5345"}
+          application/json: {"resource_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "parent_resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5345", "ancestor_resource_ids": ["f454d283-ca67-4a8a-bdbb-df212eca5345"], "descendant_resource_ids": ["f454d283-ca67-4a8a-bdbb-df212eca5345"]}
   delete_resource:
     "":
       parameters:

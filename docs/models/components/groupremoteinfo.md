@@ -38,6 +38,12 @@ let value: GroupRemoteInfo = {
   snowflakeRole: {
     roleId: "01fa7402-01d8-103b-8deb-5f3a0ab7884",
   },
+  oktaGroupRule: {
+    ruleId: "0pr3f7zMZZHPgUoWO0g4",
+  },
+  workdayUserSecurityGroup: {
+    groupId: "123abc456def",
+  },
 };
 ```
 
@@ -55,3 +61,5 @@ let value: GroupRemoteInfo = {
 | `azureAdSecurityGroup`                                                                     | [components.AzureAdSecurityGroup](../../models/components/azureadsecuritygroup.md)         | :heavy_minus_sign:                                                                         | Remote info for Microsoft Entra ID Security group.                                         |
 | `azureAdMicrosoft365Group`                                                                 | [components.AzureAdMicrosoft365Group](../../models/components/azureadmicrosoft365group.md) | :heavy_minus_sign:                                                                         | Remote info for Microsoft Entra ID Microsoft 365 group.                                    |
 | `snowflakeRole`                                                                            | [components.SnowflakeRole](../../models/components/snowflakerole.md)                       | :heavy_minus_sign:                                                                         | Remote info for Snowflake role.                                                            |
+| `oktaGroupRule`                                                                            | [components.OktaGroupRule](../../models/components/oktagrouprule.md)                       | :heavy_minus_sign:                                                                         | Remote info for Okta Directory group rule.                                                 |
+| `workdayUserSecurityGroup`                                                                 | [components.WorkdayUserSecurityGroup](../../models/components/workdayusersecuritygroup.md) | :heavy_minus_sign:                                                                         | Remote info for Workday User Security group.                                               |
