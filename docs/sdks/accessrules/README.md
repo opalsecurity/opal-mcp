@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to access rules
+
 ### Available Operations
 
 * [createAccessRule](#createaccessrule) - Creates a new access rule config for the given group_id.

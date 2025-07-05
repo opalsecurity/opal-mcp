@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to tags
+
 ### Available Operations
 
 * [getTagByID](#gettagbyid) - UNSTABLE. May be removed at any time. Gets a tag with the given id.

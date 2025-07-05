@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to owners
+
 ### Available Operations
 
 * [getOwners](#getowners) - Returns a list of `Owner` objects.

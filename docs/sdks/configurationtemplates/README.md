@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to configuration templates
+
 ### Available Operations
 
 * [getConfigurationTemplates](#getconfigurationtemplates) - Returns a list of `ConfigurationTemplate` objects.
