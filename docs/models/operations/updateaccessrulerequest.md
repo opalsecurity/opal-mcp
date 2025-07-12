@@ -7,6 +7,18 @@ import { UpdateAccessRuleRequest } from "opal-mcp/models/operations";
 
 let value: UpdateAccessRuleRequest = {
   accessRuleId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
+  updateAccessRuleInfo: {
+    name: "Platform Engineering",
+    description:
+      "This access rule represents all platform engineers in the company.",
+    adminOwnerId: "7c86c85d-0651-43e2-a748-d69d658418e8",
+    status: "ACTIVE",
+    ruleClauses: {
+      when: {
+        clauses: [],
+      },
+    },
+  },
 };
 ```
 

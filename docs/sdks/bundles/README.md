@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to bundles
+
 ### Available Operations
 
 * [getBundles](#getbundles) - Returns a list of `Bundle` objects.

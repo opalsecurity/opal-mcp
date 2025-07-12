@@ -39,6 +39,14 @@ export type RequestedItem = {
    * The name of the target.
    */
   name?: string | undefined;
+  /**
+   * The ID of the target on the remote system.
+   */
+  remoteId?: string | undefined;
+  /**
+   * The name of the target on the remote system.
+   */
+  remoteName?: string | undefined;
 };
 
 /** @internal */
@@ -52,12 +60,16 @@ export const RequestedItem$inboundSchema: z.ZodType<
   access_level_name: z.string().optional(),
   access_level_remote_id: z.string().optional(),
   name: z.string().optional(),
+  remote_id: z.string().optional(),
+  remote_name: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "resource_id": "resourceId",
     "group_id": "groupId",
     "access_level_name": "accessLevelName",
     "access_level_remote_id": "accessLevelRemoteId",
+    "remote_id": "remoteId",
+    "remote_name": "remoteName",
   });
 });
 
@@ -68,6 +80,8 @@ export type RequestedItem$Outbound = {
   access_level_name?: string | undefined;
   access_level_remote_id?: string | undefined;
   name?: string | undefined;
+  remote_id?: string | undefined;
+  remote_name?: string | undefined;
 };
 
 /** @internal */
@@ -81,12 +95,16 @@ export const RequestedItem$outboundSchema: z.ZodType<
   accessLevelName: z.string().optional(),
   accessLevelRemoteId: z.string().optional(),
   name: z.string().optional(),
+  remoteId: z.string().optional(),
+  remoteName: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     resourceId: "resource_id",
     groupId: "group_id",
     accessLevelName: "access_level_name",
     accessLevelRemoteId: "access_level_remote_id",
+    remoteId: "remote_id",
+    remoteName: "remote_name",
   });
 });
 

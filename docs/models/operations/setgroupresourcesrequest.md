@@ -7,6 +7,14 @@ import { SetGroupResourcesRequest } from "opal-mcp/models/operations";
 
 let value: SetGroupResourcesRequest = {
   groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+  updateGroupResourcesInfo: {
+    resources: [
+      {
+        resourceId: "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd",
+        accessLevelRemoteId: "write",
+      },
+    ],
+  },
 };
 ```
 

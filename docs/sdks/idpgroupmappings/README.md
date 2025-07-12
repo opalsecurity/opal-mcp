@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to IDP group mappings
+
 ### Available Operations
 
 * [getIdpGroupMappings](#getidpgroupmappings) - Returns the configured set of available `IdpGroupMapping` objects for an Okta app.

@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to groups
+
 ### Available Operations
 
 * [getGroups](#getgroups) - Returns a list of groups for your organization.
