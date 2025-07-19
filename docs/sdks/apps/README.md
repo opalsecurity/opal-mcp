@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to apps
+
 ### Available Operations
 
 * [getApps](#getapps) - Returns a list of `App` objects.

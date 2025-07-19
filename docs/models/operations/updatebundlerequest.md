@@ -7,6 +7,11 @@ import { UpdateBundleRequest } from "opal-mcp/models/operations";
 
 let value: UpdateBundleRequest = {
   bundleId: "32acc112-21ff-4669-91c2-21e27683eaa1",
+  bundle: {
+    name: "Bundle 1",
+    description: "Description of bundle 1",
+    adminOwnerId: "4aed3e8a-727b-4d72-8010-3b8710c50bec",
+  },
 };
 ```
 
