@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to UARs
+
 ### Available Operations
 
 * [getUARs](#getuars) - Returns a list of `UAR` objects.

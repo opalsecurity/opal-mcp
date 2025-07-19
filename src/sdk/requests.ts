@@ -4,6 +4,7 @@
 
 import { requestsApproveRequest } from "../funcs/requestsApproveRequest.js";
 import { requestsCreateRequest } from "../funcs/requestsCreateRequest.js";
+import { requestsGetRequest } from "../funcs/requestsGetRequest.js";
 import { requestsGetRequests } from "../funcs/requestsGetRequests.js";
 import { requestsGetRequestsRelay } from "../funcs/requestsGetRequestsRelay.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -42,12 +43,28 @@ export class Requests extends ClientSDK {
 
   /**
    * Returns a paginated list of requests using Relay-style cursor pagination.
+   *
+   * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   async getRequestsRelay(
     request: operations.GetRequestsRelayRequest,
     options?: RequestOptions,
   ): Promise<components.RequestConnection> {
     return unwrapAsync(requestsGetRequestsRelay(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Returns a request by ID.
+   */
+  async getRequest(
+    request: operations.GetRequestRequest,
+    options?: RequestOptions,
+  ): Promise<components.RequestT> {
+    return unwrapAsync(requestsGetRequest(
       this,
       request,
       options,

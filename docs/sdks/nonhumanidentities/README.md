@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to non-human identities
+
 ### Available Operations
 
 * [getNhis](#getnhis) - Returns a list of non-human identities for your organization.
