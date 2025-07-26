@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to group bindings
+
 ### Available Operations
 
 * [getGroupBindings](#getgroupbindings) - Returns a list of `GroupBinding` objects.

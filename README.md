@@ -399,7 +399,8 @@ For additional help, you can:
 
 * [getRequests](docs/sdks/requests/README.md#getrequests) - Returns a list of requests for your organization that is visible by the admin.
 * [createRequest](docs/sdks/requests/README.md#createrequest) - Create an access request
-* [getRequestsRelay](docs/sdks/requests/README.md#getrequestsrelay) - Returns a paginated list of requests using Relay-style cursor pagination.
+* [~~getRequestsRelay~~](docs/sdks/requests/README.md#getrequestsrelay) - Returns a paginated list of requests using Relay-style cursor pagination. :warning: **Deprecated**
+* [getRequest](docs/sdks/requests/README.md#getrequest) - Returns a request by ID.
 * [approveRequest](docs/sdks/requests/README.md#approverequest) - Approve an access request
 
 ### [resources](docs/sdks/resources/README.md)
@@ -427,6 +428,13 @@ For additional help, you can:
 * [getResourceUser](docs/sdks/resources/README.md#getresourceuser) - Returns information about a specific user's access to a resource.
 * [~~resourceUserAccessStatusRetrieve~~](docs/sdks/resources/README.md#resourceuseraccessstatusretrieve) - Get user's access status to a resource. :warning: **Deprecated**
 * [getResourceTags](docs/sdks/resources/README.md#getresourcetags) - Returns all tags applied to the resource.
+* [getResourceScopedRolePermissions](docs/sdks/resources/README.md#getresourcescopedrolepermissions) - Returns all the scoped role permissions that apply to the given resource. Only OPAL_SCOPED_ROLE resource type supports this field.
+* [setResourceScopedRolePermissions](docs/sdks/resources/README.md#setresourcescopedrolepermissions) - Sets all the scoped role permissions on an OPAL_SCOPED_ROLE resource.
+
+### [scopedRolePermissions](docs/sdks/scopedrolepermissions/README.md)
+
+* [getResourceScopedRolePermissions](docs/sdks/scopedrolepermissions/README.md#getresourcescopedrolepermissions) - Returns all the scoped role permissions that apply to the given resource. Only OPAL_SCOPED_ROLE resource type supports this field.
+* [setResourceScopedRolePermissions](docs/sdks/scopedrolepermissions/README.md#setresourcescopedrolepermissions) - Sets all the scoped role permissions on an OPAL_SCOPED_ROLE resource.
 
 ### [sessions](docs/sdks/sessions/README.md)
 
