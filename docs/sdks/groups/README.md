@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to groups
+
 ### Available Operations
 
 * [getGroups](#getgroups) - Returns a list of groups for your organization.
@@ -2128,6 +2130,7 @@ async function run() {
   await opalMcp.groups.deleteGroupUser({
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
     userId: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06",
+    accessLevelRemoteId: "30",
   });
 
 
@@ -2154,6 +2157,7 @@ async function run() {
   const res = await groupsDeleteGroupUser(opalMcp, {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
     userId: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06",
+    accessLevelRemoteId: "30",
   });
   if (res.ok) {
     const { value: result } = res;

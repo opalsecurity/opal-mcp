@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to users
+
 ### Available Operations
 
 * [user](#user) - Retrieves detailed user information from Opal. This endpoint is designed to fetch user details by

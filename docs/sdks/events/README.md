@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to events
+
 ### Available Operations
 
 * [events](#events) - Returns a list of `Event` objects.

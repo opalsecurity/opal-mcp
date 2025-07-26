@@ -115,6 +115,26 @@ export type SnowflakeRole = {
 };
 
 /**
+ * Remote info for Okta Directory group rule.
+ */
+export type OktaGroupRule = {
+  /**
+   * The id of the Okta group rule.
+   */
+  ruleId: string;
+};
+
+/**
+ * Remote info for Workday User Security group.
+ */
+export type WorkdayUserSecurityGroup = {
+  /**
+   * The id of the Workday User Security group.
+   */
+  groupId: string;
+};
+
+/**
  * Information that defines the remote group. This replaces the deprecated remote_id and metadata fields.
  */
 export type GroupRemoteInfo = {
@@ -158,6 +178,14 @@ export type GroupRemoteInfo = {
    * Remote info for Snowflake role.
    */
   snowflakeRole?: SnowflakeRole | undefined;
+  /**
+   * Remote info for Okta Directory group rule.
+   */
+  oktaGroupRule?: OktaGroupRule | undefined;
+  /**
+   * Remote info for Workday User Security group.
+   */
+  workdayUserSecurityGroup?: WorkdayUserSecurityGroup | undefined;
 };
 
 /** @internal */
@@ -758,6 +786,126 @@ export function snowflakeRoleFromJSON(
 }
 
 /** @internal */
+export const OktaGroupRule$inboundSchema: z.ZodType<
+  OktaGroupRule,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  rule_id: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    "rule_id": "ruleId",
+  });
+});
+
+/** @internal */
+export type OktaGroupRule$Outbound = {
+  rule_id: string;
+};
+
+/** @internal */
+export const OktaGroupRule$outboundSchema: z.ZodType<
+  OktaGroupRule$Outbound,
+  z.ZodTypeDef,
+  OktaGroupRule
+> = z.object({
+  ruleId: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    ruleId: "rule_id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace OktaGroupRule$ {
+  /** @deprecated use `OktaGroupRule$inboundSchema` instead. */
+  export const inboundSchema = OktaGroupRule$inboundSchema;
+  /** @deprecated use `OktaGroupRule$outboundSchema` instead. */
+  export const outboundSchema = OktaGroupRule$outboundSchema;
+  /** @deprecated use `OktaGroupRule$Outbound` instead. */
+  export type Outbound = OktaGroupRule$Outbound;
+}
+
+export function oktaGroupRuleToJSON(oktaGroupRule: OktaGroupRule): string {
+  return JSON.stringify(OktaGroupRule$outboundSchema.parse(oktaGroupRule));
+}
+
+export function oktaGroupRuleFromJSON(
+  jsonString: string,
+): SafeParseResult<OktaGroupRule, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OktaGroupRule$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OktaGroupRule' from JSON`,
+  );
+}
+
+/** @internal */
+export const WorkdayUserSecurityGroup$inboundSchema: z.ZodType<
+  WorkdayUserSecurityGroup,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  group_id: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    "group_id": "groupId",
+  });
+});
+
+/** @internal */
+export type WorkdayUserSecurityGroup$Outbound = {
+  group_id: string;
+};
+
+/** @internal */
+export const WorkdayUserSecurityGroup$outboundSchema: z.ZodType<
+  WorkdayUserSecurityGroup$Outbound,
+  z.ZodTypeDef,
+  WorkdayUserSecurityGroup
+> = z.object({
+  groupId: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    groupId: "group_id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace WorkdayUserSecurityGroup$ {
+  /** @deprecated use `WorkdayUserSecurityGroup$inboundSchema` instead. */
+  export const inboundSchema = WorkdayUserSecurityGroup$inboundSchema;
+  /** @deprecated use `WorkdayUserSecurityGroup$outboundSchema` instead. */
+  export const outboundSchema = WorkdayUserSecurityGroup$outboundSchema;
+  /** @deprecated use `WorkdayUserSecurityGroup$Outbound` instead. */
+  export type Outbound = WorkdayUserSecurityGroup$Outbound;
+}
+
+export function workdayUserSecurityGroupToJSON(
+  workdayUserSecurityGroup: WorkdayUserSecurityGroup,
+): string {
+  return JSON.stringify(
+    WorkdayUserSecurityGroup$outboundSchema.parse(workdayUserSecurityGroup),
+  );
+}
+
+export function workdayUserSecurityGroupFromJSON(
+  jsonString: string,
+): SafeParseResult<WorkdayUserSecurityGroup, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WorkdayUserSecurityGroup$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WorkdayUserSecurityGroup' from JSON`,
+  );
+}
+
+/** @internal */
 export const GroupRemoteInfo$inboundSchema: z.ZodType<
   GroupRemoteInfo,
   z.ZodTypeDef,
@@ -777,6 +925,10 @@ export const GroupRemoteInfo$inboundSchema: z.ZodType<
     AzureAdMicrosoft365Group$inboundSchema
   ).optional(),
   snowflake_role: z.lazy(() => SnowflakeRole$inboundSchema).optional(),
+  okta_group_rule: z.lazy(() => OktaGroupRule$inboundSchema).optional(),
+  workday_user_security_group: z.lazy(() =>
+    WorkdayUserSecurityGroup$inboundSchema
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     "active_directory_group": "activeDirectoryGroup",
@@ -789,6 +941,8 @@ export const GroupRemoteInfo$inboundSchema: z.ZodType<
     "azure_ad_security_group": "azureAdSecurityGroup",
     "azure_ad_microsoft_365_group": "azureAdMicrosoft365Group",
     "snowflake_role": "snowflakeRole",
+    "okta_group_rule": "oktaGroupRule",
+    "workday_user_security_group": "workdayUserSecurityGroup",
   });
 });
 
@@ -804,6 +958,8 @@ export type GroupRemoteInfo$Outbound = {
   azure_ad_security_group?: AzureAdSecurityGroup$Outbound | undefined;
   azure_ad_microsoft_365_group?: AzureAdMicrosoft365Group$Outbound | undefined;
   snowflake_role?: SnowflakeRole$Outbound | undefined;
+  okta_group_rule?: OktaGroupRule$Outbound | undefined;
+  workday_user_security_group?: WorkdayUserSecurityGroup$Outbound | undefined;
 };
 
 /** @internal */
@@ -826,6 +982,10 @@ export const GroupRemoteInfo$outboundSchema: z.ZodType<
     AzureAdMicrosoft365Group$outboundSchema
   ).optional(),
   snowflakeRole: z.lazy(() => SnowflakeRole$outboundSchema).optional(),
+  oktaGroupRule: z.lazy(() => OktaGroupRule$outboundSchema).optional(),
+  workdayUserSecurityGroup: z.lazy(() =>
+    WorkdayUserSecurityGroup$outboundSchema
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     activeDirectoryGroup: "active_directory_group",
@@ -838,6 +998,8 @@ export const GroupRemoteInfo$outboundSchema: z.ZodType<
     azureAdSecurityGroup: "azure_ad_security_group",
     azureAdMicrosoft365Group: "azure_ad_microsoft_365_group",
     snowflakeRole: "snowflake_role",
+    oktaGroupRule: "okta_group_rule",
+    workdayUserSecurityGroup: "workday_user_security_group",
   });
 });
 
