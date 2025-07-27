@@ -14,6 +14,7 @@ import { resourcesGetResourceNhis } from "../funcs/resourcesGetResourceNhis.js";
 import { resourcesGetResourceReviewers } from "../funcs/resourcesGetResourceReviewers.js";
 import { resourcesGetResourceReviewerStages } from "../funcs/resourcesGetResourceReviewerStages.js";
 import { resourcesGetResources } from "../funcs/resourcesGetResources.js";
+import { resourcesGetResourceScopedRolePermissions } from "../funcs/resourcesGetResourceScopedRolePermissions.js";
 import { resourcesGetResourceTags } from "../funcs/resourcesGetResourceTags.js";
 import { resourcesGetResourceUser } from "../funcs/resourcesGetResourceUser.js";
 import { resourcesGetResourceUsers } from "../funcs/resourcesGetResourceUsers.js";
@@ -22,6 +23,7 @@ import { resourcesResourceUserAccessStatusRetrieve } from "../funcs/resourcesRes
 import { resourcesSetResourceMessageChannels } from "../funcs/resourcesSetResourceMessageChannels.js";
 import { resourcesSetResourceReviewers } from "../funcs/resourcesSetResourceReviewers.js";
 import { resourcesSetResourceReviewerStages } from "../funcs/resourcesSetResourceReviewerStages.js";
+import { resourcesSetResourceScopedRolePermissions } from "../funcs/resourcesSetResourceScopedRolePermissions.js";
 import { resourcesSetResourceVisibility } from "../funcs/resourcesSetResourceVisibility.js";
 import { resourcesUpdateResources } from "../funcs/resourcesUpdateResources.js";
 import { resourcesUpdateResourceUser } from "../funcs/resourcesUpdateResourceUser.js";
@@ -29,6 +31,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Resources extends ClientSDK {
   /**
@@ -37,8 +40,10 @@ export class Resources extends ClientSDK {
   async getResources(
     request: operations.GetResourcesRequest,
     options?: RequestOptions,
-  ): Promise<components.PaginatedResourcesList> {
-    return unwrapAsync(resourcesGetResources(
+  ): Promise<
+    PageIterator<operations.GetResourcesResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(resourcesGetResources(
       this,
       request,
       options,
@@ -349,6 +354,34 @@ export class Resources extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.TagsList> {
     return unwrapAsync(resourcesGetResourceTags(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Returns all the scoped role permissions that apply to the given resource. Only OPAL_SCOPED_ROLE resource type supports this field.
+   */
+  async getResourceScopedRolePermissions(
+    request: operations.GetResourceScopedRolePermissionsRequest,
+    options?: RequestOptions,
+  ): Promise<components.ScopedRolePermissionList> {
+    return unwrapAsync(resourcesGetResourceScopedRolePermissions(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Sets all the scoped role permissions on an OPAL_SCOPED_ROLE resource.
+   */
+  async setResourceScopedRolePermissions(
+    request: operations.SetResourceScopedRolePermissionsRequest,
+    options?: RequestOptions,
+  ): Promise<components.ScopedRolePermissionList> {
+    return unwrapAsync(resourcesSetResourceScopedRolePermissions(
       this,
       request,
       options,

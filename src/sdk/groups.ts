@@ -33,6 +33,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Groups extends ClientSDK {
   /**
@@ -41,8 +42,8 @@ export class Groups extends ClientSDK {
   async getGroups(
     request: operations.GetGroupsRequest,
     options?: RequestOptions,
-  ): Promise<components.PaginatedGroupsList> {
-    return unwrapAsync(groupsGetGroups(
+  ): Promise<PageIterator<operations.GetGroupsResponse, { cursor: string }>> {
+    return unwrapResultIterator(groupsGetGroups(
       this,
       request,
       options,

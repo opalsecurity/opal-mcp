@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to message channels
+
 ### Available Operations
 
 * [getMessageChannels](#getmessagechannels) - Returns a list of `MessageChannel` objects.

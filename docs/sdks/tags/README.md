@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to tags
+
 ### Available Operations
 
 * [getTagByID](#gettagbyid) - UNSTABLE. May be removed at any time. Gets a tag with the given id.
@@ -338,7 +340,9 @@ async function run() {
     pageSize: 200,
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -365,7 +369,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("tagsGetTags failed:", res.error);
   }
@@ -385,7 +391,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedTagsList](../../models/components/paginatedtagslist.md)\>**
+**Promise\<[operations.GetTagsResponse](../../models/operations/gettagsresponse.md)\>**
 
 ### Errors
 

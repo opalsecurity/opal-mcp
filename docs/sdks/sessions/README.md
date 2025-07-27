@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to sessions
+
 ### Available Operations
 
 * [sessions](#sessions) - Returns a list of `Session` objects.

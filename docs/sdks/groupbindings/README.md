@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to group bindings
+
 ### Available Operations
 
 * [getGroupBindings](#getgroupbindings) - Returns a list of `GroupBinding` objects.
@@ -30,7 +32,9 @@ async function run() {
     pageSize: 200,
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -57,7 +61,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("groupBindingsGetGroupBindings failed:", res.error);
   }
@@ -77,7 +83,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedGroupBindingsList](../../models/components/paginatedgroupbindingslist.md)\>**
+**Promise\<[operations.GetGroupBindingsResponse](../../models/operations/getgroupbindingsresponse.md)\>**
 
 ### Errors
 

@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type EventsRequest = {
@@ -41,6 +42,10 @@ export type EventsRequest = {
    * Number of results to return per page. Default is 200.
    */
   pageSize?: number | undefined;
+};
+
+export type EventsResponse = {
+  result: components.PaginatedEventList;
 };
 
 /** @internal */
@@ -131,5 +136,63 @@ export function eventsRequestFromJSON(
     jsonString,
     (x) => EventsRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'EventsRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const EventsResponse$inboundSchema: z.ZodType<
+  EventsResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Result: components.PaginatedEventList$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Result": "result",
+  });
+});
+
+/** @internal */
+export type EventsResponse$Outbound = {
+  Result: components.PaginatedEventList$Outbound;
+};
+
+/** @internal */
+export const EventsResponse$outboundSchema: z.ZodType<
+  EventsResponse$Outbound,
+  z.ZodTypeDef,
+  EventsResponse
+> = z.object({
+  result: components.PaginatedEventList$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    result: "Result",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace EventsResponse$ {
+  /** @deprecated use `EventsResponse$inboundSchema` instead. */
+  export const inboundSchema = EventsResponse$inboundSchema;
+  /** @deprecated use `EventsResponse$outboundSchema` instead. */
+  export const outboundSchema = EventsResponse$outboundSchema;
+  /** @deprecated use `EventsResponse$Outbound` instead. */
+  export type Outbound = EventsResponse$Outbound;
+}
+
+export function eventsResponseToJSON(eventsResponse: EventsResponse): string {
+  return JSON.stringify(EventsResponse$outboundSchema.parse(eventsResponse));
+}
+
+export function eventsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<EventsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => EventsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'EventsResponse' from JSON`,
   );
 }

@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to on-call schedules
+
 ### Available Operations
 
 * [getOnCallSchedules](#getoncallschedules) - Returns a list of `OnCallSchedule` objects.

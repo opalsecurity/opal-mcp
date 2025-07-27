@@ -1,0 +1,19 @@
+name: "CodeQL Config"
+
+queries:
+  - uses: security-and-quality
+  - uses: security-extended
+
+paths:
+  - src
+  - "**/*.ts"
+  - "**/*.js"
+
+paths-ignore:
+  - node_modules
+  - dist
+  - "**/*.test.ts"
+  - "**/*.spec.ts"
+  - "**/*.d.ts"
+
+build-mode: manual 

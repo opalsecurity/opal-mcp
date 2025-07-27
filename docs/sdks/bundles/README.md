@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to bundles
+
 ### Available Operations
 
 * [getBundles](#getbundles) - Returns a list of `Bundle` objects.
@@ -39,7 +41,9 @@ async function run() {
     contains: "Engineering",
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -67,7 +71,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("bundlesGetBundles failed:", res.error);
   }
@@ -87,7 +93,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedBundleList](../../models/components/paginatedbundlelist.md)\>**
+**Promise\<[operations.GetBundlesResponse](../../models/operations/getbundlesresponse.md)\>**
 
 ### Errors
 
@@ -417,7 +423,9 @@ async function run() {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -445,7 +453,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("bundlesGetBundleResources failed:", res.error);
   }
@@ -465,7 +475,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedBundleResourceList](../../models/components/paginatedbundleresourcelist.md)\>**
+**Promise\<[operations.GetBundleResourcesResponse](../../models/operations/getbundleresourcesresponse.md)\>**
 
 ### Errors
 
@@ -651,7 +661,9 @@ async function run() {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -679,7 +691,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("bundlesGetBundleGroups failed:", res.error);
   }
@@ -699,7 +713,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedBundleGroupList](../../models/components/paginatedbundlegrouplist.md)\>**
+**Promise\<[operations.GetBundleGroupsResponse](../../models/operations/getbundlegroupsresponse.md)\>**
 
 ### Errors
 

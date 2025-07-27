@@ -9,6 +9,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Users extends ClientSDK {
   /**
@@ -43,8 +44,8 @@ export class Users extends ClientSDK {
   async getUsers(
     request: operations.GetUsersRequest,
     options?: RequestOptions,
-  ): Promise<components.PaginatedUsersList> {
-    return unwrapAsync(usersGetUsers(
+  ): Promise<PageIterator<operations.GetUsersResponse, { cursor: string }>> {
+    return unwrapResultIterator(usersGetUsers(
       this,
       request,
       options,

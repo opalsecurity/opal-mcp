@@ -3,11 +3,14 @@
 
 ## Overview
 
+Operations related to requests
+
 ### Available Operations
 
 * [getRequests](#getrequests) - Returns a list of requests for your organization that is visible by the admin.
 * [createRequest](#createrequest) - Create an access request
-* [getRequestsRelay](#getrequestsrelay) - Returns a paginated list of requests using Relay-style cursor pagination.
+* [~~getRequestsRelay~~](#getrequestsrelay) - Returns a paginated list of requests using Relay-style cursor pagination. :warning: **Deprecated**
+* [getRequest](#getrequest) - Returns a request by ID.
 * [approveRequest](#approverequest) - Approve an access request
 
 ## getRequests
@@ -31,7 +34,9 @@ async function run() {
     pageSize: 200,
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -60,7 +65,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("requestsGetRequests failed:", res.error);
   }
@@ -80,7 +87,7 @@ run();
 
 ### Response
 
-**Promise\<[components.RequestList](../../models/components/requestlist.md)\>**
+**Promise\<[operations.GetRequestsResponse](../../models/operations/getrequestsresponse.md)\>**
 
 ### Errors
 
@@ -214,9 +221,11 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## getRequestsRelay
+## ~~getRequestsRelay~~
 
 Returns a paginated list of requests using Relay-style cursor pagination.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -291,6 +300,78 @@ run();
 ### Response
 
 **Promise\<[components.RequestConnection](../../models/components/requestconnection.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## getRequest
+
+Returns a request by ID.
+
+### Example Usage
+
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.requests.getRequest({
+    id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { requestsGetRequest } from "opal-mcp/funcs/requestsGetRequest.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await requestsGetRequest(opalMcp, {
+    id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("requestsGetRequest failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetRequestRequest](../../models/operations/getrequestrequest.md)                                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.RequestT](../../models/components/requestt.md)\>**
 
 ### Errors
 

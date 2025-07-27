@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to groups
+
 ### Available Operations
 
 * [getGroups](#getgroups) - Returns a list of groups for your organization.
@@ -58,7 +60,9 @@ async function run() {
     groupName: "example-name",
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -91,7 +95,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("groupsGetGroups failed:", res.error);
   }
@@ -111,7 +117,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedGroupsList](../../models/components/paginatedgroupslist.md)\>**
+**Promise\<[operations.GetGroupsResponse](../../models/operations/getgroupsresponse.md)\>**
 
 ### Errors
 
@@ -2128,6 +2134,7 @@ async function run() {
   await opalMcp.groups.deleteGroupUser({
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
     userId: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06",
+    accessLevelRemoteId: "30",
   });
 
 
@@ -2154,6 +2161,7 @@ async function run() {
   const res = await groupsDeleteGroupUser(opalMcp, {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
     userId: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06",
+    accessLevelRemoteId: "30",
   });
   if (res.ok) {
     const { value: result } = res;

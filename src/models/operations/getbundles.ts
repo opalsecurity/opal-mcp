@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetBundlesRequest = {
@@ -21,6 +22,10 @@ export type GetBundlesRequest = {
    * A filter for the bundle name.
    */
   contains?: string | undefined;
+};
+
+export type GetBundlesResponse = {
+  result: components.PaginatedBundleList;
 };
 
 /** @internal */
@@ -88,5 +93,67 @@ export function getBundlesRequestFromJSON(
     jsonString,
     (x) => GetBundlesRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetBundlesRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetBundlesResponse$inboundSchema: z.ZodType<
+  GetBundlesResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Result: components.PaginatedBundleList$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Result": "result",
+  });
+});
+
+/** @internal */
+export type GetBundlesResponse$Outbound = {
+  Result: components.PaginatedBundleList$Outbound;
+};
+
+/** @internal */
+export const GetBundlesResponse$outboundSchema: z.ZodType<
+  GetBundlesResponse$Outbound,
+  z.ZodTypeDef,
+  GetBundlesResponse
+> = z.object({
+  result: components.PaginatedBundleList$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    result: "Result",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetBundlesResponse$ {
+  /** @deprecated use `GetBundlesResponse$inboundSchema` instead. */
+  export const inboundSchema = GetBundlesResponse$inboundSchema;
+  /** @deprecated use `GetBundlesResponse$outboundSchema` instead. */
+  export const outboundSchema = GetBundlesResponse$outboundSchema;
+  /** @deprecated use `GetBundlesResponse$Outbound` instead. */
+  export type Outbound = GetBundlesResponse$Outbound;
+}
+
+export function getBundlesResponseToJSON(
+  getBundlesResponse: GetBundlesResponse,
+): string {
+  return JSON.stringify(
+    GetBundlesResponse$outboundSchema.parse(getBundlesResponse),
+  );
+}
+
+export function getBundlesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBundlesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBundlesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBundlesResponse' from JSON`,
   );
 }

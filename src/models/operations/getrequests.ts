@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetRequestsRequest = {
@@ -29,6 +30,10 @@ export type GetRequestsRequest = {
    * Boolean toggle for if it should only show pending requests.
    */
   showPendingOnly?: boolean | undefined;
+};
+
+export type GetRequestsResponse = {
+  result: components.RequestList;
 };
 
 /** @internal */
@@ -108,5 +113,67 @@ export function getRequestsRequestFromJSON(
     jsonString,
     (x) => GetRequestsRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetRequestsRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetRequestsResponse$inboundSchema: z.ZodType<
+  GetRequestsResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Result: components.RequestList$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Result": "result",
+  });
+});
+
+/** @internal */
+export type GetRequestsResponse$Outbound = {
+  Result: components.RequestList$Outbound;
+};
+
+/** @internal */
+export const GetRequestsResponse$outboundSchema: z.ZodType<
+  GetRequestsResponse$Outbound,
+  z.ZodTypeDef,
+  GetRequestsResponse
+> = z.object({
+  result: components.RequestList$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    result: "Result",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetRequestsResponse$ {
+  /** @deprecated use `GetRequestsResponse$inboundSchema` instead. */
+  export const inboundSchema = GetRequestsResponse$inboundSchema;
+  /** @deprecated use `GetRequestsResponse$outboundSchema` instead. */
+  export const outboundSchema = GetRequestsResponse$outboundSchema;
+  /** @deprecated use `GetRequestsResponse$Outbound` instead. */
+  export type Outbound = GetRequestsResponse$Outbound;
+}
+
+export function getRequestsResponseToJSON(
+  getRequestsResponse: GetRequestsResponse,
+): string {
+  return JSON.stringify(
+    GetRequestsResponse$outboundSchema.parse(getRequestsResponse),
+  );
+}
+
+export function getRequestsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetRequestsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetRequestsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetRequestsResponse' from JSON`,
   );
 }

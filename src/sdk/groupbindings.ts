@@ -11,6 +11,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class GroupBindings extends ClientSDK {
   /**
@@ -19,8 +20,10 @@ export class GroupBindings extends ClientSDK {
   async getGroupBindings(
     request: operations.GetGroupBindingsRequest,
     options?: RequestOptions,
-  ): Promise<components.PaginatedGroupBindingsList> {
-    return unwrapAsync(groupBindingsGetGroupBindings(
+  ): Promise<
+    PageIterator<operations.GetGroupBindingsResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(groupBindingsGetGroupBindings(
       this,
       request,
       options,

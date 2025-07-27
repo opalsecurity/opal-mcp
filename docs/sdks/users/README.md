@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to users
+
 ### Available Operations
 
 * [user](#user) - Retrieves detailed user information from Opal. This endpoint is designed to fetch user details by
@@ -128,7 +130,9 @@ async function run() {
     pageSize: 200,
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -155,7 +159,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("usersGetUsers failed:", res.error);
   }
@@ -175,7 +181,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedUsersList](../../models/components/paginateduserslist.md)\>**
+**Promise\<[operations.GetUsersResponse](../../models/operations/getusersresponse.md)\>**
 
 ### Errors
 

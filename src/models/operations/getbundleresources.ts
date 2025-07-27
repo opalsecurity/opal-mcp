@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetBundleResourcesRequest = {
@@ -21,6 +22,10 @@ export type GetBundleResourcesRequest = {
    * A cursor indicating where to start fetching items after a specific point.
    */
   cursor?: string | undefined;
+};
+
+export type GetBundleResourcesResponse = {
+  result: components.PaginatedBundleResourceList;
 };
 
 /** @internal */
@@ -90,5 +95,67 @@ export function getBundleResourcesRequestFromJSON(
     jsonString,
     (x) => GetBundleResourcesRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetBundleResourcesRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetBundleResourcesResponse$inboundSchema: z.ZodType<
+  GetBundleResourcesResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Result: components.PaginatedBundleResourceList$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Result": "result",
+  });
+});
+
+/** @internal */
+export type GetBundleResourcesResponse$Outbound = {
+  Result: components.PaginatedBundleResourceList$Outbound;
+};
+
+/** @internal */
+export const GetBundleResourcesResponse$outboundSchema: z.ZodType<
+  GetBundleResourcesResponse$Outbound,
+  z.ZodTypeDef,
+  GetBundleResourcesResponse
+> = z.object({
+  result: components.PaginatedBundleResourceList$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    result: "Result",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetBundleResourcesResponse$ {
+  /** @deprecated use `GetBundleResourcesResponse$inboundSchema` instead. */
+  export const inboundSchema = GetBundleResourcesResponse$inboundSchema;
+  /** @deprecated use `GetBundleResourcesResponse$outboundSchema` instead. */
+  export const outboundSchema = GetBundleResourcesResponse$outboundSchema;
+  /** @deprecated use `GetBundleResourcesResponse$Outbound` instead. */
+  export type Outbound = GetBundleResourcesResponse$Outbound;
+}
+
+export function getBundleResourcesResponseToJSON(
+  getBundleResourcesResponse: GetBundleResourcesResponse,
+): string {
+  return JSON.stringify(
+    GetBundleResourcesResponse$outboundSchema.parse(getBundleResourcesResponse),
+  );
+}
+
+export function getBundleResourcesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBundleResourcesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBundleResourcesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBundleResourcesResponse' from JSON`,
   );
 }

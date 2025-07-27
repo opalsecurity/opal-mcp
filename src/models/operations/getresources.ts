@@ -40,6 +40,10 @@ export type GetResourcesRequest = {
   ancestorResourceId?: string | undefined;
 };
 
+export type GetResourcesResponse = {
+  result: components.PaginatedResourcesList;
+};
+
 /** @internal */
 export const GetResourcesRequest$inboundSchema: z.ZodType<
   GetResourcesRequest,
@@ -127,5 +131,67 @@ export function getResourcesRequestFromJSON(
     jsonString,
     (x) => GetResourcesRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetResourcesRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetResourcesResponse$inboundSchema: z.ZodType<
+  GetResourcesResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Result: components.PaginatedResourcesList$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Result": "result",
+  });
+});
+
+/** @internal */
+export type GetResourcesResponse$Outbound = {
+  Result: components.PaginatedResourcesList$Outbound;
+};
+
+/** @internal */
+export const GetResourcesResponse$outboundSchema: z.ZodType<
+  GetResourcesResponse$Outbound,
+  z.ZodTypeDef,
+  GetResourcesResponse
+> = z.object({
+  result: components.PaginatedResourcesList$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    result: "Result",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetResourcesResponse$ {
+  /** @deprecated use `GetResourcesResponse$inboundSchema` instead. */
+  export const inboundSchema = GetResourcesResponse$inboundSchema;
+  /** @deprecated use `GetResourcesResponse$outboundSchema` instead. */
+  export const outboundSchema = GetResourcesResponse$outboundSchema;
+  /** @deprecated use `GetResourcesResponse$Outbound` instead. */
+  export type Outbound = GetResourcesResponse$Outbound;
+}
+
+export function getResourcesResponseToJSON(
+  getResourcesResponse: GetResourcesResponse,
+): string {
+  return JSON.stringify(
+    GetResourcesResponse$outboundSchema.parse(getResourcesResponse),
+  );
+}
+
+export function getResourcesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetResourcesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetResourcesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetResourcesResponse' from JSON`,
   );
 }

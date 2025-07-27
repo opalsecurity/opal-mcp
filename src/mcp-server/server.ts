@@ -89,6 +89,7 @@ import { tool$ownersSetOwnerUsers } from "./tools/ownersSetOwnerUsers.js";
 import { tool$ownersUpdateOwners } from "./tools/ownersUpdateOwners.js";
 import { tool$requestsApproveRequest } from "./tools/requestsApproveRequest.js";
 import { tool$requestsCreateRequest } from "./tools/requestsCreateRequest.js";
+import { tool$requestsGetRequest } from "./tools/requestsGetRequest.js";
 import { tool$requestsGetRequests } from "./tools/requestsGetRequests.js";
 import { tool$requestsGetRequestsRelay } from "./tools/requestsGetRequestsRelay.js";
 import { tool$resourcesAddResourceNhi } from "./tools/resourcesAddResourceNhi.js";
@@ -103,6 +104,7 @@ import { tool$resourcesGetResourceNhis } from "./tools/resourcesGetResourceNhis.
 import { tool$resourcesGetResourceReviewers } from "./tools/resourcesGetResourceReviewers.js";
 import { tool$resourcesGetResourceReviewerStages } from "./tools/resourcesGetResourceReviewerStages.js";
 import { tool$resourcesGetResources } from "./tools/resourcesGetResources.js";
+import { tool$resourcesGetResourceScopedRolePermissions } from "./tools/resourcesGetResourceScopedRolePermissions.js";
 import { tool$resourcesGetResourceTags } from "./tools/resourcesGetResourceTags.js";
 import { tool$resourcesGetResourceUser } from "./tools/resourcesGetResourceUser.js";
 import { tool$resourcesGetResourceUsers } from "./tools/resourcesGetResourceUsers.js";
@@ -111,6 +113,7 @@ import { tool$resourcesResourceUserAccessStatusRetrieve } from "./tools/resource
 import { tool$resourcesSetResourceMessageChannels } from "./tools/resourcesSetResourceMessageChannels.js";
 import { tool$resourcesSetResourceReviewers } from "./tools/resourcesSetResourceReviewers.js";
 import { tool$resourcesSetResourceReviewerStages } from "./tools/resourcesSetResourceReviewerStages.js";
+import { tool$resourcesSetResourceScopedRolePermissions } from "./tools/resourcesSetResourceScopedRolePermissions.js";
 import { tool$resourcesSetResourceVisibility } from "./tools/resourcesSetResourceVisibility.js";
 import { tool$resourcesUpdateResources } from "./tools/resourcesUpdateResources.js";
 import { tool$resourcesUpdateResourceUser } from "./tools/resourcesUpdateResourceUser.js";
@@ -143,7 +146,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "OpalMcp",
-    version: "0.6.2",
+    version: "0.7.1",
   });
 
   const client = new OpalMcpCore({
@@ -240,6 +243,7 @@ export function createMCPServer(deps: {
   tool(tool$requestsGetRequests);
   tool(tool$requestsCreateRequest);
   tool(tool$requestsGetRequestsRelay);
+  tool(tool$requestsGetRequest);
   tool(tool$requestsApproveRequest);
   tool(tool$resourcesGetResources);
   tool(tool$resourcesUpdateResources);
@@ -264,6 +268,8 @@ export function createMCPServer(deps: {
   tool(tool$resourcesGetResourceUser);
   tool(tool$resourcesResourceUserAccessStatusRetrieve);
   tool(tool$resourcesGetResourceTags);
+  tool(tool$resourcesGetResourceScopedRolePermissions);
+  tool(tool$resourcesSetResourceScopedRolePermissions);
   tool(tool$nonHumanIdentitiesGetNhis);
   tool(tool$sessionsSessions);
   tool(tool$usersUser);

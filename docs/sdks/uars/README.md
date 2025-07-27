@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to UARs
+
 ### Available Operations
 
 * [getUARs](#getuars) - Returns a list of `UAR` objects.
@@ -28,7 +30,9 @@ async function run() {
     pageSize: 200,
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -55,7 +59,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("uarsGetUARs failed:", res.error);
   }
@@ -75,7 +81,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedUARsList](../../models/components/paginateduarslist.md)\>**
+**Promise\<[operations.GetUARsResponse](../../models/operations/getuarsresponse.md)\>**
 
 ### Errors
 

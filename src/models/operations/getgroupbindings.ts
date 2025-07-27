@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetGroupBindingsRequest = {
@@ -17,6 +18,10 @@ export type GetGroupBindingsRequest = {
    * Number of results to return per page. Default is 200.
    */
   pageSize?: number | undefined;
+};
+
+export type GetGroupBindingsResponse = {
+  result: components.PaginatedGroupBindingsList;
 };
 
 /** @internal */
@@ -81,5 +86,67 @@ export function getGroupBindingsRequestFromJSON(
     jsonString,
     (x) => GetGroupBindingsRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetGroupBindingsRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetGroupBindingsResponse$inboundSchema: z.ZodType<
+  GetGroupBindingsResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Result: components.PaginatedGroupBindingsList$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Result": "result",
+  });
+});
+
+/** @internal */
+export type GetGroupBindingsResponse$Outbound = {
+  Result: components.PaginatedGroupBindingsList$Outbound;
+};
+
+/** @internal */
+export const GetGroupBindingsResponse$outboundSchema: z.ZodType<
+  GetGroupBindingsResponse$Outbound,
+  z.ZodTypeDef,
+  GetGroupBindingsResponse
+> = z.object({
+  result: components.PaginatedGroupBindingsList$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    result: "Result",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetGroupBindingsResponse$ {
+  /** @deprecated use `GetGroupBindingsResponse$inboundSchema` instead. */
+  export const inboundSchema = GetGroupBindingsResponse$inboundSchema;
+  /** @deprecated use `GetGroupBindingsResponse$outboundSchema` instead. */
+  export const outboundSchema = GetGroupBindingsResponse$outboundSchema;
+  /** @deprecated use `GetGroupBindingsResponse$Outbound` instead. */
+  export type Outbound = GetGroupBindingsResponse$Outbound;
+}
+
+export function getGroupBindingsResponseToJSON(
+  getGroupBindingsResponse: GetGroupBindingsResponse,
+): string {
+  return JSON.stringify(
+    GetGroupBindingsResponse$outboundSchema.parse(getGroupBindingsResponse),
+  );
+}
+
+export function getGroupBindingsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGroupBindingsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetGroupBindingsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGroupBindingsResponse' from JSON`,
   );
 }

@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to non-human identities
+
 ### Available Operations
 
 * [getNhis](#getnhis) - Returns a list of non-human identities for your organization.
@@ -26,7 +28,9 @@ async function run() {
     pageSize: 200,
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -53,7 +57,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("nonHumanIdentitiesGetNhis failed:", res.error);
   }
@@ -73,7 +79,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedResourcesList](../../models/components/paginatedresourceslist.md)\>**
+**Promise\<[operations.GetNhisResponse](../../models/operations/getnhisresponse.md)\>**
 
 ### Errors
 

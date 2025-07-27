@@ -29,7 +29,7 @@ export const tool$bundlesGetBundles: ToolDefinition<typeof args> = {
       };
     }
 
-    const value = result.value;
+    const value = result.value.result;
 
     return formatResult(value, apiCall);
   },

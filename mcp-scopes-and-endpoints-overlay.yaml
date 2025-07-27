@@ -17,26 +17,198 @@ actions:
         scopes: [write]
         disabled: false
   
-  # # Disable depricated endpoints that should not be used by the MCP server
-  # - target: $.paths["/groups/{group_id}/reviewers"].get
-  #   update: 
-  #     x-speakeasy-mcp:
-  #       disabled: true
-  # - target: $.paths["/groups/{group_id}/reviewers"].put
-  #   update: 
-  #     x-speakeasy-mcp:
-  #       disabled: true
-  # - target: $.paths["/groups/{group_id}/reviewer-stages"].get
-  #   update: 
-  #     x-speakeasy-mcp: 
-  #       disabled: true
-  # - target: $.paths["/groups/{group_id}/reviewer-stages"].put
-  #   update: 
-  #     x-speakeasy-mcp: 
-  #       disabled: true
+  # Add pagination configuration for cursor-based endpoints
+  - target: $.paths["/bundles"].get
+    update:
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.bundles
+          nextCursor: $.next
   
-  # Disable endpoints that are not relevant for the MCP server
-  # - target: $.paths["/sessions"].get
-  #   update: 
-  #     x-speakeasy-mcp:
-  #       disabled: true
+  - target: $.paths["/bundles/{bundle_id}/resources"].get
+    update:
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.bundle_resources
+          nextCursor: $.next
+
+  - target: $.paths["/bundles/{bundle_id}/groups"].get
+    update:
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.bundle_groups
+          nextCursor: $.next
+
+  - target: $.paths["/events"].get
+    update:
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
+
+  - target: $.paths["/groups"].get
+    update:
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
+
+  - target: $.paths["/group-bindings"].get
+    update:
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
+
+  - target: $.paths["/owners"].get
+    update:
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
+
+  - target: $.paths["/requests"].get
+    update:
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.requests
+          nextCursor: $.cursor
+
+  - target: $.paths["/resources"].get
+    update:
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
+
+  - target: $.paths["/non-human-identities"].get
+    update:
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
+
+  - target: $.paths["/users"].get
+    update:
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
+
+  - target: $.paths["/tags"].get
+    update:
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
+
+  - target: $.paths["/uars"].get
+    update:
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next

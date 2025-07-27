@@ -17,6 +17,10 @@ export type DeleteGroupUserRequest = {
    * The ID of a user to remove from this group.
    */
   userId: string;
+  /**
+   * The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
+   */
+  accessLevelRemoteId?: string | undefined;
 };
 
 /** @internal */
@@ -27,10 +31,12 @@ export const DeleteGroupUserRequest$inboundSchema: z.ZodType<
 > = z.object({
   group_id: z.string(),
   user_id: z.string(),
+  access_level_remote_id: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "group_id": "groupId",
     "user_id": "userId",
+    "access_level_remote_id": "accessLevelRemoteId",
   });
 });
 
@@ -38,6 +44,7 @@ export const DeleteGroupUserRequest$inboundSchema: z.ZodType<
 export type DeleteGroupUserRequest$Outbound = {
   group_id: string;
   user_id: string;
+  access_level_remote_id?: string | undefined;
 };
 
 /** @internal */
@@ -48,10 +55,12 @@ export const DeleteGroupUserRequest$outboundSchema: z.ZodType<
 > = z.object({
   groupId: z.string(),
   userId: z.string(),
+  accessLevelRemoteId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     groupId: "group_id",
     userId: "user_id",
+    accessLevelRemoteId: "access_level_remote_id",
   });
 });
 

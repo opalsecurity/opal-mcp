@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to events
+
 ### Available Operations
 
 * [events](#events) - Returns a list of `Event` objects.
@@ -32,7 +34,9 @@ async function run() {
     pageSize: 200,
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -65,7 +69,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("eventsEvents failed:", res.error);
   }
@@ -85,7 +91,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedEventList](../../models/components/paginatedeventlist.md)\>**
+**Promise\<[operations.EventsResponse](../../models/operations/eventsresponse.md)\>**
 
 ### Errors
 

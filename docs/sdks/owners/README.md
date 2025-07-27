@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to owners
+
 ### Available Operations
 
 * [getOwners](#getowners) - Returns a list of `Owner` objects.
@@ -34,7 +36,9 @@ async function run() {
     name: "200",
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -62,7 +66,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("ownersGetOwners failed:", res.error);
   }
@@ -82,7 +88,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedOwnersList](../../models/components/paginatedownerslist.md)\>**
+**Promise\<[operations.GetOwnersResponse](../../models/operations/getownersresponse.md)\>**
 
 ### Errors
 
