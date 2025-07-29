@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to configuration templates
+
 ### Available Operations
 
 * [getConfigurationTemplates](#getconfigurationtemplates) - Returns a list of `ConfigurationTemplate` objects.
@@ -16,6 +18,7 @@ Returns a list of `ConfigurationTemplate` objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getConfigurationTemplates" method="get" path="/configuration-templates" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -83,6 +86,7 @@ Creates a configuration template.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createConfigurationTemplate" method="post" path="/configuration-templates" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -191,6 +195,7 @@ Update a configuration template.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateConfigurationTemplate" method="put" path="/configuration-templates" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -301,6 +306,7 @@ Deletes a configuration template.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteConfigurationTemplate" method="delete" path="/configuration-templates/{configuration_template_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 

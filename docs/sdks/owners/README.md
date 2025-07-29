@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to owners
+
 ### Available Operations
 
 * [getOwners](#getowners) - Returns a list of `Owner` objects.
@@ -20,6 +22,7 @@ Returns a list of `Owner` objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_owners" method="get" path="/owners" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -34,7 +37,9 @@ async function run() {
     name: "200",
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -62,7 +67,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("ownersGetOwners failed:", res.error);
   }
@@ -82,7 +89,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedOwnersList](../../models/components/paginatedownerslist.md)\>**
+**Promise\<[operations.GetOwnersResponse](../../models/operations/getownersresponse.md)\>**
 
 ### Errors
 
@@ -96,6 +103,7 @@ Creates an owner.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createOwner" method="post" path="/owners" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -180,6 +188,7 @@ Bulk updates a list of owners.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateOwners" method="put" path="/owners" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -278,6 +287,7 @@ Returns an `Owner` object.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getOwner" method="get" path="/owners/{owner_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -350,6 +360,7 @@ Deletes an owner.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete_owner" method="delete" path="/owners/{owner_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -422,6 +433,7 @@ Returns an `Owner` object. Does not support owners with `/` in their name, use /
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getOwnerFromName" method="get" path="/owners/name/{owner_name}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -494,6 +506,7 @@ Gets the list of users for this owner, in escalation priority order if applicabl
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_owner_users" method="get" path="/owners/{owner_id}/users" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -566,6 +579,7 @@ Sets the list of users for this owner. If escalation is enabled, the order of th
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="set_owner_users" method="put" path="/owners/{owner_id}/users" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 

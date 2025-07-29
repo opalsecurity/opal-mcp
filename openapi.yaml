@@ -10,6 +10,46 @@ info:
 servers:
   - description: Production
     url: https://api.opal.dev/v1
+# keep tags alphabetized, also add any new tags to the list below
+tags:
+  - name: access-rules
+    description: Operations related to access rules
+  - name: apps
+    description: Operations related to apps
+  - name: bundles
+    description: Operations related to bundles
+  - name: configuration-templates
+    description: Operations related to configuration templates
+  - name: events
+    description: Operations related to events
+  - name: groups
+    description: Operations related to groups
+  - name: group-bindings
+    description: Operations related to group bindings
+  - name: idp-group-mappings
+    description: Operations related to IDP group mappings
+  - name: message-channels
+    description: Operations related to message channels
+  - name: non-human-identities
+    description: Operations related to non-human identities
+  - name: on-call-schedules
+    description: Operations related to on-call schedules
+  - name: owners
+    description: Operations related to owners
+  - name: requests
+    description: Operations related to requests
+  - name: resources
+    description: Operations related to resources
+  - name: scoped-role-permissions
+    description: Operations related to scoped role permissions
+  - name: sessions
+    description: Operations related to sessions
+  - name: tags
+    description: Operations related to tags
+  - name: uars
+    description: Operations related to UARs
+  - name: users
+    description: Operations related to users
 paths:
   /apps:
     get:
@@ -128,6 +168,18 @@ paths:
       x-speakeasy-mcp:
         scopes: [read]
         disabled: false
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.bundles
+          nextCursor: $.next
     post:
       description: Creates a bundle.
       operationId: createBundle
@@ -285,6 +337,18 @@ paths:
       x-speakeasy-mcp:
         scopes: [read]
         disabled: false
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.bundle_resources
+          nextCursor: $.next
     post:
       description: Adds a resource to a bundle.
       operationId: addBundleResource
@@ -418,6 +482,18 @@ paths:
       x-speakeasy-mcp:
         scopes: [read]
         disabled: false
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.bundle_groups
+          nextCursor: $.next
     post:
       description: Adds a group to a bundle.
       operationId: addBundleGroup
@@ -758,6 +834,18 @@ paths:
       x-speakeasy-mcp:
         scopes: [read]
         disabled: false
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
   /groups:
     get:
       description: Returns a list of groups for your organization.
@@ -829,6 +917,18 @@ paths:
       x-speakeasy-mcp:
         scopes: [read]
         disabled: false
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
     put:
       description: Bulk updates a list of groups.
       operationId: updateGroups
@@ -1753,6 +1853,15 @@ paths:
             format: uuid
             type: string
           style: simple
+        - description: The remote ID of the access level for which this user has direct access. If omitted, the default access level remote ID value (empty string) is assumed.
+          example: 30
+          explode: true
+          in: query
+          name: access_level_remote_id
+          required: false
+          schema:
+            type: string
+          style: form
       responses:
         "200":
           description: This user's access was successfully removed from this group.
@@ -1800,6 +1909,18 @@ paths:
       x-speakeasy-mcp:
         scopes: [read]
         disabled: false
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
     post:
       description: Creates a group binding.
       operationId: createGroupBinding
@@ -2052,6 +2173,18 @@ paths:
       x-speakeasy-mcp:
         scopes: [read]
         disabled: false
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
     post:
       description: Creates an owner.
       operationId: createOwner
@@ -2319,6 +2452,18 @@ paths:
       x-speakeasy-mcp:
         scopes: [read]
         disabled: false
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.requests
+          nextCursor: $.cursor
     post:
       description: "Create an access request"
       operationId: "createRequest"
@@ -2351,6 +2496,7 @@ paths:
     get:
       description: Returns a paginated list of requests using Relay-style cursor pagination.
       operationId: getRequestsRelay
+      deprecated: true
       parameters:
         - description: Number of results to return after the cursor. Use either first/after or last/before, not both.
           example: 10
@@ -2414,6 +2560,35 @@ paths:
               schema:
                 $ref: "#/components/schemas/RequestConnection"
           description: A paginated list of requests using Relay-style cursor pagination.
+      security:
+        - BearerAuth: []
+      tags:
+        - requests
+      x-speakeasy-mcp:
+        scopes: [read]
+        disabled: false
+  /requests/{id}:
+    get:
+      description: Returns a request by ID.
+      operationId: getRequest
+      parameters:
+        - description: The ID of the request.
+          example: 4baf8423-db0a-4037-a4cf-f79c60cb67a5
+          explode: false
+          in: path
+          name: id
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          description: The requested request object.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Request"
       security:
         - BearerAuth: []
       tags:
@@ -2567,6 +2742,18 @@ paths:
       x-speakeasy-mcp:
         scopes: [read]
         disabled: false
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
     put:
       description: Bulk updates a list of resources.
       operationId: updateResources
@@ -2975,6 +3162,18 @@ paths:
       x-speakeasy-mcp:
         scopes: [read]
         disabled: false
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
   /resources/{resource_id}/non-human-identities:
     get:
       description: Gets the list of non-human identities with access to this resource.
@@ -3494,6 +3693,71 @@ paths:
       x-speakeasy-mcp:
         scopes: [read]
         disabled: false
+  /resources/{resource_id}/scoped-role-permissions:
+    get:
+      description: Returns all the scoped role permissions that apply to the given resource. Only OPAL_SCOPED_ROLE resource type supports this field.
+      operationId: get_resource_scoped_role_permissions
+      parameters:
+        - description: The ID of the resource whose scoped role permissions belong to.
+          name: resource_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScopedRolePermissionList"
+          description: The role permissions that this Opal Scoped Role has.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+        - scoped-role-permissions
+      x-speakeasy-mcp:
+        scopes: [read]
+        disabled: false
+    put:
+      description: Sets all the scoped role permissions on an OPAL_SCOPED_ROLE resource.
+      operationId: set_resource_scoped_role_permissions
+      parameters:
+        - description: The ID of the resource whose scoped role permissions belong to. Must be of OPAL_SCOPED_ROLE resource type.
+          name: resource_id
+          example: 1b978423-db0a-4037-a4cf-f79c60cb67b3
+          explode: false
+          in: path
+          required: true
+          schema:
+            format: uuid
+            type: string
+          style: simple
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ScopedRolePermissionList"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScopedRolePermissionList"
+          description: The role permissions that this Opal Scoped Role has.
+      security:
+        - BearerAuth: []
+      tags:
+        - resources
+        - scoped-role-permissions
+      x-speakeasy-mcp:
+        scopes: [write]
+        disabled: false
   /sessions:
     get:
       description: Returns a list of `Session` objects.
@@ -3621,6 +3885,18 @@ paths:
       x-speakeasy-mcp:
         scopes: [read]
         disabled: false
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
   /users/{user_id}/tags:
     get:
       description: Returns all tags applied to the user.
@@ -3919,6 +4195,18 @@ paths:
       x-speakeasy-mcp:
         scopes: [read]
         disabled: false
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
   /tags/{tag_id}/users/{user_id}:
     post:
       description: Applies a tag to a user.
@@ -4312,6 +4600,18 @@ paths:
       x-speakeasy-mcp:
         scopes: [read]
         disabled: false
+      x-speakeasy-pagination:
+        type: cursor
+        inputs:
+          - name: cursor
+            in: parameters
+            type: cursor
+          - name: page_size
+            in: parameters
+            type: limit
+        outputs:
+          results: $.results
+          nextCursor: $.next
   /uar:
     post:
       description: Starts a User Access Review.
@@ -6216,6 +6516,41 @@ components:
         - LIMITED
       example: GLOBAL
       type: string
+    RolePermissionNameEnum:
+      description: The name of the role permission.
+      enum:
+        - READ
+        - READ_ASSIGNMENTS
+        - CREATE
+        - IMPORT
+        - EXPORT
+        - SYNC
+        - DELETE
+        - READ_SETTINGS
+        - EDIT_TAGS
+        - EDIT_SETTINGS
+        - EDIT_SYNC_SETTINGS
+        - EDIT_ASSIGNMENTS
+        - EDIT_REQUEST_CONFIGURATIONS
+        - EDIT_EVENT_STREAM
+        - ASSIGN_UAR_REVIEWERS
+        - SEND_REMINDERS
+        - STOP
+        - REQUEST_ON_BEHALF
+        - RESET_MFA
+      example: READ
+      type: string
+    RolePermissionTargetTypeEnum:
+      description: The type of the target for the role permission.
+      enum:
+        - RESOURCE
+        - CONNECTION
+        - GROUP
+        - BUNDLE
+        - USER
+        - ACCESS_REVIEW
+      example: RESOURCE
+      type: string
     UpdateGroupResourcesInfo:
       example:
         group_resources:
@@ -6720,16 +7055,54 @@ components:
           type: object
           required:
             - role_id
+        okta_group_rule:
+          description: Remote info for Okta Directory group rule.
+          properties:
+            rule_id:
+              description: The id of the Okta group rule.
+              example: 0pr3f7zMZZHPgUoWO0g4
+              type: string
+          type: object
+          required:
+            - rule_id
+        workday_user_security_group:
+          description: Remote info for Workday User Security group.
+          properties:
+            group_id:
+              description: The id of the Workday User Security group.
+              example: 123abc456def
+              type: string
+          type: object
+          required:
+            - group_id
       type: object
     ResourceRemoteInfo:
       description: Information that defines the remote resource. This replaces the deprecated remote_id and metadata fields.
       properties:
+        aws_organizational_unit:
+          description: Remote info for AWS organizational unit.
+          properties:
+            parent_id:
+              description: The id of the parent organizational unit.
+              example: ou-1234
+              type: string
+            organizational_unit_id:
+              description: The id of the AWS organizational unit that is being created.
+              example: ou-1234
+              type: string
+          type: object
+          required:
+            - organizational_unit_id
         aws_account:
           description: Remote info for AWS account.
           properties:
             account_id:
               description: The id of the AWS account.
               example: 234234234234
+              type: string
+            organizational_unit_id:
+              description: The id of the AWS organizational unit. Required only if customer has OUs enabled.
+              example: ou-1234
               type: string
           type: object
           required:
@@ -6820,6 +7193,21 @@ components:
           type: object
           required:
             - arn
+        custom_connector:
+          description: Remote info for a custom connector resource.
+          properties:
+            remote_resource_id:
+              description: The id of the resource in the end system
+              example: 01fa7402-01d8-103b-8deb-5f3a0ab7884
+              type: string
+            can_have_usage_events:
+              description: A bool representing whether or not the resource can have usage data.
+              example: False
+              type: boolean
+          type: object
+          required:
+            - remote_resource_id
+            - can_have_usage_events
         gcp_organization:
           description: Remote info for GCP organization.
           properties:
@@ -6960,6 +7348,16 @@ components:
             - email
             - service_account_id
             - project_id
+        google_workspace_role:
+          description: Remote info for GCP workspace role.
+          properties:
+            role_id:
+              description: The id of the role.
+              example: google-workspace-role:01234567890123456
+              type: string
+          type: object
+          required:
+            - role_id
         github_repo:
           description: Remote info for GitHub repository.
           properties:
@@ -7790,6 +8188,14 @@ components:
           description: The name of the target.
           example: Engineering Team
           type: string
+        remote_id:
+          description: The ID of the target on the remote system.
+          example: arn:aws:iam::490306337630:role/SupportUser
+          type: string
+        remote_name:
+          description: The name of the target on the remote system.
+          example: SupportUser
+          type: string
       example:
         resource_id: null
         group_id: f454d283-ca87-4a8a-bdbb-df212eca5353
@@ -7878,6 +8284,10 @@ components:
         require_manager_approval: False
         require_support_ticket: False
         parent_resource_id: f454d283-ca67-4a8a-bdbb-df212eca5345
+        ancestor_resource_ids:
+          - f454d283-ca67-4a8a-bdbb-df212eca5345
+        descendant_resource_ids:
+          - f454d283-ca67-4a8a-bdbb-df212eca5345
       properties:
         resource_id:
           description: The ID of the resource.
@@ -9770,6 +10180,44 @@ components:
       type: object
       required:
         - bundle_groups
+    ScopedRolePermissionList:
+      example:
+        permissions:
+          - target_ids:
+              - a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1
+              - 8294e9c9-deb6-48e9-9c99-da2a1e04a87f
+            target_type: RESOURCE
+            permission_name: READ
+      properties:
+        permissions:
+          type: array
+          items:
+            $ref: "#/components/schemas/ScopedRolePermission"
+      type: object
+      required:
+        - permissions
+    ScopedRolePermission:
+      type: object
+      properties:
+        target_ids:
+          description: The IDs of the entities that this permission applies to. If empty of missing, the permission will have untargeted scope.
+          example:
+            - a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1
+            - 8294e9c9-deb6-48e9-9c99-da2a1e04a87f
+          items:
+            type: string
+            format: uuid
+          type: array
+        target_type:
+          $ref: "#/components/schemas/RolePermissionTargetTypeEnum"
+        permission_name:
+          $ref: "#/components/schemas/RolePermissionNameEnum"
+        allow_all:
+          type: boolean
+      required:
+        - target_type
+        - permission_name
+        - allow_all
   securitySchemes:
     BearerAuth:
       scheme: bearer

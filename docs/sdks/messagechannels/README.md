@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to message channels
+
 ### Available Operations
 
 * [getMessageChannels](#getmessagechannels) - Returns a list of `MessageChannel` objects.
@@ -15,6 +17,7 @@ Returns a list of `MessageChannel` objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_message_channels" method="get" path="/message-channels" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -82,6 +85,7 @@ Creates a `MessageChannel` objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_message_channel" method="post" path="/message-channels" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -156,6 +160,7 @@ Gets a `MessageChannel` object.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_message_channel" method="get" path="/message-channels/{message_channel_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 

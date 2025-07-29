@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to sessions
+
 ### Available Operations
 
 * [sessions](#sessions) - Returns a list of `Session` objects.
@@ -13,6 +15,7 @@ Returns a list of `Session` objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="sessions" method="get" path="/sessions" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 

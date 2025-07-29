@@ -17,6 +17,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Tags extends ClientSDK {
   /**
@@ -81,8 +82,8 @@ export class Tags extends ClientSDK {
   async getTags(
     request: operations.GetTagsRequest,
     options?: RequestOptions,
-  ): Promise<components.PaginatedTagsList> {
-    return unwrapAsync(tagsGetTags(
+  ): Promise<PageIterator<operations.GetTagsResponse, { cursor: string }>> {
+    return unwrapResultIterator(tagsGetTags(
       this,
       request,
       options,

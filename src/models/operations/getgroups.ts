@@ -32,6 +32,10 @@ export type GetGroupsRequest = {
   groupName?: string | undefined;
 };
 
+export type GetGroupsResponse = {
+  result: components.PaginatedGroupsList;
+};
+
 /** @internal */
 export const GetGroupsRequest$inboundSchema: z.ZodType<
   GetGroupsRequest,
@@ -109,5 +113,67 @@ export function getGroupsRequestFromJSON(
     jsonString,
     (x) => GetGroupsRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetGroupsRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetGroupsResponse$inboundSchema: z.ZodType<
+  GetGroupsResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Result: components.PaginatedGroupsList$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Result": "result",
+  });
+});
+
+/** @internal */
+export type GetGroupsResponse$Outbound = {
+  Result: components.PaginatedGroupsList$Outbound;
+};
+
+/** @internal */
+export const GetGroupsResponse$outboundSchema: z.ZodType<
+  GetGroupsResponse$Outbound,
+  z.ZodTypeDef,
+  GetGroupsResponse
+> = z.object({
+  result: components.PaginatedGroupsList$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    result: "Result",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetGroupsResponse$ {
+  /** @deprecated use `GetGroupsResponse$inboundSchema` instead. */
+  export const inboundSchema = GetGroupsResponse$inboundSchema;
+  /** @deprecated use `GetGroupsResponse$outboundSchema` instead. */
+  export const outboundSchema = GetGroupsResponse$outboundSchema;
+  /** @deprecated use `GetGroupsResponse$Outbound` instead. */
+  export type Outbound = GetGroupsResponse$Outbound;
+}
+
+export function getGroupsResponseToJSON(
+  getGroupsResponse: GetGroupsResponse,
+): string {
+  return JSON.stringify(
+    GetGroupsResponse$outboundSchema.parse(getGroupsResponse),
+  );
+}
+
+export function getGroupsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetGroupsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetGroupsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetGroupsResponse' from JSON`,
   );
 }

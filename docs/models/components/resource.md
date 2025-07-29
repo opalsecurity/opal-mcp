@@ -21,6 +21,12 @@ let value: Resource = {
   requireManagerApproval: false,
   requireSupportTicket: false,
   parentResourceId: "f454d283-ca67-4a8a-bdbb-df212eca5345",
+  ancestorResourceIds: [
+    "f454d283-ca67-4a8a-bdbb-df212eca5345",
+  ],
+  descendantResourceIds: [
+    "f454d283-ca67-4a8a-bdbb-df212eca5345",
+  ],
 };
 ```
 

@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to apps
+
 ### Available Operations
 
 * [getApps](#getapps) - Returns a list of `App` objects.
@@ -15,6 +17,7 @@ Returns a list of `App` objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getApps" method="get" path="/apps" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -95,6 +98,7 @@ Returns an `App` object.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getApp" method="get" path="/apps/{app_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -167,6 +171,7 @@ Returns a list of recent sync errors that have occurred since the last successfu
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getSyncErrors" method="get" path="/sync_errors" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 

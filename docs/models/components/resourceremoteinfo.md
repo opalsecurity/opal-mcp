@@ -8,8 +8,13 @@ Information that defines the remote resource. This replaces the deprecated remot
 import { ResourceRemoteInfo } from "opal-mcp/models/components";
 
 let value: ResourceRemoteInfo = {
+  awsOrganizationalUnit: {
+    parentId: "ou-1234",
+    organizationalUnitId: "ou-1234",
+  },
   awsAccount: {
     accountId: "234234234234",
+    organizationalUnitId: "ou-1234",
   },
   awsPermissionSet: {
     arn: "arn:aws:sso:::permissionSet/asdf-32139302d201d32/ps-f03323201211e1b9",
@@ -33,6 +38,10 @@ let value: ResourceRemoteInfo = {
   awsEksCluster: {
     arn: "arn:aws:eks:us-east-2:234234234234:cluster/testcluster",
     accountId: "234234234234",
+  },
+  customConnector: {
+    remoteResourceId: "01fa7402-01d8-103b-8deb-5f3a0ab7884",
+    canHaveUsageEvents: false,
   },
   gcpOrganization: {
     organizationId: "organizations/898931321",
@@ -72,6 +81,9 @@ let value: ResourceRemoteInfo = {
     serviceAccountId: "103561576023829460000",
     projectId: "example-project-898931321",
   },
+  googleWorkspaceRole: {
+    roleId: "google-workspace-role:01234567890123456",
+  },
   githubRepo: {
     repoName: "Opal Security",
   },
@@ -110,12 +122,14 @@ let value: ResourceRemoteInfo = {
 
 | Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `awsOrganizationalUnit`                                                                  | [components.AwsOrganizationalUnit](../../models/components/awsorganizationalunit.md)     | :heavy_minus_sign:                                                                       | Remote info for AWS organizational unit.                                                 |
 | `awsAccount`                                                                             | [components.AwsAccount](../../models/components/awsaccount.md)                           | :heavy_minus_sign:                                                                       | Remote info for AWS account.                                                             |
 | `awsPermissionSet`                                                                       | [components.AwsPermissionSet](../../models/components/awspermissionset.md)               | :heavy_minus_sign:                                                                       | Remote info for AWS Identity Center permission set.                                      |
 | `awsIamRole`                                                                             | [components.AwsIamRole](../../models/components/awsiamrole.md)                           | :heavy_minus_sign:                                                                       | Remote info for AWS IAM role.                                                            |
 | `awsEc2Instance`                                                                         | [components.AwsEc2Instance](../../models/components/awsec2instance.md)                   | :heavy_minus_sign:                                                                       | Remote info for AWS EC2 instance.                                                        |
 | `awsRdsInstance`                                                                         | [components.AwsRdsInstance](../../models/components/awsrdsinstance.md)                   | :heavy_minus_sign:                                                                       | Remote info for AWS RDS instance.                                                        |
 | `awsEksCluster`                                                                          | [components.AwsEksCluster](../../models/components/awsekscluster.md)                     | :heavy_minus_sign:                                                                       | Remote info for AWS EKS cluster.                                                         |
+| `customConnector`                                                                        | [components.CustomConnector](../../models/components/customconnector.md)                 | :heavy_minus_sign:                                                                       | Remote info for a custom connector resource.                                             |
 | `gcpOrganization`                                                                        | [components.GcpOrganization](../../models/components/gcporganization.md)                 | :heavy_minus_sign:                                                                       | Remote info for GCP organization.                                                        |
 | `gcpBucket`                                                                              | [components.GcpBucket](../../models/components/gcpbucket.md)                             | :heavy_minus_sign:                                                                       | Remote info for GCP bucket.                                                              |
 | `gcpComputeInstance`                                                                     | [components.GcpComputeInstance](../../models/components/gcpcomputeinstance.md)           | :heavy_minus_sign:                                                                       | Remote info for GCP compute instance.                                                    |
@@ -126,6 +140,7 @@ let value: ResourceRemoteInfo = {
 | `gcpProject`                                                                             | [components.GcpProject](../../models/components/gcpproject.md)                           | :heavy_minus_sign:                                                                       | Remote info for GCP project.                                                             |
 | `gcpSqlInstance`                                                                         | [components.GcpSqlInstance](../../models/components/gcpsqlinstance.md)                   | :heavy_minus_sign:                                                                       | Remote info for GCP SQL instance.                                                        |
 | `gcpServiceAccount`                                                                      | [components.GcpServiceAccount](../../models/components/gcpserviceaccount.md)             | :heavy_minus_sign:                                                                       | Remote info for a GCP service account.                                                   |
+| `googleWorkspaceRole`                                                                    | [components.GoogleWorkspaceRole](../../models/components/googleworkspacerole.md)         | :heavy_minus_sign:                                                                       | Remote info for GCP workspace role.                                                      |
 | `githubRepo`                                                                             | [components.GithubRepo](../../models/components/githubrepo.md)                           | :heavy_minus_sign:                                                                       | Remote info for GitHub repository.                                                       |
 | `gitlabProject`                                                                          | [components.GitlabProject](../../models/components/gitlabproject.md)                     | :heavy_minus_sign:                                                                       | Remote info for Gitlab project.                                                          |
 | `oktaApp`                                                                                | [components.OktaApp](../../models/components/oktaapp.md)                                 | :heavy_minus_sign:                                                                       | Remote info for Okta directory app.                                                      |

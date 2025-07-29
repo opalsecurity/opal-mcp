@@ -41,7 +41,7 @@ import {
  * ### Usage Example
  * Returned from the `GET Requests` endpoint.
  */
-export type Request = {
+export type RequestT = {
   /**
    * The unique identifier of the request.
    */
@@ -100,40 +100,39 @@ export type Request = {
 };
 
 /** @internal */
-export const Request$inboundSchema: z.ZodType<Request, z.ZodTypeDef, unknown> =
-  z.object({
-    id: z.string(),
-    created_at: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ),
-    updated_at: z.string().datetime({ offset: true }).transform(v =>
-      new Date(v)
-    ),
-    requester_id: z.string(),
-    target_user_id: z.string().optional(),
-    target_group_id: z.string().optional(),
-    status: RequestStatusEnum$inboundSchema,
-    reason: z.string(),
-    duration_minutes: z.number().int().optional(),
-    requested_items_list: z.array(RequestedItem$inboundSchema).optional(),
-    custom_fields_responses: z.array(RequestCustomFieldResponse$inboundSchema)
-      .optional(),
-    stages: RequestItemStages$inboundSchema.optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "created_at": "createdAt",
-      "updated_at": "updatedAt",
-      "requester_id": "requesterId",
-      "target_user_id": "targetUserId",
-      "target_group_id": "targetGroupId",
-      "duration_minutes": "durationMinutes",
-      "requested_items_list": "requestedItemsList",
-      "custom_fields_responses": "customFieldsResponses",
-    });
+export const RequestT$inboundSchema: z.ZodType<
+  RequestT,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
+  created_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  updated_at: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  requester_id: z.string(),
+  target_user_id: z.string().optional(),
+  target_group_id: z.string().optional(),
+  status: RequestStatusEnum$inboundSchema,
+  reason: z.string(),
+  duration_minutes: z.number().int().optional(),
+  requested_items_list: z.array(RequestedItem$inboundSchema).optional(),
+  custom_fields_responses: z.array(RequestCustomFieldResponse$inboundSchema)
+    .optional(),
+  stages: RequestItemStages$inboundSchema.optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "created_at": "createdAt",
+    "updated_at": "updatedAt",
+    "requester_id": "requesterId",
+    "target_user_id": "targetUserId",
+    "target_group_id": "targetGroupId",
+    "duration_minutes": "durationMinutes",
+    "requested_items_list": "requestedItemsList",
+    "custom_fields_responses": "customFieldsResponses",
   });
+});
 
 /** @internal */
-export type Request$Outbound = {
+export type RequestT$Outbound = {
   id: string;
   created_at: string;
   updated_at: string;
@@ -151,10 +150,10 @@ export type Request$Outbound = {
 };
 
 /** @internal */
-export const Request$outboundSchema: z.ZodType<
-  Request$Outbound,
+export const RequestT$outboundSchema: z.ZodType<
+  RequestT$Outbound,
   z.ZodTypeDef,
-  Request
+  RequestT
 > = z.object({
   id: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
@@ -186,25 +185,25 @@ export const Request$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Request$ {
-  /** @deprecated use `Request$inboundSchema` instead. */
-  export const inboundSchema = Request$inboundSchema;
-  /** @deprecated use `Request$outboundSchema` instead. */
-  export const outboundSchema = Request$outboundSchema;
-  /** @deprecated use `Request$Outbound` instead. */
-  export type Outbound = Request$Outbound;
+export namespace RequestT$ {
+  /** @deprecated use `RequestT$inboundSchema` instead. */
+  export const inboundSchema = RequestT$inboundSchema;
+  /** @deprecated use `RequestT$outboundSchema` instead. */
+  export const outboundSchema = RequestT$outboundSchema;
+  /** @deprecated use `RequestT$Outbound` instead. */
+  export type Outbound = RequestT$Outbound;
 }
 
-export function requestToJSON(request: Request): string {
-  return JSON.stringify(Request$outboundSchema.parse(request));
+export function requestToJSON(requestT: RequestT): string {
+  return JSON.stringify(RequestT$outboundSchema.parse(requestT));
 }
 
 export function requestFromJSON(
   jsonString: string,
-): SafeParseResult<Request, SDKValidationError> {
+): SafeParseResult<RequestT, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Request$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Request' from JSON`,
+    (x) => RequestT$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RequestT' from JSON`,
   );
 }

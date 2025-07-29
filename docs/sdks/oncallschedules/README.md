@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to on-call schedules
+
 ### Available Operations
 
 * [getOnCallSchedules](#getoncallschedules) - Returns a list of `OnCallSchedule` objects.
@@ -15,6 +17,7 @@ Returns a list of `OnCallSchedule` objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_on_call_schedules" method="get" path="/on-call-schedules" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -82,6 +85,7 @@ Creates a `OnCallSchedule` objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_on_call_schedule" method="post" path="/on-call-schedules" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -156,6 +160,7 @@ Gets a `OnCallSchedule` object.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_on_call_schedule" method="get" path="/on-call-schedules/{on_call_schedule_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
