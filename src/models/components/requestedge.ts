@@ -7,10 +7,10 @@ import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  Request,
-  Request$inboundSchema,
-  Request$Outbound,
-  Request$outboundSchema,
+  RequestT,
+  RequestT$inboundSchema,
+  RequestT$Outbound,
+  RequestT$outboundSchema,
 } from "./request.js";
 
 export type RequestEdge = {
@@ -24,7 +24,7 @@ export type RequestEdge = {
    * ### Usage Example
    * Returned from the `GET Requests` endpoint.
    */
-  node: Request;
+  node: RequestT;
   /**
    * The cursor for this request edge
    */
@@ -37,13 +37,13 @@ export const RequestEdge$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  node: Request$inboundSchema,
+  node: RequestT$inboundSchema,
   cursor: z.string(),
 });
 
 /** @internal */
 export type RequestEdge$Outbound = {
-  node: Request$Outbound;
+  node: RequestT$Outbound;
   cursor: string;
 };
 
@@ -53,7 +53,7 @@ export const RequestEdge$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   RequestEdge
 > = z.object({
-  node: Request$outboundSchema,
+  node: RequestT$outboundSchema,
   cursor: z.string(),
 });
 

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f4a8d8c-90c5-4992-8800-17a249fd1e0f
 management:
-  docChecksum: ffe4ac660cd1dd7c56128d992f81eb05
+  docChecksum: 156291fa2d74e64a788c7da05033216c
   docVersion: "1.0"
-  speakeasyVersion: 1.561.0
-  generationVersion: 2.628.0
-  releaseVersion: 0.6.2
-  configChecksum: 475ae8407d3b2abbdf5125b9139a66ef
+  speakeasyVersion: 1.592.1
+  generationVersion: 2.667.0
+  releaseVersion: 0.7.0
+  configChecksum: 63e10a5c7bec13cd29a53bad747705ef
   repoURL: https://github.com/opalsecurity/opal-mcp.git
   installationURL: https://github.com/opalsecurity/opal-mcp
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
-    core: 3.21.11
+    core: 3.21.16
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     devContainers: 2.90.0
@@ -25,12 +25,13 @@ features:
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.5
     inputOutputModels: 2.82.0
-    mcpServer: 0.9.2
+    mcpServer: 0.9.3
     nullables: 0.1.1
+    pagination: 2.83.0
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.9
+    unions: 2.85.11
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -56,6 +57,7 @@ generatedFiles:
   - docs/models/components/awsec2instance.md
   - docs/models/components/awsekscluster.md
   - docs/models/components/awsiamrole.md
+  - docs/models/components/awsorganizationalunit.md
   - docs/models/components/awspermissionset.md
   - docs/models/components/awsrdsinstance.md
   - docs/models/components/azureadmicrosoft365group.md
@@ -81,6 +83,7 @@ generatedFiles:
   - docs/models/components/createresourceinfo.md
   - docs/models/components/createtaginfo.md
   - docs/models/components/createuarinfo.md
+  - docs/models/components/customconnector.md
   - docs/models/components/custommetadatum.md
   - docs/models/components/duogroup.md
   - docs/models/components/entitytypeenum.md
@@ -102,6 +105,7 @@ generatedFiles:
   - docs/models/components/gitlabgroup.md
   - docs/models/components/gitlabproject.md
   - docs/models/components/googlegroup.md
+  - docs/models/components/googleworkspacerole.md
   - docs/models/components/group.md
   - docs/models/components/groupaccesslevel.md
   - docs/models/components/groupbinding.md
@@ -126,6 +130,7 @@ generatedFiles:
   - docs/models/components/oktaapp.md
   - docs/models/components/oktacustomrole.md
   - docs/models/components/oktagroup.md
+  - docs/models/components/oktagrouprule.md
   - docs/models/components/oktastandardrole.md
   - docs/models/components/oncallschedule.md
   - docs/models/components/oncallscheduleidlist.md
@@ -149,7 +154,6 @@ generatedFiles:
   - docs/models/components/paginateduserslist.md
   - docs/models/components/propagationstatus.md
   - docs/models/components/propagationstatusenum.md
-  - docs/models/components/request.md
   - docs/models/components/requestconfiguration.md
   - docs/models/components/requestconnection.md
   - docs/models/components/requestcustomfieldresponse.md
@@ -161,6 +165,7 @@ generatedFiles:
   - docs/models/components/requestreviewerstatus.md
   - docs/models/components/requeststage.md
   - docs/models/components/requeststatusenum.md
+  - docs/models/components/requestt.md
   - docs/models/components/requesttemplatecustomfieldtypeenum.md
   - docs/models/components/resource.md
   - docs/models/components/resourceaccesslevel.md
@@ -179,12 +184,16 @@ generatedFiles:
   - docs/models/components/reviewerstagelist.md
   - docs/models/components/reviewstageoperator.md
   - docs/models/components/risksensitivityenum.md
+  - docs/models/components/rolepermissionnameenum.md
+  - docs/models/components/rolepermissiontargettypeenum.md
   - docs/models/components/ruleclauses.md
   - docs/models/components/ruleconjunction.md
   - docs/models/components/ruledisjunction.md
   - docs/models/components/salesforcepermissionset.md
   - docs/models/components/salesforceprofile.md
   - docs/models/components/salesforcerole.md
+  - docs/models/components/scopedrolepermission.md
+  - docs/models/components/scopedrolepermissionlist.md
   - docs/models/components/security.md
   - docs/models/components/session.md
   - docs/models/components/sessionslist.md
@@ -222,6 +231,7 @@ generatedFiles:
   - docs/models/components/userlist.md
   - docs/models/components/visibilityinfo.md
   - docs/models/components/visibilitytypeenum.md
+  - docs/models/components/workdayusersecuritygroup.md
   - docs/models/operations/addbundlegrouprequest.md
   - docs/models/operations/addbundlegrouprequestbody.md
   - docs/models/operations/addbundleresourcerequest.md
@@ -256,16 +266,21 @@ generatedFiles:
   - docs/models/operations/deleteresourceuserrequest.md
   - docs/models/operations/deletetagbyidrequest.md
   - docs/models/operations/eventsrequest.md
+  - docs/models/operations/eventsresponse.md
   - docs/models/operations/getaccessrulerequest.md
   - docs/models/operations/getapprequest.md
   - docs/models/operations/getappsrequest.md
   - docs/models/operations/getbundlegroupsrequest.md
+  - docs/models/operations/getbundlegroupsresponse.md
   - docs/models/operations/getbundlerequest.md
   - docs/models/operations/getbundleresourcesrequest.md
+  - docs/models/operations/getbundleresourcesresponse.md
   - docs/models/operations/getbundlesrequest.md
+  - docs/models/operations/getbundlesresponse.md
   - docs/models/operations/getbundlevisibilityrequest.md
   - docs/models/operations/getgroupbindingrequest.md
   - docs/models/operations/getgroupbindingsrequest.md
+  - docs/models/operations/getgroupbindingsresponse.md
   - docs/models/operations/getgroupcontaininggrouprequest.md
   - docs/models/operations/getgroupcontaininggroupsrequest.md
   - docs/models/operations/getgroupmessagechannelsrequest.md
@@ -275,25 +290,32 @@ generatedFiles:
   - docs/models/operations/getgroupreviewersrequest.md
   - docs/models/operations/getgroupreviewerstagesrequest.md
   - docs/models/operations/getgroupsrequest.md
+  - docs/models/operations/getgroupsresponse.md
   - docs/models/operations/getgrouptagsrequest.md
   - docs/models/operations/getgroupusersrequest.md
   - docs/models/operations/getgroupvisibilityrequest.md
   - docs/models/operations/getidpgroupmappingsrequest.md
   - docs/models/operations/getmessagechannelrequest.md
   - docs/models/operations/getnhisrequest.md
+  - docs/models/operations/getnhisresponse.md
   - docs/models/operations/getoncallschedulerequest.md
   - docs/models/operations/getownerfromnamerequest.md
   - docs/models/operations/getownerrequest.md
   - docs/models/operations/getownersrequest.md
+  - docs/models/operations/getownersresponse.md
   - docs/models/operations/getownerusersrequest.md
+  - docs/models/operations/getrequestrequest.md
   - docs/models/operations/getrequestsrelayrequest.md
   - docs/models/operations/getrequestsrequest.md
+  - docs/models/operations/getrequestsresponse.md
   - docs/models/operations/getresourcemessagechannelsrequest.md
   - docs/models/operations/getresourcenhisrequest.md
   - docs/models/operations/getresourcerequest.md
   - docs/models/operations/getresourcereviewersrequest.md
   - docs/models/operations/getresourcereviewerstagesrequest.md
+  - docs/models/operations/getresourcescopedrolepermissionsrequest.md
   - docs/models/operations/getresourcesrequest.md
+  - docs/models/operations/getresourcesresponse.md
   - docs/models/operations/getresourcetagsrequest.md
   - docs/models/operations/getresourceuserrequest.md
   - docs/models/operations/getresourceuserresponse.md
@@ -303,9 +325,12 @@ generatedFiles:
   - docs/models/operations/gettagbyidrequest.md
   - docs/models/operations/gettagrequest.md
   - docs/models/operations/gettagsrequest.md
+  - docs/models/operations/gettagsresponse.md
   - docs/models/operations/getuarrequest.md
   - docs/models/operations/getuarsrequest.md
+  - docs/models/operations/getuarsresponse.md
   - docs/models/operations/getusersrequest.md
+  - docs/models/operations/getusersresponse.md
   - docs/models/operations/getusertagsrequest.md
   - docs/models/operations/level.md
   - docs/models/operations/mapping.md
@@ -328,6 +353,7 @@ generatedFiles:
   - docs/models/operations/setresourcemessagechannelsrequest.md
   - docs/models/operations/setresourcereviewersrequest.md
   - docs/models/operations/setresourcereviewerstagesrequest.md
+  - docs/models/operations/setresourcescopedrolepermissionsrequest.md
   - docs/models/operations/setresourcevisibilityrequest.md
   - docs/models/operations/updateaccessrulerequest.md
   - docs/models/operations/updatebundlerequest.md
@@ -353,11 +379,16 @@ generatedFiles:
   - docs/sdks/owners/README.md
   - docs/sdks/requests/README.md
   - docs/sdks/resources/README.md
+  - docs/sdks/scopedrolepermissions/README.md
   - docs/sdks/sessions/README.md
   - docs/sdks/tags/README.md
   - docs/sdks/uars/README.md
   - docs/sdks/users/README.md
   - eslint.config.mjs
+  - examples/.env.template
+  - examples/README.md
+  - examples/appsGetApps.example.ts
+  - examples/package.json
   - jsr.json
   - package.json
   - src/core.ts
@@ -437,6 +468,7 @@ generatedFiles:
   - src/funcs/ownersUpdateOwners.ts
   - src/funcs/requestsApproveRequest.ts
   - src/funcs/requestsCreateRequest.ts
+  - src/funcs/requestsGetRequest.ts
   - src/funcs/requestsGetRequests.ts
   - src/funcs/requestsGetRequestsRelay.ts
   - src/funcs/resourcesAddResourceNhi.ts
@@ -450,6 +482,7 @@ generatedFiles:
   - src/funcs/resourcesGetResourceNhis.ts
   - src/funcs/resourcesGetResourceReviewerStages.ts
   - src/funcs/resourcesGetResourceReviewers.ts
+  - src/funcs/resourcesGetResourceScopedRolePermissions.ts
   - src/funcs/resourcesGetResourceTags.ts
   - src/funcs/resourcesGetResourceUser.ts
   - src/funcs/resourcesGetResourceUsers.ts
@@ -459,6 +492,7 @@ generatedFiles:
   - src/funcs/resourcesSetResourceMessageChannels.ts
   - src/funcs/resourcesSetResourceReviewerStages.ts
   - src/funcs/resourcesSetResourceReviewers.ts
+  - src/funcs/resourcesSetResourceScopedRolePermissions.ts
   - src/funcs/resourcesSetResourceVisibility.ts
   - src/funcs/resourcesUpdateResourceUser.ts
   - src/funcs/resourcesUpdateResources.ts
@@ -589,6 +623,7 @@ generatedFiles:
   - src/mcp-server/tools/ownersUpdateOwners.ts
   - src/mcp-server/tools/requestsApproveRequest.ts
   - src/mcp-server/tools/requestsCreateRequest.ts
+  - src/mcp-server/tools/requestsGetRequest.ts
   - src/mcp-server/tools/requestsGetRequests.ts
   - src/mcp-server/tools/requestsGetRequestsRelay.ts
   - src/mcp-server/tools/resourcesAddResourceNhi.ts
@@ -602,6 +637,7 @@ generatedFiles:
   - src/mcp-server/tools/resourcesGetResourceNhis.ts
   - src/mcp-server/tools/resourcesGetResourceReviewerStages.ts
   - src/mcp-server/tools/resourcesGetResourceReviewers.ts
+  - src/mcp-server/tools/resourcesGetResourceScopedRolePermissions.ts
   - src/mcp-server/tools/resourcesGetResourceTags.ts
   - src/mcp-server/tools/resourcesGetResourceUser.ts
   - src/mcp-server/tools/resourcesGetResourceUsers.ts
@@ -611,6 +647,7 @@ generatedFiles:
   - src/mcp-server/tools/resourcesSetResourceMessageChannels.ts
   - src/mcp-server/tools/resourcesSetResourceReviewerStages.ts
   - src/mcp-server/tools/resourcesSetResourceReviewers.ts
+  - src/mcp-server/tools/resourcesSetResourceScopedRolePermissions.ts
   - src/mcp-server/tools/resourcesSetResourceVisibility.ts
   - src/mcp-server/tools/resourcesUpdateResourceUser.ts
   - src/mcp-server/tools/resourcesUpdateResources.ts
@@ -728,9 +765,13 @@ generatedFiles:
   - src/models/components/reviewerstagelist.ts
   - src/models/components/reviewstageoperator.ts
   - src/models/components/risksensitivityenum.ts
+  - src/models/components/rolepermissionnameenum.ts
+  - src/models/components/rolepermissiontargettypeenum.ts
   - src/models/components/ruleclauses.ts
   - src/models/components/ruleconjunction.ts
   - src/models/components/ruledisjunction.ts
+  - src/models/components/scopedrolepermission.ts
+  - src/models/components/scopedrolepermissionlist.ts
   - src/models/components/security.ts
   - src/models/components/session.ts
   - src/models/components/sessionslist.ts
@@ -824,6 +865,7 @@ generatedFiles:
   - src/models/operations/getownerfromname.ts
   - src/models/operations/getowners.ts
   - src/models/operations/getownerusers.ts
+  - src/models/operations/getrequest.ts
   - src/models/operations/getrequests.ts
   - src/models/operations/getrequestsrelay.ts
   - src/models/operations/getresource.ts
@@ -832,6 +874,7 @@ generatedFiles:
   - src/models/operations/getresourcereviewers.ts
   - src/models/operations/getresourcereviewerstages.ts
   - src/models/operations/getresources.ts
+  - src/models/operations/getresourcescopedrolepermissions.ts
   - src/models/operations/getresourcetags.ts
   - src/models/operations/getresourceuser.ts
   - src/models/operations/getresourceusers.ts
@@ -864,6 +907,7 @@ generatedFiles:
   - src/models/operations/setresourcemessagechannels.ts
   - src/models/operations/setresourcereviewers.ts
   - src/models/operations/setresourcereviewerstages.ts
+  - src/models/operations/setresourcescopedrolepermissions.ts
   - src/models/operations/setresourcevisibility.ts
   - src/models/operations/updateaccessrule.ts
   - src/models/operations/updatebundle.ts
@@ -886,6 +930,7 @@ generatedFiles:
   - src/sdk/owners.ts
   - src/sdk/requests.ts
   - src/sdk/resources.ts
+  - src/sdk/scopedrolepermissions.ts
   - src/sdk/sdk.ts
   - src/sdk/sessions.ts
   - src/sdk/tags.ts
@@ -1650,6 +1695,8 @@ examples:
         path:
           group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
           user_id: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06"
+        query:
+          access_level_remote_id: "30"
   getGroupBindings:
     "":
       parameters:
@@ -1967,7 +2014,7 @@ examples:
         application/json: {"name": "Okta Engineering Super Admin", "description": "Okta super admin role.", "resource_type": "OKTA_ROLE", "app_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "remote_resource_id": "API_ACCESS_MANAGEMENT_ADMIN-51d203da-313a-4fd9-8fcf-420ce6312345", "metadata": "{\n  \"okta_directory_role\":\n    {\n      \"role_id\": \"SUPER_ADMIN-b52aa037-4a35-4ac3-9350-f6260fd12345\",\n      \"role_type\": \"SUPER_ADMIN\",\n    },\n}"}
       responses:
         "200":
-          application/json: {"resource_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "parent_resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5345"}
+          application/json: {"resource_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "parent_resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5345", "ancestor_resource_ids": ["f454d283-ca67-4a8a-bdbb-df212eca5345"], "descendant_resource_ids": ["f454d283-ca67-4a8a-bdbb-df212eca5345"]}
   get_resource:
     "":
       parameters:
@@ -1982,7 +2029,7 @@ examples:
           resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
       responses:
         "200":
-          application/json: {"resource_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "parent_resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5345"}
+          application/json: {"resource_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "app_id": "b5a5ca27-0ea3-4d86-9199-2126d57d1fbd", "description": "This resource represents AWS IAM role \"SupportUser\".", "admin_owner_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "max_duration": 120, "require_manager_approval": false, "require_support_ticket": false, "parent_resource_id": "f454d283-ca67-4a8a-bdbb-df212eca5345", "ancestor_resource_ids": ["f454d283-ca67-4a8a-bdbb-df212eca5345"], "descendant_resource_ids": ["f454d283-ca67-4a8a-bdbb-df212eca5345"]}
   delete_resource:
     "":
       parameters:
@@ -2693,5 +2740,31 @@ examples:
       responses:
         "200":
           application/json: {"group_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "full_name": "Jake Barnes", "email": "jake@company.dev", "expiration_date": "2022-01-23T04:56:07Z"}
+  getRequest:
+    speakeasy-default-get-request:
+      parameters:
+        path:
+          id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "r86c85d-0651-43e2-a748-d69d658418e8", "status": "APPROVED", "reason": "I need this resource.", "duration_minutes": 1440, "stages": {"requestedRoleName": "Admin", "requestedItemName": "AWS Production Account", "stages": [{"stage": 1, "operator": "AND", "reviewers": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING"}]}, {"stage": 2, "operator": "OR", "reviewers": [{"id": "8d86c85d-0651-43e2-a748-d69d658418e9", "status": "APPROVED"}]}]}}
+  get_resource_scoped_role_permissions:
+    speakeasy-default-get-resource-scoped-role-permissions:
+      parameters:
+        path:
+          resource_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+      responses:
+        "200":
+          application/json: {"permissions": [{"target_ids": ["a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1", "8294e9c9-deb6-48e9-9c99-da2a1e04a87f"], "target_type": "RESOURCE", "permission_name": "READ", "allow_all": true}]}
+  set_resource_scoped_role_permissions:
+    speakeasy-default-set-resource-scoped-role-permissions:
+      parameters:
+        path:
+          resource_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+      requestBody:
+        application/json: {"permissions": [{"target_ids": ["a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1", "8294e9c9-deb6-48e9-9c99-da2a1e04a87f"], "target_type": "RESOURCE", "permission_name": "READ", "allow_all": false}]}
+      responses:
+        "200":
+          application/json: {"permissions": [{"target_ids": ["a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1", "8294e9c9-deb6-48e9-9c99-da2a1e04a87f"], "target_type": "RESOURCE", "permission_name": "READ", "allow_all": false}]}
 examplesVersion: 1.0.2
 generatedTests: {}

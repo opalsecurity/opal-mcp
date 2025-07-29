@@ -4,9 +4,8 @@
 
 import { nonHumanIdentitiesGetNhis } from "../funcs/nonHumanIdentitiesGetNhis.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
-import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class NonHumanIdentities extends ClientSDK {
   /**
@@ -15,8 +14,8 @@ export class NonHumanIdentities extends ClientSDK {
   async getNhis(
     request: operations.GetNhisRequest,
     options?: RequestOptions,
-  ): Promise<components.PaginatedResourcesList> {
-    return unwrapAsync(nonHumanIdentitiesGetNhis(
+  ): Promise<PageIterator<operations.GetNhisResponse, { cursor: string }>> {
+    return unwrapResultIterator(nonHumanIdentitiesGetNhis(
       this,
       request,
       options,

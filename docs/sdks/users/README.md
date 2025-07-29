@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to users
+
 ### Available Operations
 
 * [user](#user) - Retrieves detailed user information from Opal. This endpoint is designed to fetch user details by
@@ -41,6 +43,7 @@ Authentication:
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="user" method="get" path="/user" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -115,6 +118,7 @@ Returns a list of users for your organization.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getUsers" method="get" path="/users" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -128,7 +132,9 @@ async function run() {
     pageSize: 200,
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -155,7 +161,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("usersGetUsers failed:", res.error);
   }
@@ -175,7 +183,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedUsersList](../../models/components/paginateduserslist.md)\>**
+**Promise\<[operations.GetUsersResponse](../../models/operations/getusersresponse.md)\>**
 
 ### Errors
 
@@ -189,6 +197,7 @@ Returns all tags applied to the user.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_user_tags" method="get" path="/users/{user_id}/tags" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 

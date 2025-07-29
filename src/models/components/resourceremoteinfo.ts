@@ -9,6 +9,20 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
+ * Remote info for AWS organizational unit.
+ */
+export type AwsOrganizationalUnit = {
+  /**
+   * The id of the parent organizational unit.
+   */
+  parentId?: string | undefined;
+  /**
+   * The id of the AWS organizational unit that is being created.
+   */
+  organizationalUnitId: string;
+};
+
+/**
  * Remote info for AWS account.
  */
 export type AwsAccount = {
@@ -16,6 +30,10 @@ export type AwsAccount = {
    * The id of the AWS account.
    */
   accountId: string;
+  /**
+   * The id of the AWS organizational unit. Required only if customer has OUs enabled.
+   */
+  organizationalUnitId?: string | undefined;
 };
 
 /**
@@ -98,6 +116,20 @@ export type AwsEksCluster = {
    * The id of the AWS account. Required for AWS Organizations.
    */
   accountId?: string | undefined;
+};
+
+/**
+ * Remote info for a custom connector resource.
+ */
+export type CustomConnector = {
+  /**
+   * The id of the resource in the end system
+   */
+  remoteResourceId: string;
+  /**
+   * A bool representing whether or not the resource can have usage data.
+   */
+  canHaveUsageEvents: boolean;
 };
 
 /**
@@ -233,6 +265,16 @@ export type GcpServiceAccount = {
 };
 
 /**
+ * Remote info for GCP workspace role.
+ */
+export type GoogleWorkspaceRole = {
+  /**
+   * The id of the role.
+   */
+  roleId: string;
+};
+
+/**
  * Remote info for GitHub repository.
  */
 export type GithubRepo = {
@@ -347,6 +389,10 @@ export type TeleportRole = {
  */
 export type ResourceRemoteInfo = {
   /**
+   * Remote info for AWS organizational unit.
+   */
+  awsOrganizationalUnit?: AwsOrganizationalUnit | undefined;
+  /**
    * Remote info for AWS account.
    */
   awsAccount?: AwsAccount | undefined;
@@ -370,6 +416,10 @@ export type ResourceRemoteInfo = {
    * Remote info for AWS EKS cluster.
    */
   awsEksCluster?: AwsEksCluster | undefined;
+  /**
+   * Remote info for a custom connector resource.
+   */
+  customConnector?: CustomConnector | undefined;
   /**
    * Remote info for GCP organization.
    */
@@ -410,6 +460,10 @@ export type ResourceRemoteInfo = {
    * Remote info for a GCP service account.
    */
   gcpServiceAccount?: GcpServiceAccount | undefined;
+  /**
+   * Remote info for GCP workspace role.
+   */
+  googleWorkspaceRole?: GoogleWorkspaceRole | undefined;
   /**
    * Remote info for GitHub repository.
    */
@@ -453,21 +507,91 @@ export type ResourceRemoteInfo = {
 };
 
 /** @internal */
+export const AwsOrganizationalUnit$inboundSchema: z.ZodType<
+  AwsOrganizationalUnit,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  parent_id: z.string().optional(),
+  organizational_unit_id: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    "parent_id": "parentId",
+    "organizational_unit_id": "organizationalUnitId",
+  });
+});
+
+/** @internal */
+export type AwsOrganizationalUnit$Outbound = {
+  parent_id?: string | undefined;
+  organizational_unit_id: string;
+};
+
+/** @internal */
+export const AwsOrganizationalUnit$outboundSchema: z.ZodType<
+  AwsOrganizationalUnit$Outbound,
+  z.ZodTypeDef,
+  AwsOrganizationalUnit
+> = z.object({
+  parentId: z.string().optional(),
+  organizationalUnitId: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    parentId: "parent_id",
+    organizationalUnitId: "organizational_unit_id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace AwsOrganizationalUnit$ {
+  /** @deprecated use `AwsOrganizationalUnit$inboundSchema` instead. */
+  export const inboundSchema = AwsOrganizationalUnit$inboundSchema;
+  /** @deprecated use `AwsOrganizationalUnit$outboundSchema` instead. */
+  export const outboundSchema = AwsOrganizationalUnit$outboundSchema;
+  /** @deprecated use `AwsOrganizationalUnit$Outbound` instead. */
+  export type Outbound = AwsOrganizationalUnit$Outbound;
+}
+
+export function awsOrganizationalUnitToJSON(
+  awsOrganizationalUnit: AwsOrganizationalUnit,
+): string {
+  return JSON.stringify(
+    AwsOrganizationalUnit$outboundSchema.parse(awsOrganizationalUnit),
+  );
+}
+
+export function awsOrganizationalUnitFromJSON(
+  jsonString: string,
+): SafeParseResult<AwsOrganizationalUnit, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AwsOrganizationalUnit$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AwsOrganizationalUnit' from JSON`,
+  );
+}
+
+/** @internal */
 export const AwsAccount$inboundSchema: z.ZodType<
   AwsAccount,
   z.ZodTypeDef,
   unknown
 > = z.object({
   account_id: z.string(),
+  organizational_unit_id: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "account_id": "accountId",
+    "organizational_unit_id": "organizationalUnitId",
   });
 });
 
 /** @internal */
 export type AwsAccount$Outbound = {
   account_id: string;
+  organizational_unit_id?: string | undefined;
 };
 
 /** @internal */
@@ -477,9 +601,11 @@ export const AwsAccount$outboundSchema: z.ZodType<
   AwsAccount
 > = z.object({
   accountId: z.string(),
+  organizationalUnitId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     accountId: "account_id",
+    organizationalUnitId: "organizational_unit_id",
   });
 });
 
@@ -831,6 +957,71 @@ export function awsEksClusterFromJSON(
     jsonString,
     (x) => AwsEksCluster$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'AwsEksCluster' from JSON`,
+  );
+}
+
+/** @internal */
+export const CustomConnector$inboundSchema: z.ZodType<
+  CustomConnector,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  remote_resource_id: z.string(),
+  can_have_usage_events: z.boolean(),
+}).transform((v) => {
+  return remap$(v, {
+    "remote_resource_id": "remoteResourceId",
+    "can_have_usage_events": "canHaveUsageEvents",
+  });
+});
+
+/** @internal */
+export type CustomConnector$Outbound = {
+  remote_resource_id: string;
+  can_have_usage_events: boolean;
+};
+
+/** @internal */
+export const CustomConnector$outboundSchema: z.ZodType<
+  CustomConnector$Outbound,
+  z.ZodTypeDef,
+  CustomConnector
+> = z.object({
+  remoteResourceId: z.string(),
+  canHaveUsageEvents: z.boolean(),
+}).transform((v) => {
+  return remap$(v, {
+    remoteResourceId: "remote_resource_id",
+    canHaveUsageEvents: "can_have_usage_events",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CustomConnector$ {
+  /** @deprecated use `CustomConnector$inboundSchema` instead. */
+  export const inboundSchema = CustomConnector$inboundSchema;
+  /** @deprecated use `CustomConnector$outboundSchema` instead. */
+  export const outboundSchema = CustomConnector$outboundSchema;
+  /** @deprecated use `CustomConnector$Outbound` instead. */
+  export type Outbound = CustomConnector$Outbound;
+}
+
+export function customConnectorToJSON(
+  customConnector: CustomConnector,
+): string {
+  return JSON.stringify(CustomConnector$outboundSchema.parse(customConnector));
+}
+
+export function customConnectorFromJSON(
+  jsonString: string,
+): SafeParseResult<CustomConnector, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CustomConnector$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CustomConnector' from JSON`,
   );
 }
 
@@ -1469,6 +1660,68 @@ export function gcpServiceAccountFromJSON(
 }
 
 /** @internal */
+export const GoogleWorkspaceRole$inboundSchema: z.ZodType<
+  GoogleWorkspaceRole,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  role_id: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    "role_id": "roleId",
+  });
+});
+
+/** @internal */
+export type GoogleWorkspaceRole$Outbound = {
+  role_id: string;
+};
+
+/** @internal */
+export const GoogleWorkspaceRole$outboundSchema: z.ZodType<
+  GoogleWorkspaceRole$Outbound,
+  z.ZodTypeDef,
+  GoogleWorkspaceRole
+> = z.object({
+  roleId: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    roleId: "role_id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GoogleWorkspaceRole$ {
+  /** @deprecated use `GoogleWorkspaceRole$inboundSchema` instead. */
+  export const inboundSchema = GoogleWorkspaceRole$inboundSchema;
+  /** @deprecated use `GoogleWorkspaceRole$outboundSchema` instead. */
+  export const outboundSchema = GoogleWorkspaceRole$outboundSchema;
+  /** @deprecated use `GoogleWorkspaceRole$Outbound` instead. */
+  export type Outbound = GoogleWorkspaceRole$Outbound;
+}
+
+export function googleWorkspaceRoleToJSON(
+  googleWorkspaceRole: GoogleWorkspaceRole,
+): string {
+  return JSON.stringify(
+    GoogleWorkspaceRole$outboundSchema.parse(googleWorkspaceRole),
+  );
+}
+
+export function googleWorkspaceRoleFromJSON(
+  jsonString: string,
+): SafeParseResult<GoogleWorkspaceRole, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GoogleWorkspaceRole$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GoogleWorkspaceRole' from JSON`,
+  );
+}
+
+/** @internal */
 export const GithubRepo$inboundSchema: z.ZodType<
   GithubRepo,
   z.ZodTypeDef,
@@ -2073,12 +2326,15 @@ export const ResourceRemoteInfo$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  aws_organizational_unit: z.lazy(() => AwsOrganizationalUnit$inboundSchema)
+    .optional(),
   aws_account: z.lazy(() => AwsAccount$inboundSchema).optional(),
   aws_permission_set: z.lazy(() => AwsPermissionSet$inboundSchema).optional(),
   aws_iam_role: z.lazy(() => AwsIamRole$inboundSchema).optional(),
   aws_ec2_instance: z.lazy(() => AwsEc2Instance$inboundSchema).optional(),
   aws_rds_instance: z.lazy(() => AwsRdsInstance$inboundSchema).optional(),
   aws_eks_cluster: z.lazy(() => AwsEksCluster$inboundSchema).optional(),
+  custom_connector: z.lazy(() => CustomConnector$inboundSchema).optional(),
   gcp_organization: z.lazy(() => GcpOrganization$inboundSchema).optional(),
   gcp_bucket: z.lazy(() => GcpBucket$inboundSchema).optional(),
   gcp_compute_instance: z.lazy(() => GcpComputeInstance$inboundSchema)
@@ -2091,6 +2347,8 @@ export const ResourceRemoteInfo$inboundSchema: z.ZodType<
   gcp_project: z.lazy(() => GcpProject$inboundSchema).optional(),
   gcp_sql_instance: z.lazy(() => GcpSqlInstance$inboundSchema).optional(),
   gcp_service_account: z.lazy(() => GcpServiceAccount$inboundSchema).optional(),
+  google_workspace_role: z.lazy(() => GoogleWorkspaceRole$inboundSchema)
+    .optional(),
   github_repo: z.lazy(() => GithubRepo$inboundSchema).optional(),
   gitlab_project: z.lazy(() => GitlabProject$inboundSchema).optional(),
   okta_app: z.lazy(() => OktaApp$inboundSchema).optional(),
@@ -2104,12 +2362,14 @@ export const ResourceRemoteInfo$inboundSchema: z.ZodType<
   teleport_role: z.lazy(() => TeleportRole$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    "aws_organizational_unit": "awsOrganizationalUnit",
     "aws_account": "awsAccount",
     "aws_permission_set": "awsPermissionSet",
     "aws_iam_role": "awsIamRole",
     "aws_ec2_instance": "awsEc2Instance",
     "aws_rds_instance": "awsRdsInstance",
     "aws_eks_cluster": "awsEksCluster",
+    "custom_connector": "customConnector",
     "gcp_organization": "gcpOrganization",
     "gcp_bucket": "gcpBucket",
     "gcp_compute_instance": "gcpComputeInstance",
@@ -2120,6 +2380,7 @@ export const ResourceRemoteInfo$inboundSchema: z.ZodType<
     "gcp_project": "gcpProject",
     "gcp_sql_instance": "gcpSqlInstance",
     "gcp_service_account": "gcpServiceAccount",
+    "google_workspace_role": "googleWorkspaceRole",
     "github_repo": "githubRepo",
     "gitlab_project": "gitlabProject",
     "okta_app": "oktaApp",
@@ -2135,12 +2396,14 @@ export const ResourceRemoteInfo$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ResourceRemoteInfo$Outbound = {
+  aws_organizational_unit?: AwsOrganizationalUnit$Outbound | undefined;
   aws_account?: AwsAccount$Outbound | undefined;
   aws_permission_set?: AwsPermissionSet$Outbound | undefined;
   aws_iam_role?: AwsIamRole$Outbound | undefined;
   aws_ec2_instance?: AwsEc2Instance$Outbound | undefined;
   aws_rds_instance?: AwsRdsInstance$Outbound | undefined;
   aws_eks_cluster?: AwsEksCluster$Outbound | undefined;
+  custom_connector?: CustomConnector$Outbound | undefined;
   gcp_organization?: GcpOrganization$Outbound | undefined;
   gcp_bucket?: GcpBucket$Outbound | undefined;
   gcp_compute_instance?: GcpComputeInstance$Outbound | undefined;
@@ -2151,6 +2414,7 @@ export type ResourceRemoteInfo$Outbound = {
   gcp_project?: GcpProject$Outbound | undefined;
   gcp_sql_instance?: GcpSqlInstance$Outbound | undefined;
   gcp_service_account?: GcpServiceAccount$Outbound | undefined;
+  google_workspace_role?: GoogleWorkspaceRole$Outbound | undefined;
   github_repo?: GithubRepo$Outbound | undefined;
   gitlab_project?: GitlabProject$Outbound | undefined;
   okta_app?: OktaApp$Outbound | undefined;
@@ -2169,12 +2433,15 @@ export const ResourceRemoteInfo$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ResourceRemoteInfo
 > = z.object({
+  awsOrganizationalUnit: z.lazy(() => AwsOrganizationalUnit$outboundSchema)
+    .optional(),
   awsAccount: z.lazy(() => AwsAccount$outboundSchema).optional(),
   awsPermissionSet: z.lazy(() => AwsPermissionSet$outboundSchema).optional(),
   awsIamRole: z.lazy(() => AwsIamRole$outboundSchema).optional(),
   awsEc2Instance: z.lazy(() => AwsEc2Instance$outboundSchema).optional(),
   awsRdsInstance: z.lazy(() => AwsRdsInstance$outboundSchema).optional(),
   awsEksCluster: z.lazy(() => AwsEksCluster$outboundSchema).optional(),
+  customConnector: z.lazy(() => CustomConnector$outboundSchema).optional(),
   gcpOrganization: z.lazy(() => GcpOrganization$outboundSchema).optional(),
   gcpBucket: z.lazy(() => GcpBucket$outboundSchema).optional(),
   gcpComputeInstance: z.lazy(() => GcpComputeInstance$outboundSchema)
@@ -2187,6 +2454,8 @@ export const ResourceRemoteInfo$outboundSchema: z.ZodType<
   gcpProject: z.lazy(() => GcpProject$outboundSchema).optional(),
   gcpSqlInstance: z.lazy(() => GcpSqlInstance$outboundSchema).optional(),
   gcpServiceAccount: z.lazy(() => GcpServiceAccount$outboundSchema).optional(),
+  googleWorkspaceRole: z.lazy(() => GoogleWorkspaceRole$outboundSchema)
+    .optional(),
   githubRepo: z.lazy(() => GithubRepo$outboundSchema).optional(),
   gitlabProject: z.lazy(() => GitlabProject$outboundSchema).optional(),
   oktaApp: z.lazy(() => OktaApp$outboundSchema).optional(),
@@ -2200,12 +2469,14 @@ export const ResourceRemoteInfo$outboundSchema: z.ZodType<
   teleportRole: z.lazy(() => TeleportRole$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
+    awsOrganizationalUnit: "aws_organizational_unit",
     awsAccount: "aws_account",
     awsPermissionSet: "aws_permission_set",
     awsIamRole: "aws_iam_role",
     awsEc2Instance: "aws_ec2_instance",
     awsRdsInstance: "aws_rds_instance",
     awsEksCluster: "aws_eks_cluster",
+    customConnector: "custom_connector",
     gcpOrganization: "gcp_organization",
     gcpBucket: "gcp_bucket",
     gcpComputeInstance: "gcp_compute_instance",
@@ -2216,6 +2487,7 @@ export const ResourceRemoteInfo$outboundSchema: z.ZodType<
     gcpProject: "gcp_project",
     gcpSqlInstance: "gcp_sql_instance",
     gcpServiceAccount: "gcp_service_account",
+    googleWorkspaceRole: "google_workspace_role",
     githubRepo: "github_repo",
     gitlabProject: "gitlab_project",
     oktaApp: "okta_app",

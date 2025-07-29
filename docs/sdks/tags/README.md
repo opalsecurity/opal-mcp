@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to tags
+
 ### Available Operations
 
 * [getTagByID](#gettagbyid) - UNSTABLE. May be removed at any time. Gets a tag with the given id.
@@ -23,6 +25,7 @@ UNSTABLE. May be removed at any time. Gets a tag with the given id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_tag_by_ID" method="get" path="/tag/{tag_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -95,6 +98,7 @@ UNSTABLE. May be removed at any time. Deletes a tag with the given id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete_tag_by_ID" method="delete" path="/tag/{tag_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -167,6 +171,7 @@ Gets a tag with the given key and value.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_tag" method="get" path="/tag" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -241,6 +246,7 @@ Creates a tag with the given key and value.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_tag" method="post" path="/tag" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -325,6 +331,7 @@ Returns a list of tags created by your organization.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTags" method="get" path="/tags" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -338,7 +345,9 @@ async function run() {
     pageSize: 200,
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -365,7 +374,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("tagsGetTags failed:", res.error);
   }
@@ -385,7 +396,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedTagsList](../../models/components/paginatedtagslist.md)\>**
+**Promise\<[operations.GetTagsResponse](../../models/operations/gettagsresponse.md)\>**
 
 ### Errors
 
@@ -399,6 +410,7 @@ Applies a tag to a user.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="add_user_tag" method="post" path="/tags/{tag_id}/users/{user_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -473,6 +485,7 @@ Removes a tag from a user.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="remove_user_tag" method="delete" path="/tags/{tag_id}/users/{user_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -547,6 +560,7 @@ Applies a tag to a group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="add_group_tag" method="post" path="/tags/{tag_id}/groups/{group_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -621,6 +635,7 @@ Removes a tag from a group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="remove_group_tag" method="delete" path="/tags/{tag_id}/groups/{group_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -695,6 +710,7 @@ Applies a tag to a resource.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="add_resource_tag" method="post" path="/tags/{tag_id}/resources/{resource_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -769,6 +785,7 @@ Removes a tag from a resource.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="remove_resource_tag" method="delete" path="/tags/{tag_id}/resources/{resource_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 

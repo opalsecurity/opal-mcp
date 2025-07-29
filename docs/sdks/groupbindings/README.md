@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to group bindings
+
 ### Available Operations
 
 * [getGroupBindings](#getgroupbindings) - Returns a list of `GroupBinding` objects.
@@ -17,6 +19,7 @@ Returns a list of `GroupBinding` objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getGroupBindings" method="get" path="/group-bindings" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -30,7 +33,9 @@ async function run() {
     pageSize: 200,
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -57,7 +62,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("groupBindingsGetGroupBindings failed:", res.error);
   }
@@ -77,7 +84,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedGroupBindingsList](../../models/components/paginatedgroupbindingslist.md)\>**
+**Promise\<[operations.GetGroupBindingsResponse](../../models/operations/getgroupbindingsresponse.md)\>**
 
 ### Errors
 
@@ -91,6 +98,7 @@ Creates a group binding.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createGroupBinding" method="post" path="/group-bindings" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -179,6 +187,7 @@ Bulk updates a list of group bindings.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateGroupBindings" method="put" path="/group-bindings" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -301,6 +310,7 @@ Returns a `GroupBinding` object.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getGroupBinding" method="get" path="/group-bindings/{group_binding_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -373,6 +383,7 @@ Deletes a group binding.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteGroupBinding" method="delete" path="/group-bindings/{group_binding_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 

@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to IDP group mappings
+
 ### Available Operations
 
 * [getIdpGroupMappings](#getidpgroupmappings) - Returns the configured set of available `IdpGroupMapping` objects for an Okta app.
@@ -15,6 +17,7 @@ Returns the configured set of available `IdpGroupMapping` objects for an Okta ap
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getIdpGroupMappings" method="get" path="/idp-group-mappings/{app_resource_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -87,6 +90,7 @@ Updates the list of available `IdpGroupMapping` objects for an Okta app.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateIdpGroupMappings" method="put" path="/idp-group-mappings/{app_resource_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -173,6 +177,7 @@ Deletes an `IdpGroupMapping` object.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete_idp_group_mappings" method="delete" path="/idp-group-mappings/{app_resource_id}/{group_id}/" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 

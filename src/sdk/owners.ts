@@ -14,6 +14,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Owners extends ClientSDK {
   /**
@@ -22,8 +23,8 @@ export class Owners extends ClientSDK {
   async getOwners(
     request: operations.GetOwnersRequest,
     options?: RequestOptions,
-  ): Promise<components.PaginatedOwnersList> {
-    return unwrapAsync(ownersGetOwners(
+  ): Promise<PageIterator<operations.GetOwnersResponse, { cursor: string }>> {
+    return unwrapResultIterator(ownersGetOwners(
       this,
       request,
       options,

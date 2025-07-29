@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetOwnersRequest = {
@@ -21,6 +22,10 @@ export type GetOwnersRequest = {
    * Owner name to filter by.
    */
   name?: string | undefined;
+};
+
+export type GetOwnersResponse = {
+  result: components.PaginatedOwnersList;
 };
 
 /** @internal */
@@ -88,5 +93,67 @@ export function getOwnersRequestFromJSON(
     jsonString,
     (x) => GetOwnersRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetOwnersRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetOwnersResponse$inboundSchema: z.ZodType<
+  GetOwnersResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Result: components.PaginatedOwnersList$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Result": "result",
+  });
+});
+
+/** @internal */
+export type GetOwnersResponse$Outbound = {
+  Result: components.PaginatedOwnersList$Outbound;
+};
+
+/** @internal */
+export const GetOwnersResponse$outboundSchema: z.ZodType<
+  GetOwnersResponse$Outbound,
+  z.ZodTypeDef,
+  GetOwnersResponse
+> = z.object({
+  result: components.PaginatedOwnersList$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    result: "Result",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetOwnersResponse$ {
+  /** @deprecated use `GetOwnersResponse$inboundSchema` instead. */
+  export const inboundSchema = GetOwnersResponse$inboundSchema;
+  /** @deprecated use `GetOwnersResponse$outboundSchema` instead. */
+  export const outboundSchema = GetOwnersResponse$outboundSchema;
+  /** @deprecated use `GetOwnersResponse$Outbound` instead. */
+  export type Outbound = GetOwnersResponse$Outbound;
+}
+
+export function getOwnersResponseToJSON(
+  getOwnersResponse: GetOwnersResponse,
+): string {
+  return JSON.stringify(
+    GetOwnersResponse$outboundSchema.parse(getOwnersResponse),
+  );
+}
+
+export function getOwnersResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetOwnersResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetOwnersResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOwnersResponse' from JSON`,
   );
 }

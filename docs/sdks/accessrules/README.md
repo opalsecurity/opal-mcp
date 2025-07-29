@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to access rules
+
 ### Available Operations
 
 * [createAccessRule](#createaccessrule) - Creates a new access rule config for the given group_id.
@@ -15,6 +17,7 @@ Creates a new access rule config for the given group_id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_access_rule" method="post" path="/access-rules" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -103,6 +106,7 @@ Returns a list of access rule config given the group_id of the access rule.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_access_rule" method="get" path="/access-rules/{access_rule_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -175,6 +179,7 @@ Updates the access rule config for the given group_id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="update_access_rule" method="put" path="/access-rules/{access_rule_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 

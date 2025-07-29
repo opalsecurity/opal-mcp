@@ -19,8 +19,12 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
+  tests:
+    generateTests: true
+    generateNewTests: false
+    skipResponseBodyAssertions: false
 typescript:
-  version: 0.6.2
+  version: 0.7.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -29,6 +33,7 @@ typescript:
   author: Speakeasy
   baseErrorName: OpalMcpError
   clientServerStatusCodesAsErrors: true
+  constFieldsAlwaysOptional: true
   defaultErrorName: APIError
   enableCustomCodeRegions: false
   enableMCPServer: true
@@ -37,6 +42,7 @@ typescript:
   envVarPrefix: OPALMCP
   flattenGlobalSecurity: true
   flatteningOrder: parameters-first
+  generateExamples: true
   imports:
     option: openapi
     paths:

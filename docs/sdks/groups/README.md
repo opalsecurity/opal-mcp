@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to groups
+
 ### Available Operations
 
 * [getGroups](#getgroups) - Returns a list of groups for your organization.
@@ -39,6 +41,7 @@ Returns a list of groups for your organization.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getGroups" method="get" path="/groups" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -58,7 +61,9 @@ async function run() {
     groupName: "example-name",
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -91,7 +96,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("groupsGetGroups failed:", res.error);
   }
@@ -111,7 +118,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedGroupsList](../../models/components/paginatedgroupslist.md)\>**
+**Promise\<[operations.GetGroupsResponse](../../models/operations/getgroupsresponse.md)\>**
 
 ### Errors
 
@@ -125,6 +132,7 @@ Bulk updates a list of groups.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateGroups" method="put" path="/groups" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -235,6 +243,7 @@ Creates an Opal group or [imports a remote group](https://docs.opal.dev/referenc
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createGroup" method="post" path="/groups" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -317,6 +326,7 @@ Returns a `Group` object.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getGroup" method="get" path="/groups/{group_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -389,6 +399,7 @@ Deletes a group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete_group" method="delete" path="/groups/{group_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -461,6 +472,7 @@ Gets the list of audit and reviewer message channels attached to a group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_group_message_channels" method="get" path="/groups/{group_id}/message-channels" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -533,6 +545,7 @@ Sets the list of audit message channels attached to a group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="set_group_message_channels" method="put" path="/groups/{group_id}/message-channels" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -617,6 +630,7 @@ Gets the list of on call schedules attached to a group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_group_on_call_schedules" method="get" path="/groups/{group_id}/on-call-schedules" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -689,6 +703,7 @@ Sets the list of on call schedules attached to a group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="set_group_on_call_schedules" method="put" path="/groups/{group_id}/on-call-schedules" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -773,6 +788,7 @@ Gets the list of resources that the group gives access to.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_group_resources" method="get" path="/groups/{group_id}/resources" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -845,6 +861,7 @@ Sets the list of resources that the group gives access to.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="set_group_resources" method="put" path="/groups/{group_id}/resources" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -933,6 +950,7 @@ Gets the list of groups that the group gives access to.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_group_containing_groups" method="get" path="/groups/{group_id}/containing-groups" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -1005,6 +1023,7 @@ Creates a new containing group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="add_group_containing_group" method="post" path="/groups/{group_id}/containing-groups" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -1083,6 +1102,7 @@ Gets a specific containing group for a group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_group_containing_group" method="get" path="/groups/{group_id}/containing-groups/{containing_group_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -1157,6 +1177,7 @@ Removes a containing group from a group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="remove_group_containing_group" method="delete" path="/groups/{group_id}/containing-groups/{containing_group_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -1231,6 +1252,7 @@ Adds a resource to a group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="add_group_resource" method="post" path="/groups/{group_id}/resources/{resource_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -1315,6 +1337,7 @@ Gets the visibility of this group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_group_visibility" method="get" path="/groups/{group_id}/visibility" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -1387,6 +1410,7 @@ Sets the visibility of this group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="set_group_visibility" method="put" path="/groups/{group_id}/visibility" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -1475,6 +1499,7 @@ Gets the list of owner IDs of the reviewers for a group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_group_reviewers" method="get" path="/groups/{group_id}/reviewers" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -1549,6 +1574,7 @@ Sets the list of reviewers for a group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="set_group_reviewers" method="put" path="/groups/{group_id}/reviewers" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -1635,6 +1661,7 @@ Gets the list of reviewer stages for a group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_group_reviewer_stages" method="get" path="/groups/{group_id}/reviewer-stages" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -1709,6 +1736,7 @@ Sets the list of reviewer stages for a group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="set_group_reviewer_stages" method="put" path="/groups/{group_id}/reviewer-stages" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -1805,6 +1833,7 @@ Returns all tags applied to the group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_group_tags" method="get" path="/groups/{group_id}/tags" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -1877,6 +1906,7 @@ Gets the list of users for this group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_group_users" method="get" path="/groups/{group_id}/users" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -1949,6 +1979,7 @@ Updates a user's access level or duration in this group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="update_group_user" method="put" path="/groups/{group_id}/users/{user_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -2031,6 +2062,7 @@ Adds a user to this group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="add_group_user" method="post" path="/groups/{group_id}/users/{user_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -2117,6 +2149,7 @@ Removes a user's access from this group.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="delete_group_user" method="delete" path="/groups/{group_id}/users/{user_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -2128,6 +2161,7 @@ async function run() {
   await opalMcp.groups.deleteGroupUser({
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
     userId: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06",
+    accessLevelRemoteId: "30",
   });
 
 
@@ -2154,6 +2188,7 @@ async function run() {
   const res = await groupsDeleteGroupUser(opalMcp, {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
     userId: "f92aa855-cea9-4814-b9d8-f2a60d3e4a06",
+    accessLevelRemoteId: "30",
   });
   if (res.ok) {
     const { value: result } = res;

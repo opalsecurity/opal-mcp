@@ -17,6 +17,7 @@ import { OnCallSchedules } from "./oncallschedules.js";
 import { Owners } from "./owners.js";
 import { Requests } from "./requests.js";
 import { Resources } from "./resources.js";
+import { ScopedRolePermissions } from "./scopedrolepermissions.js";
 import { Sessions } from "./sessions.js";
 import { Tags } from "./tags.js";
 import { Uars } from "./uars.js";
@@ -78,6 +79,13 @@ export class OpalMcp extends ClientSDK {
   private _nonHumanIdentities?: NonHumanIdentities;
   get nonHumanIdentities(): NonHumanIdentities {
     return (this._nonHumanIdentities ??= new NonHumanIdentities(this._options));
+  }
+
+  private _scopedRolePermissions?: ScopedRolePermissions;
+  get scopedRolePermissions(): ScopedRolePermissions {
+    return (this._scopedRolePermissions ??= new ScopedRolePermissions(
+      this._options,
+    ));
   }
 
   private _sessions?: Sessions;

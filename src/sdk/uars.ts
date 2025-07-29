@@ -9,6 +9,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Uars extends ClientSDK {
   /**
@@ -17,8 +18,8 @@ export class Uars extends ClientSDK {
   async getUARs(
     request: operations.GetUARsRequest,
     options?: RequestOptions,
-  ): Promise<components.PaginatedUARsList> {
-    return unwrapAsync(uarsGetUARs(
+  ): Promise<PageIterator<operations.GetUARsResponse, { cursor: string }>> {
+    return unwrapResultIterator(uarsGetUARs(
       this,
       request,
       options,

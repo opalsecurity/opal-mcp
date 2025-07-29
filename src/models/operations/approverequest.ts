@@ -61,7 +61,7 @@ export type ApproveRequestResponse = {
    * ### Usage Example
    * Returned from the `GET Requests` endpoint.
    */
-  request?: components.Request | undefined;
+  request?: components.RequestT | undefined;
   /**
    * ID of the task created for propagating access
    */
@@ -216,13 +216,13 @@ export const ApproveRequestResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  request: components.Request$inboundSchema.optional(),
+  request: components.RequestT$inboundSchema.optional(),
   taskId: z.string().optional(),
 });
 
 /** @internal */
 export type ApproveRequestResponse$Outbound = {
-  request?: components.Request$Outbound | undefined;
+  request?: components.RequestT$Outbound | undefined;
   taskId?: string | undefined;
 };
 
@@ -232,7 +232,7 @@ export const ApproveRequestResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ApproveRequestResponse
 > = z.object({
-  request: components.Request$outboundSchema.optional(),
+  request: components.RequestT$outboundSchema.optional(),
   taskId: z.string().optional(),
 });
 

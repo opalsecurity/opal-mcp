@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to bundles
+
 ### Available Operations
 
 * [getBundles](#getbundles) - Returns a list of `Bundle` objects.
@@ -25,6 +27,7 @@ Returns a list of `Bundle` objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getBundles" method="get" path="/bundles" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -39,7 +42,9 @@ async function run() {
     contains: "Engineering",
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -67,7 +72,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("bundlesGetBundles failed:", res.error);
   }
@@ -87,7 +94,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedBundleList](../../models/components/paginatedbundlelist.md)\>**
+**Promise\<[operations.GetBundlesResponse](../../models/operations/getbundlesresponse.md)\>**
 
 ### Errors
 
@@ -101,6 +108,7 @@ Creates a bundle.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createBundle" method="post" path="/bundles" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -177,6 +185,7 @@ Returns a `Bundle` object.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getBundle" method="get" path="/bundles/{bundle_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -249,6 +258,7 @@ Deletes a bundle.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteBundle" method="delete" path="/bundles/{bundle_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -321,6 +331,7 @@ Updates a bundle.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateBundle" method="put" path="/bundles/{bundle_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -403,6 +414,7 @@ Returns a list of `Resource` objects in a given bundle.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getBundleResources" method="get" path="/bundles/{bundle_id}/resources" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -417,7 +429,9 @@ async function run() {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -445,7 +459,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("bundlesGetBundleResources failed:", res.error);
   }
@@ -465,7 +481,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedBundleResourceList](../../models/components/paginatedbundleresourcelist.md)\>**
+**Promise\<[operations.GetBundleResourcesResponse](../../models/operations/getbundleresourcesresponse.md)\>**
 
 ### Errors
 
@@ -479,6 +495,7 @@ Adds a resource to a bundle.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="addBundleResource" method="post" path="/bundles/{bundle_id}/resources" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -561,6 +578,7 @@ Removes a resource from a bundle.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="removeBundleResource" method="delete" path="/bundles/{bundle_id}/resources/{resource_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -637,6 +655,7 @@ Returns a list of `Group` objects in a given bundle.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getBundleGroups" method="get" path="/bundles/{bundle_id}/groups" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -651,7 +670,9 @@ async function run() {
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -679,7 +700,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("bundlesGetBundleGroups failed:", res.error);
   }
@@ -699,7 +722,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedBundleGroupList](../../models/components/paginatedbundlegrouplist.md)\>**
+**Promise\<[operations.GetBundleGroupsResponse](../../models/operations/getbundlegroupsresponse.md)\>**
 
 ### Errors
 
@@ -713,6 +736,7 @@ Adds a group to a bundle.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="addBundleGroup" method="post" path="/bundles/{bundle_id}/groups" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -795,6 +819,7 @@ Removes a group from a bundle.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="removeBundleGroup" method="delete" path="/bundles/{bundle_id}/groups/{group_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -871,6 +896,7 @@ Gets the visibility of the bundle.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getBundleVisibility" method="get" path="/bundles/{bundle_id}/visibility" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -943,6 +969,7 @@ Sets the visibility of the bundle.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="setBundleVisibility" method="put" path="/bundles/{bundle_id}/visibility" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 

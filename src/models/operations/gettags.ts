@@ -6,6 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetTagsRequest = {
@@ -17,6 +18,10 @@ export type GetTagsRequest = {
    * Number of results to return per page. Default is 200.
    */
   pageSize?: number | undefined;
+};
+
+export type GetTagsResponse = {
+  result: components.PaginatedTagsList;
 };
 
 /** @internal */
@@ -77,5 +82,65 @@ export function getTagsRequestFromJSON(
     jsonString,
     (x) => GetTagsRequest$inboundSchema.parse(JSON.parse(x)),
     `Failed to parse 'GetTagsRequest' from JSON`,
+  );
+}
+
+/** @internal */
+export const GetTagsResponse$inboundSchema: z.ZodType<
+  GetTagsResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  Result: components.PaginatedTagsList$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "Result": "result",
+  });
+});
+
+/** @internal */
+export type GetTagsResponse$Outbound = {
+  Result: components.PaginatedTagsList$Outbound;
+};
+
+/** @internal */
+export const GetTagsResponse$outboundSchema: z.ZodType<
+  GetTagsResponse$Outbound,
+  z.ZodTypeDef,
+  GetTagsResponse
+> = z.object({
+  result: components.PaginatedTagsList$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    result: "Result",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GetTagsResponse$ {
+  /** @deprecated use `GetTagsResponse$inboundSchema` instead. */
+  export const inboundSchema = GetTagsResponse$inboundSchema;
+  /** @deprecated use `GetTagsResponse$outboundSchema` instead. */
+  export const outboundSchema = GetTagsResponse$outboundSchema;
+  /** @deprecated use `GetTagsResponse$Outbound` instead. */
+  export type Outbound = GetTagsResponse$Outbound;
+}
+
+export function getTagsResponseToJSON(
+  getTagsResponse: GetTagsResponse,
+): string {
+  return JSON.stringify(GetTagsResponse$outboundSchema.parse(getTagsResponse));
+}
+
+export function getTagsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTagsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTagsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTagsResponse' from JSON`,
   );
 }

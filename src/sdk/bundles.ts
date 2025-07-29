@@ -19,6 +19,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
+import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Bundles extends ClientSDK {
   /**
@@ -27,8 +28,8 @@ export class Bundles extends ClientSDK {
   async getBundles(
     request: operations.GetBundlesRequest,
     options?: RequestOptions,
-  ): Promise<components.PaginatedBundleList> {
-    return unwrapAsync(bundlesGetBundles(
+  ): Promise<PageIterator<operations.GetBundlesResponse, { cursor: string }>> {
+    return unwrapResultIterator(bundlesGetBundles(
       this,
       request,
       options,
@@ -97,8 +98,10 @@ export class Bundles extends ClientSDK {
   async getBundleResources(
     request: operations.GetBundleResourcesRequest,
     options?: RequestOptions,
-  ): Promise<components.PaginatedBundleResourceList> {
-    return unwrapAsync(bundlesGetBundleResources(
+  ): Promise<
+    PageIterator<operations.GetBundleResourcesResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(bundlesGetBundleResources(
       this,
       request,
       options,
@@ -139,8 +142,10 @@ export class Bundles extends ClientSDK {
   async getBundleGroups(
     request: operations.GetBundleGroupsRequest,
     options?: RequestOptions,
-  ): Promise<components.PaginatedBundleGroupList> {
-    return unwrapAsync(bundlesGetBundleGroups(
+  ): Promise<
+    PageIterator<operations.GetBundleGroupsResponse, { cursor: string }>
+  > {
+    return unwrapResultIterator(bundlesGetBundleGroups(
       this,
       request,
       options,

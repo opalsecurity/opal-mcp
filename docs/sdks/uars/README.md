@@ -3,6 +3,8 @@
 
 ## Overview
 
+Operations related to UARs
+
 ### Available Operations
 
 * [getUARs](#getuars) - Returns a list of `UAR` objects.
@@ -15,6 +17,7 @@ Returns a list of `UAR` objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getUARs" method="get" path="/uars" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -28,7 +31,9 @@ async function run() {
     pageSize: 200,
   });
 
-  console.log(result);
+  for await (const page of result) {
+    console.log(page);
+  }
 }
 
 run();
@@ -55,7 +60,9 @@ async function run() {
   });
   if (res.ok) {
     const { value: result } = res;
-    console.log(result);
+    for await (const page of result) {
+    console.log(page);
+  }
   } else {
     console.log("uarsGetUARs failed:", res.error);
   }
@@ -75,7 +82,7 @@ run();
 
 ### Response
 
-**Promise\<[components.PaginatedUARsList](../../models/components/paginateduarslist.md)\>**
+**Promise\<[operations.GetUARsResponse](../../models/operations/getuarsresponse.md)\>**
 
 ### Errors
 
@@ -89,6 +96,7 @@ Starts a User Access Review.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="create_uar" method="post" path="/uar" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -219,6 +227,7 @@ Retrieves a specific UAR.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="get_uar" method="get" path="/uar/{uar_id}" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
