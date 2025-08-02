@@ -31,6 +31,12 @@ import {
   RiskSensitivityEnum$outboundSchema,
 } from "./risksensitivityenum.js";
 import {
+  SyncTask,
+  SyncTask$inboundSchema,
+  SyncTask$Outbound,
+  SyncTask$outboundSchema,
+} from "./synctask.js";
+import {
   TicketPropagationConfiguration,
   TicketPropagationConfiguration$inboundSchema,
   TicketPropagationConfiguration$Outbound,
@@ -189,6 +195,10 @@ export type Resource = {
    * List of resource IDs that are descendants of this resource.
    */
   descendantResourceIds?: Array<string> | undefined;
+  /**
+   * Represents a sync task that has been completed, either successfully or with errors.
+   */
+  lastSuccessfulSync?: SyncTask | undefined;
 };
 
 /** @internal */
@@ -250,6 +260,7 @@ export const Resource$inboundSchema: z.ZodType<
   remote_info: ResourceRemoteInfo$inboundSchema.optional(),
   ancestor_resource_ids: z.array(z.string()).optional(),
   descendant_resource_ids: z.array(z.string()).optional(),
+  last_successful_sync: SyncTask$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "resource_id": "resourceId",
@@ -279,6 +290,7 @@ export const Resource$inboundSchema: z.ZodType<
     "remote_info": "remoteInfo",
     "ancestor_resource_ids": "ancestorResourceIds",
     "descendant_resource_ids": "descendantResourceIds",
+    "last_successful_sync": "lastSuccessfulSync",
   });
 });
 
@@ -314,6 +326,7 @@ export type Resource$Outbound = {
   remote_info?: ResourceRemoteInfo$Outbound | undefined;
   ancestor_resource_ids?: Array<string> | undefined;
   descendant_resource_ids?: Array<string> | undefined;
+  last_successful_sync?: SyncTask$Outbound | undefined;
 };
 
 /** @internal */
@@ -354,6 +367,7 @@ export const Resource$outboundSchema: z.ZodType<
   remoteInfo: ResourceRemoteInfo$outboundSchema.optional(),
   ancestorResourceIds: z.array(z.string()).optional(),
   descendantResourceIds: z.array(z.string()).optional(),
+  lastSuccessfulSync: SyncTask$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     resourceId: "resource_id",
@@ -383,6 +397,7 @@ export const Resource$outboundSchema: z.ZodType<
     remoteInfo: "remote_info",
     ancestorResourceIds: "ancestor_resource_ids",
     descendantResourceIds: "descendant_resource_ids",
+    lastSuccessfulSync: "last_successful_sync",
   });
 });
 

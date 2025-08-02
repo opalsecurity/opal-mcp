@@ -30,6 +30,12 @@ import {
   RiskSensitivityEnum$inboundSchema,
   RiskSensitivityEnum$outboundSchema,
 } from "./risksensitivityenum.js";
+import {
+  SyncTask,
+  SyncTask$inboundSchema,
+  SyncTask$Outbound,
+  SyncTask$outboundSchema,
+} from "./synctask.js";
 
 /**
  * The risk sensitivity level for the group. When an override is set, this field will match that.
@@ -169,6 +175,10 @@ export type Group = {
    */
   riskSensitivity?: GroupRiskSensitivity | undefined;
   riskSensitivityOverride?: RiskSensitivityEnum | undefined;
+  /**
+   * Represents a sync task that has been completed, either successfully or with errors.
+   */
+  lastSuccessfulSync?: SyncTask | undefined;
 };
 
 /** @internal */
@@ -224,6 +234,7 @@ export const Group$inboundSchema: z.ZodType<Group, z.ZodTypeDef, unknown> = z
     custom_request_notification: z.nullable(z.string()).optional(),
     risk_sensitivity: GroupRiskSensitivity$inboundSchema.optional(),
     risk_sensitivity_override: RiskSensitivityEnum$inboundSchema.optional(),
+    last_successful_sync: SyncTask$inboundSchema.optional(),
   }).transform((v) => {
     return remap$(v, {
       "group_id": "groupId",
@@ -250,6 +261,7 @@ export const Group$inboundSchema: z.ZodType<Group, z.ZodTypeDef, unknown> = z
       "custom_request_notification": "customRequestNotification",
       "risk_sensitivity": "riskSensitivity",
       "risk_sensitivity_override": "riskSensitivityOverride",
+      "last_successful_sync": "lastSuccessfulSync",
     });
   });
 
@@ -282,6 +294,7 @@ export type Group$Outbound = {
   custom_request_notification?: string | null | undefined;
   risk_sensitivity?: string | undefined;
   risk_sensitivity_override?: string | undefined;
+  last_successful_sync?: SyncTask$Outbound | undefined;
 };
 
 /** @internal */
@@ -319,6 +332,7 @@ export const Group$outboundSchema: z.ZodType<
   customRequestNotification: z.nullable(z.string()).optional(),
   riskSensitivity: GroupRiskSensitivity$outboundSchema.optional(),
   riskSensitivityOverride: RiskSensitivityEnum$outboundSchema.optional(),
+  lastSuccessfulSync: SyncTask$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     groupId: "group_id",
@@ -345,6 +359,7 @@ export const Group$outboundSchema: z.ZodType<
     customRequestNotification: "custom_request_notification",
     riskSensitivity: "risk_sensitivity",
     riskSensitivityOverride: "risk_sensitivity_override",
+    lastSuccessfulSync: "last_successful_sync",
   });
 });
 

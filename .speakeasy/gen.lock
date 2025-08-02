@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f4a8d8c-90c5-4992-8800-17a249fd1e0f
 management:
-  docChecksum: 156291fa2d74e64a788c7da05033216c
+  docChecksum: 960e51b0aed5749cb9ee36f87291485c
   docVersion: "1.0"
-  speakeasyVersion: 1.592.1
-  generationVersion: 2.667.0
-  releaseVersion: 0.7.0
-  configChecksum: 63e10a5c7bec13cd29a53bad747705ef
+  speakeasyVersion: 1.596.0
+  generationVersion: 2.672.0
+  releaseVersion: 0.7.1
+  configChecksum: 940a4f008612273b581c9f352905e301
   repoURL: https://github.com/opalsecurity/opal-mcp.git
   installationURL: https://github.com/opalsecurity/opal-mcp
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
-    core: 3.21.16
+    core: 3.21.19
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     devContainers: 2.90.0
@@ -148,12 +148,14 @@ generatedFiles:
   - docs/models/components/paginatedgroupbindingslist.md
   - docs/models/components/paginatedgroupslist.md
   - docs/models/components/paginatedownerslist.md
+  - docs/models/components/paginatedremoteuserslist.md
   - docs/models/components/paginatedresourceslist.md
   - docs/models/components/paginatedtagslist.md
   - docs/models/components/paginateduarslist.md
   - docs/models/components/paginateduserslist.md
   - docs/models/components/propagationstatus.md
   - docs/models/components/propagationstatusenum.md
+  - docs/models/components/remoteuser.md
   - docs/models/components/requestconfiguration.md
   - docs/models/components/requestconnection.md
   - docs/models/components/requestcustomfieldresponse.md
@@ -202,11 +204,13 @@ generatedFiles:
   - docs/models/components/supportticket.md
   - docs/models/components/syncerror.md
   - docs/models/components/syncerrorlist.md
+  - docs/models/components/synctask.md
   - docs/models/components/tag.md
   - docs/models/components/tagfilter.md
   - docs/models/components/tagselector.md
   - docs/models/components/tagslist.md
   - docs/models/components/teleportrole.md
+  - docs/models/components/thirdpartyproviderenum.md
   - docs/models/components/ticketingproviderenum.md
   - docs/models/components/ticketpropagationconfiguration.md
   - docs/models/components/uar.md
@@ -304,6 +308,7 @@ generatedFiles:
   - docs/models/operations/getownersrequest.md
   - docs/models/operations/getownersresponse.md
   - docs/models/operations/getownerusersrequest.md
+  - docs/models/operations/getremoteusersrequest.md
   - docs/models/operations/getrequestrequest.md
   - docs/models/operations/getrequestsrelayrequest.md
   - docs/models/operations/getrequestsrequest.md
@@ -511,6 +516,7 @@ generatedFiles:
   - src/funcs/uarsCreateUar.ts
   - src/funcs/uarsGetUARs.ts
   - src/funcs/uarsGetUar.ts
+  - src/funcs/usersGetRemoteUsers.ts
   - src/funcs/usersGetUserTags.ts
   - src/funcs/usersGetUsers.ts
   - src/funcs/usersUser.ts
@@ -666,6 +672,7 @@ generatedFiles:
   - src/mcp-server/tools/uarsCreateUar.ts
   - src/mcp-server/tools/uarsGetUARs.ts
   - src/mcp-server/tools/uarsGetUar.ts
+  - src/mcp-server/tools/usersGetRemoteUsers.ts
   - src/mcp-server/tools/usersGetUserTags.ts
   - src/mcp-server/tools/usersGetUsers.ts
   - src/mcp-server/tools/usersUser.ts
@@ -731,12 +738,14 @@ generatedFiles:
   - src/models/components/paginatedgroupbindingslist.ts
   - src/models/components/paginatedgroupslist.ts
   - src/models/components/paginatedownerslist.ts
+  - src/models/components/paginatedremoteuserslist.ts
   - src/models/components/paginatedresourceslist.ts
   - src/models/components/paginatedtagslist.ts
   - src/models/components/paginateduarslist.ts
   - src/models/components/paginateduserslist.ts
   - src/models/components/propagationstatus.ts
   - src/models/components/propagationstatusenum.ts
+  - src/models/components/remoteuser.ts
   - src/models/components/request.ts
   - src/models/components/requestconfiguration.ts
   - src/models/components/requestconnection.ts
@@ -778,10 +787,12 @@ generatedFiles:
   - src/models/components/subevent.ts
   - src/models/components/syncerror.ts
   - src/models/components/syncerrorlist.ts
+  - src/models/components/synctask.ts
   - src/models/components/tag.ts
   - src/models/components/tagfilter.ts
   - src/models/components/tagselector.ts
   - src/models/components/tagslist.ts
+  - src/models/components/thirdpartyproviderenum.ts
   - src/models/components/ticketingproviderenum.ts
   - src/models/components/ticketpropagationconfiguration.ts
   - src/models/components/uar.ts
@@ -865,6 +876,7 @@ generatedFiles:
   - src/models/operations/getownerfromname.ts
   - src/models/operations/getowners.ts
   - src/models/operations/getownerusers.ts
+  - src/models/operations/getremoteusers.ts
   - src/models/operations/getrequest.ts
   - src/models/operations/getrequests.ts
   - src/models/operations/getrequestsrelay.ts
@@ -1902,6 +1914,8 @@ examples:
           end_date_filter: "2021-11-12T00:00:00Z"
           cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
           page_size: 200
+          requester_id: "37cb7e41-12ba-46da-92ff-030abe0450b1"
+          target_user_id: "37cb7e41-12ba-46da-92ff-030abe0450b1"
       responses:
         "200":
           application/json: {"requests": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "g86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING", "reason": "I need this resource.", "duration_minutes": 1440}], "cursor": "eyJjcmVhdGVkX2F0IjoiMjAyMS0wMS0wNlQyMDo0NzowMFoiLCJ2YWx1ZSI6ImFkbWluIn0="}
@@ -1912,6 +1926,8 @@ examples:
           end_date_filter: "2025-01-01T00:00:00Z"
           cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
           page_size: 200
+          requester_id: "37cb7e41-12ba-46da-92ff-030abe0450b1"
+          target_user_id: "37cb7e41-12ba-46da-92ff-030abe0450b1"
       responses:
         "200":
           application/json: {"requests": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "g86c85d-0651-43e2-a748-d69d658418e8", "status": "CANCELED", "reason": "I need this resource.", "duration_minutes": 1440}], "cursor": "eyJjcmVhdGVkX2F0IjoiMjAyMS0wMS0wNlQyMDo0NzowMFoiLCJ2YWx1ZSI6ImFkbWluIn0="}
@@ -1928,6 +1944,8 @@ examples:
         query:
           cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
           page_size: 200
+          requester_id: "37cb7e41-12ba-46da-92ff-030abe0450b1"
+          target_user_id: "37cb7e41-12ba-46da-92ff-030abe0450b1"
       responses:
         "200":
           application/json: {"requests": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "g86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING", "reason": "I need this resource.", "duration_minutes": 1440}], "cursor": "eyJjcmVhdGVkX2F0IjoiMjAyMS0wMS0wNlQyMDo0NzowMFoiLCJ2YWx1ZSI6ImFkbWluIn0="}
@@ -2766,5 +2784,17 @@ examples:
       responses:
         "200":
           application/json: {"permissions": [{"target_ids": ["a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1", "8294e9c9-deb6-48e9-9c99-da2a1e04a87f"], "target_type": "RESOURCE", "permission_name": "READ", "allow_all": false}]}
+  getRemoteUsers:
+    speakeasy-default-get-remote-users:
+      parameters:
+        query:
+          third_party_provider: ["GIT_HUB"]
+          user_id: ["32acc112-21ff-4669-91c2-21e27683eaa1"]
+          remote_id: ["1234567890"]
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          page_size: 200
+      responses:
+        "200":
+          application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "results": [{"user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "remote_id": "1234567890", "third_party_provider": "GIT_LAB"}, {"user_id": "29827fb8-f2dd-4e80-9576-238979927392", "remote_id": "remoteid123", "third_party_provider": "GIT_HUB"}]}
 examplesVersion: 1.0.2
 generatedTests: {}

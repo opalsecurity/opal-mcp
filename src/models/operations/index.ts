@@ -57,6 +57,7 @@ export * from "./getowner.js";
 export * from "./getownerfromname.js";
 export * from "./getowners.js";
 export * from "./getownerusers.js";
+export * from "./getremoteusers.js";
 export * from "./getrequest.js";
 export * from "./getrequests.js";
 export * from "./getrequestsrelay.js";

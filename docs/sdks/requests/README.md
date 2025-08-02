@@ -31,6 +31,8 @@ async function run() {
   const result = await opalMcp.requests.getRequests({
     startDateFilter: "2021-11-01T00:00:00Z",
     endDateFilter: "2021-11-12T00:00:00Z",
+    requesterId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    targetUserId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     pageSize: 200,
   });
@@ -61,6 +63,8 @@ async function run() {
   const res = await requestsGetRequests(opalMcp, {
     startDateFilter: "2021-11-01T00:00:00Z",
     endDateFilter: "2021-11-12T00:00:00Z",
+    requesterId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    targetUserId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     pageSize: 200,
   });

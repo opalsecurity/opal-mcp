@@ -132,6 +132,7 @@ import { tool$tagsRemoveUserTag } from "./tools/tagsRemoveUserTag.js";
 import { tool$uarsCreateUar } from "./tools/uarsCreateUar.js";
 import { tool$uarsGetUar } from "./tools/uarsGetUar.js";
 import { tool$uarsGetUARs } from "./tools/uarsGetUARs.js";
+import { tool$usersGetRemoteUsers } from "./tools/usersGetRemoteUsers.js";
 import { tool$usersGetUsers } from "./tools/usersGetUsers.js";
 import { tool$usersGetUserTags } from "./tools/usersGetUserTags.js";
 import { tool$usersUser } from "./tools/usersUser.js";
@@ -146,7 +147,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "OpalMcp",
-    version: "0.7.0",
+    version: "0.7.1",
   });
 
   const client = new OpalMcpCore({
@@ -274,6 +275,7 @@ export function createMCPServer(deps: {
   tool(tool$sessionsSessions);
   tool(tool$usersUser);
   tool(tool$usersGetUsers);
+  tool(tool$usersGetRemoteUsers);
   tool(tool$usersGetUserTags);
   tool(tool$accessRulesCreateAccessRule);
   tool(tool$accessRulesGetAccessRule);

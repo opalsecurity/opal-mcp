@@ -101,8 +101,10 @@ async function $do(
     "cursor": payload.cursor,
     "end_date_filter": payload.end_date_filter,
     "page_size": payload.page_size,
+    "requester_id": payload.requester_id,
     "show_pending_only": payload.show_pending_only,
     "start_date_filter": payload.start_date_filter,
+    "target_user_id": payload.target_user_id,
   });
 
   const headers = new Headers(compactMap({
