@@ -476,6 +476,7 @@ Authentication:
 - Respects standard Opal authorization rules
 
 * [getUsers](docs/sdks/users/README.md#getusers) - Returns a list of users for your organization.
+* [getRemoteUsers](docs/sdks/users/README.md#getremoteusers) - Returns a list of remote users for your organization.
 * [getUserTags](docs/sdks/users/README.md#getusertags) - Returns all tags applied to the user.
 
 </details>

@@ -19,6 +19,14 @@ export type GetRequestsRequest = {
    */
   endDateFilter?: string | undefined;
   /**
+   * Filter requests by their requester ID.
+   */
+  requesterId?: string | undefined;
+  /**
+   * Filter requests by their target user ID.
+   */
+  targetUserId?: string | undefined;
+  /**
    * The pagination cursor value.
    */
   cursor?: string | undefined;
@@ -44,6 +52,8 @@ export const GetRequestsRequest$inboundSchema: z.ZodType<
 > = z.object({
   start_date_filter: z.string().optional(),
   end_date_filter: z.string().optional(),
+  requester_id: z.string().optional(),
+  target_user_id: z.string().optional(),
   cursor: z.string().optional(),
   page_size: z.number().int().optional(),
   show_pending_only: z.boolean().optional(),
@@ -51,6 +61,8 @@ export const GetRequestsRequest$inboundSchema: z.ZodType<
   return remap$(v, {
     "start_date_filter": "startDateFilter",
     "end_date_filter": "endDateFilter",
+    "requester_id": "requesterId",
+    "target_user_id": "targetUserId",
     "page_size": "pageSize",
     "show_pending_only": "showPendingOnly",
   });
@@ -60,6 +72,8 @@ export const GetRequestsRequest$inboundSchema: z.ZodType<
 export type GetRequestsRequest$Outbound = {
   start_date_filter?: string | undefined;
   end_date_filter?: string | undefined;
+  requester_id?: string | undefined;
+  target_user_id?: string | undefined;
   cursor?: string | undefined;
   page_size?: number | undefined;
   show_pending_only?: boolean | undefined;
@@ -73,6 +87,8 @@ export const GetRequestsRequest$outboundSchema: z.ZodType<
 > = z.object({
   startDateFilter: z.string().optional(),
   endDateFilter: z.string().optional(),
+  requesterId: z.string().optional(),
+  targetUserId: z.string().optional(),
   cursor: z.string().optional(),
   pageSize: z.number().int().optional(),
   showPendingOnly: z.boolean().optional(),
@@ -80,6 +96,8 @@ export const GetRequestsRequest$outboundSchema: z.ZodType<
   return remap$(v, {
     startDateFilter: "start_date_filter",
     endDateFilter: "end_date_filter",
+    requesterId: "requester_id",
+    targetUserId: "target_user_id",
     pageSize: "page_size",
     showPendingOnly: "show_pending_only",
   });
