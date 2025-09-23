@@ -32,6 +32,9 @@ import {
 } from "../types/operations.js";
 
 /**
+ * Get group bindings
+ *
+ * @remarks
  * Returns a list of `GroupBinding` objects.
  */
 export function groupBindingsGetGroupBindings(
@@ -201,6 +204,9 @@ async function $do(
   } => {
     const nextCursor = dlv(responseData, "next");
     if (typeof nextCursor !== "string") {
+      return { next: () => null };
+    }
+    if (nextCursor.trim() === "") {
       return { next: () => null };
     }
     const results = dlv(responseData, "results");

@@ -26,6 +26,9 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
+ * Get bundle by ID
+ *
+ * @remarks
  * Returns a `Bundle` object.
  */
 export function bundlesGetBundle(

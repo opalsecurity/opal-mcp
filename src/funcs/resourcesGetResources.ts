@@ -32,6 +32,9 @@ import {
 } from "../types/operations.js";
 
 /**
+ * Get resources
+ *
+ * @remarks
  * Returns a list of resources for your organization.
  */
 export function resourcesGetResources(
@@ -106,6 +109,7 @@ async function $do(
     encodeFormQuery({
       "cursor": payload.cursor,
       "page_size": payload.page_size,
+      "remote_id": payload.remote_id,
       "resource_name": payload.resource_name,
       "resource_type_filter": payload.resource_type_filter,
     }),
@@ -210,6 +214,9 @@ async function $do(
   } => {
     const nextCursor = dlv(responseData, "next");
     if (typeof nextCursor !== "string") {
+      return { next: () => null };
+    }
+    if (nextCursor.trim() === "") {
       return { next: () => null };
     }
     const results = dlv(responseData, "results");

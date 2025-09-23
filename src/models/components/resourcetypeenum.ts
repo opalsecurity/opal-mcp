@@ -69,6 +69,9 @@ export const ResourceTypeEnum = {
   MariadbInstance: "MARIADB_INSTANCE",
   PostgresInstance: "POSTGRES_INSTANCE",
   TeleportRole: "TELEPORT_ROLE",
+  IlevelAdvancedRole: "ILEVEL_ADVANCED_ROLE",
+  DatastaxAstraRole: "DATASTAX_ASTRA_ROLE",
+  CoupaRole: "COUPA_ROLE",
 } as const;
 /**
  * The type of the resource.

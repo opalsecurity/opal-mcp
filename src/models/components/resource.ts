@@ -31,6 +31,12 @@ import {
   RiskSensitivityEnum$outboundSchema,
 } from "./risksensitivityenum.js";
 import {
+  SyncTask,
+  SyncTask$inboundSchema,
+  SyncTask$Outbound,
+  SyncTask$outboundSchema,
+} from "./synctask.js";
+import {
   TicketPropagationConfiguration,
   TicketPropagationConfiguration$inboundSchema,
   TicketPropagationConfiguration$Outbound,
@@ -106,6 +112,10 @@ export type Resource = {
    * The recommended duration for which the resource should be requested (in minutes). -1 represents an indefinite duration.
    */
   recommendedDuration?: number | undefined;
+  /**
+   * The duration for which access can be extended (in minutes). Set to 0 to disable extensions. When > 0, extensions are enabled for the specified duration.
+   */
+  extensionsDurationInMinutes?: number | undefined;
   /**
    * A bool representing whether or not access requests to the resource require manager approval.
    *
@@ -189,6 +199,10 @@ export type Resource = {
    * List of resource IDs that are descendants of this resource.
    */
   descendantResourceIds?: Array<string> | undefined;
+  /**
+   * Represents a sync task that has been completed, either successfully or with errors.
+   */
+  lastSuccessfulSync?: SyncTask | undefined;
 };
 
 /** @internal */
@@ -228,6 +242,7 @@ export const Resource$inboundSchema: z.ZodType<
   resource_type: ResourceTypeEnum$inboundSchema.optional(),
   max_duration: z.number().int().optional(),
   recommended_duration: z.number().int().optional(),
+  extensions_duration_in_minutes: z.number().int().optional(),
   require_manager_approval: z.boolean().optional(),
   require_support_ticket: z.boolean().optional(),
   require_mfa_to_approve: z.boolean().optional(),
@@ -250,6 +265,7 @@ export const Resource$inboundSchema: z.ZodType<
   remote_info: ResourceRemoteInfo$inboundSchema.optional(),
   ancestor_resource_ids: z.array(z.string()).optional(),
   descendant_resource_ids: z.array(z.string()).optional(),
+  last_successful_sync: SyncTask$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "resource_id": "resourceId",
@@ -260,6 +276,7 @@ export const Resource$inboundSchema: z.ZodType<
     "resource_type": "resourceType",
     "max_duration": "maxDuration",
     "recommended_duration": "recommendedDuration",
+    "extensions_duration_in_minutes": "extensionsDurationInMinutes",
     "require_manager_approval": "requireManagerApproval",
     "require_support_ticket": "requireSupportTicket",
     "require_mfa_to_approve": "requireMfaToApprove",
@@ -279,6 +296,7 @@ export const Resource$inboundSchema: z.ZodType<
     "remote_info": "remoteInfo",
     "ancestor_resource_ids": "ancestorResourceIds",
     "descendant_resource_ids": "descendantResourceIds",
+    "last_successful_sync": "lastSuccessfulSync",
   });
 });
 
@@ -294,6 +312,7 @@ export type Resource$Outbound = {
   resource_type?: string | undefined;
   max_duration?: number | undefined;
   recommended_duration?: number | undefined;
+  extensions_duration_in_minutes?: number | undefined;
   require_manager_approval?: boolean | undefined;
   require_support_ticket?: boolean | undefined;
   require_mfa_to_approve?: boolean | undefined;
@@ -314,6 +333,7 @@ export type Resource$Outbound = {
   remote_info?: ResourceRemoteInfo$Outbound | undefined;
   ancestor_resource_ids?: Array<string> | undefined;
   descendant_resource_ids?: Array<string> | undefined;
+  last_successful_sync?: SyncTask$Outbound | undefined;
 };
 
 /** @internal */
@@ -332,6 +352,7 @@ export const Resource$outboundSchema: z.ZodType<
   resourceType: ResourceTypeEnum$outboundSchema.optional(),
   maxDuration: z.number().int().optional(),
   recommendedDuration: z.number().int().optional(),
+  extensionsDurationInMinutes: z.number().int().optional(),
   requireManagerApproval: z.boolean().optional(),
   requireSupportTicket: z.boolean().optional(),
   requireMfaToApprove: z.boolean().optional(),
@@ -354,6 +375,7 @@ export const Resource$outboundSchema: z.ZodType<
   remoteInfo: ResourceRemoteInfo$outboundSchema.optional(),
   ancestorResourceIds: z.array(z.string()).optional(),
   descendantResourceIds: z.array(z.string()).optional(),
+  lastSuccessfulSync: SyncTask$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     resourceId: "resource_id",
@@ -364,6 +386,7 @@ export const Resource$outboundSchema: z.ZodType<
     resourceType: "resource_type",
     maxDuration: "max_duration",
     recommendedDuration: "recommended_duration",
+    extensionsDurationInMinutes: "extensions_duration_in_minutes",
     requireManagerApproval: "require_manager_approval",
     requireSupportTicket: "require_support_ticket",
     requireMfaToApprove: "require_mfa_to_approve",
@@ -383,6 +406,7 @@ export const Resource$outboundSchema: z.ZodType<
     remoteInfo: "remote_info",
     ancestorResourceIds: "ancestor_resource_ids",
     descendantResourceIds: "descendant_resource_ids",
+    lastSuccessfulSync: "last_successful_sync",
   });
 });
 

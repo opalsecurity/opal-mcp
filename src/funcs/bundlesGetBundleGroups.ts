@@ -210,6 +210,9 @@ async function $do(
     if (typeof nextCursor !== "string") {
       return { next: () => null };
     }
+    if (nextCursor.trim() === "") {
+      return { next: () => null };
+    }
     const results = dlv(responseData, "bundle_groups");
     if (!Array.isArray(results) || !results.length) {
       return { next: () => null };

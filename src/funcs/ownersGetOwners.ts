@@ -32,6 +32,9 @@ import {
 } from "../types/operations.js";
 
 /**
+ * Get owners
+ *
+ * @remarks
  * Returns a list of `Owner` objects.
  */
 export function ownersGetOwners(
@@ -200,6 +203,9 @@ async function $do(
   } => {
     const nextCursor = dlv(responseData, "next");
     if (typeof nextCursor !== "string") {
+      return { next: () => null };
+    }
+    if (nextCursor.trim() === "") {
       return { next: () => null };
     }
     const results = dlv(responseData, "results");

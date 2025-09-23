@@ -19,7 +19,7 @@ export type GetResourcesRequest = {
    */
   pageSize?: number | undefined;
   /**
-   * The resource type to filter by.
+   * The resource type to filter by. Required when remote_id is provided.
    */
   resourceTypeFilter?: components.ResourceTypeEnum | undefined;
   /**
@@ -38,6 +38,10 @@ export type GetResourcesRequest = {
    * The ancestor resource id to filter by. Returns all resources that are descendants of the specified resource.
    */
   ancestorResourceId?: string | undefined;
+  /**
+   * Filter resources by their remote id. This will return all resources that have a remote id that matches the provided remote id. Note that this requires resource_type_filter to be provided.
+   */
+  remoteId?: string | undefined;
 };
 
 export type GetResourcesResponse = {
@@ -57,6 +61,7 @@ export const GetResourcesRequest$inboundSchema: z.ZodType<
   resource_name: z.string().optional(),
   parent_resource_id: z.string().optional(),
   ancestor_resource_id: z.string().optional(),
+  remote_id: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     "page_size": "pageSize",
@@ -65,6 +70,7 @@ export const GetResourcesRequest$inboundSchema: z.ZodType<
     "resource_name": "resourceName",
     "parent_resource_id": "parentResourceId",
     "ancestor_resource_id": "ancestorResourceId",
+    "remote_id": "remoteId",
   });
 });
 
@@ -77,6 +83,7 @@ export type GetResourcesRequest$Outbound = {
   resource_name?: string | undefined;
   parent_resource_id?: string | undefined;
   ancestor_resource_id?: string | undefined;
+  remote_id?: string | undefined;
 };
 
 /** @internal */
@@ -92,6 +99,7 @@ export const GetResourcesRequest$outboundSchema: z.ZodType<
   resourceName: z.string().optional(),
   parentResourceId: z.string().optional(),
   ancestorResourceId: z.string().optional(),
+  remoteId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
     pageSize: "page_size",
@@ -100,6 +108,7 @@ export const GetResourcesRequest$outboundSchema: z.ZodType<
     resourceName: "resource_name",
     parentResourceId: "parent_resource_id",
     ancestorResourceId: "ancestor_resource_id",
+    remoteId: "remote_id",
   });
 });
 

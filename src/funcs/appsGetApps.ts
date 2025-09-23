@@ -26,6 +26,9 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
+ * Get apps
+ *
+ * @remarks
  * Returns a list of `App` objects.
  */
 export function appsGetApps(

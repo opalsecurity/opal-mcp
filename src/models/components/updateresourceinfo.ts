@@ -131,6 +131,12 @@ export type UpdateResourceInfo = {
    */
   isRequestable?: boolean | undefined;
   /**
+   * The duration for which access can be extended (in minutes). Deprecated, set the extension duration in the request_configuration you want it to apply to.
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   */
+  extensionsDurationInMinutes?: number | undefined;
+  /**
    * A list of configurations for requests to this resource. If not provided, the default request configuration will be used.
    */
   requestConfigurations?: Array<RequestConfiguration> | undefined;
@@ -184,6 +190,7 @@ export const UpdateResourceInfo$inboundSchema: z.ZodType<
   configuration_template_id: z.string().optional(),
   request_template_id: z.string().optional(),
   is_requestable: z.boolean().optional(),
+  extensions_duration_in_minutes: z.number().int().optional(),
   request_configurations: z.array(RequestConfiguration$inboundSchema)
     .optional(),
   request_configuration_list: CreateRequestConfigurationInfoList$inboundSchema
@@ -207,6 +214,7 @@ export const UpdateResourceInfo$inboundSchema: z.ZodType<
     "configuration_template_id": "configurationTemplateId",
     "request_template_id": "requestTemplateId",
     "is_requestable": "isRequestable",
+    "extensions_duration_in_minutes": "extensionsDurationInMinutes",
     "request_configurations": "requestConfigurations",
     "request_configuration_list": "requestConfigurationList",
   });
@@ -233,6 +241,7 @@ export type UpdateResourceInfo$Outbound = {
   configuration_template_id?: string | undefined;
   request_template_id?: string | undefined;
   is_requestable?: boolean | undefined;
+  extensions_duration_in_minutes?: number | undefined;
   request_configurations?: Array<RequestConfiguration$Outbound> | undefined;
   request_configuration_list?:
     | CreateRequestConfigurationInfoList$Outbound
@@ -264,6 +273,7 @@ export const UpdateResourceInfo$outboundSchema: z.ZodType<
   configurationTemplateId: z.string().optional(),
   requestTemplateId: z.string().optional(),
   isRequestable: z.boolean().optional(),
+  extensionsDurationInMinutes: z.number().int().optional(),
   requestConfigurations: z.array(RequestConfiguration$outboundSchema)
     .optional(),
   requestConfigurationList: CreateRequestConfigurationInfoList$outboundSchema
@@ -287,6 +297,7 @@ export const UpdateResourceInfo$outboundSchema: z.ZodType<
     configurationTemplateId: "configuration_template_id",
     requestTemplateId: "request_template_id",
     isRequestable: "is_requestable",
+    extensionsDurationInMinutes: "extensions_duration_in_minutes",
     requestConfigurations: "request_configurations",
     requestConfigurationList: "request_configuration_list",
   });

@@ -67,6 +67,10 @@ export type RequestConfiguration = {
    */
   requireSupportTicket: boolean;
   /**
+   * The duration for which access can be extended (in minutes). Set to 0 to disable extensions. When > 0, extensions are enabled for the specified duration.
+   */
+  extensionsDurationInMinutes?: number | undefined;
+  /**
    * The ID of the associated request template.
    */
   requestTemplateId?: string | undefined;
@@ -93,6 +97,7 @@ export const RequestConfiguration$inboundSchema: z.ZodType<
   max_duration_minutes: z.number().int().optional(),
   recommended_duration_minutes: z.number().int().optional(),
   require_support_ticket: z.boolean(),
+  extensions_duration_in_minutes: z.number().int().optional(),
   request_template_id: z.string().optional(),
   reviewer_stages: z.array(ReviewerStage$inboundSchema).optional(),
   priority: z.number().int(),
@@ -104,6 +109,7 @@ export const RequestConfiguration$inboundSchema: z.ZodType<
     "max_duration_minutes": "maxDurationMinutes",
     "recommended_duration_minutes": "recommendedDurationMinutes",
     "require_support_ticket": "requireSupportTicket",
+    "extensions_duration_in_minutes": "extensionsDurationInMinutes",
     "request_template_id": "requestTemplateId",
     "reviewer_stages": "reviewerStages",
   });
@@ -118,6 +124,7 @@ export type RequestConfiguration$Outbound = {
   max_duration_minutes?: number | undefined;
   recommended_duration_minutes?: number | undefined;
   require_support_ticket: boolean;
+  extensions_duration_in_minutes?: number | undefined;
   request_template_id?: string | undefined;
   reviewer_stages?: Array<ReviewerStage$Outbound> | undefined;
   priority: number;
@@ -136,6 +143,7 @@ export const RequestConfiguration$outboundSchema: z.ZodType<
   maxDurationMinutes: z.number().int().optional(),
   recommendedDurationMinutes: z.number().int().optional(),
   requireSupportTicket: z.boolean(),
+  extensionsDurationInMinutes: z.number().int().optional(),
   requestTemplateId: z.string().optional(),
   reviewerStages: z.array(ReviewerStage$outboundSchema).optional(),
   priority: z.number().int(),
@@ -147,6 +155,7 @@ export const RequestConfiguration$outboundSchema: z.ZodType<
     maxDurationMinutes: "max_duration_minutes",
     recommendedDurationMinutes: "recommended_duration_minutes",
     requireSupportTicket: "require_support_ticket",
+    extensionsDurationInMinutes: "extensions_duration_in_minutes",
     requestTemplateId: "request_template_id",
     reviewerStages: "reviewer_stages",
   });

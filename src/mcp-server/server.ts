@@ -36,6 +36,10 @@ import { tool$configurationTemplatesCreateConfigurationTemplate } from "./tools/
 import { tool$configurationTemplatesDeleteConfigurationTemplate } from "./tools/configurationTemplatesDeleteConfigurationTemplate.js";
 import { tool$configurationTemplatesGetConfigurationTemplates } from "./tools/configurationTemplatesGetConfigurationTemplates.js";
 import { tool$configurationTemplatesUpdateConfigurationTemplate } from "./tools/configurationTemplatesUpdateConfigurationTemplate.js";
+import { tool$delegationsCreateDelegation } from "./tools/delegationsCreateDelegation.js";
+import { tool$delegationsDeleteDelegation } from "./tools/delegationsDeleteDelegation.js";
+import { tool$delegationsGetDelegation } from "./tools/delegationsGetDelegation.js";
+import { tool$delegationsGetDelegations } from "./tools/delegationsGetDelegations.js";
 import { tool$eventsEvents } from "./tools/eventsEvents.js";
 import { tool$groupBindingsCreateGroupBinding } from "./tools/groupBindingsCreateGroupBinding.js";
 import { tool$groupBindingsDeleteGroupBinding } from "./tools/groupBindingsDeleteGroupBinding.js";
@@ -60,6 +64,7 @@ import { tool$groupsGetGroups } from "./tools/groupsGetGroups.js";
 import { tool$groupsGetGroupTags } from "./tools/groupsGetGroupTags.js";
 import { tool$groupsGetGroupUsers } from "./tools/groupsGetGroupUsers.js";
 import { tool$groupsGetGroupVisibility } from "./tools/groupsGetGroupVisibility.js";
+import { tool$groupsGetUserGroups } from "./tools/groupsGetUserGroups.js";
 import { tool$groupsRemoveGroupContainingGroup } from "./tools/groupsRemoveGroupContainingGroup.js";
 import { tool$groupsSetGroupMessageChannels } from "./tools/groupsSetGroupMessageChannels.js";
 import { tool$groupsSetGroupOnCallSchedules } from "./tools/groupsSetGroupOnCallSchedules.js";
@@ -69,7 +74,9 @@ import { tool$groupsSetGroupReviewerStages } from "./tools/groupsSetGroupReviewe
 import { tool$groupsSetGroupVisibility } from "./tools/groupsSetGroupVisibility.js";
 import { tool$groupsUpdateGroups } from "./tools/groupsUpdateGroups.js";
 import { tool$groupsUpdateGroupUser } from "./tools/groupsUpdateGroupUser.js";
+import { tool$idpGroupMappingsCreateIdpGroupMapping } from "./tools/idpGroupMappingsCreateIdpGroupMapping.js";
 import { tool$idpGroupMappingsDeleteIdpGroupMappings } from "./tools/idpGroupMappingsDeleteIdpGroupMappings.js";
+import { tool$idpGroupMappingsGetIdpGroupMapping } from "./tools/idpGroupMappingsGetIdpGroupMapping.js";
 import { tool$idpGroupMappingsGetIdpGroupMappings } from "./tools/idpGroupMappingsGetIdpGroupMappings.js";
 import { tool$idpGroupMappingsUpdateIdpGroupMappings } from "./tools/idpGroupMappingsUpdateIdpGroupMappings.js";
 import { tool$messageChannelsCreateMessageChannel } from "./tools/messageChannelsCreateMessageChannel.js";
@@ -89,7 +96,10 @@ import { tool$ownersSetOwnerUsers } from "./tools/ownersSetOwnerUsers.js";
 import { tool$ownersUpdateOwners } from "./tools/ownersUpdateOwners.js";
 import { tool$requestsApproveRequest } from "./tools/requestsApproveRequest.js";
 import { tool$requestsCreateRequest } from "./tools/requestsCreateRequest.js";
+import { tool$requestsCreateRequestComment } from "./tools/requestsCreateRequestComment.js";
+import { tool$requestsDenyRequest } from "./tools/requestsDenyRequest.js";
 import { tool$requestsGetRequest } from "./tools/requestsGetRequest.js";
+import { tool$requestsGetRequestComments } from "./tools/requestsGetRequestComments.js";
 import { tool$requestsGetRequests } from "./tools/requestsGetRequests.js";
 import { tool$requestsGetRequestsRelay } from "./tools/requestsGetRequestsRelay.js";
 import { tool$resourcesAddResourceNhi } from "./tools/resourcesAddResourceNhi.js";
@@ -109,6 +119,7 @@ import { tool$resourcesGetResourceTags } from "./tools/resourcesGetResourceTags.
 import { tool$resourcesGetResourceUser } from "./tools/resourcesGetResourceUser.js";
 import { tool$resourcesGetResourceUsers } from "./tools/resourcesGetResourceUsers.js";
 import { tool$resourcesGetResourceVisibility } from "./tools/resourcesGetResourceVisibility.js";
+import { tool$resourcesGetUserResources } from "./tools/resourcesGetUserResources.js";
 import { tool$resourcesResourceUserAccessStatusRetrieve } from "./tools/resourcesResourceUserAccessStatusRetrieve.js";
 import { tool$resourcesSetResourceMessageChannels } from "./tools/resourcesSetResourceMessageChannels.js";
 import { tool$resourcesSetResourceReviewers } from "./tools/resourcesSetResourceReviewers.js";
@@ -132,6 +143,7 @@ import { tool$tagsRemoveUserTag } from "./tools/tagsRemoveUserTag.js";
 import { tool$uarsCreateUar } from "./tools/uarsCreateUar.js";
 import { tool$uarsGetUar } from "./tools/uarsGetUar.js";
 import { tool$uarsGetUARs } from "./tools/uarsGetUARs.js";
+import { tool$usersGetRemoteUsers } from "./tools/usersGetRemoteUsers.js";
 import { tool$usersGetUsers } from "./tools/usersGetUsers.js";
 import { tool$usersGetUserTags } from "./tools/usersGetUserTags.js";
 import { tool$usersUser } from "./tools/usersUser.js";
@@ -146,7 +158,7 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "OpalMcp",
-    version: "0.7.0",
+    version: "0.7.1",
   });
 
   const client = new OpalMcpCore({
@@ -224,6 +236,7 @@ export function createMCPServer(deps: {
   tool(tool$groupsUpdateGroupUser);
   tool(tool$groupsAddGroupUser);
   tool(tool$groupsDeleteGroupUser);
+  tool(tool$groupsGetUserGroups);
   tool(tool$groupBindingsGetGroupBindings);
   tool(tool$groupBindingsCreateGroupBinding);
   tool(tool$groupBindingsUpdateGroupBindings);
@@ -231,6 +244,8 @@ export function createMCPServer(deps: {
   tool(tool$groupBindingsDeleteGroupBinding);
   tool(tool$idpGroupMappingsGetIdpGroupMappings);
   tool(tool$idpGroupMappingsUpdateIdpGroupMappings);
+  tool(tool$idpGroupMappingsGetIdpGroupMapping);
+  tool(tool$idpGroupMappingsCreateIdpGroupMapping);
   tool(tool$idpGroupMappingsDeleteIdpGroupMappings);
   tool(tool$ownersGetOwners);
   tool(tool$ownersCreateOwner);
@@ -245,6 +260,9 @@ export function createMCPServer(deps: {
   tool(tool$requestsGetRequestsRelay);
   tool(tool$requestsGetRequest);
   tool(tool$requestsApproveRequest);
+  tool(tool$requestsDenyRequest);
+  tool(tool$requestsGetRequestComments);
+  tool(tool$requestsCreateRequestComment);
   tool(tool$resourcesGetResources);
   tool(tool$resourcesUpdateResources);
   tool(tool$resourcesCreateResource);
@@ -270,10 +288,12 @@ export function createMCPServer(deps: {
   tool(tool$resourcesGetResourceTags);
   tool(tool$resourcesGetResourceScopedRolePermissions);
   tool(tool$resourcesSetResourceScopedRolePermissions);
+  tool(tool$resourcesGetUserResources);
   tool(tool$nonHumanIdentitiesGetNhis);
   tool(tool$sessionsSessions);
   tool(tool$usersUser);
   tool(tool$usersGetUsers);
+  tool(tool$usersGetRemoteUsers);
   tool(tool$usersGetUserTags);
   tool(tool$accessRulesCreateAccessRule);
   tool(tool$accessRulesGetAccessRule);
@@ -298,6 +318,10 @@ export function createMCPServer(deps: {
   tool(tool$uarsGetUARs);
   tool(tool$uarsCreateUar);
   tool(tool$uarsGetUar);
+  tool(tool$delegationsGetDelegations);
+  tool(tool$delegationsCreateDelegation);
+  tool(tool$delegationsGetDelegation);
+  tool(tool$delegationsDeleteDelegation);
 
   return server;
 }

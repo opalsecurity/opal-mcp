@@ -7,10 +7,10 @@ Operations related to resources
 
 ### Available Operations
 
-* [getResources](#getresources) - Returns a list of resources for your organization.
+* [getResources](#getresources) - Get resources
 * [updateResources](#updateresources) - Bulk updates a list of resources.
 * [createResource](#createresource) - Creates a resource. See [here](https://docs.opal.dev/reference/end-system-objects) for details about importing resources.
-* [getResource](#getresource) - Retrieves a resource.
+* [getResource](#getresource) - Get resource by ID
 * [deleteResource](#deleteresource) - Deletes a resource.
 * [getResourceMessageChannels](#getresourcemessagechannels) - Gets the list of audit message channels attached to a resource.
 * [setResourceMessageChannels](#setresourcemessagechannels) - Sets the list of audit message channels attached to a resource.
@@ -21,17 +21,18 @@ Operations related to resources
 * [getResourceReviewerStages](#getresourcereviewerstages) - Gets the list reviewer stages for a resource.
 * [setResourceReviewerStages](#setresourcereviewerstages) - Sets the list of reviewer stages for a resource.
 * [getResourceNhis](#getresourcenhis) - Gets the list of non-human identities with access to this resource.
-* [getResourceUsers](#getresourceusers) - Gets the list of users for this resource.
+* [getResourceUsers](#getresourceusers) - Get resource users
 * [addResourceNhi](#addresourcenhi) - Gives a non-human identity access to this resource.
 * [deleteResourceNhi](#deleteresourcenhi) - Removes a non-human identity's direct access from this resource.
 * [addResourceUser](#addresourceuser) - Adds a user to this resource.
 * [updateResourceUser](#updateresourceuser) - Updates a user's access level or duration on this resource.
 * [deleteResourceUser](#deleteresourceuser) - Removes a user's direct access from this resource.
-* [getResourceUser](#getresourceuser) - Returns information about a specific user's access to a resource.
+* [getResourceUser](#getresourceuser) - Get resource user
 * [~~resourceUserAccessStatusRetrieve~~](#resourceuseraccessstatusretrieve) - Get user's access status to a resource. :warning: **Deprecated**
 * [getResourceTags](#getresourcetags) - Returns all tags applied to the resource.
 * [getResourceScopedRolePermissions](#getresourcescopedrolepermissions) - Returns all the scoped role permissions that apply to the given resource. Only OPAL_SCOPED_ROLE resource type supports this field.
 * [setResourceScopedRolePermissions](#setresourcescopedrolepermissions) - Sets all the scoped role permissions on an OPAL_SCOPED_ROLE resource.
+* [getUserResources](#getuserresources) - Gets the list of resources for this user.
 
 ## getResources
 
@@ -2081,6 +2082,85 @@ run();
 ### Response
 
 **Promise\<[components.ScopedRolePermissionList](../../models/components/scopedrolepermissionlist.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## getUserResources
+
+Gets the list of resources for this user.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="get_user_resources" method="get" path="/resources/users/{user_id}" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.resources.getUserResources({
+    userId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+    limit: 200,
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeUnmanaged: false,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { resourcesGetUserResources } from "opal-mcp/funcs/resourcesGetUserResources.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await resourcesGetUserResources(opalMcp, {
+    userId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+    limit: 200,
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeUnmanaged: false,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesGetUserResources failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetUserResourcesRequest](../../models/operations/getuserresourcesrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.ResourceAccessUserList](../../models/components/resourceaccessuserlist.md)\>**
 
 ### Errors
 

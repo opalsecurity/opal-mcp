@@ -4,7 +4,10 @@
 
 import { requestsApproveRequest } from "../funcs/requestsApproveRequest.js";
 import { requestsCreateRequest } from "../funcs/requestsCreateRequest.js";
+import { requestsCreateRequestComment } from "../funcs/requestsCreateRequestComment.js";
+import { requestsDenyRequest } from "../funcs/requestsDenyRequest.js";
 import { requestsGetRequest } from "../funcs/requestsGetRequest.js";
+import { requestsGetRequestComments } from "../funcs/requestsGetRequestComments.js";
 import { requestsGetRequests } from "../funcs/requestsGetRequests.js";
 import { requestsGetRequestsRelay } from "../funcs/requestsGetRequestsRelay.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -15,6 +18,9 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Requests extends ClientSDK {
   /**
+   * Get requests
+   *
+   * @remarks
    * Returns a list of requests for your organization that is visible by the admin.
    */
   async getRequests(
@@ -43,6 +49,9 @@ export class Requests extends ClientSDK {
   }
 
   /**
+   * Get requests via Relay
+   *
+   * @remarks
    * Returns a paginated list of requests using Relay-style cursor pagination.
    *
    * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -59,6 +68,9 @@ export class Requests extends ClientSDK {
   }
 
   /**
+   * Get request by ID
+   *
+   * @remarks
    * Returns a request by ID.
    */
   async getRequest(
@@ -80,6 +92,48 @@ export class Requests extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.ApproveRequestResponse> {
     return unwrapAsync(requestsApproveRequest(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Deny an access request
+   */
+  async denyRequest(
+    request: operations.DenyRequestRequest,
+    options?: RequestOptions,
+  ): Promise<operations.DenyRequestResponse> {
+    return unwrapAsync(requestsDenyRequest(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Returns a list of comments for a specific request.
+   */
+  async getRequestComments(
+    request: operations.GetRequestCommentsRequest,
+    options?: RequestOptions,
+  ): Promise<components.RequestCommentList> {
+    return unwrapAsync(requestsGetRequestComments(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Comment on an access request
+   */
+  async createRequestComment(
+    request: operations.CreateRequestCommentRequest,
+    options?: RequestOptions,
+  ): Promise<operations.CreateRequestCommentResponse> {
+    return unwrapAsync(requestsCreateRequestComment(
       this,
       request,
       options,

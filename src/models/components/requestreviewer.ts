@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
@@ -29,6 +30,10 @@ export type RequestReviewer = {
    * The unique identifier of the reviewer
    */
   id: string;
+  /**
+   * The user's full name.
+   */
+  fullName?: string | undefined;
   /**
    * The status of this reviewer's review
    */
@@ -63,12 +68,18 @@ export const RequestReviewer$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
+  full_name: z.string().optional(),
   status: RequestReviewerStatus$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "full_name": "fullName",
+  });
 });
 
 /** @internal */
 export type RequestReviewer$Outbound = {
   id: string;
+  full_name?: string | undefined;
   status: string;
 };
 
@@ -79,7 +90,12 @@ export const RequestReviewer$outboundSchema: z.ZodType<
   RequestReviewer
 > = z.object({
   id: z.string(),
+  fullName: z.string().optional(),
   status: RequestReviewerStatus$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    fullName: "full_name",
+  });
 });
 
 /**

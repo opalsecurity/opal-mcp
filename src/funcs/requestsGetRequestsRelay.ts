@@ -26,6 +26,9 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
+ * Get requests via Relay
+ *
+ * @remarks
  * Returns a paginated list of requests using Relay-style cursor pagination.
  *
  * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.

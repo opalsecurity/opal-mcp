@@ -87,6 +87,9 @@ let value: ResourceRemoteInfo = {
   githubRepo: {
     repoName: "Opal Security",
   },
+  githubOrgRole: {
+    roleId: "112233",
+  },
   gitlabProject: {
     projectId: "898931321",
   },
@@ -115,6 +118,12 @@ let value: ResourceRemoteInfo = {
   teleportRole: {
     roleName: "admin_role",
   },
+  datastaxAstraRole: {
+    roleId: "123e4567-e89b-12d3-a456-426614174000",
+  },
+  coupaRole: {
+    roleId: "999",
+  },
 };
 ```
 
@@ -142,6 +151,7 @@ let value: ResourceRemoteInfo = {
 | `gcpServiceAccount`                                                                      | [components.GcpServiceAccount](../../models/components/gcpserviceaccount.md)             | :heavy_minus_sign:                                                                       | Remote info for a GCP service account.                                                   |
 | `googleWorkspaceRole`                                                                    | [components.GoogleWorkspaceRole](../../models/components/googleworkspacerole.md)         | :heavy_minus_sign:                                                                       | Remote info for GCP workspace role.                                                      |
 | `githubRepo`                                                                             | [components.GithubRepo](../../models/components/githubrepo.md)                           | :heavy_minus_sign:                                                                       | Remote info for GitHub repository.                                                       |
+| `githubOrgRole`                                                                          | [components.GithubOrgRole](../../models/components/githuborgrole.md)                     | :heavy_minus_sign:                                                                       | Remote info for GitHub organization role.                                                |
 | `gitlabProject`                                                                          | [components.GitlabProject](../../models/components/gitlabproject.md)                     | :heavy_minus_sign:                                                                       | Remote info for Gitlab project.                                                          |
 | `oktaApp`                                                                                | [components.OktaApp](../../models/components/oktaapp.md)                                 | :heavy_minus_sign:                                                                       | Remote info for Okta directory app.                                                      |
 | `oktaStandardRole`                                                                       | [components.OktaStandardRole](../../models/components/oktastandardrole.md)               | :heavy_minus_sign:                                                                       | Remote info for Okta directory standard role.                                            |
@@ -151,3 +161,5 @@ let value: ResourceRemoteInfo = {
 | `salesforceProfile`                                                                      | [components.SalesforceProfile](../../models/components/salesforceprofile.md)             | :heavy_minus_sign:                                                                       | Remote info for Salesforce profile.                                                      |
 | `salesforceRole`                                                                         | [components.SalesforceRole](../../models/components/salesforcerole.md)                   | :heavy_minus_sign:                                                                       | Remote info for Salesforce role.                                                         |
 | `teleportRole`                                                                           | [components.TeleportRole](../../models/components/teleportrole.md)                       | :heavy_minus_sign:                                                                       | Remote info for Teleport role.                                                           |
+| `datastaxAstraRole`                                                                      | [components.DatastaxAstraRole](../../models/components/datastaxastrarole.md)             | :heavy_minus_sign:                                                                       | Remote info for an Astra role.                                                           |
+| `coupaRole`                                                                              | [components.CoupaRole](../../models/components/couparole.md)                             | :heavy_minus_sign:                                                                       | Remote info for Coupa role.                                                              |

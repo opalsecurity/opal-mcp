@@ -116,6 +116,12 @@ export type UpdateGroupInfo = {
    */
   groupLeaderUserIds?: Array<string> | undefined;
   /**
+   * The duration for which access can be extended (in minutes). Deprecated, set the extension duration in the request_configuration you want it to apply to.
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   */
+  extensionsDurationInMinutes?: number | undefined;
+  /**
    * The request configuration list of the configuration template. If not provided, the default request configuration will be used.
    */
   requestConfigurations?: Array<RequestConfiguration> | undefined;
@@ -171,6 +177,7 @@ export const UpdateGroupInfo$inboundSchema: z.ZodType<
   request_template_id: z.string().optional(),
   is_requestable: z.boolean().optional(),
   group_leader_user_ids: z.array(z.string()).optional(),
+  extensions_duration_in_minutes: z.number().int().optional(),
   request_configurations: z.array(RequestConfiguration$inboundSchema)
     .optional(),
   request_configuration_list: CreateRequestConfigurationInfoList$inboundSchema
@@ -193,6 +200,7 @@ export const UpdateGroupInfo$inboundSchema: z.ZodType<
     "request_template_id": "requestTemplateId",
     "is_requestable": "isRequestable",
     "group_leader_user_ids": "groupLeaderUserIds",
+    "extensions_duration_in_minutes": "extensionsDurationInMinutes",
     "request_configurations": "requestConfigurations",
     "request_configuration_list": "requestConfigurationList",
     "custom_request_notification": "customRequestNotification",
@@ -218,6 +226,7 @@ export type UpdateGroupInfo$Outbound = {
   request_template_id?: string | undefined;
   is_requestable?: boolean | undefined;
   group_leader_user_ids?: Array<string> | undefined;
+  extensions_duration_in_minutes?: number | undefined;
   request_configurations?: Array<RequestConfiguration$Outbound> | undefined;
   request_configuration_list?:
     | CreateRequestConfigurationInfoList$Outbound
@@ -248,6 +257,7 @@ export const UpdateGroupInfo$outboundSchema: z.ZodType<
   requestTemplateId: z.string().optional(),
   isRequestable: z.boolean().optional(),
   groupLeaderUserIds: z.array(z.string()).optional(),
+  extensionsDurationInMinutes: z.number().int().optional(),
   requestConfigurations: z.array(RequestConfiguration$outboundSchema)
     .optional(),
   requestConfigurationList: CreateRequestConfigurationInfoList$outboundSchema
@@ -270,6 +280,7 @@ export const UpdateGroupInfo$outboundSchema: z.ZodType<
     requestTemplateId: "request_template_id",
     isRequestable: "is_requestable",
     groupLeaderUserIds: "group_leader_user_ids",
+    extensionsDurationInMinutes: "extensions_duration_in_minutes",
     requestConfigurations: "request_configurations",
     requestConfigurationList: "request_configuration_list",
     customRequestNotification: "custom_request_notification",

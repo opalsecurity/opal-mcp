@@ -26,6 +26,12 @@ import {
   RequestItemStages$outboundSchema,
 } from "./requestitemstages.js";
 import {
+  RequestReviewerStages,
+  RequestReviewerStages$inboundSchema,
+  RequestReviewerStages$Outbound,
+  RequestReviewerStages$outboundSchema,
+} from "./requestreviewerstages.js";
+import {
   RequestStatusEnum,
   RequestStatusEnum$inboundSchema,
   RequestStatusEnum$outboundSchema,
@@ -95,8 +101,14 @@ export type RequestT = {
   customFieldsResponses?: Array<RequestCustomFieldResponse> | undefined;
   /**
    * The stages configuration for a request item
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   stages?: RequestItemStages | undefined;
+  /**
+   * The configured reviewer stages for every item in this request
+   */
+  reviewerStages?: Array<RequestReviewerStages> | undefined;
 };
 
 /** @internal */
@@ -118,6 +130,7 @@ export const RequestT$inboundSchema: z.ZodType<
   custom_fields_responses: z.array(RequestCustomFieldResponse$inboundSchema)
     .optional(),
   stages: RequestItemStages$inboundSchema.optional(),
+  reviewer_stages: z.array(RequestReviewerStages$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "created_at": "createdAt",
@@ -128,6 +141,7 @@ export const RequestT$inboundSchema: z.ZodType<
     "duration_minutes": "durationMinutes",
     "requested_items_list": "requestedItemsList",
     "custom_fields_responses": "customFieldsResponses",
+    "reviewer_stages": "reviewerStages",
   });
 });
 
@@ -147,6 +161,7 @@ export type RequestT$Outbound = {
     | Array<RequestCustomFieldResponse$Outbound>
     | undefined;
   stages?: RequestItemStages$Outbound | undefined;
+  reviewer_stages?: Array<RequestReviewerStages$Outbound> | undefined;
 };
 
 /** @internal */
@@ -168,6 +183,7 @@ export const RequestT$outboundSchema: z.ZodType<
   customFieldsResponses: z.array(RequestCustomFieldResponse$outboundSchema)
     .optional(),
   stages: RequestItemStages$outboundSchema.optional(),
+  reviewerStages: z.array(RequestReviewerStages$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     createdAt: "created_at",
@@ -178,6 +194,7 @@ export const RequestT$outboundSchema: z.ZodType<
     durationMinutes: "duration_minutes",
     requestedItemsList: "requested_items_list",
     customFieldsResponses: "custom_fields_responses",
+    reviewerStages: "reviewer_stages",
   });
 });
 

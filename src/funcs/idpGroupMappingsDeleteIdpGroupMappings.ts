@@ -95,9 +95,9 @@ async function $do(
     }),
   };
 
-  const path = pathToFunc("/idp-group-mappings/{app_resource_id}/{group_id}/")(
-    pathParams,
-  );
+  const path = pathToFunc(
+    "/idp-group-mappings/{app_resource_id}/groups/{group_id}",
+  )(pathParams);
 
   const headers = new Headers(compactMap({
     Accept: "*/*",

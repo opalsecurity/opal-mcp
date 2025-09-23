@@ -26,6 +26,9 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
+ * Get on call schedule by ID
+ *
+ * @remarks
  * Gets a `OnCallSchedule` object.
  */
 export function onCallSchedulesGetOnCallSchedule(

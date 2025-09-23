@@ -13,6 +13,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  */
 export type IdpGroupMapping = {
   /**
+   * The ID of the app resource.
+   */
+  appResourceId?: string | undefined;
+  /**
    * The ID of the group.
    */
   groupId: string;
@@ -32,11 +36,13 @@ export const IdpGroupMapping$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  app_resource_id: z.string().optional(),
   group_id: z.string(),
   alias: z.string().optional(),
   hidden_from_end_user: z.boolean(),
 }).transform((v) => {
   return remap$(v, {
+    "app_resource_id": "appResourceId",
     "group_id": "groupId",
     "hidden_from_end_user": "hiddenFromEndUser",
   });
@@ -44,6 +50,7 @@ export const IdpGroupMapping$inboundSchema: z.ZodType<
 
 /** @internal */
 export type IdpGroupMapping$Outbound = {
+  app_resource_id?: string | undefined;
   group_id: string;
   alias?: string | undefined;
   hidden_from_end_user: boolean;
@@ -55,11 +62,13 @@ export const IdpGroupMapping$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   IdpGroupMapping
 > = z.object({
+  appResourceId: z.string().optional(),
   groupId: z.string(),
   alias: z.string().optional(),
   hiddenFromEndUser: z.boolean(),
 }).transform((v) => {
   return remap$(v, {
+    appResourceId: "app_resource_id",
     groupId: "group_id",
     hiddenFromEndUser: "hidden_from_end_user",
   });

@@ -291,6 +291,16 @@ export type GithubRepo = {
 };
 
 /**
+ * Remote info for GitHub organization role.
+ */
+export type GithubOrgRole = {
+  /**
+   * The id of the role.
+   */
+  roleId: string;
+};
+
+/**
  * Remote info for Gitlab project.
  */
 export type GitlabProject = {
@@ -385,6 +395,26 @@ export type TeleportRole = {
 };
 
 /**
+ * Remote info for an Astra role.
+ */
+export type DatastaxAstraRole = {
+  /**
+   * The id of the role.
+   */
+  roleId: string;
+};
+
+/**
+ * Remote info for Coupa role.
+ */
+export type CoupaRole = {
+  /**
+   * The id of the role.
+   */
+  roleId: string;
+};
+
+/**
  * Information that defines the remote resource. This replaces the deprecated remote_id and metadata fields.
  */
 export type ResourceRemoteInfo = {
@@ -469,6 +499,10 @@ export type ResourceRemoteInfo = {
    */
   githubRepo?: GithubRepo | undefined;
   /**
+   * Remote info for GitHub organization role.
+   */
+  githubOrgRole?: GithubOrgRole | undefined;
+  /**
    * Remote info for Gitlab project.
    */
   gitlabProject?: GitlabProject | undefined;
@@ -504,6 +538,14 @@ export type ResourceRemoteInfo = {
    * Remote info for Teleport role.
    */
   teleportRole?: TeleportRole | undefined;
+  /**
+   * Remote info for an Astra role.
+   */
+  datastaxAstraRole?: DatastaxAstraRole | undefined;
+  /**
+   * Remote info for Coupa role.
+   */
+  coupaRole?: CoupaRole | undefined;
 };
 
 /** @internal */
@@ -1785,6 +1827,64 @@ export function githubRepoFromJSON(
 }
 
 /** @internal */
+export const GithubOrgRole$inboundSchema: z.ZodType<
+  GithubOrgRole,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  role_id: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    "role_id": "roleId",
+  });
+});
+
+/** @internal */
+export type GithubOrgRole$Outbound = {
+  role_id: string;
+};
+
+/** @internal */
+export const GithubOrgRole$outboundSchema: z.ZodType<
+  GithubOrgRole$Outbound,
+  z.ZodTypeDef,
+  GithubOrgRole
+> = z.object({
+  roleId: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    roleId: "role_id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GithubOrgRole$ {
+  /** @deprecated use `GithubOrgRole$inboundSchema` instead. */
+  export const inboundSchema = GithubOrgRole$inboundSchema;
+  /** @deprecated use `GithubOrgRole$outboundSchema` instead. */
+  export const outboundSchema = GithubOrgRole$outboundSchema;
+  /** @deprecated use `GithubOrgRole$Outbound` instead. */
+  export type Outbound = GithubOrgRole$Outbound;
+}
+
+export function githubOrgRoleToJSON(githubOrgRole: GithubOrgRole): string {
+  return JSON.stringify(GithubOrgRole$outboundSchema.parse(githubOrgRole));
+}
+
+export function githubOrgRoleFromJSON(
+  jsonString: string,
+): SafeParseResult<GithubOrgRole, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GithubOrgRole$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GithubOrgRole' from JSON`,
+  );
+}
+
+/** @internal */
 export const GitlabProject$inboundSchema: z.ZodType<
   GitlabProject,
   z.ZodTypeDef,
@@ -2321,6 +2421,126 @@ export function teleportRoleFromJSON(
 }
 
 /** @internal */
+export const DatastaxAstraRole$inboundSchema: z.ZodType<
+  DatastaxAstraRole,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  role_id: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    "role_id": "roleId",
+  });
+});
+
+/** @internal */
+export type DatastaxAstraRole$Outbound = {
+  role_id: string;
+};
+
+/** @internal */
+export const DatastaxAstraRole$outboundSchema: z.ZodType<
+  DatastaxAstraRole$Outbound,
+  z.ZodTypeDef,
+  DatastaxAstraRole
+> = z.object({
+  roleId: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    roleId: "role_id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace DatastaxAstraRole$ {
+  /** @deprecated use `DatastaxAstraRole$inboundSchema` instead. */
+  export const inboundSchema = DatastaxAstraRole$inboundSchema;
+  /** @deprecated use `DatastaxAstraRole$outboundSchema` instead. */
+  export const outboundSchema = DatastaxAstraRole$outboundSchema;
+  /** @deprecated use `DatastaxAstraRole$Outbound` instead. */
+  export type Outbound = DatastaxAstraRole$Outbound;
+}
+
+export function datastaxAstraRoleToJSON(
+  datastaxAstraRole: DatastaxAstraRole,
+): string {
+  return JSON.stringify(
+    DatastaxAstraRole$outboundSchema.parse(datastaxAstraRole),
+  );
+}
+
+export function datastaxAstraRoleFromJSON(
+  jsonString: string,
+): SafeParseResult<DatastaxAstraRole, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DatastaxAstraRole$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DatastaxAstraRole' from JSON`,
+  );
+}
+
+/** @internal */
+export const CoupaRole$inboundSchema: z.ZodType<
+  CoupaRole,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  role_id: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    "role_id": "roleId",
+  });
+});
+
+/** @internal */
+export type CoupaRole$Outbound = {
+  role_id: string;
+};
+
+/** @internal */
+export const CoupaRole$outboundSchema: z.ZodType<
+  CoupaRole$Outbound,
+  z.ZodTypeDef,
+  CoupaRole
+> = z.object({
+  roleId: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    roleId: "role_id",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CoupaRole$ {
+  /** @deprecated use `CoupaRole$inboundSchema` instead. */
+  export const inboundSchema = CoupaRole$inboundSchema;
+  /** @deprecated use `CoupaRole$outboundSchema` instead. */
+  export const outboundSchema = CoupaRole$outboundSchema;
+  /** @deprecated use `CoupaRole$Outbound` instead. */
+  export type Outbound = CoupaRole$Outbound;
+}
+
+export function coupaRoleToJSON(coupaRole: CoupaRole): string {
+  return JSON.stringify(CoupaRole$outboundSchema.parse(coupaRole));
+}
+
+export function coupaRoleFromJSON(
+  jsonString: string,
+): SafeParseResult<CoupaRole, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CoupaRole$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CoupaRole' from JSON`,
+  );
+}
+
+/** @internal */
 export const ResourceRemoteInfo$inboundSchema: z.ZodType<
   ResourceRemoteInfo,
   z.ZodTypeDef,
@@ -2350,6 +2570,7 @@ export const ResourceRemoteInfo$inboundSchema: z.ZodType<
   google_workspace_role: z.lazy(() => GoogleWorkspaceRole$inboundSchema)
     .optional(),
   github_repo: z.lazy(() => GithubRepo$inboundSchema).optional(),
+  github_org_role: z.lazy(() => GithubOrgRole$inboundSchema).optional(),
   gitlab_project: z.lazy(() => GitlabProject$inboundSchema).optional(),
   okta_app: z.lazy(() => OktaApp$inboundSchema).optional(),
   okta_standard_role: z.lazy(() => OktaStandardRole$inboundSchema).optional(),
@@ -2360,6 +2581,8 @@ export const ResourceRemoteInfo$inboundSchema: z.ZodType<
   salesforce_profile: z.lazy(() => SalesforceProfile$inboundSchema).optional(),
   salesforce_role: z.lazy(() => SalesforceRole$inboundSchema).optional(),
   teleport_role: z.lazy(() => TeleportRole$inboundSchema).optional(),
+  datastax_astra_role: z.lazy(() => DatastaxAstraRole$inboundSchema).optional(),
+  coupa_role: z.lazy(() => CoupaRole$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "aws_organizational_unit": "awsOrganizationalUnit",
@@ -2382,6 +2605,7 @@ export const ResourceRemoteInfo$inboundSchema: z.ZodType<
     "gcp_service_account": "gcpServiceAccount",
     "google_workspace_role": "googleWorkspaceRole",
     "github_repo": "githubRepo",
+    "github_org_role": "githubOrgRole",
     "gitlab_project": "gitlabProject",
     "okta_app": "oktaApp",
     "okta_standard_role": "oktaStandardRole",
@@ -2391,6 +2615,8 @@ export const ResourceRemoteInfo$inboundSchema: z.ZodType<
     "salesforce_profile": "salesforceProfile",
     "salesforce_role": "salesforceRole",
     "teleport_role": "teleportRole",
+    "datastax_astra_role": "datastaxAstraRole",
+    "coupa_role": "coupaRole",
   });
 });
 
@@ -2416,6 +2642,7 @@ export type ResourceRemoteInfo$Outbound = {
   gcp_service_account?: GcpServiceAccount$Outbound | undefined;
   google_workspace_role?: GoogleWorkspaceRole$Outbound | undefined;
   github_repo?: GithubRepo$Outbound | undefined;
+  github_org_role?: GithubOrgRole$Outbound | undefined;
   gitlab_project?: GitlabProject$Outbound | undefined;
   okta_app?: OktaApp$Outbound | undefined;
   okta_standard_role?: OktaStandardRole$Outbound | undefined;
@@ -2425,6 +2652,8 @@ export type ResourceRemoteInfo$Outbound = {
   salesforce_profile?: SalesforceProfile$Outbound | undefined;
   salesforce_role?: SalesforceRole$Outbound | undefined;
   teleport_role?: TeleportRole$Outbound | undefined;
+  datastax_astra_role?: DatastaxAstraRole$Outbound | undefined;
+  coupa_role?: CoupaRole$Outbound | undefined;
 };
 
 /** @internal */
@@ -2457,6 +2686,7 @@ export const ResourceRemoteInfo$outboundSchema: z.ZodType<
   googleWorkspaceRole: z.lazy(() => GoogleWorkspaceRole$outboundSchema)
     .optional(),
   githubRepo: z.lazy(() => GithubRepo$outboundSchema).optional(),
+  githubOrgRole: z.lazy(() => GithubOrgRole$outboundSchema).optional(),
   gitlabProject: z.lazy(() => GitlabProject$outboundSchema).optional(),
   oktaApp: z.lazy(() => OktaApp$outboundSchema).optional(),
   oktaStandardRole: z.lazy(() => OktaStandardRole$outboundSchema).optional(),
@@ -2467,6 +2697,8 @@ export const ResourceRemoteInfo$outboundSchema: z.ZodType<
   salesforceProfile: z.lazy(() => SalesforceProfile$outboundSchema).optional(),
   salesforceRole: z.lazy(() => SalesforceRole$outboundSchema).optional(),
   teleportRole: z.lazy(() => TeleportRole$outboundSchema).optional(),
+  datastaxAstraRole: z.lazy(() => DatastaxAstraRole$outboundSchema).optional(),
+  coupaRole: z.lazy(() => CoupaRole$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     awsOrganizationalUnit: "aws_organizational_unit",
@@ -2489,6 +2721,7 @@ export const ResourceRemoteInfo$outboundSchema: z.ZodType<
     gcpServiceAccount: "gcp_service_account",
     googleWorkspaceRole: "google_workspace_role",
     githubRepo: "github_repo",
+    githubOrgRole: "github_org_role",
     gitlabProject: "gitlab_project",
     oktaApp: "okta_app",
     oktaStandardRole: "okta_standard_role",
@@ -2498,6 +2731,8 @@ export const ResourceRemoteInfo$outboundSchema: z.ZodType<
     salesforceProfile: "salesforce_profile",
     salesforceRole: "salesforce_role",
     teleportRole: "teleport_role",
+    datastaxAstraRole: "datastax_astra_role",
+    coupaRole: "coupa_role",
   });
 });
 

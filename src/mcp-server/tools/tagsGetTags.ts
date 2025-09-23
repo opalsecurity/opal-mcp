@@ -12,7 +12,9 @@ const args = {
 
 export const tool$tagsGetTags: ToolDefinition<typeof args> = {
   name: "tags-get-tags",
-  description: `Returns a list of tags created by your organization.`,
+  description: `Get tags
+
+Returns a list of tags created by your organization.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {

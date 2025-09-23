@@ -19,6 +19,7 @@ import { resourcesGetResourceTags } from "../funcs/resourcesGetResourceTags.js";
 import { resourcesGetResourceUser } from "../funcs/resourcesGetResourceUser.js";
 import { resourcesGetResourceUsers } from "../funcs/resourcesGetResourceUsers.js";
 import { resourcesGetResourceVisibility } from "../funcs/resourcesGetResourceVisibility.js";
+import { resourcesGetUserResources } from "../funcs/resourcesGetUserResources.js";
 import { resourcesResourceUserAccessStatusRetrieve } from "../funcs/resourcesResourceUserAccessStatusRetrieve.js";
 import { resourcesSetResourceMessageChannels } from "../funcs/resourcesSetResourceMessageChannels.js";
 import { resourcesSetResourceReviewers } from "../funcs/resourcesSetResourceReviewers.js";
@@ -35,6 +36,9 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Resources extends ClientSDK {
   /**
+   * Get resources
+   *
+   * @remarks
    * Returns a list of resources for your organization.
    */
   async getResources(
@@ -79,6 +83,9 @@ export class Resources extends ClientSDK {
   }
 
   /**
+   * Get resource by ID
+   *
+   * @remarks
    * Retrieves a resource.
    */
   async getResource(
@@ -233,6 +240,9 @@ export class Resources extends ClientSDK {
   }
 
   /**
+   * Get resource users
+   *
+   * @remarks
    * Gets the list of users for this resource.
    */
   async getResourceUsers(
@@ -317,6 +327,9 @@ export class Resources extends ClientSDK {
   }
 
   /**
+   * Get resource user
+   *
+   * @remarks
    * Returns information about a specific user's access to a resource.
    */
   async getResourceUser(
@@ -382,6 +395,20 @@ export class Resources extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.ScopedRolePermissionList> {
     return unwrapAsync(resourcesSetResourceScopedRolePermissions(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Gets the list of resources for this user.
+   */
+  async getUserResources(
+    request: operations.GetUserResourcesRequest,
+    options?: RequestOptions,
+  ): Promise<components.ResourceAccessUserList> {
+    return unwrapAsync(resourcesGetUserResources(
       this,
       request,
       options,

@@ -15,6 +15,14 @@ import {
 
 export type GroupUserList = {
   results?: Array<GroupUser> | undefined;
+  /**
+   * The cursor with which to continue pagination if additional result pages exist.
+   */
+  next?: string | null | undefined;
+  /**
+   * The cursor used to obtain the current result page.
+   */
+  previous?: string | null | undefined;
 };
 
 /** @internal */
@@ -24,11 +32,15 @@ export const GroupUserList$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   results: z.array(GroupUser$inboundSchema).optional(),
+  next: z.nullable(z.string()).optional(),
+  previous: z.nullable(z.string()).optional(),
 });
 
 /** @internal */
 export type GroupUserList$Outbound = {
   results?: Array<GroupUser$Outbound> | undefined;
+  next?: string | null | undefined;
+  previous?: string | null | undefined;
 };
 
 /** @internal */
@@ -38,6 +50,8 @@ export const GroupUserList$outboundSchema: z.ZodType<
   GroupUserList
 > = z.object({
   results: z.array(GroupUser$outboundSchema).optional(),
+  next: z.nullable(z.string()).optional(),
+  previous: z.nullable(z.string()).optional(),
 });
 
 /**

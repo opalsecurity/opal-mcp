@@ -291,15 +291,15 @@ For additional help, you can:
 
 ### [apps](docs/sdks/apps/README.md)
 
-* [getApps](docs/sdks/apps/README.md#getapps) - Returns a list of `App` objects.
-* [getApp](docs/sdks/apps/README.md#getapp) - Returns an `App` object.
+* [getApps](docs/sdks/apps/README.md#getapps) - Get apps
+* [getApp](docs/sdks/apps/README.md#getapp) - Get app by ID
 * [getSyncErrors](docs/sdks/apps/README.md#getsyncerrors) - Returns a list of recent sync errors that have occurred since the last successful sync.
 
 ### [bundles](docs/sdks/bundles/README.md)
 
-* [getBundles](docs/sdks/bundles/README.md#getbundles) - Returns a list of `Bundle` objects.
+* [getBundles](docs/sdks/bundles/README.md#getbundles) - Get bundles
 * [createBundle](docs/sdks/bundles/README.md#createbundle) - Creates a bundle.
-* [getBundle](docs/sdks/bundles/README.md#getbundle) - Returns a `Bundle` object.
+* [getBundle](docs/sdks/bundles/README.md#getbundle) - Get bundle by ID
 * [deleteBundle](docs/sdks/bundles/README.md#deletebundle) - Deletes a bundle.
 * [updateBundle](docs/sdks/bundles/README.md#updatebundle) - Updates a bundle.
 * [getBundleResources](docs/sdks/bundles/README.md#getbundleresources) - Returns a list of `Resource` objects in a given bundle.
@@ -318,24 +318,31 @@ For additional help, you can:
 * [updateConfigurationTemplate](docs/sdks/configurationtemplates/README.md#updateconfigurationtemplate) - Update a configuration template.
 * [deleteConfigurationTemplate](docs/sdks/configurationtemplates/README.md#deleteconfigurationtemplate) - Deletes a configuration template.
 
+### [delegations](docs/sdks/delegations/README.md)
+
+* [getDelegations](docs/sdks/delegations/README.md#getdelegations) - Get delegations
+* [createDelegation](docs/sdks/delegations/README.md#createdelegation) - Creates a new request reviewer delegation to delegate access review requests from one user to another.
+* [getDelegation](docs/sdks/delegations/README.md#getdelegation) - Get delegation by ID
+* [deleteDelegation](docs/sdks/delegations/README.md#deletedelegation) - Deletes a delegation by its ID.
+
 ### [events](docs/sdks/events/README.md)
 
 * [events](docs/sdks/events/README.md#events) - Returns a list of `Event` objects.
 
 ### [groupBindings](docs/sdks/groupbindings/README.md)
 
-* [getGroupBindings](docs/sdks/groupbindings/README.md#getgroupbindings) - Returns a list of `GroupBinding` objects.
+* [getGroupBindings](docs/sdks/groupbindings/README.md#getgroupbindings) - Get group bindings
 * [createGroupBinding](docs/sdks/groupbindings/README.md#creategroupbinding) - Creates a group binding.
 * [updateGroupBindings](docs/sdks/groupbindings/README.md#updategroupbindings) - Bulk updates a list of group bindings.
-* [getGroupBinding](docs/sdks/groupbindings/README.md#getgroupbinding) - Returns a `GroupBinding` object.
+* [getGroupBinding](docs/sdks/groupbindings/README.md#getgroupbinding) - Get group binding by ID
 * [deleteGroupBinding](docs/sdks/groupbindings/README.md#deletegroupbinding) - Deletes a group binding.
 
 ### [groups](docs/sdks/groups/README.md)
 
-* [getGroups](docs/sdks/groups/README.md#getgroups) - Returns a list of groups for your organization.
+* [getGroups](docs/sdks/groups/README.md#getgroups) - Get groups
 * [updateGroups](docs/sdks/groups/README.md#updategroups) - Bulk updates a list of groups.
 * [createGroup](docs/sdks/groups/README.md#creategroup) - Creates an Opal group or [imports a remote group](https://docs.opal.dev/reference/end-system-objects).
-* [getGroup](docs/sdks/groups/README.md#getgroup) - Returns a `Group` object.
+* [getGroup](docs/sdks/groups/README.md#getgroup) - Get group by ID
 * [deleteGroup](docs/sdks/groups/README.md#deletegroup) - Deletes a group.
 * [getGroupMessageChannels](docs/sdks/groups/README.md#getgroupmessagechannels) - Gets the list of audit and reviewer message channels attached to a group.
 * [setGroupMessageChannels](docs/sdks/groups/README.md#setgroupmessagechannels) - Sets the list of audit message channels attached to a group.
@@ -343,9 +350,9 @@ For additional help, you can:
 * [setGroupOnCallSchedules](docs/sdks/groups/README.md#setgrouponcallschedules) - Sets the list of on call schedules attached to a group.
 * [getGroupResources](docs/sdks/groups/README.md#getgroupresources) - Gets the list of resources that the group gives access to.
 * [setGroupResources](docs/sdks/groups/README.md#setgroupresources) - Sets the list of resources that the group gives access to.
-* [getGroupContainingGroups](docs/sdks/groups/README.md#getgroupcontaininggroups) - Gets the list of groups that the group gives access to.
+* [getGroupContainingGroups](docs/sdks/groups/README.md#getgroupcontaininggroups) - Get nested groups
 * [addGroupContainingGroup](docs/sdks/groups/README.md#addgroupcontaininggroup) - Creates a new containing group.
-* [getGroupContainingGroup](docs/sdks/groups/README.md#getgroupcontaininggroup) - Gets a specific containing group for a group.
+* [getGroupContainingGroup](docs/sdks/groups/README.md#getgroupcontaininggroup) - Get nested group by ID
 * [removeGroupContainingGroup](docs/sdks/groups/README.md#removegroupcontaininggroup) - Removes a containing group from a group.
 * [addGroupResource](docs/sdks/groups/README.md#addgroupresource) - Adds a resource to a group.
 * [getGroupVisibility](docs/sdks/groups/README.md#getgroupvisibility) - Gets the visibility of this group.
@@ -359,18 +366,26 @@ For additional help, you can:
 * [updateGroupUser](docs/sdks/groups/README.md#updategroupuser) - Updates a user's access level or duration in this group.
 * [addGroupUser](docs/sdks/groups/README.md#addgroupuser) - Adds a user to this group.
 * [deleteGroupUser](docs/sdks/groups/README.md#deletegroupuser) - Removes a user's access from this group.
+* [getUserGroups](docs/sdks/groups/README.md#getusergroups) - Returns all groups that the user is a member of.
 
 ### [idpGroupMappings](docs/sdks/idpgroupmappings/README.md)
 
 * [getIdpGroupMappings](docs/sdks/idpgroupmappings/README.md#getidpgroupmappings) - Returns the configured set of available `IdpGroupMapping` objects for an Okta app.
 * [updateIdpGroupMappings](docs/sdks/idpgroupmappings/README.md#updateidpgroupmappings) - Updates the list of available `IdpGroupMapping` objects for an Okta app.
+* [getIdpGroupMapping](docs/sdks/idpgroupmappings/README.md#getidpgroupmapping) - Gets an `IdpGroupMapping` object for an Okta app and group.
+* [createIdpGroupMapping](docs/sdks/idpgroupmappings/README.md#createidpgroupmapping) - Creates or updates an individual `IdpGroupMapping` object (upsert operation).
+
+**Behavior:**
+- If the mapping doesn't exist, it will be created with the provided values
+- If the mapping exists, only the fields provided in the request will be updated
+
 * [deleteIdpGroupMappings](docs/sdks/idpgroupmappings/README.md#deleteidpgroupmappings) - Deletes an `IdpGroupMapping` object.
 
 ### [messageChannels](docs/sdks/messagechannels/README.md)
 
-* [getMessageChannels](docs/sdks/messagechannels/README.md#getmessagechannels) - Returns a list of `MessageChannel` objects.
+* [getMessageChannels](docs/sdks/messagechannels/README.md#getmessagechannels) - Get message channels
 * [createMessageChannel](docs/sdks/messagechannels/README.md#createmessagechannel) - Creates a `MessageChannel` objects.
-* [getMessageChannel](docs/sdks/messagechannels/README.md#getmessagechannel) - Gets a `MessageChannel` object.
+* [getMessageChannel](docs/sdks/messagechannels/README.md#getmessagechannel) - Get message channel by ID
 
 ### [nonHumanIdentities](docs/sdks/nonhumanidentities/README.md)
 
@@ -378,17 +393,17 @@ For additional help, you can:
 
 ### [onCallSchedules](docs/sdks/oncallschedules/README.md)
 
-* [getOnCallSchedules](docs/sdks/oncallschedules/README.md#getoncallschedules) - Returns a list of `OnCallSchedule` objects.
+* [getOnCallSchedules](docs/sdks/oncallschedules/README.md#getoncallschedules) - Get on call schedules
 * [createOnCallSchedule](docs/sdks/oncallschedules/README.md#createoncallschedule) - Creates a `OnCallSchedule` objects.
-* [getOnCallSchedule](docs/sdks/oncallschedules/README.md#getoncallschedule) - Gets a `OnCallSchedule` object.
+* [getOnCallSchedule](docs/sdks/oncallschedules/README.md#getoncallschedule) - Get on call schedule by ID
 
 
 ### [owners](docs/sdks/owners/README.md)
 
-* [getOwners](docs/sdks/owners/README.md#getowners) - Returns a list of `Owner` objects.
+* [getOwners](docs/sdks/owners/README.md#getowners) - Get owners
 * [createOwner](docs/sdks/owners/README.md#createowner) - Creates an owner.
 * [updateOwners](docs/sdks/owners/README.md#updateowners) - Bulk updates a list of owners.
-* [getOwner](docs/sdks/owners/README.md#getowner) - Returns an `Owner` object.
+* [getOwner](docs/sdks/owners/README.md#getowner) - Get owner by ID
 * [deleteOwner](docs/sdks/owners/README.md#deleteowner) - Deletes an owner.
 * [getOwnerFromName](docs/sdks/owners/README.md#getownerfromname) - Returns an `Owner` object. Does not support owners with `/` in their name, use /owners?name=... instead.
 * [getOwnerUsers](docs/sdks/owners/README.md#getownerusers) - Gets the list of users for this owner, in escalation priority order if applicable.
@@ -396,18 +411,21 @@ For additional help, you can:
 
 ### [requests](docs/sdks/requests/README.md)
 
-* [getRequests](docs/sdks/requests/README.md#getrequests) - Returns a list of requests for your organization that is visible by the admin.
+* [getRequests](docs/sdks/requests/README.md#getrequests) - Get requests
 * [createRequest](docs/sdks/requests/README.md#createrequest) - Create an access request
-* [~~getRequestsRelay~~](docs/sdks/requests/README.md#getrequestsrelay) - Returns a paginated list of requests using Relay-style cursor pagination. :warning: **Deprecated**
-* [getRequest](docs/sdks/requests/README.md#getrequest) - Returns a request by ID.
+* [~~getRequestsRelay~~](docs/sdks/requests/README.md#getrequestsrelay) - Get requests via Relay :warning: **Deprecated**
+* [getRequest](docs/sdks/requests/README.md#getrequest) - Get request by ID
 * [approveRequest](docs/sdks/requests/README.md#approverequest) - Approve an access request
+* [denyRequest](docs/sdks/requests/README.md#denyrequest) - Deny an access request
+* [getRequestComments](docs/sdks/requests/README.md#getrequestcomments) - Returns a list of comments for a specific request.
+* [createRequestComment](docs/sdks/requests/README.md#createrequestcomment) - Comment on an access request
 
 ### [resources](docs/sdks/resources/README.md)
 
-* [getResources](docs/sdks/resources/README.md#getresources) - Returns a list of resources for your organization.
+* [getResources](docs/sdks/resources/README.md#getresources) - Get resources
 * [updateResources](docs/sdks/resources/README.md#updateresources) - Bulk updates a list of resources.
 * [createResource](docs/sdks/resources/README.md#createresource) - Creates a resource. See [here](https://docs.opal.dev/reference/end-system-objects) for details about importing resources.
-* [getResource](docs/sdks/resources/README.md#getresource) - Retrieves a resource.
+* [getResource](docs/sdks/resources/README.md#getresource) - Get resource by ID
 * [deleteResource](docs/sdks/resources/README.md#deleteresource) - Deletes a resource.
 * [getResourceMessageChannels](docs/sdks/resources/README.md#getresourcemessagechannels) - Gets the list of audit message channels attached to a resource.
 * [setResourceMessageChannels](docs/sdks/resources/README.md#setresourcemessagechannels) - Sets the list of audit message channels attached to a resource.
@@ -418,22 +436,18 @@ For additional help, you can:
 * [getResourceReviewerStages](docs/sdks/resources/README.md#getresourcereviewerstages) - Gets the list reviewer stages for a resource.
 * [setResourceReviewerStages](docs/sdks/resources/README.md#setresourcereviewerstages) - Sets the list of reviewer stages for a resource.
 * [getResourceNhis](docs/sdks/resources/README.md#getresourcenhis) - Gets the list of non-human identities with access to this resource.
-* [getResourceUsers](docs/sdks/resources/README.md#getresourceusers) - Gets the list of users for this resource.
+* [getResourceUsers](docs/sdks/resources/README.md#getresourceusers) - Get resource users
 * [addResourceNhi](docs/sdks/resources/README.md#addresourcenhi) - Gives a non-human identity access to this resource.
 * [deleteResourceNhi](docs/sdks/resources/README.md#deleteresourcenhi) - Removes a non-human identity's direct access from this resource.
 * [addResourceUser](docs/sdks/resources/README.md#addresourceuser) - Adds a user to this resource.
 * [updateResourceUser](docs/sdks/resources/README.md#updateresourceuser) - Updates a user's access level or duration on this resource.
 * [deleteResourceUser](docs/sdks/resources/README.md#deleteresourceuser) - Removes a user's direct access from this resource.
-* [getResourceUser](docs/sdks/resources/README.md#getresourceuser) - Returns information about a specific user's access to a resource.
+* [getResourceUser](docs/sdks/resources/README.md#getresourceuser) - Get resource user
 * [~~resourceUserAccessStatusRetrieve~~](docs/sdks/resources/README.md#resourceuseraccessstatusretrieve) - Get user's access status to a resource. :warning: **Deprecated**
 * [getResourceTags](docs/sdks/resources/README.md#getresourcetags) - Returns all tags applied to the resource.
 * [getResourceScopedRolePermissions](docs/sdks/resources/README.md#getresourcescopedrolepermissions) - Returns all the scoped role permissions that apply to the given resource. Only OPAL_SCOPED_ROLE resource type supports this field.
 * [setResourceScopedRolePermissions](docs/sdks/resources/README.md#setresourcescopedrolepermissions) - Sets all the scoped role permissions on an OPAL_SCOPED_ROLE resource.
-
-### [scopedRolePermissions](docs/sdks/scopedrolepermissions/README.md)
-
-* [getResourceScopedRolePermissions](docs/sdks/scopedrolepermissions/README.md#getresourcescopedrolepermissions) - Returns all the scoped role permissions that apply to the given resource. Only OPAL_SCOPED_ROLE resource type supports this field.
-* [setResourceScopedRolePermissions](docs/sdks/scopedrolepermissions/README.md#setresourcescopedrolepermissions) - Sets all the scoped role permissions on an OPAL_SCOPED_ROLE resource.
+* [getUserResources](docs/sdks/resources/README.md#getuserresources) - Gets the list of resources for this user.
 
 ### [sessions](docs/sdks/sessions/README.md)
 
@@ -441,11 +455,11 @@ For additional help, you can:
 
 ### [tags](docs/sdks/tags/README.md)
 
-* [getTagByID](docs/sdks/tags/README.md#gettagbyid) - UNSTABLE. May be removed at any time. Gets a tag with the given id.
+* [getTagByID](docs/sdks/tags/README.md#gettagbyid) - Get tag by ID
 * [deleteTagByID](docs/sdks/tags/README.md#deletetagbyid) - UNSTABLE. May be removed at any time. Deletes a tag with the given id.
 * [getTag](docs/sdks/tags/README.md#gettag) - Gets a tag with the given key and value.
 * [createTag](docs/sdks/tags/README.md#createtag) - Creates a tag with the given key and value.
-* [getTags](docs/sdks/tags/README.md#gettags) - Returns a list of tags created by your organization.
+* [getTags](docs/sdks/tags/README.md#gettags) - Get tags
 * [addUserTag](docs/sdks/tags/README.md#addusertag) - Applies a tag to a user.
 * [removeUserTag](docs/sdks/tags/README.md#removeusertag) - Removes a tag from a user.
 * [addGroupTag](docs/sdks/tags/README.md#addgrouptag) - Applies a tag to a group.
@@ -476,6 +490,7 @@ Authentication:
 - Respects standard Opal authorization rules
 
 * [getUsers](docs/sdks/users/README.md#getusers) - Returns a list of users for your organization.
+* [getRemoteUsers](docs/sdks/users/README.md#getremoteusers) - Returns a list of remote users for your organization.
 * [getUserTags](docs/sdks/users/README.md#getusertags) - Returns all tags applied to the user.
 
 </details>

@@ -5,22 +5,9 @@
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
-import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-
-/**
- * The decision level for the approval
- */
-export const Level = {
-  Regular: "REGULAR",
-  Admin: "ADMIN",
-} as const;
-/**
- * The decision level for the approval
- */
-export type Level = ClosedEnum<typeof Level>;
 
 /**
  * Approval parameters
@@ -29,7 +16,7 @@ export type ApproveRequestRequestBody = {
   /**
    * The decision level for the approval
    */
-  level: Level;
+  level: components.RequestApprovalEnum;
   /**
    * Optional comment for the approval
    */
@@ -62,31 +49,7 @@ export type ApproveRequestResponse = {
    * Returned from the `GET Requests` endpoint.
    */
   request?: components.RequestT | undefined;
-  /**
-   * ID of the task created for propagating access
-   */
-  taskId?: string | undefined;
 };
-
-/** @internal */
-export const Level$inboundSchema: z.ZodNativeEnum<typeof Level> = z.nativeEnum(
-  Level,
-);
-
-/** @internal */
-export const Level$outboundSchema: z.ZodNativeEnum<typeof Level> =
-  Level$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Level$ {
-  /** @deprecated use `Level$inboundSchema` instead. */
-  export const inboundSchema = Level$inboundSchema;
-  /** @deprecated use `Level$outboundSchema` instead. */
-  export const outboundSchema = Level$outboundSchema;
-}
 
 /** @internal */
 export const ApproveRequestRequestBody$inboundSchema: z.ZodType<
@@ -94,7 +57,7 @@ export const ApproveRequestRequestBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  level: Level$inboundSchema,
+  level: components.RequestApprovalEnum$inboundSchema,
   comment: z.string().optional(),
 });
 
@@ -110,7 +73,7 @@ export const ApproveRequestRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ApproveRequestRequestBody
 > = z.object({
-  level: Level$outboundSchema,
+  level: components.RequestApprovalEnum$outboundSchema,
   comment: z.string().optional(),
 });
 
@@ -217,13 +180,11 @@ export const ApproveRequestResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   request: components.RequestT$inboundSchema.optional(),
-  taskId: z.string().optional(),
 });
 
 /** @internal */
 export type ApproveRequestResponse$Outbound = {
   request?: components.RequestT$Outbound | undefined;
-  taskId?: string | undefined;
 };
 
 /** @internal */
@@ -233,7 +194,6 @@ export const ApproveRequestResponse$outboundSchema: z.ZodType<
   ApproveRequestResponse
 > = z.object({
   request: components.RequestT$outboundSchema.optional(),
-  taskId: z.string().optional(),
 });
 
 /**

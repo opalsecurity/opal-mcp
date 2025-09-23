@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4f4a8d8c-90c5-4992-8800-17a249fd1e0f
 management:
-  docChecksum: 156291fa2d74e64a788c7da05033216c
+  docChecksum: e4a990be54edee18d3e23ed9bf2085e0
   docVersion: "1.0"
-  speakeasyVersion: 1.592.1
-  generationVersion: 2.667.0
-  releaseVersion: 0.7.0
-  configChecksum: 63e10a5c7bec13cd29a53bad747705ef
+  speakeasyVersion: 1.622.1
+  generationVersion: 2.709.0
+  releaseVersion: 0.7.1
+  configChecksum: 96e462b8df48c92f4f4207d3d400611a
   repoURL: https://github.com/opalsecurity/opal-mcp.git
   installationURL: https://github.com/opalsecurity/opal-mcp
   published: true
@@ -14,13 +14,13 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
-    core: 3.21.16
+    core: 3.21.23
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
-    devContainers: 2.90.0
+    devContainers: 2.90.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
-    globalSecurity: 2.82.13
+    globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.5
@@ -68,8 +68,10 @@ generatedFiles:
   - docs/models/components/bundleresource.md
   - docs/models/components/condition.md
   - docs/models/components/configurationtemplate.md
+  - docs/models/components/couparole.md
   - docs/models/components/createbundleinfo.md
   - docs/models/components/createconfigurationtemplateinfo.md
+  - docs/models/components/createdelegationrequest.md
   - docs/models/components/creategroupbindinginfo.md
   - docs/models/components/creategroupbindinginfogroup.md
   - docs/models/components/creategroupinfo.md
@@ -85,6 +87,8 @@ generatedFiles:
   - docs/models/components/createuarinfo.md
   - docs/models/components/customconnector.md
   - docs/models/components/custommetadatum.md
+  - docs/models/components/datastaxastrarole.md
+  - docs/models/components/delegation.md
   - docs/models/components/duogroup.md
   - docs/models/components/entitytypeenum.md
   - docs/models/components/event.md
@@ -100,6 +104,7 @@ generatedFiles:
   - docs/models/components/gcpproject.md
   - docs/models/components/gcpserviceaccount.md
   - docs/models/components/gcpsqlinstance.md
+  - docs/models/components/githuborgrole.md
   - docs/models/components/githubrepo.md
   - docs/models/components/githubteam.md
   - docs/models/components/gitlabgroup.md
@@ -144,16 +149,22 @@ generatedFiles:
   - docs/models/components/paginatedbundlelist.md
   - docs/models/components/paginatedbundleresourcelist.md
   - docs/models/components/paginatedconfigurationtemplatelist.md
+  - docs/models/components/paginateddelegationslist.md
   - docs/models/components/paginatedeventlist.md
   - docs/models/components/paginatedgroupbindingslist.md
   - docs/models/components/paginatedgroupslist.md
   - docs/models/components/paginatedownerslist.md
+  - docs/models/components/paginatedremoteuserslist.md
   - docs/models/components/paginatedresourceslist.md
   - docs/models/components/paginatedtagslist.md
   - docs/models/components/paginateduarslist.md
   - docs/models/components/paginateduserslist.md
   - docs/models/components/propagationstatus.md
   - docs/models/components/propagationstatusenum.md
+  - docs/models/components/remoteuser.md
+  - docs/models/components/requestapprovalenum.md
+  - docs/models/components/requestcomment.md
+  - docs/models/components/requestcommentlist.md
   - docs/models/components/requestconfiguration.md
   - docs/models/components/requestconnection.md
   - docs/models/components/requestcustomfieldresponse.md
@@ -162,6 +173,7 @@ generatedFiles:
   - docs/models/components/requestitemstages.md
   - docs/models/components/requestlist.md
   - docs/models/components/requestreviewer.md
+  - docs/models/components/requestreviewerstages.md
   - docs/models/components/requestreviewerstatus.md
   - docs/models/components/requeststage.md
   - docs/models/components/requeststatusenum.md
@@ -202,11 +214,13 @@ generatedFiles:
   - docs/models/components/supportticket.md
   - docs/models/components/syncerror.md
   - docs/models/components/syncerrorlist.md
+  - docs/models/components/synctask.md
   - docs/models/components/tag.md
   - docs/models/components/tagfilter.md
   - docs/models/components/tagselector.md
   - docs/models/components/tagslist.md
   - docs/models/components/teleportrole.md
+  - docs/models/components/thirdpartyproviderenum.md
   - docs/models/components/ticketingproviderenum.md
   - docs/models/components/ticketpropagationconfiguration.md
   - docs/models/components/uar.md
@@ -252,10 +266,16 @@ generatedFiles:
   - docs/models/operations/approverequestrequest.md
   - docs/models/operations/approverequestrequestbody.md
   - docs/models/operations/approverequestresponse.md
+  - docs/models/operations/createidpgroupmappingrequest.md
+  - docs/models/operations/createidpgroupmappingrequestbody.md
+  - docs/models/operations/createrequestcommentrequest.md
+  - docs/models/operations/createrequestcommentrequestbody.md
+  - docs/models/operations/createrequestcommentresponse.md
   - docs/models/operations/createrequestresponse.md
   - docs/models/operations/createtagrequest.md
   - docs/models/operations/deletebundlerequest.md
   - docs/models/operations/deleteconfigurationtemplaterequest.md
+  - docs/models/operations/deletedelegationrequest.md
   - docs/models/operations/deletegroupbindingrequest.md
   - docs/models/operations/deletegrouprequest.md
   - docs/models/operations/deletegroupuserrequest.md
@@ -265,6 +285,9 @@ generatedFiles:
   - docs/models/operations/deleteresourcerequest.md
   - docs/models/operations/deleteresourceuserrequest.md
   - docs/models/operations/deletetagbyidrequest.md
+  - docs/models/operations/denyrequestrequest.md
+  - docs/models/operations/denyrequestrequestbody.md
+  - docs/models/operations/denyrequestresponse.md
   - docs/models/operations/eventsrequest.md
   - docs/models/operations/eventsresponse.md
   - docs/models/operations/getaccessrulerequest.md
@@ -278,6 +301,8 @@ generatedFiles:
   - docs/models/operations/getbundlesrequest.md
   - docs/models/operations/getbundlesresponse.md
   - docs/models/operations/getbundlevisibilityrequest.md
+  - docs/models/operations/getdelegationrequest.md
+  - docs/models/operations/getdelegationsrequest.md
   - docs/models/operations/getgroupbindingrequest.md
   - docs/models/operations/getgroupbindingsrequest.md
   - docs/models/operations/getgroupbindingsresponse.md
@@ -294,6 +319,7 @@ generatedFiles:
   - docs/models/operations/getgrouptagsrequest.md
   - docs/models/operations/getgroupusersrequest.md
   - docs/models/operations/getgroupvisibilityrequest.md
+  - docs/models/operations/getidpgroupmappingrequest.md
   - docs/models/operations/getidpgroupmappingsrequest.md
   - docs/models/operations/getmessagechannelrequest.md
   - docs/models/operations/getnhisrequest.md
@@ -304,6 +330,8 @@ generatedFiles:
   - docs/models/operations/getownersrequest.md
   - docs/models/operations/getownersresponse.md
   - docs/models/operations/getownerusersrequest.md
+  - docs/models/operations/getremoteusersrequest.md
+  - docs/models/operations/getrequestcommentsrequest.md
   - docs/models/operations/getrequestrequest.md
   - docs/models/operations/getrequestsrelayrequest.md
   - docs/models/operations/getrequestsrequest.md
@@ -329,10 +357,11 @@ generatedFiles:
   - docs/models/operations/getuarrequest.md
   - docs/models/operations/getuarsrequest.md
   - docs/models/operations/getuarsresponse.md
+  - docs/models/operations/getusergroupsrequest.md
+  - docs/models/operations/getuserresourcesrequest.md
   - docs/models/operations/getusersrequest.md
   - docs/models/operations/getusersresponse.md
   - docs/models/operations/getusertagsrequest.md
-  - docs/models/operations/level.md
   - docs/models/operations/mapping.md
   - docs/models/operations/removebundlegrouprequest.md
   - docs/models/operations/removebundleresourcerequest.md
@@ -368,6 +397,7 @@ generatedFiles:
   - docs/sdks/apps/README.md
   - docs/sdks/bundles/README.md
   - docs/sdks/configurationtemplates/README.md
+  - docs/sdks/delegations/README.md
   - docs/sdks/events/README.md
   - docs/sdks/groupbindings/README.md
   - docs/sdks/groups/README.md
@@ -379,7 +409,6 @@ generatedFiles:
   - docs/sdks/owners/README.md
   - docs/sdks/requests/README.md
   - docs/sdks/resources/README.md
-  - docs/sdks/scopedrolepermissions/README.md
   - docs/sdks/sessions/README.md
   - docs/sdks/tags/README.md
   - docs/sdks/uars/README.md
@@ -415,6 +444,10 @@ generatedFiles:
   - src/funcs/configurationTemplatesDeleteConfigurationTemplate.ts
   - src/funcs/configurationTemplatesGetConfigurationTemplates.ts
   - src/funcs/configurationTemplatesUpdateConfigurationTemplate.ts
+  - src/funcs/delegationsCreateDelegation.ts
+  - src/funcs/delegationsDeleteDelegation.ts
+  - src/funcs/delegationsGetDelegation.ts
+  - src/funcs/delegationsGetDelegations.ts
   - src/funcs/eventsEvents.ts
   - src/funcs/groupBindingsCreateGroupBinding.ts
   - src/funcs/groupBindingsDeleteGroupBinding.ts
@@ -439,6 +472,7 @@ generatedFiles:
   - src/funcs/groupsGetGroupUsers.ts
   - src/funcs/groupsGetGroupVisibility.ts
   - src/funcs/groupsGetGroups.ts
+  - src/funcs/groupsGetUserGroups.ts
   - src/funcs/groupsRemoveGroupContainingGroup.ts
   - src/funcs/groupsSetGroupMessageChannels.ts
   - src/funcs/groupsSetGroupOnCallSchedules.ts
@@ -448,7 +482,9 @@ generatedFiles:
   - src/funcs/groupsSetGroupVisibility.ts
   - src/funcs/groupsUpdateGroupUser.ts
   - src/funcs/groupsUpdateGroups.ts
+  - src/funcs/idpGroupMappingsCreateIdpGroupMapping.ts
   - src/funcs/idpGroupMappingsDeleteIdpGroupMappings.ts
+  - src/funcs/idpGroupMappingsGetIdpGroupMapping.ts
   - src/funcs/idpGroupMappingsGetIdpGroupMappings.ts
   - src/funcs/idpGroupMappingsUpdateIdpGroupMappings.ts
   - src/funcs/messageChannelsCreateMessageChannel.ts
@@ -468,7 +504,10 @@ generatedFiles:
   - src/funcs/ownersUpdateOwners.ts
   - src/funcs/requestsApproveRequest.ts
   - src/funcs/requestsCreateRequest.ts
+  - src/funcs/requestsCreateRequestComment.ts
+  - src/funcs/requestsDenyRequest.ts
   - src/funcs/requestsGetRequest.ts
+  - src/funcs/requestsGetRequestComments.ts
   - src/funcs/requestsGetRequests.ts
   - src/funcs/requestsGetRequestsRelay.ts
   - src/funcs/resourcesAddResourceNhi.ts
@@ -488,6 +527,7 @@ generatedFiles:
   - src/funcs/resourcesGetResourceUsers.ts
   - src/funcs/resourcesGetResourceVisibility.ts
   - src/funcs/resourcesGetResources.ts
+  - src/funcs/resourcesGetUserResources.ts
   - src/funcs/resourcesResourceUserAccessStatusRetrieve.ts
   - src/funcs/resourcesSetResourceMessageChannels.ts
   - src/funcs/resourcesSetResourceReviewerStages.ts
@@ -511,6 +551,7 @@ generatedFiles:
   - src/funcs/uarsCreateUar.ts
   - src/funcs/uarsGetUARs.ts
   - src/funcs/uarsGetUar.ts
+  - src/funcs/usersGetRemoteUsers.ts
   - src/funcs/usersGetUserTags.ts
   - src/funcs/usersGetUsers.ts
   - src/funcs/usersUser.ts
@@ -570,6 +611,10 @@ generatedFiles:
   - src/mcp-server/tools/configurationTemplatesDeleteConfigurationTemplate.ts
   - src/mcp-server/tools/configurationTemplatesGetConfigurationTemplates.ts
   - src/mcp-server/tools/configurationTemplatesUpdateConfigurationTemplate.ts
+  - src/mcp-server/tools/delegationsCreateDelegation.ts
+  - src/mcp-server/tools/delegationsDeleteDelegation.ts
+  - src/mcp-server/tools/delegationsGetDelegation.ts
+  - src/mcp-server/tools/delegationsGetDelegations.ts
   - src/mcp-server/tools/eventsEvents.ts
   - src/mcp-server/tools/groupBindingsCreateGroupBinding.ts
   - src/mcp-server/tools/groupBindingsDeleteGroupBinding.ts
@@ -594,6 +639,7 @@ generatedFiles:
   - src/mcp-server/tools/groupsGetGroupUsers.ts
   - src/mcp-server/tools/groupsGetGroupVisibility.ts
   - src/mcp-server/tools/groupsGetGroups.ts
+  - src/mcp-server/tools/groupsGetUserGroups.ts
   - src/mcp-server/tools/groupsRemoveGroupContainingGroup.ts
   - src/mcp-server/tools/groupsSetGroupMessageChannels.ts
   - src/mcp-server/tools/groupsSetGroupOnCallSchedules.ts
@@ -603,7 +649,9 @@ generatedFiles:
   - src/mcp-server/tools/groupsSetGroupVisibility.ts
   - src/mcp-server/tools/groupsUpdateGroupUser.ts
   - src/mcp-server/tools/groupsUpdateGroups.ts
+  - src/mcp-server/tools/idpGroupMappingsCreateIdpGroupMapping.ts
   - src/mcp-server/tools/idpGroupMappingsDeleteIdpGroupMappings.ts
+  - src/mcp-server/tools/idpGroupMappingsGetIdpGroupMapping.ts
   - src/mcp-server/tools/idpGroupMappingsGetIdpGroupMappings.ts
   - src/mcp-server/tools/idpGroupMappingsUpdateIdpGroupMappings.ts
   - src/mcp-server/tools/messageChannelsCreateMessageChannel.ts
@@ -623,7 +671,10 @@ generatedFiles:
   - src/mcp-server/tools/ownersUpdateOwners.ts
   - src/mcp-server/tools/requestsApproveRequest.ts
   - src/mcp-server/tools/requestsCreateRequest.ts
+  - src/mcp-server/tools/requestsCreateRequestComment.ts
+  - src/mcp-server/tools/requestsDenyRequest.ts
   - src/mcp-server/tools/requestsGetRequest.ts
+  - src/mcp-server/tools/requestsGetRequestComments.ts
   - src/mcp-server/tools/requestsGetRequests.ts
   - src/mcp-server/tools/requestsGetRequestsRelay.ts
   - src/mcp-server/tools/resourcesAddResourceNhi.ts
@@ -643,6 +694,7 @@ generatedFiles:
   - src/mcp-server/tools/resourcesGetResourceUsers.ts
   - src/mcp-server/tools/resourcesGetResourceVisibility.ts
   - src/mcp-server/tools/resourcesGetResources.ts
+  - src/mcp-server/tools/resourcesGetUserResources.ts
   - src/mcp-server/tools/resourcesResourceUserAccessStatusRetrieve.ts
   - src/mcp-server/tools/resourcesSetResourceMessageChannels.ts
   - src/mcp-server/tools/resourcesSetResourceReviewerStages.ts
@@ -666,6 +718,7 @@ generatedFiles:
   - src/mcp-server/tools/uarsCreateUar.ts
   - src/mcp-server/tools/uarsGetUARs.ts
   - src/mcp-server/tools/uarsGetUar.ts
+  - src/mcp-server/tools/usersGetRemoteUsers.ts
   - src/mcp-server/tools/usersGetUserTags.ts
   - src/mcp-server/tools/usersGetUsers.ts
   - src/mcp-server/tools/usersUser.ts
@@ -686,6 +739,7 @@ generatedFiles:
   - src/models/components/configurationtemplate.ts
   - src/models/components/createbundleinfo.ts
   - src/models/components/createconfigurationtemplateinfo.ts
+  - src/models/components/createdelegationrequest.ts
   - src/models/components/creategroupbindinginfo.ts
   - src/models/components/creategroupinfo.ts
   - src/models/components/createmessagechannelinfo.ts
@@ -696,6 +750,7 @@ generatedFiles:
   - src/models/components/createresourceinfo.ts
   - src/models/components/createtaginfo.ts
   - src/models/components/createuarinfo.ts
+  - src/models/components/delegation.ts
   - src/models/components/entitytypeenum.ts
   - src/models/components/event.ts
   - src/models/components/group.ts
@@ -727,17 +782,23 @@ generatedFiles:
   - src/models/components/paginatedbundlelist.ts
   - src/models/components/paginatedbundleresourcelist.ts
   - src/models/components/paginatedconfigurationtemplatelist.ts
+  - src/models/components/paginateddelegationslist.ts
   - src/models/components/paginatedeventlist.ts
   - src/models/components/paginatedgroupbindingslist.ts
   - src/models/components/paginatedgroupslist.ts
   - src/models/components/paginatedownerslist.ts
+  - src/models/components/paginatedremoteuserslist.ts
   - src/models/components/paginatedresourceslist.ts
   - src/models/components/paginatedtagslist.ts
   - src/models/components/paginateduarslist.ts
   - src/models/components/paginateduserslist.ts
   - src/models/components/propagationstatus.ts
   - src/models/components/propagationstatusenum.ts
+  - src/models/components/remoteuser.ts
   - src/models/components/request.ts
+  - src/models/components/requestapprovalenum.ts
+  - src/models/components/requestcomment.ts
+  - src/models/components/requestcommentlist.ts
   - src/models/components/requestconfiguration.ts
   - src/models/components/requestconnection.ts
   - src/models/components/requestcustomfieldresponse.ts
@@ -746,6 +807,7 @@ generatedFiles:
   - src/models/components/requestitemstages.ts
   - src/models/components/requestlist.ts
   - src/models/components/requestreviewer.ts
+  - src/models/components/requestreviewerstages.ts
   - src/models/components/requeststage.ts
   - src/models/components/requeststatusenum.ts
   - src/models/components/requesttemplatecustomfieldtypeenum.ts
@@ -778,10 +840,12 @@ generatedFiles:
   - src/models/components/subevent.ts
   - src/models/components/syncerror.ts
   - src/models/components/syncerrorlist.ts
+  - src/models/components/synctask.ts
   - src/models/components/tag.ts
   - src/models/components/tagfilter.ts
   - src/models/components/tagselector.ts
   - src/models/components/tagslist.ts
+  - src/models/components/thirdpartyproviderenum.ts
   - src/models/components/ticketingproviderenum.ts
   - src/models/components/ticketpropagationconfiguration.ts
   - src/models/components/uar.ts
@@ -821,10 +885,13 @@ generatedFiles:
   - src/models/operations/addresourceuser.ts
   - src/models/operations/addusertag.ts
   - src/models/operations/approverequest.ts
+  - src/models/operations/createidpgroupmapping.ts
   - src/models/operations/createrequest.ts
+  - src/models/operations/createrequestcomment.ts
   - src/models/operations/createtag.ts
   - src/models/operations/deletebundle.ts
   - src/models/operations/deleteconfigurationtemplate.ts
+  - src/models/operations/deletedelegation.ts
   - src/models/operations/deletegroup.ts
   - src/models/operations/deletegroupbinding.ts
   - src/models/operations/deletegroupuser.ts
@@ -834,6 +901,7 @@ generatedFiles:
   - src/models/operations/deleteresourcenhi.ts
   - src/models/operations/deleteresourceuser.ts
   - src/models/operations/deletetagbyid.ts
+  - src/models/operations/denyrequest.ts
   - src/models/operations/events.ts
   - src/models/operations/getaccessrule.ts
   - src/models/operations/getapp.ts
@@ -843,6 +911,8 @@ generatedFiles:
   - src/models/operations/getbundleresources.ts
   - src/models/operations/getbundles.ts
   - src/models/operations/getbundlevisibility.ts
+  - src/models/operations/getdelegation.ts
+  - src/models/operations/getdelegations.ts
   - src/models/operations/getgroup.ts
   - src/models/operations/getgroupbinding.ts
   - src/models/operations/getgroupbindings.ts
@@ -857,6 +927,7 @@ generatedFiles:
   - src/models/operations/getgrouptags.ts
   - src/models/operations/getgroupusers.ts
   - src/models/operations/getgroupvisibility.ts
+  - src/models/operations/getidpgroupmapping.ts
   - src/models/operations/getidpgroupmappings.ts
   - src/models/operations/getmessagechannel.ts
   - src/models/operations/getnhis.ts
@@ -865,7 +936,9 @@ generatedFiles:
   - src/models/operations/getownerfromname.ts
   - src/models/operations/getowners.ts
   - src/models/operations/getownerusers.ts
+  - src/models/operations/getremoteusers.ts
   - src/models/operations/getrequest.ts
+  - src/models/operations/getrequestcomments.ts
   - src/models/operations/getrequests.ts
   - src/models/operations/getrequestsrelay.ts
   - src/models/operations/getresource.ts
@@ -885,6 +958,8 @@ generatedFiles:
   - src/models/operations/gettags.ts
   - src/models/operations/getuar.ts
   - src/models/operations/getuars.ts
+  - src/models/operations/getusergroups.ts
+  - src/models/operations/getuserresources.ts
   - src/models/operations/getusers.ts
   - src/models/operations/getusertags.ts
   - src/models/operations/index.ts
@@ -919,6 +994,7 @@ generatedFiles:
   - src/sdk/apps.ts
   - src/sdk/bundles.ts
   - src/sdk/configurationtemplates.ts
+  - src/sdk/delegations.ts
   - src/sdk/events.ts
   - src/sdk/groupbindings.ts
   - src/sdk/groups.ts
@@ -930,7 +1006,6 @@ generatedFiles:
   - src/sdk/owners.ts
   - src/sdk/requests.ts
   - src/sdk/resources.ts
-  - src/sdk/scopedrolepermissions.ts
   - src/sdk/sdk.ts
   - src/sdk/sessions.ts
   - src/sdk/tags.ts
@@ -1657,9 +1732,12 @@ examples:
       parameters:
         path:
           group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+        query:
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          page_size: 200
       responses:
         "200":
-          application/json: {"results": [{"group_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "full_name": "Jake Barnes", "email": "jake@company.dev", "expiration_date": "2022-01-23T04:56:07Z"}, {"group_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "7646aa9a-e2ee-4eb5-8c62-91f29038a373", "full_name": "Brett Ashley", "email": "brett@company.dev", "expiration_date": "2022-02-03T12:33:02Z"}]}
+          application/json: {"results": [{"group_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "full_name": "Jake Barnes", "email": "jake@company.dev", "expiration_date": "2022-01-23T04:56:07Z"}, {"group_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "7646aa9a-e2ee-4eb5-8c62-91f29038a373", "full_name": "Brett Ashley", "email": "brett@company.dev", "expiration_date": "2022-02-03T12:33:02Z"}], "next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ"}
   add_group_user:
     "":
       parameters:
@@ -1902,6 +1980,8 @@ examples:
           end_date_filter: "2021-11-12T00:00:00Z"
           cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
           page_size: 200
+          requester_id: "37cb7e41-12ba-46da-92ff-030abe0450b1"
+          target_user_id: "37cb7e41-12ba-46da-92ff-030abe0450b1"
       responses:
         "200":
           application/json: {"requests": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "g86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING", "reason": "I need this resource.", "duration_minutes": 1440}], "cursor": "eyJjcmVhdGVkX2F0IjoiMjAyMS0wMS0wNlQyMDo0NzowMFoiLCJ2YWx1ZSI6ImFkbWluIn0="}
@@ -1912,6 +1992,8 @@ examples:
           end_date_filter: "2025-01-01T00:00:00Z"
           cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
           page_size: 200
+          requester_id: "37cb7e41-12ba-46da-92ff-030abe0450b1"
+          target_user_id: "37cb7e41-12ba-46da-92ff-030abe0450b1"
       responses:
         "200":
           application/json: {"requests": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "g86c85d-0651-43e2-a748-d69d658418e8", "status": "CANCELED", "reason": "I need this resource.", "duration_minutes": 1440}], "cursor": "eyJjcmVhdGVkX2F0IjoiMjAyMS0wMS0wNlQyMDo0NzowMFoiLCJ2YWx1ZSI6ImFkbWluIn0="}
@@ -1928,6 +2010,8 @@ examples:
         query:
           cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
           page_size: 200
+          requester_id: "37cb7e41-12ba-46da-92ff-030abe0450b1"
+          target_user_id: "37cb7e41-12ba-46da-92ff-030abe0450b1"
       responses:
         "200":
           application/json: {"requests": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "g86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING", "reason": "I need this resource.", "duration_minutes": 1440}], "cursor": "eyJjcmVhdGVkX2F0IjoiMjAyMS0wMS0wNlQyMDo0NzowMFoiLCJ2YWx1ZSI6ImFkbWluIn0="}
@@ -1974,7 +2058,7 @@ examples:
         application/json: {"level": "REGULAR", "comment": "Approved after security review"}
       responses:
         "200":
-          application/json: {"request": {"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "r86c85d-0651-43e2-a748-d69d658418e8", "status": "DENIED", "reason": "I need this resource.", "duration_minutes": 1440, "stages": {"requestedRoleName": "Admin", "requestedItemName": "AWS Production Account", "stages": [{"stage": 1, "operator": "AND", "reviewers": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING"}]}, {"stage": 2, "operator": "OR", "reviewers": [{"id": "8d86c85d-0651-43e2-a748-d69d658418e9", "status": "APPROVED"}]}]}}, "taskId": "c6f85bfb-3fe7-4936-a68d-7a5e1e3d0f6a"}
+          application/json: {"request": {"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "r86c85d-0651-43e2-a748-d69d658418e8", "status": "DENIED", "reason": "I need this resource.", "duration_minutes": 1440, "reviewer_stages": [{"item_name": "<value>", "item_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "stages": [{"stage": 1, "operator": "AND", "reviewers": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING"}]}, {"stage": 2, "operator": "OR", "reviewers": [{"id": "8d86c85d-0651-43e2-a748-d69d658418e9", "status": "APPROVED"}]}]}]}}
   getResources:
     "":
       parameters:
@@ -2747,7 +2831,7 @@ examples:
           id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
       responses:
         "200":
-          application/json: {"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "r86c85d-0651-43e2-a748-d69d658418e8", "status": "APPROVED", "reason": "I need this resource.", "duration_minutes": 1440, "stages": {"requestedRoleName": "Admin", "requestedItemName": "AWS Production Account", "stages": [{"stage": 1, "operator": "AND", "reviewers": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING"}]}, {"stage": 2, "operator": "OR", "reviewers": [{"id": "8d86c85d-0651-43e2-a748-d69d658418e9", "status": "APPROVED"}]}]}}
+          application/json: {"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "r86c85d-0651-43e2-a748-d69d658418e8", "status": "APPROVED", "reason": "I need this resource.", "duration_minutes": 1440, "reviewer_stages": [{"item_name": "<value>", "item_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "stages": [{"stage": 1, "operator": "AND", "reviewers": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING"}]}, {"stage": 2, "operator": "OR", "reviewers": [{"id": "8d86c85d-0651-43e2-a748-d69d658418e9", "status": "APPROVED"}]}]}]}
   get_resource_scoped_role_permissions:
     speakeasy-default-get-resource-scoped-role-permissions:
       parameters:
@@ -2766,5 +2850,118 @@ examples:
       responses:
         "200":
           application/json: {"permissions": [{"target_ids": ["a381e7a3-e5e0-4c48-b1d6-4ccb4c191bc1", "8294e9c9-deb6-48e9-9c99-da2a1e04a87f"], "target_type": "RESOURCE", "permission_name": "READ", "allow_all": false}]}
+  get_user_groups:
+    speakeasy-default-get-user-groups:
+      parameters:
+        path:
+          user_id: "1b978423-db0a-4037-a4cf-f79c60cb67b3"
+        query:
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          page_size: 200
+      responses:
+        "200":
+          application/json: {"results": [{"group_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "full_name": "Jake Barnes", "email": "jake@company.dev", "expiration_date": "2022-01-23T04:56:07Z"}, {"group_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "7646aa9a-e2ee-4eb5-8c62-91f29038a373", "full_name": "Brett Ashley", "email": "brett@company.dev", "expiration_date": "2022-02-03T12:33:02Z"}], "next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ"}
+  getIdpGroupMapping:
+    speakeasy-default-get-idp-group-mapping:
+      parameters:
+        path:
+          app_resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"app_resource_id": "1520617d-e72a-47f5-a84c-693817ab48ad2", "group_id": "6f99639b-7928-4043-8184-47cbc6766145", "alias": "finance-team", "hidden_from_end_user": false}
+  createIdpGroupMapping:
+    speakeasy-default-create-idp-group-mapping:
+      parameters:
+        path:
+          app_resource_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+          group_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+      responses:
+        "200":
+          application/json: {"app_resource_id": "1520617d-e72a-47f5-a84c-693817ab48ad2", "group_id": "6f99639b-7928-4043-8184-47cbc6766145", "alias": "finance-team", "hidden_from_end_user": false}
+  denyRequest:
+    speakeasy-default-deny-request:
+      parameters:
+        path:
+          id: "83015915-58ae-4cce-b92d-608ff073ece1"
+      requestBody:
+        application/json: {"comment": "Denied due to insufficient justification"}
+      responses:
+        "200":
+          application/json: {"request": {"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "r86c85d-0651-43e2-a748-d69d658418e8", "status": "CANCELED", "reason": "I need this resource.", "duration_minutes": 1440, "reviewer_stages": [{"item_name": "<value>", "item_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "stages": [{"stage": 1, "operator": "AND", "reviewers": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING"}]}, {"stage": 2, "operator": "OR", "reviewers": [{"id": "8d86c85d-0651-43e2-a748-d69d658418e9", "status": "APPROVED"}]}]}]}}
+  getRequestComments:
+    speakeasy-default-get-request-comments:
+      parameters:
+        path:
+          id: "bfb1ef34-8ecf-46e5-bdf4-38abe7c6da89"
+      responses:
+        "200":
+          application/json: {"comments": [{"created_at": "2021-01-06T20:00:00Z", "request_id": "4c86c85d-0651-43e2-a748-d69d658418e8", "user_id": "c86c85d-0651-43e2-a748-d69d658418e8", "comment": "This is a comment."}]}
+  createRequestComment:
+    speakeasy-default-create-request-comment:
+      parameters:
+        path:
+          id: "4a929b40-a2e3-4dca-b8ec-1af35bdc7e43"
+      requestBody:
+        application/json: {"comment": "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design"}
+      responses:
+        "200":
+          application/json: {"request": {"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "created_at": "2021-01-06T20:00:00Z", "updated_at": "2021-01-06T20:00:00Z", "requester_id": "c86c85d-0651-43e2-a748-d69d658418e8", "target_user_id": "r86c85d-0651-43e2-a748-d69d658418e8", "target_group_id": "r86c85d-0651-43e2-a748-d69d658418e8", "status": "DENIED", "reason": "I need this resource.", "duration_minutes": 1440, "reviewer_stages": [{"item_name": "<value>", "item_id": "f454d283-ca87-4a8a-bdbb-df212eca5353", "stages": [{"stage": 1, "operator": "AND", "reviewers": [{"id": "7c86c85d-0651-43e2-a748-d69d658418e8", "status": "PENDING"}]}, {"stage": 2, "operator": "OR", "reviewers": [{"id": "8d86c85d-0651-43e2-a748-d69d658418e9", "status": "APPROVED"}]}]}]}}
+  get_user_resources:
+    speakeasy-default-get-user-resources:
+      parameters:
+        path:
+          user_id: "4baf8423-db0a-4037-a4cf-f79c60cb67a5"
+        query:
+          limit: 200
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          include_unmanaged: false
+      responses:
+        "200":
+          application/json: {"results": [{"resource_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "access_level": {"access_level_name": "AdminRole", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}, "full_name": "Jake Barnes", "email": "jake@company.dev", "expiration_date": "2022-01-23T04:56:07Z", "has_direct_access": true, "num_access_paths": 2}, {"resource_id": "1b978423-db0a-4037-a4cf-f79c60cb67b3", "user_id": "7646aa9a-e2ee-4eb5-8c62-91f29038a373", "access_level": {"access_level_name": "AdminRole", "access_level_remote_id": "arn:aws:iam::590304332660:role/AdministratorAccess"}, "full_name": "Brett Ashley", "email": "brett@company.dev", "expiration_date": "2022-02-03T12:33:02Z", "has_direct_access": true, "num_access_paths": 3}]}
+  getRemoteUsers:
+    speakeasy-default-get-remote-users:
+      parameters:
+        query:
+          third_party_provider: ["GIT_HUB"]
+          user_id: ["32acc112-21ff-4669-91c2-21e27683eaa1"]
+          remote_id: ["1234567890"]
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          page_size: 200
+      responses:
+        "200":
+          application/json: {"next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "results": [{"user_id": "29827fb8-f2dd-4e80-9576-28e31e9934ac", "remote_id": "1234567890", "third_party_provider": "GIT_LAB"}, {"user_id": "29827fb8-f2dd-4e80-9576-238979927392", "remote_id": "remoteid123", "third_party_provider": "GIT_HUB"}]}
+  getDelegations:
+    speakeasy-default-get-delegations:
+      parameters:
+        query:
+          delegator_user_id: "29827fb8-f2dd-4e80-9576-28e31e9934ac"
+          delegate_user_id: "29827fb8-f2dd-4e80-9576-28e31e9934ac"
+          cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw"
+          page_size: 200
+      responses:
+        "200":
+          application/json: {"results": [{"id": "4aed3e8a-727b-4d72-8010-3b8710c50bec", "delegator_user_id": "123e4567-e89b-12d3-a456-426614174000", "delegate_user_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "start_time": "2023-10-01T12:00:00Z", "end_time": "2023-10-01T12:00:00Z", "reason": "I need to be out of the office", "created_at": "2023-10-01T12:00:00Z", "updated_at": "2023-10-01T12:00:00Z"}], "next": "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw", "previous": "cj1sZXdwd2VycWVtY29zZnNkc2NzUWxNMEUxTXk0ME16UXpNallsTWtJ", "total_count": 2}
+  createDelegation:
+    speakeasy-default-create-delegation:
+      requestBody:
+        application/json: {"delegator_user_id": "123e4567-e89b-12d3-a456-426614174000", "delegate_user_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "start_time": "2023-10-01T12:00:00Z", "end_time": "2023-10-01T12:00:00Z", "reason": "I need to be out of the office"}
+      responses:
+        "200":
+          application/json: {"id": "4aed3e8a-727b-4d72-8010-3b8710c50bec", "delegator_user_id": "123e4567-e89b-12d3-a456-426614174000", "delegate_user_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "start_time": "2023-10-01T12:00:00Z", "end_time": "2023-10-01T12:00:00Z", "reason": "I need to be out of the office", "created_at": "2023-10-01T12:00:00Z", "updated_at": "2023-10-01T12:00:00Z"}
+  getDelegation:
+    speakeasy-default-get-delegation:
+      parameters:
+        path:
+          delegation_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
+      responses:
+        "200":
+          application/json: {"id": "4aed3e8a-727b-4d72-8010-3b8710c50bec", "delegator_user_id": "123e4567-e89b-12d3-a456-426614174000", "delegate_user_id": "7c86c85d-0651-43e2-a748-d69d658418e8", "start_time": "2023-10-01T12:00:00Z", "end_time": "2023-10-01T12:00:00Z", "reason": "I need to be out of the office", "created_at": "2023-10-01T12:00:00Z", "updated_at": "2023-10-01T12:00:00Z"}
+  deleteDelegation:
+    speakeasy-default-delete-delegation:
+      parameters:
+        path:
+          delegation_id: "32acc112-21ff-4669-91c2-21e27683eaa1"
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Typescript SDK Changes Detected:\n* `opalmcp.requests.approveRequest()`:  `response` **Changed** **Breaking** :warning:\n* `opalmcp.groups.getGroups()`:  `response.results.[]` **Changed**\n* `opalmcp.groups.updateGroups()`: \n  *  `request.groups.[]` **Changed**\n  *  `response.groups.[]` **Changed**\n* `opalmcp.requests.denyRequest()`: **Added**\n* `opalmcp.requests.getRequestComments()`: **Added**\n* `opalmcp.requests.createRequestComment()`: **Added**\n* `opalmcp.resources.getUserResources()`: **Added**\n* `opalmcp.users.getRemoteUsers()`: **Added**\n* `opalmcp.delegations.getDelegations()`: **Added**\n* `opalmcp.delegations.createDelegation()`: **Added**\n* `opalmcp.delegations.getDelegation()`: **Added**\n* `opalmcp.delegations.deleteDelegation()`: **Added**\n* `opalmcp.scopedRolePermissions.getResourceScopedRolePermissions()`: **Deleted** **Breaking** :warning:\n* `opalmcp.scopedRolePermissions.setResourceScopedRolePermissions()`: **Deleted** **Breaking** :warning:\n* `opalmcp.configurationTemplates.createConfigurationTemplate()`: \n  *  `request.requestConfigurations.[].extensionsDurationInMinutes` **Added**\n* `opalmcp.idpGroupMappings.createIdpGroupMapping()`: **Added**\n* `opalmcp.configurationTemplates.updateConfigurationTemplate()`: \n  *  `request.requestConfigurations.[].extensionsDurationInMinutes` **Added**\n* `opalmcp.groups.getGroup()`:  `response` **Changed**\n* `opalmcp.groups.createGroup()`:  `response` **Changed**\n* `opalmcp.groups.getUserGroups()`: **Added**\n* `opalmcp.groups.getGroupUsers()`: \n  *  `request` **Changed**\n  *  `response` **Changed**\n* `opalmcp.idpGroupMappings.getIdpGroupMappings()`:  `response.mappings.[].appResourceId` **Added**\n* `opalmcp.requests.getRequests()`: \n  *  `request` **Changed**\n  *  `response.requests.[]` **Changed**\n* `opalmcp.requests.getRequestsRelay()`:  `response.edges.[].node` **Changed**\n* `opalmcp.requests.getRequest()`:  `response` **Changed**\n* `opalmcp.idpGroupMappings.getIdpGroupMapping()`: **Added**\n* `opalmcp.resources.getResources()`: \n  *  `request` **Changed**\n  *  `response.results.[]` **Changed**\n* `opalmcp.resources.updateResources()`: \n  *  `request.resources.[]` **Changed**\n  *  `response.resources.[]` **Changed**\n* `opalmcp.resources.createResource()`: \n  *  `request.remoteInfo` **Changed**\n  *  `response` **Changed**\n* `opalmcp.resources.getResource()`:  `response` **Changed**\n* `opalmcp.resources.getResourceUsers()`:  `response` **Changed**\n* `opalmcp.nonHumanIdentities.getNhis()`:  `response.results.[]` **Changed**\n"

@@ -13,6 +13,14 @@ export type GetGroupUsersRequest = {
    * The ID of the group.
    */
   groupId: string;
+  /**
+   * The pagination cursor value.
+   */
+  cursor?: string | undefined;
+  /**
+   * Number of results to return per page. Default is 200.
+   */
+  pageSize?: number | undefined;
 };
 
 /** @internal */
@@ -22,15 +30,20 @@ export const GetGroupUsersRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   group_id: z.string(),
+  cursor: z.string().optional(),
+  page_size: z.number().int().optional(),
 }).transform((v) => {
   return remap$(v, {
     "group_id": "groupId",
+    "page_size": "pageSize",
   });
 });
 
 /** @internal */
 export type GetGroupUsersRequest$Outbound = {
   group_id: string;
+  cursor?: string | undefined;
+  page_size?: number | undefined;
 };
 
 /** @internal */
@@ -40,9 +53,12 @@ export const GetGroupUsersRequest$outboundSchema: z.ZodType<
   GetGroupUsersRequest
 > = z.object({
   groupId: z.string(),
+  cursor: z.string().optional(),
+  pageSize: z.number().int().optional(),
 }).transform((v) => {
   return remap$(v, {
     groupId: "group_id",
+    pageSize: "page_size",
   });
 });
 

@@ -14,6 +14,14 @@ import {
 } from "./resourceaccessuser.js";
 
 export type ResourceAccessUserList = {
+  /**
+   * The cursor with which to continue pagination if additional result pages exist.
+   */
+  next?: string | null | undefined;
+  /**
+   * The cursor used to obtain the current result page.
+   */
+  previous?: string | null | undefined;
   results?: Array<ResourceAccessUser> | undefined;
 };
 
@@ -23,11 +31,15 @@ export const ResourceAccessUserList$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  next: z.nullable(z.string()).optional(),
+  previous: z.nullable(z.string()).optional(),
   results: z.array(ResourceAccessUser$inboundSchema).optional(),
 });
 
 /** @internal */
 export type ResourceAccessUserList$Outbound = {
+  next?: string | null | undefined;
+  previous?: string | null | undefined;
   results?: Array<ResourceAccessUser$Outbound> | undefined;
 };
 
@@ -37,6 +49,8 @@ export const ResourceAccessUserList$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ResourceAccessUserList
 > = z.object({
+  next: z.nullable(z.string()).optional(),
+  previous: z.nullable(z.string()).optional(),
   results: z.array(ResourceAccessUser$outboundSchema).optional(),
 });
 

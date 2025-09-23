@@ -30,6 +30,12 @@ import {
   RiskSensitivityEnum$inboundSchema,
   RiskSensitivityEnum$outboundSchema,
 } from "./risksensitivityenum.js";
+import {
+  SyncTask,
+  SyncTask$inboundSchema,
+  SyncTask$Outbound,
+  SyncTask$outboundSchema,
+} from "./synctask.js";
 
 /**
  * The risk sensitivity level for the group. When an override is set, this field will match that.
@@ -103,6 +109,10 @@ export type Group = {
    */
   recommendedDuration?: number | undefined;
   /**
+   * The duration for which access can be extended (in minutes). Set to 0 to disable extensions. When > 0, extensions are enabled for the specified duration.
+   */
+  extensionsDurationInMinutes?: number | undefined;
+  /**
    * A bool representing whether or not access requests to the group require manager approval.
    *
    * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -157,7 +167,7 @@ export type Group = {
    */
   metadata?: string | undefined;
   /**
-   * Information that defines the remote group. This replaces the deprecated remote_id and metadata fields.
+   * Information that defines the remote group. This replaces the deprecated remote_id and metadata fields. If remote_info is provided, a group will be imported into Opal. For group types that support group creation through Opal, a new group will be created if remote_info is not provided.
    */
   remoteInfo?: GroupRemoteInfo | undefined;
   /**
@@ -169,6 +179,10 @@ export type Group = {
    */
   riskSensitivity?: GroupRiskSensitivity | undefined;
   riskSensitivityOverride?: RiskSensitivityEnum | undefined;
+  /**
+   * Represents a sync task that has been completed, either successfully or with errors.
+   */
+  lastSuccessfulSync?: SyncTask | undefined;
 };
 
 /** @internal */
@@ -206,6 +220,7 @@ export const Group$inboundSchema: z.ZodType<Group, z.ZodTypeDef, unknown> = z
     group_type: GroupTypeEnum$inboundSchema.optional(),
     max_duration: z.number().int().optional(),
     recommended_duration: z.number().int().optional(),
+    extensions_duration_in_minutes: z.number().int().optional(),
     require_manager_approval: z.boolean().optional(),
     require_support_ticket: z.boolean().optional(),
     require_mfa_to_approve: z.boolean().optional(),
@@ -224,6 +239,7 @@ export const Group$inboundSchema: z.ZodType<Group, z.ZodTypeDef, unknown> = z
     custom_request_notification: z.nullable(z.string()).optional(),
     risk_sensitivity: GroupRiskSensitivity$inboundSchema.optional(),
     risk_sensitivity_override: RiskSensitivityEnum$inboundSchema.optional(),
+    last_successful_sync: SyncTask$inboundSchema.optional(),
   }).transform((v) => {
     return remap$(v, {
       "group_id": "groupId",
@@ -235,6 +251,7 @@ export const Group$inboundSchema: z.ZodType<Group, z.ZodTypeDef, unknown> = z
       "group_type": "groupType",
       "max_duration": "maxDuration",
       "recommended_duration": "recommendedDuration",
+      "extensions_duration_in_minutes": "extensionsDurationInMinutes",
       "require_manager_approval": "requireManagerApproval",
       "require_support_ticket": "requireSupportTicket",
       "require_mfa_to_approve": "requireMfaToApprove",
@@ -250,6 +267,7 @@ export const Group$inboundSchema: z.ZodType<Group, z.ZodTypeDef, unknown> = z
       "custom_request_notification": "customRequestNotification",
       "risk_sensitivity": "riskSensitivity",
       "risk_sensitivity_override": "riskSensitivityOverride",
+      "last_successful_sync": "lastSuccessfulSync",
     });
   });
 
@@ -266,6 +284,7 @@ export type Group$Outbound = {
   group_type?: string | undefined;
   max_duration?: number | undefined;
   recommended_duration?: number | undefined;
+  extensions_duration_in_minutes?: number | undefined;
   require_manager_approval?: boolean | undefined;
   require_support_ticket?: boolean | undefined;
   require_mfa_to_approve?: boolean | undefined;
@@ -282,6 +301,7 @@ export type Group$Outbound = {
   custom_request_notification?: string | null | undefined;
   risk_sensitivity?: string | undefined;
   risk_sensitivity_override?: string | undefined;
+  last_successful_sync?: SyncTask$Outbound | undefined;
 };
 
 /** @internal */
@@ -301,6 +321,7 @@ export const Group$outboundSchema: z.ZodType<
   groupType: GroupTypeEnum$outboundSchema.optional(),
   maxDuration: z.number().int().optional(),
   recommendedDuration: z.number().int().optional(),
+  extensionsDurationInMinutes: z.number().int().optional(),
   requireManagerApproval: z.boolean().optional(),
   requireSupportTicket: z.boolean().optional(),
   requireMfaToApprove: z.boolean().optional(),
@@ -319,6 +340,7 @@ export const Group$outboundSchema: z.ZodType<
   customRequestNotification: z.nullable(z.string()).optional(),
   riskSensitivity: GroupRiskSensitivity$outboundSchema.optional(),
   riskSensitivityOverride: RiskSensitivityEnum$outboundSchema.optional(),
+  lastSuccessfulSync: SyncTask$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     groupId: "group_id",
@@ -330,6 +352,7 @@ export const Group$outboundSchema: z.ZodType<
     groupType: "group_type",
     maxDuration: "max_duration",
     recommendedDuration: "recommended_duration",
+    extensionsDurationInMinutes: "extensions_duration_in_minutes",
     requireManagerApproval: "require_manager_approval",
     requireSupportTicket: "require_support_ticket",
     requireMfaToApprove: "require_mfa_to_approve",
@@ -345,6 +368,7 @@ export const Group$outboundSchema: z.ZodType<
     customRequestNotification: "custom_request_notification",
     riskSensitivity: "risk_sensitivity",
     riskSensitivityOverride: "risk_sensitivity_override",
+    lastSuccessfulSync: "last_successful_sync",
   });
 });
 

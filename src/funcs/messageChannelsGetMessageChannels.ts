@@ -23,6 +23,9 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
+ * Get message channels
+ *
+ * @remarks
  * Returns a list of `MessageChannel` objects.
  */
 export function messageChannelsGetMessageChannels(

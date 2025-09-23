@@ -52,7 +52,7 @@ export type CreateGroupInfo = {
    */
   appId: string;
   /**
-   * Information that defines the remote group. This replaces the deprecated remote_id and metadata fields.
+   * Information that defines the remote group. This replaces the deprecated remote_id and metadata fields. If remote_info is provided, a group will be imported into Opal. For group types that support group creation through Opal, a new group will be created if remote_info is not provided.
    */
   remoteInfo?: GroupRemoteInfo | undefined;
   /**

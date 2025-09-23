@@ -26,6 +26,9 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
+ * Get resource users
+ *
+ * @remarks
  * Gets the list of users for this resource.
  */
 export function resourcesGetResourceUsers(

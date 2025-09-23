@@ -12,7 +12,9 @@ const args = {
 
 export const tool$groupsGetGroupContainingGroup: ToolDefinition<typeof args> = {
   name: "groups-get-group-containing-group",
-  description: `Gets a specific containing group for a group.`,
+  description: `Get nested group by ID
+
+Gets a specific containing group for a group.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
