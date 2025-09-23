@@ -96,7 +96,7 @@ async function startSSE(flags: StartCommandFlags) {
     await transport.handlePostMessage(req, res);
   });
 
-  const httpServer = app.listen(flags.port, "0.0.0.0", () => {
+  const httpServer = app.listen(flags.port, "127.0.0.1", () => {
     const ha = httpServer.address();
     const host = typeof ha === "string" ? ha : `${ha?.address}:${ha?.port}`;
     logger.info("MCP HTTP server started", { host });
