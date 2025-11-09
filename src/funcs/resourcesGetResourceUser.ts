@@ -25,6 +25,9 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
+ * Get resource user
+ *
+ * @remarks
  * Returns information about a specific user's access to a resource.
  */
 export function resourcesGetResourceUser(
@@ -113,7 +116,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getResourceUser",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 

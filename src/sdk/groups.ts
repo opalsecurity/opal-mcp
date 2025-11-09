@@ -20,6 +20,7 @@ import { groupsGetGroups } from "../funcs/groupsGetGroups.js";
 import { groupsGetGroupTags } from "../funcs/groupsGetGroupTags.js";
 import { groupsGetGroupUsers } from "../funcs/groupsGetGroupUsers.js";
 import { groupsGetGroupVisibility } from "../funcs/groupsGetGroupVisibility.js";
+import { groupsGetUserGroups } from "../funcs/groupsGetUserGroups.js";
 import { groupsRemoveGroupContainingGroup } from "../funcs/groupsRemoveGroupContainingGroup.js";
 import { groupsSetGroupMessageChannels } from "../funcs/groupsSetGroupMessageChannels.js";
 import { groupsSetGroupOnCallSchedules } from "../funcs/groupsSetGroupOnCallSchedules.js";
@@ -37,6 +38,9 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Groups extends ClientSDK {
   /**
+   * Get groups
+   *
+   * @remarks
    * Returns a list of groups for your organization.
    */
   async getGroups(
@@ -79,6 +83,9 @@ export class Groups extends ClientSDK {
   }
 
   /**
+   * Get group by ID
+   *
+   * @remarks
    * Returns a `Group` object.
    */
   async getGroup(
@@ -191,6 +198,9 @@ export class Groups extends ClientSDK {
   }
 
   /**
+   * Get nested groups
+   *
+   * @remarks
    * Gets the list of groups that the group gives access to.
    */
   async getGroupContainingGroups(
@@ -219,6 +229,9 @@ export class Groups extends ClientSDK {
   }
 
   /**
+   * Get nested group by ID
+   *
+   * @remarks
    * Gets a specific containing group for a group.
    */
   async getGroupContainingGroup(
@@ -416,6 +429,20 @@ export class Groups extends ClientSDK {
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(groupsDeleteGroupUser(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Returns all groups that the user is a member of.
+   */
+  async getUserGroups(
+    request: operations.GetUserGroupsRequest,
+    options?: RequestOptions,
+  ): Promise<components.GroupUserList> {
+    return unwrapAsync(groupsGetUserGroups(
       this,
       request,
       options,

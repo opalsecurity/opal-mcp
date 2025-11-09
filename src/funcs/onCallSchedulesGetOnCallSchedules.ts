@@ -23,6 +23,9 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
+ * Get on call schedules
+ *
+ * @remarks
  * Returns a list of `OnCallSchedule` objects.
  */
 export function onCallSchedulesGetOnCallSchedules(
@@ -80,7 +83,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "get_on_call_schedules",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 

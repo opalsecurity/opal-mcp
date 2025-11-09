@@ -32,6 +32,9 @@ import {
 } from "../types/operations.js";
 
 /**
+ * Get groups
+ *
+ * @remarks
  * Returns a list of groups for your organization.
  */
 export function groupsGetGroups(
@@ -121,7 +124,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getGroups",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -206,6 +209,9 @@ async function $do(
   } => {
     const nextCursor = dlv(responseData, "next");
     if (typeof nextCursor !== "string") {
+      return { next: () => null };
+    }
+    if (nextCursor.trim() === "") {
       return { next: () => null };
     }
     const results = dlv(responseData, "results");

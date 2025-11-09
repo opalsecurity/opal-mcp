@@ -7,8 +7,8 @@ Operations related to apps
 
 ### Available Operations
 
-* [getApps](#getapps) - Returns a list of `App` objects.
-* [getApp](#getapp) - Returns an `App` object.
+* [getApps](#getapps) - Get apps
+* [getApp](#getapp) - Get app by ID
 * [getSyncErrors](#getsyncerrors) - Returns a list of recent sync errors that have occurred since the last successful sync.
 
 ## getApps

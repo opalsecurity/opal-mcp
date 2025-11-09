@@ -32,6 +32,9 @@ import {
 } from "../types/operations.js";
 
 /**
+ * Get bundles
+ *
+ * @remarks
  * Returns a list of `Bundle` objects.
  */
 export function bundlesGetBundles(
@@ -115,7 +118,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getBundles",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -200,6 +203,9 @@ async function $do(
   } => {
     const nextCursor = dlv(responseData, "next");
     if (typeof nextCursor !== "string") {
+      return { next: () => null };
+    }
+    if (nextCursor.trim() === "") {
       return { next: () => null };
     }
     const results = dlv(responseData, "bundles");

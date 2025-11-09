@@ -12,6 +12,9 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Apps extends ClientSDK {
   /**
+   * Get apps
+   *
+   * @remarks
    * Returns a list of `App` objects.
    */
   async getApps(
@@ -26,6 +29,9 @@ export class Apps extends ClientSDK {
   }
 
   /**
+   * Get app by ID
+   *
+   * @remarks
    * Returns an `App` object.
    */
   async getApp(

@@ -23,6 +23,9 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
+ * Get message channels
+ *
+ * @remarks
  * Returns a list of `MessageChannel` objects.
  */
 export function messageChannelsGetMessageChannels(
@@ -80,7 +83,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "get_message_channels",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 

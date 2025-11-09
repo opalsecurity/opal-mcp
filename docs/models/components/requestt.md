@@ -22,32 +22,34 @@ let value: RequestT = {
   status: "DENIED",
   reason: "I need this resource.",
   durationMinutes: 1440,
-  stages: {
-    requestedRoleName: "Admin",
-    requestedItemName: "AWS Production Account",
-    stages: [
-      {
-        stage: 1,
-        operator: "AND",
-        reviewers: [
-          {
-            id: "7c86c85d-0651-43e2-a748-d69d658418e8",
-            status: "PENDING",
-          },
-        ],
-      },
-      {
-        stage: 2,
-        operator: "OR",
-        reviewers: [
-          {
-            id: "8d86c85d-0651-43e2-a748-d69d658418e9",
-            status: "APPROVED",
-          },
-        ],
-      },
-    ],
-  },
+  reviewerStages: [
+    {
+      itemName: "<value>",
+      itemId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
+      stages: [
+        {
+          stage: 1,
+          operator: "AND",
+          reviewers: [
+            {
+              id: "7c86c85d-0651-43e2-a748-d69d658418e8",
+              status: "PENDING",
+            },
+          ],
+        },
+        {
+          stage: 2,
+          operator: "OR",
+          reviewers: [
+            {
+              id: "8d86c85d-0651-43e2-a748-d69d658418e9",
+              status: "APPROVED",
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };
 ```
 
@@ -66,4 +68,5 @@ let value: RequestT = {
 | `durationMinutes`                                                                                                                                                     | *number*                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                    | The duration of the request in minutes.                                                                                                                               | 120                                                                                                                                                                   |
 | `requestedItemsList`                                                                                                                                                  | [components.RequestedItem](../../models/components/requesteditem.md)[]                                                                                                | :heavy_minus_sign:                                                                                                                                                    | The list of targets for the request.                                                                                                                                  |                                                                                                                                                                       |
 | `customFieldsResponses`                                                                                                                                               | [components.RequestCustomFieldResponse](../../models/components/requestcustomfieldresponse.md)[]                                                                      | :heavy_minus_sign:                                                                                                                                                    | The responses given to the custom fields associated to the request                                                                                                    |                                                                                                                                                                       |
-| `stages`                                                                                                                                                              | [components.RequestItemStages](../../models/components/requestitemstages.md)                                                                                          | :heavy_minus_sign:                                                                                                                                                    | The stages configuration for a request item                                                                                                                           |                                                                                                                                                                       |
+| ~~`stages`~~                                                                                                                                                          | [components.RequestItemStages](../../models/components/requestitemstages.md)                                                                                          | :heavy_minus_sign:                                                                                                                                                    | : warning: ** DEPRECATED **: This will be removed in a future release, please migrate away from it as soon as possible.<br/><br/>The stages configuration for a request item |                                                                                                                                                                       |
+| `reviewerStages`                                                                                                                                                      | [components.RequestReviewerStages](../../models/components/requestreviewerstages.md)[]                                                                                | :heavy_minus_sign:                                                                                                                                                    | The configured reviewer stages for every item in this request                                                                                                         |                                                                                                                                                                       |

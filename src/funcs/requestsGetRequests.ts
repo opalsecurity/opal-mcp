@@ -32,6 +32,9 @@ import {
 } from "../types/operations.js";
 
 /**
+ * Get requests
+ *
+ * @remarks
  * Returns a list of requests for your organization that is visible by the admin.
  */
 export function requestsGetRequests(
@@ -101,8 +104,10 @@ async function $do(
     "cursor": payload.cursor,
     "end_date_filter": payload.end_date_filter,
     "page_size": payload.page_size,
+    "requester_id": payload.requester_id,
     "show_pending_only": payload.show_pending_only,
     "start_date_filter": payload.start_date_filter,
+    "target_user_id": payload.target_user_id,
   });
 
   const headers = new Headers(compactMap({
@@ -117,7 +122,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getRequests",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -204,6 +209,9 @@ async function $do(
   } => {
     const nextCursor = dlv(responseData, "cursor");
     if (typeof nextCursor !== "string") {
+      return { next: () => null };
+    }
+    if (nextCursor.trim() === "") {
       return { next: () => null };
     }
     const results = dlv(responseData, "requests");

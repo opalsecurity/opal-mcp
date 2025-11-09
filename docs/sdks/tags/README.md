@@ -7,11 +7,11 @@ Operations related to tags
 
 ### Available Operations
 
-* [getTagByID](#gettagbyid) - UNSTABLE. May be removed at any time. Gets a tag with the given id.
+* [getTagByID](#gettagbyid) - Get tag by ID
 * [deleteTagByID](#deletetagbyid) - UNSTABLE. May be removed at any time. Deletes a tag with the given id.
 * [getTag](#gettag) - Gets a tag with the given key and value.
 * [createTag](#createtag) - Creates a tag with the given key and value.
-* [getTags](#gettags) - Returns a list of tags created by your organization.
+* [getTags](#gettags) - Get tags
 * [addUserTag](#addusertag) - Applies a tag to a user.
 * [removeUserTag](#removeusertag) - Removes a tag from a user.
 * [addGroupTag](#addgrouptag) - Applies a tag to a group.

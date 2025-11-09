@@ -7,6 +7,7 @@ import { AccessRules } from "./accessrules.js";
 import { Apps } from "./apps.js";
 import { Bundles } from "./bundles.js";
 import { ConfigurationTemplates } from "./configurationtemplates.js";
+import { Delegations } from "./delegations.js";
 import { Events } from "./events.js";
 import { GroupBindings } from "./groupbindings.js";
 import { Groups } from "./groups.js";
@@ -17,7 +18,6 @@ import { OnCallSchedules } from "./oncallschedules.js";
 import { Owners } from "./owners.js";
 import { Requests } from "./requests.js";
 import { Resources } from "./resources.js";
-import { ScopedRolePermissions } from "./scopedrolepermissions.js";
 import { Sessions } from "./sessions.js";
 import { Tags } from "./tags.js";
 import { Uars } from "./uars.js";
@@ -81,13 +81,6 @@ export class OpalMcp extends ClientSDK {
     return (this._nonHumanIdentities ??= new NonHumanIdentities(this._options));
   }
 
-  private _scopedRolePermissions?: ScopedRolePermissions;
-  get scopedRolePermissions(): ScopedRolePermissions {
-    return (this._scopedRolePermissions ??= new ScopedRolePermissions(
-      this._options,
-    ));
-  }
-
   private _sessions?: Sessions;
   get sessions(): Sessions {
     return (this._sessions ??= new Sessions(this._options));
@@ -121,5 +114,10 @@ export class OpalMcp extends ClientSDK {
   private _uars?: Uars;
   get uars(): Uars {
     return (this._uars ??= new Uars(this._options));
+  }
+
+  private _delegations?: Delegations;
+  get delegations(): Delegations {
+    return (this._delegations ??= new Delegations(this._options));
   }
 }

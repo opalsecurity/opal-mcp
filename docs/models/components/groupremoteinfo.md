@@ -1,6 +1,6 @@
 # GroupRemoteInfo
 
-Information that defines the remote group. This replaces the deprecated remote_id and metadata fields.
+Information that defines the remote group. This replaces the deprecated remote_id and metadata fields. If remote_info is provided, a group will be imported into Opal. For group types that support group creation through Opal, a new group will be created if remote_info is not provided.
 
 ## Example Usage
 
@@ -10,6 +10,18 @@ import { GroupRemoteInfo } from "opal-mcp/models/components";
 let value: GroupRemoteInfo = {
   activeDirectoryGroup: {
     groupId: "01fa7402-01d8-103b-8deb-5f3a0ab7884",
+  },
+  tailscaleGroup: {
+    groupId: "898931321",
+  },
+  awsSsoGroup: {
+    groupId: "898931321",
+  },
+  databricksAccountGroup: {
+    groupId: "898931321",
+  },
+  connectorGroup: {
+    groupId: "898931321",
   },
   githubTeam: {
     teamSlug: "opal-security",
@@ -52,6 +64,10 @@ let value: GroupRemoteInfo = {
 | Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `activeDirectoryGroup`                                                                     | [components.ActiveDirectoryGroup](../../models/components/activedirectorygroup.md)         | :heavy_minus_sign:                                                                         | Remote info for Active Directory group.                                                    |
+| `tailscaleGroup`                                                                           | [components.TailscaleGroup](../../models/components/tailscalegroup.md)                     | :heavy_minus_sign:                                                                         | Remote info for Tailscale group.                                                           |
+| `awsSsoGroup`                                                                              | [components.AwsSsoGroup](../../models/components/awsssogroup.md)                           | :heavy_minus_sign:                                                                         | Remote info for AWS SSO group.                                                             |
+| `databricksAccountGroup`                                                                   | [components.DatabricksAccountGroup](../../models/components/databricksaccountgroup.md)     | :heavy_minus_sign:                                                                         | Remote info for Databricks account group.                                                  |
+| `connectorGroup`                                                                           | [components.ConnectorGroup](../../models/components/connectorgroup.md)                     | :heavy_minus_sign:                                                                         | Remote info for Connector group.                                                           |
 | `githubTeam`                                                                               | [components.GithubTeam](../../models/components/githubteam.md)                             | :heavy_minus_sign:                                                                         | Remote info for GitHub team.                                                               |
 | `gitlabGroup`                                                                              | [components.GitlabGroup](../../models/components/gitlabgroup.md)                           | :heavy_minus_sign:                                                                         | Remote info for Gitlab group.                                                              |
 | `googleGroup`                                                                              | [components.GoogleGroup](../../models/components/googlegroup.md)                           | :heavy_minus_sign:                                                                         | Remote info for Google group.                                                              |
