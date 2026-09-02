@@ -14,6 +14,13 @@ export const tool$accessRulesUpdateAccessRule: ToolDefinition<typeof args> = {
   name: "access-rules-update-access-rule",
   description: `Updates the access rule config for the given group_id.`,
   scopes: ["write"],
+  annotations: {
+    title: "Update Access Rule",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await accessRulesUpdateAccessRule(

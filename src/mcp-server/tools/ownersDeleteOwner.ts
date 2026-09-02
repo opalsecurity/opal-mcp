@@ -14,6 +14,13 @@ export const tool$ownersDeleteOwner: ToolDefinition<typeof args> = {
   name: "owners-delete-owner",
   description: `Deletes an owner.`,
   scopes: ["write"],
+  annotations: {
+    title: "Delete Owner",
+    readOnlyHint: false,
+    destructiveHint: true,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await ownersDeleteOwner(

@@ -14,6 +14,13 @@ export const tool$uarsGetUar: ToolDefinition<typeof args> = {
   name: "uars-get-uar",
   description: `Retrieves a specific UAR.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get UAR",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await uarsGetUar(

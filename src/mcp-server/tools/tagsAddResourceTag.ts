@@ -14,6 +14,13 @@ export const tool$tagsAddResourceTag: ToolDefinition<typeof args> = {
   name: "tags-add-resource-tag",
   description: `Applies a tag to a resource.`,
   scopes: ["write"],
+  annotations: {
+    title: "Add Tag to Resource",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await tagsAddResourceTag(

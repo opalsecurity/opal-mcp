@@ -14,6 +14,13 @@ export const tool$groupsGetGroupResources: ToolDefinition<typeof args> = {
   name: "groups-get-group-resources",
   description: `Gets the list of resources that the group gives access to.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get Group Resources",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsGetGroupResources(

@@ -14,6 +14,13 @@ export const tool$groupsAddGroupUser: ToolDefinition<typeof args> = {
   name: "groups-add-group-user",
   description: `Adds a user to this group.`,
   scopes: ["write"],
+  annotations: {
+    title: "Add User to Group",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsAddGroupUser(

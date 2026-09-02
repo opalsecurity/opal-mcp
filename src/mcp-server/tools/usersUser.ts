@@ -28,6 +28,13 @@ Authentication:
 - Respects standard Opal authorization rules
 `,
   scopes: ["read"],
+  annotations: {
+    title: "Get User",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await usersUser(

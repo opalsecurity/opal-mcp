@@ -15,6 +15,13 @@ export const tool$ownersGetOwnerUsers: ToolDefinition<typeof args> = {
   description:
     `Gets the list of users for this owner, in escalation priority order if applicable.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get Owner Users",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await ownersGetOwnerUsers(

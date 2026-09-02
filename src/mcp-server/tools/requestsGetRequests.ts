@@ -15,6 +15,13 @@ export const tool$requestsGetRequests: ToolDefinition<typeof args> = {
   description:
     `Returns a list of requests for your organization that is visible by the admin.`,
   scopes: ["read"],
+  annotations: {
+    title: "List Requests",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await requestsGetRequests(

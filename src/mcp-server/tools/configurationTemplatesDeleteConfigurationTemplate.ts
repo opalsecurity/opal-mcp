@@ -15,6 +15,13 @@ export const tool$configurationTemplatesDeleteConfigurationTemplate:
     name: "configuration-templates-delete-configuration-template",
     description: `Deletes a configuration template.`,
     scopes: ["write"],
+    annotations: {
+      title: "Delete Configuration Template",
+      readOnlyHint: false,
+      destructiveHint: true,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
     args,
     tool: async (client, args, ctx) => {
       const [result, apiCall] =

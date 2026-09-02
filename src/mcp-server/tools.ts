@@ -4,7 +4,12 @@
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { RequestHandlerExtra } from "@modelcontextprotocol/sdk/shared/protocol.js";
-import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
+import {
+  CallToolResult,
+  ServerNotification,
+  ServerRequest,
+  ToolAnnotations,
+} from "@modelcontextprotocol/sdk/types.js";
 import { objectOutputType, ZodRawShape, ZodTypeAny } from "zod";
 import { OpalMcpCore } from "../core.js";
 import { ConsoleLogger } from "./console-logger.js";
@@ -16,21 +21,23 @@ export type ToolDefinition<Args extends undefined | ZodRawShape = undefined> =
       name: string;
       description: string;
       scopes?: MCPScope[];
+      annotations?: ToolAnnotations;
       args: Args;
       tool: (
         client: OpalMcpCore,
         args: objectOutputType<Args, ZodTypeAny>,
-        extra: RequestHandlerExtra,
+        extra: RequestHandlerExtra<ServerRequest, ServerNotification>,
       ) => CallToolResult | Promise<CallToolResult>;
     }
     : {
       name: string;
       description: string;
       scopes?: MCPScope[];
+      annotations?: ToolAnnotations;
       args?: undefined;
       tool: (
         client: OpalMcpCore,
-        extra: RequestHandlerExtra,
+        extra: RequestHandlerExtra<ServerRequest, ServerNotification>,
       ) => CallToolResult | Promise<CallToolResult>;
     };
 
@@ -115,13 +122,28 @@ export function createRegisterTool(
     }
 
     if (tool.args) {
-      server.tool(tool.name, tool.description, tool.args, async (args, ctx) => {
-        return tool.tool(sdk, args, ctx);
-      });
+      server.tool(
+        tool.name,
+        tool.description,
+        tool.args,
+        tool.annotations ?? {},
+        async (args, ctx) => {
+          return tool.tool(sdk, args, ctx);
+        },
+      );
     } else {
-      server.tool(tool.name, tool.description, async (ctx) => {
-        return tool.tool(sdk, ctx);
-      });
+      // Passed as an empty params schema (rather than omitted) to disambiguate
+      // this overload from the one accepting `annotations` in the params
+      // position, since both are plain objects to the type checker.
+      server.tool(
+        tool.name,
+        tool.description,
+        {},
+        tool.annotations ?? {},
+        async (_args, ctx) => {
+          return tool.tool(sdk, ctx);
+        },
+      );
     }
 
     logger.debug("Registered tool", { name: tool.name });

@@ -14,6 +14,13 @@ export const tool$groupsGetGroupTags: ToolDefinition<typeof args> = {
   name: "groups-get-group-tags",
   description: `Returns all tags applied to the group.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get Group Tags",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsGetGroupTags(

@@ -15,6 +15,13 @@ export const tool$resourcesGetResourceUser: ToolDefinition<typeof args> = {
   description:
     `Returns information about a specific user's access to a resource.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get Resource User",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesGetResourceUser(

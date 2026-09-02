@@ -14,6 +14,13 @@ export const tool$bundlesDeleteBundle: ToolDefinition<typeof args> = {
   name: "bundles-delete-bundle",
   description: `Deletes a bundle.`,
   scopes: ["write"],
+  annotations: {
+    title: "Delete Bundle",
+    readOnlyHint: false,
+    destructiveHint: true,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await bundlesDeleteBundle(

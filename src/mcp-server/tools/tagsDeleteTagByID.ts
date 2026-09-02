@@ -15,6 +15,13 @@ export const tool$tagsDeleteTagByID: ToolDefinition<typeof args> = {
   description:
     `UNSTABLE. May be removed at any time. Deletes a tag with the given id.`,
   scopes: ["write"],
+  annotations: {
+    title: "Delete Tag by ID",
+    readOnlyHint: false,
+    destructiveHint: true,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await tagsDeleteTagByID(

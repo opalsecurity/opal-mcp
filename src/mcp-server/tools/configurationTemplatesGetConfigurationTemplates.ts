@@ -10,6 +10,13 @@ export const tool$configurationTemplatesGetConfigurationTemplates:
     name: "configuration-templates-get-configuration-templates",
     description: `Returns a list of \`ConfigurationTemplate\` objects.`,
     scopes: ["read"],
+    annotations: {
+      title: "List Configuration Templates",
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
     tool: async (client, ctx) => {
       const [result, apiCall] =
         await configurationTemplatesGetConfigurationTemplates(

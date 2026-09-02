@@ -16,6 +16,13 @@ export const tool$groupsRemoveGroupContainingGroup: ToolDefinition<
   name: "groups-remove-group-containing-group",
   description: `Removes a containing group from a group.`,
   scopes: ["write"],
+  annotations: {
+    title: "Remove Containing Group",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsRemoveGroupContainingGroup(

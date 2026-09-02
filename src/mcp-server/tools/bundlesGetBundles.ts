@@ -14,6 +14,13 @@ export const tool$bundlesGetBundles: ToolDefinition<typeof args> = {
   name: "bundles-get-bundles",
   description: `Returns a list of \`Bundle\` objects.`,
   scopes: ["read"],
+  annotations: {
+    title: "List Bundles",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await bundlesGetBundles(

@@ -9,6 +9,13 @@ export const tool$messageChannelsGetMessageChannels: ToolDefinition = {
   name: "message-channels-get-message-channels",
   description: `Returns a list of \`MessageChannel\` objects.`,
   scopes: ["read"],
+  annotations: {
+    title: "List Message Channels",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   tool: async (client, ctx) => {
     const [result, apiCall] = await messageChannelsGetMessageChannels(
       client,

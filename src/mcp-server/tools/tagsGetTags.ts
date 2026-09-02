@@ -14,6 +14,13 @@ export const tool$tagsGetTags: ToolDefinition<typeof args> = {
   name: "tags-get-tags",
   description: `Returns a list of tags created by your organization.`,
   scopes: ["read"],
+  annotations: {
+    title: "List Tags",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await tagsGetTags(

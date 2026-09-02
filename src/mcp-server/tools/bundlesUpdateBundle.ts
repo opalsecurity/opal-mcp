@@ -14,6 +14,13 @@ export const tool$bundlesUpdateBundle: ToolDefinition<typeof args> = {
   name: "bundles-update-bundle",
   description: `Updates a bundle.`,
   scopes: ["write"],
+  annotations: {
+    title: "Update Bundle",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await bundlesUpdateBundle(

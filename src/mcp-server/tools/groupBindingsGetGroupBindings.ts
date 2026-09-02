@@ -14,6 +14,13 @@ export const tool$groupBindingsGetGroupBindings: ToolDefinition<typeof args> = {
   name: "group-bindings-get-group-bindings",
   description: `Returns a list of \`GroupBinding\` objects.`,
   scopes: ["read"],
+  annotations: {
+    title: "List Group Bindings",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupBindingsGetGroupBindings(

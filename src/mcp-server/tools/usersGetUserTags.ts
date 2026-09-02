@@ -14,6 +14,13 @@ export const tool$usersGetUserTags: ToolDefinition<typeof args> = {
   name: "users-get-user-tags",
   description: `Returns all tags applied to the user.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get User Tags",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await usersGetUserTags(

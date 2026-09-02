@@ -14,6 +14,13 @@ export const tool$resourcesAddResourceNhi: ToolDefinition<typeof args> = {
   name: "resources-add-resource-nhi",
   description: `Gives a non-human identity access to this resource.`,
   scopes: ["write"],
+  annotations: {
+    title: "Add NHI to Resource",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesAddResourceNhi(

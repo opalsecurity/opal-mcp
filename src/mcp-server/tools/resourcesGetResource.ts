@@ -14,6 +14,13 @@ export const tool$resourcesGetResource: ToolDefinition<typeof args> = {
   name: "resources-get-resource",
   description: `Retrieves a resource.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get Resource",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesGetResource(

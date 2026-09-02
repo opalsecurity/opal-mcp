@@ -17,6 +17,13 @@ export const tool$resourcesGetResourceScopedRolePermissions: ToolDefinition<
   description:
     `Returns all the scoped role permissions that apply to the given resource. Only OPAL_SCOPED_ROLE resource type supports this field.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get Resource Scoped Role Permissions",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesGetResourceScopedRolePermissions(

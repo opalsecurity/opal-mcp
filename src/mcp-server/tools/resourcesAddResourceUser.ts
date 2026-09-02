@@ -14,6 +14,13 @@ export const tool$resourcesAddResourceUser: ToolDefinition<typeof args> = {
   name: "resources-add-resource-user",
   description: `Adds a user to this resource.`,
   scopes: ["write"],
+  annotations: {
+    title: "Add User to Resource",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesAddResourceUser(

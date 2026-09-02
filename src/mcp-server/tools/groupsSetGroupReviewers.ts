@@ -14,6 +14,13 @@ export const tool$groupsSetGroupReviewers: ToolDefinition<typeof args> = {
   name: "groups-set-group-reviewers",
   description: `Sets the list of reviewers for a group.`,
   scopes: ["write"],
+  annotations: {
+    title: "Set Group Reviewers",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsSetGroupReviewers(

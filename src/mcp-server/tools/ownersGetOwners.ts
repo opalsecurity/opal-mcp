@@ -14,6 +14,13 @@ export const tool$ownersGetOwners: ToolDefinition<typeof args> = {
   name: "owners-get-owners",
   description: `Returns a list of \`Owner\` objects.`,
   scopes: ["read"],
+  annotations: {
+    title: "List Owners",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await ownersGetOwners(

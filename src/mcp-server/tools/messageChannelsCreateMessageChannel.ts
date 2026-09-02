@@ -16,6 +16,13 @@ export const tool$messageChannelsCreateMessageChannel: ToolDefinition<
   name: "message-channels-create-message-channel",
   description: `Creates a \`MessageChannel\` objects.`,
   scopes: ["write"],
+  annotations: {
+    title: "Create Message Channel",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: false,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await messageChannelsCreateMessageChannel(

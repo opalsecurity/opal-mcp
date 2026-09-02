@@ -15,6 +15,13 @@ export const tool$accessRulesGetAccessRule: ToolDefinition<typeof args> = {
   description:
     `Returns a list of access rule config given the group_id of the access rule.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get Access Rule",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await accessRulesGetAccessRule(

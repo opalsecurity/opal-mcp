@@ -15,6 +15,13 @@ export const tool$tagsGetTagByID: ToolDefinition<typeof args> = {
   description:
     `UNSTABLE. May be removed at any time. Gets a tag with the given id.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get Tag by ID",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await tagsGetTagByID(

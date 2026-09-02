@@ -14,6 +14,13 @@ export const tool$ownersUpdateOwners: ToolDefinition<typeof args> = {
   name: "owners-update-owners",
   description: `Bulk updates a list of owners.`,
   scopes: ["write"],
+  annotations: {
+    title: "Bulk Update Owners",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await ownersUpdateOwners(
