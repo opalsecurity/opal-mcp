@@ -14,6 +14,13 @@ export const tool$resourcesSetResourceReviewers: ToolDefinition<typeof args> = {
   name: "resources-set-resource-reviewers",
   description: `Sets the list of reviewers for a resource.`,
   scopes: ["write"],
+  annotations: {
+    title: "Set Resource Reviewers",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesSetResourceReviewers(

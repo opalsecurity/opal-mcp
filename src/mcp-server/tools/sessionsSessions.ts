@@ -14,6 +14,13 @@ export const tool$sessionsSessions: ToolDefinition<typeof args> = {
   name: "sessions-sessions",
   description: `Returns a list of \`Session\` objects.`,
   scopes: ["read"],
+  annotations: {
+    title: "List Sessions",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await sessionsSessions(

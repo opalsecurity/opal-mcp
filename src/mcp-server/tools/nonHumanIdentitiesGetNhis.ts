@@ -14,6 +14,13 @@ export const tool$nonHumanIdentitiesGetNhis: ToolDefinition<typeof args> = {
   name: "non-human-identities-get-nhis",
   description: `Returns a list of non-human identities for your organization.`,
   scopes: ["read"],
+  annotations: {
+    title: "List Non-Human Identities",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await nonHumanIdentitiesGetNhis(

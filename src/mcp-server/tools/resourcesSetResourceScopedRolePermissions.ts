@@ -17,6 +17,13 @@ export const tool$resourcesSetResourceScopedRolePermissions: ToolDefinition<
   description:
     `Sets all the scoped role permissions on an OPAL_SCOPED_ROLE resource.`,
   scopes: ["write"],
+  annotations: {
+    title: "Set Resource Scoped Role Permissions",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesSetResourceScopedRolePermissions(

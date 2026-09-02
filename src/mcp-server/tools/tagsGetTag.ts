@@ -14,6 +14,13 @@ export const tool$tagsGetTag: ToolDefinition<typeof args> = {
   name: "tags-get-tag",
   description: `Gets a tag with the given key and value.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get Tag",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await tagsGetTag(

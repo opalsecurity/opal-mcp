@@ -14,6 +14,13 @@ export const tool$groupsGetGroupVisibility: ToolDefinition<typeof args> = {
   name: "groups-get-group-visibility",
   description: `Gets the visibility of this group.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get Group Visibility",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsGetGroupVisibility(

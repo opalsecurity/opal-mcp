@@ -14,6 +14,13 @@ export const tool$tagsRemoveGroupTag: ToolDefinition<typeof args> = {
   name: "tags-remove-group-tag",
   description: `Removes a tag from a group.`,
   scopes: ["write"],
+  annotations: {
+    title: "Remove Tag from Group",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await tagsRemoveGroupTag(

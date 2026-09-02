@@ -14,6 +14,13 @@ export const tool$bundlesAddBundleGroup: ToolDefinition<typeof args> = {
   name: "bundles-add-bundle-group",
   description: `Adds a group to a bundle.`,
   scopes: ["write"],
+  annotations: {
+    title: "Add Group to Bundle",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await bundlesAddBundleGroup(

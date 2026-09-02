@@ -15,6 +15,13 @@ export const tool$resourcesGetResourceNhis: ToolDefinition<typeof args> = {
   description:
     `Gets the list of non-human identities with access to this resource.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get Resource NHIs",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesGetResourceNhis(

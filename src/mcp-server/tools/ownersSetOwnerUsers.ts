@@ -15,6 +15,13 @@ export const tool$ownersSetOwnerUsers: ToolDefinition<typeof args> = {
   description:
     `Sets the list of users for this owner. If escalation is enabled, the order of this list is the escalation priority order of the users. If the owner has a source group, adding or removing users from this list won't be possible.`,
   scopes: ["write"],
+  annotations: {
+    title: "Set Owner Users",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await ownersSetOwnerUsers(

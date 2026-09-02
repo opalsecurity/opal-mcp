@@ -15,6 +15,13 @@ export const tool$configurationTemplatesCreateConfigurationTemplate:
     name: "configuration-templates-create-configuration-template",
     description: `Creates a configuration template.`,
     scopes: ["write"],
+    annotations: {
+      title: "Create Configuration Template",
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: false,
+      openWorldHint: true,
+    },
     args,
     tool: async (client, args, ctx) => {
       const [result, apiCall] =

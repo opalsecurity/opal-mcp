@@ -14,6 +14,13 @@ export const tool$resourcesUpdateResourceUser: ToolDefinition<typeof args> = {
   name: "resources-update-resource-user",
   description: `Updates a user's access level or duration on this resource.`,
   scopes: ["write"],
+  annotations: {
+    title: "Update Resource User",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesUpdateResourceUser(

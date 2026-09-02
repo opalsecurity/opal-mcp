@@ -14,6 +14,13 @@ export const tool$groupsSetGroupResources: ToolDefinition<typeof args> = {
   name: "groups-set-group-resources",
   description: `Sets the list of resources that the group gives access to.`,
   scopes: ["write"],
+  annotations: {
+    title: "Set Group Resources",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsSetGroupResources(

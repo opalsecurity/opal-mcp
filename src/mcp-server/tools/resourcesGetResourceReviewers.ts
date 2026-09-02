@@ -14,6 +14,13 @@ export const tool$resourcesGetResourceReviewers: ToolDefinition<typeof args> = {
   name: "resources-get-resource-reviewers",
   description: `Gets the list of owner IDs of the reviewers for a resource.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get Resource Reviewers",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesGetResourceReviewers(

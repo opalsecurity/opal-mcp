@@ -14,6 +14,13 @@ export const tool$bundlesSetBundleVisibility: ToolDefinition<typeof args> = {
   name: "bundles-set-bundle-visibility",
   description: `Sets the visibility of the bundle.`,
   scopes: ["write"],
+  annotations: {
+    title: "Set Bundle Visibility",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await bundlesSetBundleVisibility(

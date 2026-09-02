@@ -14,6 +14,13 @@ export const tool$tagsRemoveResourceTag: ToolDefinition<typeof args> = {
   name: "tags-remove-resource-tag",
   description: `Removes a tag from a resource.`,
   scopes: ["write"],
+  annotations: {
+    title: "Remove Tag from Resource",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await tagsRemoveResourceTag(

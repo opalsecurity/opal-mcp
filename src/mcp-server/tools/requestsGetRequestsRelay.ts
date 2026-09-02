@@ -15,6 +15,13 @@ export const tool$requestsGetRequestsRelay: ToolDefinition<typeof args> = {
   description:
     `Returns a paginated list of requests using Relay-style cursor pagination.`,
   scopes: ["read"],
+  annotations: {
+    title: "List Requests (Paginated)",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await requestsGetRequestsRelay(

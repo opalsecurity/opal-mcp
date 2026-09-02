@@ -14,6 +14,13 @@ export const tool$usersGetUsers: ToolDefinition<typeof args> = {
   name: "users-get-users",
   description: `Returns a list of users for your organization.`,
   scopes: ["read"],
+  annotations: {
+    title: "List Users",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await usersGetUsers(

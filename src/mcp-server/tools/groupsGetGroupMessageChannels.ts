@@ -15,6 +15,13 @@ export const tool$groupsGetGroupMessageChannels: ToolDefinition<typeof args> = {
   description:
     `Gets the list of audit and reviewer message channels attached to a group.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get Group Message Channels",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsGetGroupMessageChannels(

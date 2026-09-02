@@ -14,6 +14,13 @@ export const tool$bundlesRemoveBundleResource: ToolDefinition<typeof args> = {
   name: "bundles-remove-bundle-resource",
   description: `Removes a resource from a bundle.`,
   scopes: ["write"],
+  annotations: {
+    title: "Remove Resource from Bundle",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await bundlesRemoveBundleResource(

@@ -15,6 +15,13 @@ export const tool$groupsCreateGroup: ToolDefinition<typeof args> = {
   description:
     `Creates an Opal group or [imports a remote group](https://docs.opal.dev/reference/end-system-objects).`,
   scopes: ["write"],
+  annotations: {
+    title: "Create Group",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: false,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsCreateGroup(

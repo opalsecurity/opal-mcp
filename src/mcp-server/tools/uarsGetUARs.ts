@@ -14,6 +14,13 @@ export const tool$uarsGetUARs: ToolDefinition<typeof args> = {
   name: "uars-get-UA-rs",
   description: `Returns a list of \`UAR\` objects.`,
   scopes: ["read"],
+  annotations: {
+    title: "List UARs",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await uarsGetUARs(

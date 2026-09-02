@@ -16,6 +16,13 @@ export const tool$groupBindingsUpdateGroupBindings: ToolDefinition<
   name: "group-bindings-update-group-bindings",
   description: `Bulk updates a list of group bindings.`,
   scopes: ["write"],
+  annotations: {
+    title: "Bulk Update Group Bindings",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupBindingsUpdateGroupBindings(

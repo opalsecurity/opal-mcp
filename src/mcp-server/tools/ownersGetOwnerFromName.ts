@@ -15,6 +15,13 @@ export const tool$ownersGetOwnerFromName: ToolDefinition<typeof args> = {
   description:
     `Returns an \`Owner\` object. Does not support owners with \`/\` in their name, use /owners?name=... instead.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get Owner by Name",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await ownersGetOwnerFromName(

@@ -14,6 +14,13 @@ export const tool$appsGetApps: ToolDefinition<typeof args> = {
   name: "apps-get-apps",
   description: `Returns a list of \`App\` objects.`,
   scopes: ["read"],
+  annotations: {
+    title: "List Apps",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await appsGetApps(

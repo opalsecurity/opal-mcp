@@ -14,6 +14,13 @@ export const tool$uarsCreateUar: ToolDefinition<typeof args> = {
   name: "uars-create-uar",
   description: `Starts a User Access Review.`,
   scopes: ["write"],
+  annotations: {
+    title: "Create UAR",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: false,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await uarsCreateUar(

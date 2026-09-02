@@ -14,6 +14,13 @@ export const tool$requestsApproveRequest: ToolDefinition<typeof args> = {
   name: "requests-approve-request",
   description: `Approve an access request`,
   scopes: ["write"],
+  annotations: {
+    title: "Approve Request",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: false,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await requestsApproveRequest(

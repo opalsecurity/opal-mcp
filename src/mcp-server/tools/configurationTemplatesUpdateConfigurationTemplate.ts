@@ -15,6 +15,13 @@ export const tool$configurationTemplatesUpdateConfigurationTemplate:
     name: "configuration-templates-update-configuration-template",
     description: `Update a configuration template.`,
     scopes: ["write"],
+    annotations: {
+      title: "Update Configuration Template",
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
     args,
     tool: async (client, args, ctx) => {
       const [result, apiCall] =

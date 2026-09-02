@@ -14,6 +14,13 @@ export const tool$tagsCreateTag: ToolDefinition<typeof args> = {
   name: "tags-create-tag",
   description: `Creates a tag with the given key and value.`,
   scopes: ["write"],
+  annotations: {
+    title: "Create Tag",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: false,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await tagsCreateTag(

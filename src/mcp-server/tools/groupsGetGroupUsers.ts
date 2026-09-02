@@ -14,6 +14,13 @@ export const tool$groupsGetGroupUsers: ToolDefinition<typeof args> = {
   name: "groups-get-group-users",
   description: `Gets the list of users for this group.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get Group Users",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsGetGroupUsers(

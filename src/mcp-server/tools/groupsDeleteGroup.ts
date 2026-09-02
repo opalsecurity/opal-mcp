@@ -14,6 +14,13 @@ export const tool$groupsDeleteGroup: ToolDefinition<typeof args> = {
   name: "groups-delete-group",
   description: `Deletes a group.`,
   scopes: ["write"],
+  annotations: {
+    title: "Delete Group",
+    readOnlyHint: false,
+    destructiveHint: true,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsDeleteGroup(

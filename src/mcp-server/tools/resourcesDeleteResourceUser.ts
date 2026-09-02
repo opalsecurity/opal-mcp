@@ -14,6 +14,13 @@ export const tool$resourcesDeleteResourceUser: ToolDefinition<typeof args> = {
   name: "resources-delete-resource-user",
   description: `Removes a user's direct access from this resource.`,
   scopes: ["write"],
+  annotations: {
+    title: "Remove User from Resource",
+    readOnlyHint: false,
+    destructiveHint: true,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesDeleteResourceUser(

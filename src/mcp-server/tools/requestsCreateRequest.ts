@@ -14,6 +14,13 @@ export const tool$requestsCreateRequest: ToolDefinition<typeof args> = {
   name: "requests-create-request",
   description: `Create an access request`,
   scopes: ["write"],
+  annotations: {
+    title: "Create Access Request",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: false,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await requestsCreateRequest(

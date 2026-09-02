@@ -14,6 +14,13 @@ export const tool$requestsGetRequest: ToolDefinition<typeof args> = {
   name: "requests-get-request",
   description: `Returns a request by ID.`,
   scopes: ["read"],
+  annotations: {
+    title: "Get Request",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await requestsGetRequest(

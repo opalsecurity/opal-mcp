@@ -16,6 +16,13 @@ export const tool$resourcesSetResourceReviewerStages: ToolDefinition<
   name: "resources-set-resource-reviewer-stages",
   description: `Sets the list of reviewer stages for a resource.`,
   scopes: ["write"],
+  annotations: {
+    title: "Set Resource Reviewer Stages",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesSetResourceReviewerStages(

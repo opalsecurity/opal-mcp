@@ -14,6 +14,13 @@ export const tool$groupsSetGroupMessageChannels: ToolDefinition<typeof args> = {
   name: "groups-set-group-message-channels",
   description: `Sets the list of audit message channels attached to a group.`,
   scopes: ["write"],
+  annotations: {
+    title: "Set Group Message Channels",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsSetGroupMessageChannels(

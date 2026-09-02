@@ -16,6 +16,13 @@ export const tool$idpGroupMappingsDeleteIdpGroupMappings: ToolDefinition<
   name: "idp-group-mappings-delete-idp-group-mappings",
   description: `Deletes an \`IdpGroupMapping\` object.`,
   scopes: ["write"],
+  annotations: {
+    title: "Delete IdP Group Mappings",
+    readOnlyHint: false,
+    destructiveHint: true,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await idpGroupMappingsDeleteIdpGroupMappings(

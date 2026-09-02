@@ -9,6 +9,13 @@ export const tool$onCallSchedulesGetOnCallSchedules: ToolDefinition = {
   name: "on-call-schedules-get-on-call-schedules",
   description: `Returns a list of \`OnCallSchedule\` objects.`,
   scopes: ["read"],
+  annotations: {
+    title: "List On-Call Schedules",
+    readOnlyHint: true,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   tool: async (client, ctx) => {
     const [result, apiCall] = await onCallSchedulesGetOnCallSchedules(
       client,

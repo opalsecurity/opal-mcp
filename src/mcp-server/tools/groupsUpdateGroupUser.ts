@@ -14,6 +14,13 @@ export const tool$groupsUpdateGroupUser: ToolDefinition<typeof args> = {
   name: "groups-update-group-user",
   description: `Updates a user's access level or duration in this group.`,
   scopes: ["write"],
+  annotations: {
+    title: "Update Group User",
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: true,
+    openWorldHint: true,
+  },
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupsUpdateGroupUser(
