@@ -6,20 +6,26 @@ import { ClientSDK } from "../lib/sdks.js";
 import { AccessRules } from "./accessrules.js";
 import { Apps } from "./apps.js";
 import { Bundles } from "./bundles.js";
+import { Campaigns } from "./campaigns.js";
 import { ConfigurationTemplates } from "./configurationtemplates.js";
+import { Delegations } from "./delegations.js";
 import { Events } from "./events.js";
+import { EventStreams } from "./eventstreams.js";
 import { GroupBindings } from "./groupbindings.js";
 import { Groups } from "./groups.js";
 import { IdpGroupMappings } from "./idpgroupmappings.js";
 import { MessageChannels } from "./messagechannels.js";
 import { NonHumanIdentities } from "./nonhumanidentities.js";
 import { OnCallSchedules } from "./oncallschedules.js";
+import { OpalQueries } from "./opalqueries.js";
 import { Owners } from "./owners.js";
+import { Paladin } from "./paladin.js";
 import { Requests } from "./requests.js";
+import { RequestTemplates } from "./requesttemplates.js";
 import { Resources } from "./resources.js";
-import { ScopedRolePermissions } from "./scopedrolepermissions.js";
 import { Sessions } from "./sessions.js";
 import { Tags } from "./tags.js";
+import { Tokens } from "./tokens.js";
 import { Uars } from "./uars.js";
 import { Users } from "./users.js";
 
@@ -34,11 +40,21 @@ export class OpalMcp extends ClientSDK {
     return (this._bundles ??= new Bundles(this._options));
   }
 
+  private _campaigns?: Campaigns;
+  get campaigns(): Campaigns {
+    return (this._campaigns ??= new Campaigns(this._options));
+  }
+
   private _configurationTemplates?: ConfigurationTemplates;
   get configurationTemplates(): ConfigurationTemplates {
     return (this._configurationTemplates ??= new ConfigurationTemplates(
       this._options,
     ));
+  }
+
+  private _eventStreams?: EventStreams;
+  get eventStreams(): EventStreams {
+    return (this._eventStreams ??= new EventStreams(this._options));
   }
 
   private _events?: Events;
@@ -66,6 +82,11 @@ export class OpalMcp extends ClientSDK {
     return (this._owners ??= new Owners(this._options));
   }
 
+  private _requestTemplates?: RequestTemplates;
+  get requestTemplates(): RequestTemplates {
+    return (this._requestTemplates ??= new RequestTemplates(this._options));
+  }
+
   private _requests?: Requests;
   get requests(): Requests {
     return (this._requests ??= new Requests(this._options));
@@ -81,11 +102,9 @@ export class OpalMcp extends ClientSDK {
     return (this._nonHumanIdentities ??= new NonHumanIdentities(this._options));
   }
 
-  private _scopedRolePermissions?: ScopedRolePermissions;
-  get scopedRolePermissions(): ScopedRolePermissions {
-    return (this._scopedRolePermissions ??= new ScopedRolePermissions(
-      this._options,
-    ));
+  private _paladin?: Paladin;
+  get paladin(): Paladin {
+    return (this._paladin ??= new Paladin(this._options));
   }
 
   private _sessions?: Sessions;
@@ -118,8 +137,23 @@ export class OpalMcp extends ClientSDK {
     return (this._onCallSchedules ??= new OnCallSchedules(this._options));
   }
 
+  private _opalQueries?: OpalQueries;
+  get opalQueries(): OpalQueries {
+    return (this._opalQueries ??= new OpalQueries(this._options));
+  }
+
+  private _tokens?: Tokens;
+  get tokens(): Tokens {
+    return (this._tokens ??= new Tokens(this._options));
+  }
+
   private _uars?: Uars;
   get uars(): Uars {
     return (this._uars ??= new Uars(this._options));
+  }
+
+  private _delegations?: Delegations;
+  get delegations(): Delegations {
+    return (this._delegations ??= new Delegations(this._options));
   }
 }

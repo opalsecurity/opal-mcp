@@ -13,5 +13,5 @@ let value: RolePermissionTargetTypeEnum = "RESOURCE";
 ## Values
 
 ```typescript
-"RESOURCE" | "CONNECTION" | "GROUP" | "BUNDLE" | "USER" | "ACCESS_REVIEW"
+"RESOURCE" | "CONNECTION" | "GROUP" | "BUNDLE" | "USER" | "ACCESS_REVIEW" | "OWNER" | "EVENT"
 ```

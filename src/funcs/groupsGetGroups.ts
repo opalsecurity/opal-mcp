@@ -3,8 +3,8 @@
  */
 
 import { OpalMcpCore } from "../core.js";
-import { dlv } from "../lib/dlv.js";
 import { encodeFormQuery, queryJoin } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -32,6 +32,9 @@ import {
 } from "../types/operations.js";
 
 /**
+ * Get groups
+ *
+ * @remarks
  * Returns a list of groups for your organization.
  */
 export function groupsGetGroups(
@@ -106,6 +109,8 @@ async function $do(
       "group_name": payload.group_name,
       "group_type_filter": payload.group_type_filter,
       "page_size": payload.page_size,
+      "requestable": payload.requestable,
+      "tag_ids": payload.tag_ids,
     }),
   );
 
@@ -121,7 +126,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getGroups",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -150,7 +155,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["4XX", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -204,11 +210,14 @@ async function $do(
     >;
     "~next"?: { cursor: string };
   } => {
-    const nextCursor = dlv(responseData, "next");
+    const nextCursor = (responseData as { next?: unknown | null }).next;
     if (typeof nextCursor !== "string") {
       return { next: () => null };
     }
-    const results = dlv(responseData, "results");
+    if (nextCursor.trim() === "") {
+      return { next: () => null };
+    }
+    const results = (responseData as { results: unknown }).results;
     if (!Array.isArray(results) || !results.length) {
       return { next: () => null };
     }

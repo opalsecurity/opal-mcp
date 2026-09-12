@@ -5,10 +5,15 @@
 import { resourcesAddResourceNhi } from "../funcs/resourcesAddResourceNhi.js";
 import { resourcesAddResourceUser } from "../funcs/resourcesAddResourceUser.js";
 import { resourcesCreateResource } from "../funcs/resourcesCreateResource.js";
+import { resourcesCreateResourceCustomAccessLevel } from "../funcs/resourcesCreateResourceCustomAccessLevel.js";
 import { resourcesDeleteResource } from "../funcs/resourcesDeleteResource.js";
+import { resourcesDeleteResourceCustomAccessLevel } from "../funcs/resourcesDeleteResourceCustomAccessLevel.js";
 import { resourcesDeleteResourceNhi } from "../funcs/resourcesDeleteResourceNhi.js";
 import { resourcesDeleteResourceUser } from "../funcs/resourcesDeleteResourceUser.js";
 import { resourcesGetResource } from "../funcs/resourcesGetResource.js";
+import { resourcesGetResourceAccessLevels } from "../funcs/resourcesGetResourceAccessLevels.js";
+import { resourcesGetResourceCustomAccessLevels } from "../funcs/resourcesGetResourceCustomAccessLevels.js";
+import { resourcesGetResourceGroups } from "../funcs/resourcesGetResourceGroups.js";
 import { resourcesGetResourceMessageChannels } from "../funcs/resourcesGetResourceMessageChannels.js";
 import { resourcesGetResourceNhis } from "../funcs/resourcesGetResourceNhis.js";
 import { resourcesGetResourceReviewers } from "../funcs/resourcesGetResourceReviewers.js";
@@ -19,12 +24,14 @@ import { resourcesGetResourceTags } from "../funcs/resourcesGetResourceTags.js";
 import { resourcesGetResourceUser } from "../funcs/resourcesGetResourceUser.js";
 import { resourcesGetResourceUsers } from "../funcs/resourcesGetResourceUsers.js";
 import { resourcesGetResourceVisibility } from "../funcs/resourcesGetResourceVisibility.js";
+import { resourcesGetUserResources } from "../funcs/resourcesGetUserResources.js";
 import { resourcesResourceUserAccessStatusRetrieve } from "../funcs/resourcesResourceUserAccessStatusRetrieve.js";
 import { resourcesSetResourceMessageChannels } from "../funcs/resourcesSetResourceMessageChannels.js";
 import { resourcesSetResourceReviewers } from "../funcs/resourcesSetResourceReviewers.js";
 import { resourcesSetResourceReviewerStages } from "../funcs/resourcesSetResourceReviewerStages.js";
 import { resourcesSetResourceScopedRolePermissions } from "../funcs/resourcesSetResourceScopedRolePermissions.js";
 import { resourcesSetResourceVisibility } from "../funcs/resourcesSetResourceVisibility.js";
+import { resourcesUpdateResourceCustomAccessLevel } from "../funcs/resourcesUpdateResourceCustomAccessLevel.js";
 import { resourcesUpdateResources } from "../funcs/resourcesUpdateResources.js";
 import { resourcesUpdateResourceUser } from "../funcs/resourcesUpdateResourceUser.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -35,6 +42,9 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Resources extends ClientSDK {
   /**
+   * Get resources
+   *
+   * @remarks
    * Returns a list of resources for your organization.
    */
   async getResources(
@@ -79,6 +89,9 @@ export class Resources extends ClientSDK {
   }
 
   /**
+   * Get resource by ID
+   *
+   * @remarks
    * Retrieves a resource.
    */
   async getResource(
@@ -233,6 +246,9 @@ export class Resources extends ClientSDK {
   }
 
   /**
+   * Get resource users
+   *
+   * @remarks
    * Gets the list of users for this resource.
    */
   async getResourceUsers(
@@ -317,6 +333,9 @@ export class Resources extends ClientSDK {
   }
 
   /**
+   * Get resource user
+   *
+   * @remarks
    * Returns information about a specific user's access to a resource.
    */
   async getResourceUser(
@@ -382,6 +401,107 @@ export class Resources extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.ScopedRolePermissionList> {
     return unwrapAsync(resourcesSetResourceScopedRolePermissions(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Returns all custom access levels for a resource. If the resource is a parent type (e.g. GitHubOrg), returns aggregated roles across child resources.
+   */
+  async getResourceCustomAccessLevels(
+    request: operations.GetResourceCustomAccessLevelsRequest,
+    options?: RequestOptions,
+  ): Promise<components.ResourceCustomAccessLevelList> {
+    return unwrapAsync(resourcesGetResourceCustomAccessLevels(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Creates a custom access level on a resource. If the resource is a parent type, the role is created on all child resources.
+   */
+  async createResourceCustomAccessLevel(
+    request: operations.CreateResourceCustomAccessLevelRequest,
+    options?: RequestOptions,
+  ): Promise<components.ResourceCustomAccessLevelResponse> {
+    return unwrapAsync(resourcesCreateResourceCustomAccessLevel(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Updates a custom access level identified by its remote ID. If the resource is a parent type, the update fans out to all child resources.
+   */
+  async updateResourceCustomAccessLevel(
+    request: operations.UpdateResourceCustomAccessLevelRequest,
+    options?: RequestOptions,
+  ): Promise<components.ResourceCustomAccessLevelResponse> {
+    return unwrapAsync(resourcesUpdateResourceCustomAccessLevel(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Deletes a custom access level identified by its remote ID. If the resource is a parent type, the deletion fans out to all child resources.
+   */
+  async deleteResourceCustomAccessLevel(
+    request: operations.DeleteResourceCustomAccessLevelRequest,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(resourcesDeleteResourceCustomAccessLevel(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Gets the list of resources for this user.
+   */
+  async getUserResources(
+    request: operations.GetUserResourcesRequest,
+    options?: RequestOptions,
+  ): Promise<components.ResourceAccessUserList> {
+    return unwrapAsync(resourcesGetUserResources(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Returns a list of groups that grant access to the resource
+   */
+  async getResourceGroups(
+    request: operations.GetResourceGroupsRequest,
+    options?: RequestOptions,
+  ): Promise<components.GroupResourceList> {
+    return unwrapAsync(resourcesGetResourceGroups(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get resource access levels
+   *
+   * @remarks
+   * Returns the list of access levels defined for the resource. Resources that only offer default (unnamed) access return an empty list.
+   */
+  async getResourceAccessLevels(
+    request: operations.GetResourceAccessLevelsRequest,
+    options?: RequestOptions,
+  ): Promise<components.ResourceAccessLevelList> {
+    return unwrapAsync(resourcesGetResourceAccessLevels(
       this,
       request,
       options,

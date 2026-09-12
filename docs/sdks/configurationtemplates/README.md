@@ -1,5 +1,4 @@
 # ConfigurationTemplates
-(*configurationTemplates*)
 
 ## Overview
 
