@@ -3,8 +3,8 @@
  */
 
 import { OpalMcpCore } from "../core.js";
-import { dlv } from "../lib/dlv.js";
 import { encodeFormQuery } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -32,6 +32,9 @@ import {
 } from "../types/operations.js";
 
 /**
+ * Get owners
+ *
+ * @remarks
  * Returns a list of `Owner` objects.
  */
 export function ownersGetOwners(
@@ -115,7 +118,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "get_owners",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -144,7 +147,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["4XX", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -198,11 +202,14 @@ async function $do(
     >;
     "~next"?: { cursor: string };
   } => {
-    const nextCursor = dlv(responseData, "next");
+    const nextCursor = (responseData as { next?: unknown | null }).next;
     if (typeof nextCursor !== "string") {
       return { next: () => null };
     }
-    const results = dlv(responseData, "results");
+    if (nextCursor.trim() === "") {
+      return { next: () => null };
+    }
+    const results = (responseData as { results: unknown }).results;
     if (!Array.isArray(results) || !results.length) {
       return { next: () => null };
     }

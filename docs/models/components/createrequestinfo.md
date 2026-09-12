@@ -12,7 +12,6 @@ let value: CreateRequestInfo = {
     {
       id: "group283-ca87-4a8a-bdbb-df212eca5353",
       accessLevelRemoteId: "arn:aws:iam::490306337630:role/SupportUser",
-      accessLevelName: "arn:aws:iam::490306337630:role/SupportUser",
     },
   ],
   groups: [
