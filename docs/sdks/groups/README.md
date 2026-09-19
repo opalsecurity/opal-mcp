@@ -1,5 +1,4 @@
 # Groups
-(*groups*)
 
 ## Overview
 
@@ -7,20 +6,21 @@ Operations related to groups
 
 ### Available Operations
 
-* [getGroups](#getgroups) - Returns a list of groups for your organization.
+* [getGroups](#getgroups) - Get groups
 * [updateGroups](#updategroups) - Bulk updates a list of groups.
 * [createGroup](#creategroup) - Creates an Opal group or [imports a remote group](https://docs.opal.dev/reference/end-system-objects).
-* [getGroup](#getgroup) - Returns a `Group` object.
+* [getGroup](#getgroup) - Get group by ID
 * [deleteGroup](#deletegroup) - Deletes a group.
 * [getGroupMessageChannels](#getgroupmessagechannels) - Gets the list of audit and reviewer message channels attached to a group.
 * [setGroupMessageChannels](#setgroupmessagechannels) - Sets the list of audit message channels attached to a group.
 * [getGroupOnCallSchedules](#getgrouponcallschedules) - Gets the list of on call schedules attached to a group.
 * [setGroupOnCallSchedules](#setgrouponcallschedules) - Sets the list of on call schedules attached to a group.
+* [getGroupAccessLevels](#getgroupaccesslevels) - Get group access levels
 * [getGroupResources](#getgroupresources) - Gets the list of resources that the group gives access to.
 * [setGroupResources](#setgroupresources) - Sets the list of resources that the group gives access to.
-* [getGroupContainingGroups](#getgroupcontaininggroups) - Gets the list of groups that the group gives access to.
+* [getGroupContainingGroups](#getgroupcontaininggroups) - Get nested groups
 * [addGroupContainingGroup](#addgroupcontaininggroup) - Creates a new containing group.
-* [getGroupContainingGroup](#getgroupcontaininggroup) - Gets a specific containing group for a group.
+* [getGroupContainingGroup](#getgroupcontaininggroup) - Get nested group by ID
 * [removeGroupContainingGroup](#removegroupcontaininggroup) - Removes a containing group from a group.
 * [addGroupResource](#addgroupresource) - Adds a resource to a group.
 * [getGroupVisibility](#getgroupvisibility) - Gets the visibility of this group.
@@ -34,6 +34,7 @@ Operations related to groups
 * [updateGroupUser](#updategroupuser) - Updates a user's access level or duration in this group.
 * [addGroupUser](#addgroupuser) - Adds a user to this group.
 * [deleteGroupUser](#deletegroupuser) - Removes a user's access from this group.
+* [getUserGroups](#getusergroups) - Returns all groups that the user is a member of.
 
 ## getGroups
 
@@ -59,6 +60,7 @@ async function run() {
       "1b978423-db0a-4037-a4cf-f79c60cb67b3",
     ],
     groupName: "example-name",
+    requestable: true,
   });
 
   for await (const page of result) {
@@ -93,6 +95,7 @@ async function run() {
       "1b978423-db0a-4037-a4cf-f79c60cb67b3",
     ],
     groupName: "example-name",
+    requestable: true,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -782,6 +785,79 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
+## getGroupAccessLevels
+
+Returns the list of access levels defined for the group. Groups that only offer default (unnamed) access return an empty list.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="get_group_access_levels" method="get" path="/groups/{group_id}/access_levels" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.groups.getGroupAccessLevels({
+    groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { groupsGetGroupAccessLevels } from "opal-mcp/funcs/groupsGetGroupAccessLevels.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await groupsGetGroupAccessLevels(opalMcp, {
+    groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsGetGroupAccessLevels failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetGroupAccessLevelsRequest](../../models/operations/getgroupaccesslevelsrequest.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.GroupAccessLevelList](../../models/components/groupaccesslevellist.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
 ## getGroupResources
 
 Gets the list of resources that the group gives access to.
@@ -961,6 +1037,7 @@ const opalMcp = new OpalMcp({
 async function run() {
   const result = await opalMcp.groups.getGroupContainingGroups({
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+    accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
   });
 
   console.log(result);
@@ -986,6 +1063,7 @@ const opalMcp = new OpalMcpCore({
 async function run() {
   const res = await groupsGetGroupContainingGroups(opalMcp, {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+    accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -1189,6 +1267,7 @@ async function run() {
   await opalMcp.groups.removeGroupContainingGroup({
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
     containingGroupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+    accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
   });
 
 
@@ -1215,6 +1294,7 @@ async function run() {
   const res = await groupsRemoveGroupContainingGroup(opalMcp, {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
     containingGroupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+    accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -1917,6 +1997,8 @@ const opalMcp = new OpalMcp({
 async function run() {
   const result = await opalMcp.groups.getGroupUsers({
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    pageSize: 200,
   });
 
   console.log(result);
@@ -1942,6 +2024,8 @@ const opalMcp = new OpalMcpCore({
 async function run() {
   const res = await groupsGetGroupUsers(opalMcp, {
     groupId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    pageSize: 200,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -2213,6 +2297,83 @@ run();
 ### Response
 
 **Promise\<void\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## getUserGroups
+
+Returns all groups that the user is a member of.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="get_user_groups" method="get" path="/groups/users/{user_id}" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.groups.getUserGroups({
+    userId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    pageSize: 200,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { groupsGetUserGroups } from "opal-mcp/funcs/groupsGetUserGroups.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await groupsGetUserGroups(opalMcp, {
+    userId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    pageSize: 200,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("groupsGetUserGroups failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetUserGroupsRequest](../../models/operations/getusergroupsrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.GroupUserList](../../models/components/groupuserlist.md)\>**
 
 ### Errors
 

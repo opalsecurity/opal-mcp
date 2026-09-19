@@ -1,5 +1,4 @@
 # GroupBindings
-(*groupBindings*)
 
 ## Overview
 
@@ -7,10 +6,10 @@ Operations related to group bindings
 
 ### Available Operations
 
-* [getGroupBindings](#getgroupbindings) - Returns a list of `GroupBinding` objects.
+* [getGroupBindings](#getgroupbindings) - Get group bindings
 * [createGroupBinding](#creategroupbinding) - Creates a group binding.
 * [updateGroupBindings](#updategroupbindings) - Bulk updates a list of group bindings.
-* [getGroupBinding](#getgroupbinding) - Returns a `GroupBinding` object.
+* [getGroupBinding](#getgroupbinding) - Get group binding by ID
 * [deleteGroupBinding](#deletegroupbinding) - Deletes a group binding.
 
 ## getGroupBindings

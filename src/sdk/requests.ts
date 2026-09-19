@@ -3,10 +3,16 @@
  */
 
 import { requestsApproveRequest } from "../funcs/requestsApproveRequest.js";
+import { requestsCancelRequest } from "../funcs/requestsCancelRequest.js";
 import { requestsCreateRequest } from "../funcs/requestsCreateRequest.js";
+import { requestsCreateRequestComment } from "../funcs/requestsCreateRequestComment.js";
+import { requestsDenyRequest } from "../funcs/requestsDenyRequest.js";
 import { requestsGetRequest } from "../funcs/requestsGetRequest.js";
+import { requestsGetRequestComments } from "../funcs/requestsGetRequestComments.js";
 import { requestsGetRequests } from "../funcs/requestsGetRequests.js";
 import { requestsGetRequestsRelay } from "../funcs/requestsGetRequestsRelay.js";
+import { requestsRemindRequest } from "../funcs/requestsRemindRequest.js";
+import { requestsRemindRequestReviewer } from "../funcs/requestsRemindRequestReviewer.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
@@ -15,6 +21,9 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Requests extends ClientSDK {
   /**
+   * Get requests
+   *
+   * @remarks
    * Returns a list of requests for your organization that is visible by the admin.
    */
   async getRequests(
@@ -43,6 +52,9 @@ export class Requests extends ClientSDK {
   }
 
   /**
+   * Get requests via Relay
+   *
+   * @remarks
    * Returns a paginated list of requests using Relay-style cursor pagination.
    *
    * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -59,6 +71,9 @@ export class Requests extends ClientSDK {
   }
 
   /**
+   * Get request by ID
+   *
+   * @remarks
    * Returns a request by ID.
    */
   async getRequest(
@@ -80,6 +95,99 @@ export class Requests extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.ApproveRequestResponse> {
     return unwrapAsync(requestsApproveRequest(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Deny an access request
+   */
+  async denyRequest(
+    request: operations.DenyRequestRequest,
+    options?: RequestOptions,
+  ): Promise<operations.DenyRequestResponse> {
+    return unwrapAsync(requestsDenyRequest(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Cancel request
+   *
+   * @remarks
+   * Cancels a pending access request.
+   */
+  async cancelRequest(
+    request: operations.CancelRequestRequest,
+    options?: RequestOptions,
+  ): Promise<components.RequestT> {
+    return unwrapAsync(requestsCancelRequest(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Send request reminder
+   *
+   * @remarks
+   * Sends a reminder to all pending reviewers of the request.
+   */
+  async remindRequest(
+    request: operations.RemindRequestRequest,
+    options?: RequestOptions,
+  ): Promise<operations.RemindRequestResponse> {
+    return unwrapAsync(requestsRemindRequest(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Send reminder to a reviewer
+   *
+   * @remarks
+   * Sends a reminder to one pending reviewer of the request.
+   */
+  async remindRequestReviewer(
+    request: operations.RemindRequestReviewerRequest,
+    options?: RequestOptions,
+  ): Promise<operations.RemindRequestReviewerResponse> {
+    return unwrapAsync(requestsRemindRequestReviewer(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Returns a list of comments for a specific request.
+   */
+  async getRequestComments(
+    request: operations.GetRequestCommentsRequest,
+    options?: RequestOptions,
+  ): Promise<components.RequestCommentList> {
+    return unwrapAsync(requestsGetRequestComments(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Comment on an access request
+   */
+  async createRequestComment(
+    request: operations.CreateRequestCommentRequest,
+    options?: RequestOptions,
+  ): Promise<operations.CreateRequestCommentResponse> {
+    return unwrapAsync(requestsCreateRequestComment(
       this,
       request,
       options,

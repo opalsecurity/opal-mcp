@@ -12,8 +12,9 @@ const args = {
 
 export const tool$tagsGetTagByID: ToolDefinition<typeof args> = {
   name: "tags-get-tag-by-ID",
-  description:
-    `UNSTABLE. May be removed at any time. Gets a tag with the given id.`,
+  description: `Get tag by ID
+
+UNSTABLE. May be removed at any time. Gets a tag with the given id.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {

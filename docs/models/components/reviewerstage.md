@@ -14,6 +14,9 @@ let value: ReviewerStage = {
     "7870617d-e72a-47f5-a84c-693817ab4567",
     "1520617d-e72a-47f5-a84c-693817ab48ad2",
   ],
+  serviceUserIds: [
+    "7870617d-e72a-47f5-a84c-693817ab4568",
+  ],
 };
 ```
 
@@ -24,4 +27,5 @@ let value: ReviewerStage = {
 | `requireManagerApproval`                                                                      | *boolean*                                                                                     | :heavy_check_mark:                                                                            | Whether this reviewer stage should require manager approval.                                  | false                                                                                         |
 | `requireAdminApproval`                                                                        | *boolean*                                                                                     | :heavy_minus_sign:                                                                            | Whether this reviewer stage should require admin approval.                                    | false                                                                                         |
 | `operator`                                                                                    | [components.Operator](../../models/components/operator.md)                                    | :heavy_check_mark:                                                                            | The operator of the reviewer stage. Admin and manager approval are also treated as reviewers. | AND                                                                                           |
-| `ownerIds`                                                                                    | *string*[]                                                                                    | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `ownerIds`                                                                                    | *string*[]                                                                                    | :heavy_check_mark:                                                                            | The IDs of owners assigned as reviewers for this stage.                                       |                                                                                               |
+| `serviceUserIds`                                                                              | *string*[]                                                                                    | :heavy_minus_sign:                                                                            | The IDs of service users assigned as reviewers for this stage.                                |                                                                                               |

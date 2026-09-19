@@ -1,5 +1,4 @@
 # Requests
-(*requests*)
 
 ## Overview
 
@@ -7,19 +6,25 @@ Operations related to requests
 
 ### Available Operations
 
-* [getRequests](#getrequests) - Returns a list of requests for your organization that is visible by the admin.
+* [getRequests](#getrequests) - Get requests
 * [createRequest](#createrequest) - Create an access request
-* [~~getRequestsRelay~~](#getrequestsrelay) - Returns a paginated list of requests using Relay-style cursor pagination. :warning: **Deprecated**
-* [getRequest](#getrequest) - Returns a request by ID.
+* [~~getRequestsRelay~~](#getrequestsrelay) - Get requests via Relay :warning: **Deprecated**
+* [getRequest](#getrequest) - Get request by ID
 * [approveRequest](#approverequest) - Approve an access request
+* [denyRequest](#denyrequest) - Deny an access request
+* [cancelRequest](#cancelrequest) - Cancel request
+* [remindRequest](#remindrequest) - Send request reminder
+* [remindRequestReviewer](#remindrequestreviewer) - Send reminder to a reviewer
+* [getRequestComments](#getrequestcomments) - Returns a list of comments for a specific request.
+* [createRequestComment](#createrequestcomment) - Comment on an access request
 
 ## getRequests
 
 Returns a list of requests for your organization that is visible by the admin.
 
-### Example Usage
+### Example Usage: withDate
 
-<!-- UsageSnippet language="typescript" operationID="getRequests" method="get" path="/requests" -->
+<!-- UsageSnippet language="typescript" operationID="getRequests" method="get" path="/requests" example="withDate" -->
 ```typescript
 import { OpalMcp } from "opal-mcp";
 
@@ -31,6 +36,10 @@ async function run() {
   const result = await opalMcp.requests.getRequests({
     startDateFilter: "2021-11-01T00:00:00Z",
     endDateFilter: "2021-11-12T00:00:00Z",
+    requesterId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    targetUserId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    resourceId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    groupId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     pageSize: 200,
   });
@@ -61,6 +70,77 @@ async function run() {
   const res = await requestsGetRequests(opalMcp, {
     startDateFilter: "2021-11-01T00:00:00Z",
     endDateFilter: "2021-11-12T00:00:00Z",
+    requesterId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    targetUserId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    resourceId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    groupId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    pageSize: 200,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    for await (const page of result) {
+    console.log(page);
+  }
+  } else {
+    console.log("requestsGetRequests failed:", res.error);
+  }
+}
+
+run();
+```
+### Example Usage: withDatetime
+
+<!-- UsageSnippet language="typescript" operationID="getRequests" method="get" path="/requests" example="withDatetime" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.requests.getRequests({
+    startDateFilter: "2025-01-01T00:00:00Z",
+    endDateFilter: "2025-01-01T00:00:00Z",
+    requesterId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    targetUserId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    resourceId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    groupId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    pageSize: 200,
+  });
+
+  for await (const page of result) {
+    console.log(page);
+  }
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { requestsGetRequests } from "opal-mcp/funcs/requestsGetRequests.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await requestsGetRequests(opalMcp, {
+    startDateFilter: "2025-01-01T00:00:00Z",
+    endDateFilter: "2025-01-01T00:00:00Z",
+    requesterId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    targetUserId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    resourceId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
+    groupId: "37cb7e41-12ba-46da-92ff-030abe0450b1",
     cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
     pageSize: 200,
   });
@@ -457,6 +537,460 @@ run();
 ### Response
 
 **Promise\<[operations.ApproveRequestResponse](../../models/operations/approverequestresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## denyRequest
+
+Deny an access request
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="denyRequest" method="post" path="/requests/{id}/deny" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.requests.denyRequest({
+    id: "83015915-58ae-4cce-b92d-608ff073ece1",
+    requestBody: {
+      comment: "Denied due to insufficient justification",
+      level: "REGULAR",
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { requestsDenyRequest } from "opal-mcp/funcs/requestsDenyRequest.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await requestsDenyRequest(opalMcp, {
+    id: "83015915-58ae-4cce-b92d-608ff073ece1",
+    requestBody: {
+      comment: "Denied due to insufficient justification",
+      level: "REGULAR",
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("requestsDenyRequest failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.DenyRequestRequest](../../models/operations/denyrequestrequest.md)                                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.DenyRequestResponse](../../models/operations/denyrequestresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## cancelRequest
+
+Cancels a pending access request.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="cancelRequest" method="post" path="/requests/{id}/cancel" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.requests.cancelRequest({
+    id: "a0ee08a0-c079-46b4-a5ed-e042adc1b586",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { requestsCancelRequest } from "opal-mcp/funcs/requestsCancelRequest.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await requestsCancelRequest(opalMcp, {
+    id: "a0ee08a0-c079-46b4-a5ed-e042adc1b586",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("requestsCancelRequest failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.CancelRequestRequest](../../models/operations/cancelrequestrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.RequestT](../../models/components/requestt.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## remindRequest
+
+Sends a reminder to all pending reviewers of the request.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="remindRequest" method="post" path="/requests/{id}/remind" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.requests.remindRequest({
+    id: "9b053ad1-d624-49e2-98b6-8acf41839603",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { requestsRemindRequest } from "opal-mcp/funcs/requestsRemindRequest.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await requestsRemindRequest(opalMcp, {
+    id: "9b053ad1-d624-49e2-98b6-8acf41839603",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("requestsRemindRequest failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.RemindRequestRequest](../../models/operations/remindrequestrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.RemindRequestResponse](../../models/operations/remindrequestresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## remindRequestReviewer
+
+Sends a reminder to one pending reviewer of the request.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="remindRequestReviewer" method="post" path="/requests/{id}/reviewers/{reviewer_id}/remind" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.requests.remindRequestReviewer({
+    id: "efbbd9d1-2cc4-4abc-9cf4-18263fd4b4c9",
+    reviewerId: "522c6e5a-cba9-4254-84da-bca05dc9ca59",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { requestsRemindRequestReviewer } from "opal-mcp/funcs/requestsRemindRequestReviewer.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await requestsRemindRequestReviewer(opalMcp, {
+    id: "efbbd9d1-2cc4-4abc-9cf4-18263fd4b4c9",
+    reviewerId: "522c6e5a-cba9-4254-84da-bca05dc9ca59",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("requestsRemindRequestReviewer failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.RemindRequestReviewerRequest](../../models/operations/remindrequestreviewerrequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.RemindRequestReviewerResponse](../../models/operations/remindrequestreviewerresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## getRequestComments
+
+Returns a list of comments for a specific request.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getRequestComments" method="get" path="/requests/{id}/comments" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.requests.getRequestComments({
+    id: "bfb1ef34-8ecf-46e5-bdf4-38abe7c6da89",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { requestsGetRequestComments } from "opal-mcp/funcs/requestsGetRequestComments.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await requestsGetRequestComments(opalMcp, {
+    id: "bfb1ef34-8ecf-46e5-bdf4-38abe7c6da89",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("requestsGetRequestComments failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetRequestCommentsRequest](../../models/operations/getrequestcommentsrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.RequestCommentList](../../models/components/requestcommentlist.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## createRequestComment
+
+Comment on an access request
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="createRequestComment" method="post" path="/requests/{id}/comments" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.requests.createRequestComment({
+    id: "4a929b40-a2e3-4dca-b8ec-1af35bdc7e43",
+    requestBody: {
+      comment: "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { requestsCreateRequestComment } from "opal-mcp/funcs/requestsCreateRequestComment.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await requestsCreateRequestComment(opalMcp, {
+    id: "4a929b40-a2e3-4dca-b8ec-1af35bdc7e43",
+    requestBody: {
+      comment: "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("requestsCreateRequestComment failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.CreateRequestCommentRequest](../../models/operations/createrequestcommentrequest.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.CreateRequestCommentResponse](../../models/operations/createrequestcommentresponse.md)\>**
 
 ### Errors
 
