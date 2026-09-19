@@ -12,7 +12,9 @@ const args = {
 
 export const tool$appsGetApp: ToolDefinition<typeof args> = {
   name: "apps-get-app",
-  description: `Returns an \`App\` object.`,
+  description: `Get app by ID
+
+Returns an \`App\` object.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {

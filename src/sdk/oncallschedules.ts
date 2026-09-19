@@ -12,6 +12,9 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class OnCallSchedules extends ClientSDK {
   /**
+   * Get on call schedules
+   *
+   * @remarks
    * Returns a list of `OnCallSchedule` objects.
    */
   async getOnCallSchedules(
@@ -38,6 +41,9 @@ export class OnCallSchedules extends ClientSDK {
   }
 
   /**
+   * Get on call schedule by ID
+   *
+   * @remarks
    * Gets a `OnCallSchedule` object.
    */
   async getOnCallSchedule(
