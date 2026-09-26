@@ -7,7 +7,11 @@ import { RuleClauses } from "opal-mcp/models/components";
 
 let value: RuleClauses = {
   when: {
-    clauses: [],
+    clauses: [
+      {
+        selectors: [],
+      },
+    ],
   },
 };
 ```

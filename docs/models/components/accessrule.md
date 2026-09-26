@@ -5,7 +5,7 @@
 The `AccessRule` object is used to represent an access rule configuration.
 
 ### Usage Example
-Get access rule configurations from the `GET Access Rule Configs` endpoint.
+List access rules from the `GET /access-rules` endpoint, or retrieve a single access rule from the `GET /access-rules/{access_rule_id}` endpoint.
 
 ## Example Usage
 
@@ -21,7 +21,11 @@ let value: AccessRule = {
   status: "ACTIVE",
   ruleClauses: {
     when: {
-      clauses: [],
+      clauses: [
+        {
+          selectors: [],
+        },
+      ],
     },
   },
 };

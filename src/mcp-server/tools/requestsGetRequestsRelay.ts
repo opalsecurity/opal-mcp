@@ -12,8 +12,9 @@ const args = {
 
 export const tool$requestsGetRequestsRelay: ToolDefinition<typeof args> = {
   name: "requests-get-requests-relay",
-  description:
-    `Returns a paginated list of requests using Relay-style cursor pagination.`,
+  description: `Get requests via Relay
+
+Returns a paginated list of requests using Relay-style cursor pagination.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
