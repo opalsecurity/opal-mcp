@@ -3,8 +3,8 @@
  */
 
 import { OpalMcpCore } from "../core.js";
-import { dlv } from "../lib/dlv.js";
 import { encodeFormQuery } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -32,6 +32,9 @@ import {
 } from "../types/operations.js";
 
 /**
+ * Get requests
+ *
+ * @remarks
  * Returns a list of requests for your organization that is visible by the admin.
  */
 export function requestsGetRequests(
@@ -100,9 +103,13 @@ async function $do(
   const query = encodeFormQuery({
     "cursor": payload.cursor,
     "end_date_filter": payload.end_date_filter,
+    "group_id": payload.group_id,
     "page_size": payload.page_size,
+    "requester_id": payload.requester_id,
+    "resource_id": payload.resource_id,
     "show_pending_only": payload.show_pending_only,
     "start_date_filter": payload.start_date_filter,
+    "target_user_id": payload.target_user_id,
   });
 
   const headers = new Headers(compactMap({
@@ -117,7 +124,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getRequests",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -146,7 +153,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["4XX", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -202,11 +210,14 @@ async function $do(
     >;
     "~next"?: { cursor: string };
   } => {
-    const nextCursor = dlv(responseData, "cursor");
+    const nextCursor = (responseData as { cursor?: unknown }).cursor;
     if (typeof nextCursor !== "string") {
       return { next: () => null };
     }
-    const results = dlv(responseData, "requests");
+    if (nextCursor.trim() === "") {
+      return { next: () => null };
+    }
+    const results = (responseData as { requests?: unknown }).requests;
     if (!Array.isArray(results) || !results.length) {
       return { next: () => null };
     }
