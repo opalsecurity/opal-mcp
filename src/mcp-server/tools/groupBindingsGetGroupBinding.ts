@@ -12,7 +12,9 @@ const args = {
 
 export const tool$groupBindingsGetGroupBinding: ToolDefinition<typeof args> = {
   name: "group-bindings-get-group-binding",
-  description: `Returns a \`GroupBinding\` object.`,
+  description: `Get group binding by ID
+
+Returns a \`GroupBinding\` object.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {

@@ -14,7 +14,9 @@ export const tool$messageChannelsGetMessageChannel: ToolDefinition<
   typeof args
 > = {
   name: "message-channels-get-message-channel",
-  description: `Gets a \`MessageChannel\` object.`,
+  description: `Get message channel by ID
+
+Gets a \`MessageChannel\` object.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {

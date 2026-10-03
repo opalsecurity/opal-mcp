@@ -8,7 +8,7 @@ dotenv.config();
  * Example usage of the opal-mcp SDK
  *
  * To run this example from the examples directory:
- * npm run build && npx tsx appsGetApps.ts
+ * npm run build && npx tsx appsGetApps.example.ts
  */
 
 import { OpalMcp } from "opal-mcp";
@@ -18,7 +18,7 @@ const opalMcp = new OpalMcp({
 });
 
 async function main() {
-  const result = await opalMcp.getApps({
+  const result = await opalMcp.apps.getApps({
     appTypeFilter: [
       "OKTA_DIRECTORY",
       "GIT_HUB",
