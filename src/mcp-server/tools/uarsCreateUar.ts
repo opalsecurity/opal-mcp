@@ -12,7 +12,8 @@ const args = {
 
 export const tool$uarsCreateUar: ToolDefinition<typeof args> = {
   name: "uars-create-uar",
-  description: `Starts a User Access Review.`,
+  description:
+    `Starts a User Access Review. Deprecated in favor of \`POST /campaigns\`.`,
   scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {

@@ -1,0 +1,37 @@
+# RequestTemplateCustomField
+
+A field on a request template.
+
+## Example Usage
+
+```typescript
+import { RequestTemplateCustomField } from "opal-mcp/models/components";
+
+let value: RequestTemplateCustomField = {
+  name: "Why do you need this access?",
+  type: "MULTI_CHOICE",
+  required: true,
+  metadata: {
+    calloutData: {
+      severity: "WARNING",
+      text: "This role grants access to production customer data.",
+    },
+    multiChoiceData: {
+      options: [
+        "Incident response",
+        "Scheduled maintenance",
+      ],
+    },
+  },
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                       | Type                                                                                                                                                                                        | Required                                                                                                                                                                                    | Description                                                                                                                                                                                 | Example                                                                                                                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`                                                                                                                                                                                      | *string*                                                                                                                                                                                    | :heavy_check_mark:                                                                                                                                                                          | The label shown to the requester. `CALLOUT` fields are display-only, so their name is an internal identifier and is never displayed.                                                        | Why do you need this access?                                                                                                                                                                |
+| `description`                                                                                                                                                                               | *string*                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                          | Helper text shown beneath the field.                                                                                                                                                        |                                                                                                                                                                                             |
+| `type`                                                                                                                                                                                      | [components.RequestTemplateCustomFieldTypeEnum](../../models/components/requesttemplatecustomfieldtypeenum.md)                                                                              | :heavy_check_mark:                                                                                                                                                                          | The type of the custom request field. `CALLOUT` fields are display-only -- they show a message to the requester and collect no answer, so they never appear in a request's `custom_fields`. |                                                                                                                                                                                             |
+| `required`                                                                                                                                                                                  | *boolean*                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                          | Whether the requester must answer. Always false for `CALLOUT` fields, which collect no answer.                                                                                              | true                                                                                                                                                                                        |
+| `metadata`                                                                                                                                                                                  | [components.RequestTemplateCustomFieldMetadata](../../models/components/requesttemplatecustomfieldmetadata.md)                                                                              | :heavy_minus_sign:                                                                                                                                                                          | Extra configuration for field types that need it. Exactly one member is set, and which one is determined by the field's `type`.                                                             |                                                                                                                                                                                             |

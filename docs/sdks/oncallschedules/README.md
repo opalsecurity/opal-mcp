@@ -1,5 +1,4 @@
 # OnCallSchedules
-(*onCallSchedules*)
 
 ## Overview
 
@@ -7,9 +6,9 @@ Operations related to on-call schedules
 
 ### Available Operations
 
-* [getOnCallSchedules](#getoncallschedules) - Returns a list of `OnCallSchedule` objects.
+* [getOnCallSchedules](#getoncallschedules) - Get on call schedules
 * [createOnCallSchedule](#createoncallschedule) - Creates a `OnCallSchedule` objects.
-* [getOnCallSchedule](#getoncallschedule) - Gets a `OnCallSchedule` object.
+* [getOnCallSchedule](#getoncallschedule) - Get on call schedule by ID
 
 ## getOnCallSchedules
 
