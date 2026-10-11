@@ -3,8 +3,11 @@
  */
 
 import { eventsEvents } from "../funcs/eventsEvents.js";
+import { eventsGetEvent } from "../funcs/eventsGetEvent.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
+import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
+import { unwrapAsync } from "../types/fp.js";
 import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Events extends ClientSDK {
@@ -16,6 +19,23 @@ export class Events extends ClientSDK {
     options?: RequestOptions,
   ): Promise<PageIterator<operations.EventsResponse, { cursor: string }>> {
     return unwrapResultIterator(eventsEvents(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get event by ID
+   *
+   * @remarks
+   * Returns an `Event` object.
+   */
+  async getEvent(
+    request: operations.GetEventRequest,
+    options?: RequestOptions,
+  ): Promise<components.Event> {
+    return unwrapAsync(eventsGetEvent(
       this,
       request,
       options,

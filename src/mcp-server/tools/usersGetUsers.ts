@@ -12,7 +12,8 @@ const args = {
 
 export const tool$usersGetUsers: ToolDefinition<typeof args> = {
   name: "users-get-users",
-  description: `Returns a list of users for your organization.`,
+  description:
+    `Returns a list of users for your organization. Includes agent-labeled identities that appear on the Users page. Classic service accounts are not included.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {

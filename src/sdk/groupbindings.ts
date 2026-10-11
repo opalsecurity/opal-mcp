@@ -15,6 +15,9 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class GroupBindings extends ClientSDK {
   /**
+   * Get group bindings
+   *
+   * @remarks
    * Returns a list of `GroupBinding` objects.
    */
   async getGroupBindings(
@@ -59,6 +62,9 @@ export class GroupBindings extends ClientSDK {
   }
 
   /**
+   * Get group binding by ID
+   *
+   * @remarks
    * Returns a `GroupBinding` object.
    */
   async getGroupBinding(

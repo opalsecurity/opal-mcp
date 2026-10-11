@@ -12,7 +12,9 @@ const args = {
 
 export const tool$groupsGetGroup: ToolDefinition<typeof args> = {
   name: "groups-get-group",
-  description: `Returns a \`Group\` object.`,
+  description: `Get group by ID
+
+Returns a \`Group\` object.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
