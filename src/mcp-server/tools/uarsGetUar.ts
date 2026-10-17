@@ -12,7 +12,8 @@ const args = {
 
 export const tool$uarsGetUar: ToolDefinition<typeof args> = {
   name: "uars-get-uar",
-  description: `Retrieves a specific UAR.`,
+  description:
+    `Retrieves a specific UAR. Deprecated in favor of \`GET /campaigns/{campaign_id}\`.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {

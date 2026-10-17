@@ -1,5 +1,4 @@
 # MessageChannels
-(*messageChannels*)
 
 ## Overview
 
@@ -7,9 +6,9 @@ Operations related to message channels
 
 ### Available Operations
 
-* [getMessageChannels](#getmessagechannels) - Returns a list of `MessageChannel` objects.
+* [getMessageChannels](#getmessagechannels) - Get message channels
 * [createMessageChannel](#createmessagechannel) - Creates a `MessageChannel` objects.
-* [getMessageChannel](#getmessagechannel) - Gets a `MessageChannel` object.
+* [getMessageChannel](#getmessagechannel) - Get message channel by ID
 
 ## getMessageChannels
 

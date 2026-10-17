@@ -23,6 +23,9 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Bundles extends ClientSDK {
   /**
+   * Get bundles
+   *
+   * @remarks
    * Returns a list of `Bundle` objects.
    */
   async getBundles(
@@ -51,6 +54,9 @@ export class Bundles extends ClientSDK {
   }
 
   /**
+   * Get bundle by ID
+   *
+   * @remarks
    * Returns a `Bundle` object.
    */
   async getBundle(

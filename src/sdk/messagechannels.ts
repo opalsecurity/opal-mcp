@@ -12,6 +12,9 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class MessageChannels extends ClientSDK {
   /**
+   * Get message channels
+   *
+   * @remarks
    * Returns a list of `MessageChannel` objects.
    */
   async getMessageChannels(
@@ -38,6 +41,9 @@ export class MessageChannels extends ClientSDK {
   }
 
   /**
+   * Get message channel by ID
+   *
+   * @remarks
    * Gets a `MessageChannel` object.
    */
   async getMessageChannel(

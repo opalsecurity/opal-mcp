@@ -12,8 +12,9 @@ const args = {
 
 export const tool$requestsGetRequests: ToolDefinition<typeof args> = {
   name: "requests-get-requests",
-  description:
-    `Returns a list of requests for your organization that is visible by the admin.`,
+  description: `Get requests
+
+Returns a list of requests for your organization that is visible by the admin.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {

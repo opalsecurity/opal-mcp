@@ -13,7 +13,9 @@ const args = {
 export const tool$groupsGetGroupContainingGroups: ToolDefinition<typeof args> =
   {
     name: "groups-get-group-containing-groups",
-    description: `Gets the list of groups that the group gives access to.`,
+    description: `Get nested groups
+
+Gets the list of groups that the group gives access to.`,
     scopes: ["read"],
     args,
     tool: async (client, args, ctx) => {
