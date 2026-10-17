@@ -14,7 +14,9 @@ export const tool$onCallSchedulesGetOnCallSchedule: ToolDefinition<
   typeof args
 > = {
   name: "on-call-schedules-get-on-call-schedule",
-  description: `Gets a \`OnCallSchedule\` object.`,
+  description: `Get on call schedule by ID
+
+Gets a \`OnCallSchedule\` object.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {

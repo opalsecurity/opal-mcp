@@ -21,6 +21,9 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Tags extends ClientSDK {
   /**
+   * Get tag by ID
+   *
+   * @remarks
    * UNSTABLE. May be removed at any time. Gets a tag with the given id.
    */
   async getTagByID(
@@ -77,6 +80,9 @@ export class Tags extends ClientSDK {
   }
 
   /**
+   * Get tags
+   *
+   * @remarks
    * Returns a list of tags created by your organization.
    */
   async getTags(

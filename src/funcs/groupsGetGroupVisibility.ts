@@ -4,6 +4,7 @@
 
 import { OpalMcpCore } from "../core.js";
 import { encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -89,7 +90,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/groups/{group_id}/visibility")(pathParams);
 
   const headers = new Headers(compactMap({
@@ -104,7 +104,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "get_group_visibility",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -132,7 +132,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["4XX", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -153,7 +154,7 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, components.VisibilityInfo$inboundSchema),
-    M.fail("4XX"),
+    M.fail([403, "4XX"]),
     M.fail("5XX"),
   )(response, req);
   if (!result.ok) {
