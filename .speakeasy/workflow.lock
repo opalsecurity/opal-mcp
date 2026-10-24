@@ -1,9 +1,9 @@
-speakeasyVersion: 1.592.1
+speakeasyVersion: 1.803.2
 sources:
     Opal API:
         sourceNamespace: opal-api
-        sourceRevisionDigest: sha256:4a4bd5ee1457eec63bff5d655817c4b617e109ead6e9f1132644d856d9ff2209
-        sourceBlobDigest: sha256:353c5629289a76065ee83e77014e064454e57c4eb73955c10c6b018b9da09623
+        sourceRevisionDigest: sha256:fe52e3d333fb28286804b8dd6642246bd08dc3285579c31839d03095082838b0
+        sourceBlobDigest: sha256:471a9ec15d0ba17e1b2cefba673b379af08536acf06dd49985aaae0999b1ccd1
         tags:
             - latest
             - "1.0"
@@ -11,10 +11,10 @@ targets:
     opal-mcp:
         source: Opal API
         sourceNamespace: opal-api
-        sourceRevisionDigest: sha256:4a4bd5ee1457eec63bff5d655817c4b617e109ead6e9f1132644d856d9ff2209
-        sourceBlobDigest: sha256:353c5629289a76065ee83e77014e064454e57c4eb73955c10c6b018b9da09623
+        sourceRevisionDigest: sha256:fe52e3d333fb28286804b8dd6642246bd08dc3285579c31839d03095082838b0
+        sourceBlobDigest: sha256:471a9ec15d0ba17e1b2cefba673b379af08536acf06dd49985aaae0999b1ccd1
         codeSamplesNamespace: opal-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:744f37e853a8eda4f41141b669cc712de2583e769c3ab8d2dae7ab10f54b390f
+        codeSamplesRevisionDigest: sha256:aee4923d136a59d8fa837f74ac3e11b7537c0579ddfa799225ab42e0c5640306
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

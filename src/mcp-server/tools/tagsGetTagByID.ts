@@ -12,15 +12,16 @@ const args = {
 
 export const tool$tagsGetTagByID: ToolDefinition<typeof args> = {
   name: "tags-get-tag-by-ID",
-  description:
-    `UNSTABLE. May be removed at any time. Gets a tag with the given id.`,
+  description: `Get tag by ID
+
+UNSTABLE. May be removed at any time. Gets a tag with the given id.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await tagsGetTagByID(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

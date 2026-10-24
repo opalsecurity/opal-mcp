@@ -21,7 +21,7 @@ export const tool$onCallSchedulesCreateOnCallSchedule: ToolDefinition<
     const [result, apiCall] = await onCallSchedulesCreateOnCallSchedule(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

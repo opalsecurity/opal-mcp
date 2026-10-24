@@ -18,6 +18,7 @@ let value: GetUARsResponse = {
         deadline: new Date("2022-07-14T06:59:59Z"),
         timeZone: "America/Los_Angeles",
         selfReviewAllowed: false,
+        instantlyActionReviews: false,
         uarScope: {
           admins: [
             "f454d283-ca87-4a8a-bdbb-df212eca5353",
@@ -43,6 +44,7 @@ let value: GetUARsResponse = {
         deadline: new Date("2022-08-14T06:59:59Z"),
         timeZone: "America/Los_Angeles",
         selfReviewAllowed: false,
+        instantlyActionReviews: false,
         uarScope: {
           admins: [
             "f454d283-ca87-4a8a-bdbb-df212eca5353",

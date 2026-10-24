@@ -18,43 +18,18 @@ let value: RequestConnection = {
         status: "CANCELED",
         reason: "I need this resource.",
         durationMinutes: 1440,
-        stages: {
-          requestedRoleName: "Admin",
-          requestedItemName: "AWS Production Account",
-          stages: [
-            {
-              stage: 1,
-              operator: "AND",
-              reviewers: [
-                {
-                  id: "7c86c85d-0651-43e2-a748-d69d658418e8",
-                  status: "PENDING",
-                },
-              ],
-            },
-            {
-              stage: 2,
-              operator: "OR",
-              reviewers: [
-                {
-                  id: "8d86c85d-0651-43e2-a748-d69d658418e9",
-                  status: "APPROVED",
-                },
-              ],
-            },
-          ],
-        },
+        reviewerStages: "<value>",
       },
       cursor: "<value>",
     },
   ],
   pageInfo: {
-    hasNextPage: false,
+    hasNextPage: true,
     endCursor: "<value>",
     hasPreviousPage: true,
     startCursor: "<value>",
   },
-  totalCount: 430701,
+  totalCount: 505727,
 };
 ```
 
