@@ -22,7 +22,7 @@ export const tool$resourcesSetResourceScopedRolePermissions: ToolDefinition<
     const [result, apiCall] = await resourcesSetResourceScopedRolePermissions(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

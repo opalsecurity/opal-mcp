@@ -9,6 +9,8 @@ import { groupsCreateGroup } from "../funcs/groupsCreateGroup.js";
 import { groupsDeleteGroup } from "../funcs/groupsDeleteGroup.js";
 import { groupsDeleteGroupUser } from "../funcs/groupsDeleteGroupUser.js";
 import { groupsGetGroup } from "../funcs/groupsGetGroup.js";
+import { groupsGetGroupAccessLevels } from "../funcs/groupsGetGroupAccessLevels.js";
+import { groupsGetGroupConfigurationTemplate } from "../funcs/groupsGetGroupConfigurationTemplate.js";
 import { groupsGetGroupContainingGroup } from "../funcs/groupsGetGroupContainingGroup.js";
 import { groupsGetGroupContainingGroups } from "../funcs/groupsGetGroupContainingGroups.js";
 import { groupsGetGroupMessageChannels } from "../funcs/groupsGetGroupMessageChannels.js";
@@ -20,6 +22,7 @@ import { groupsGetGroups } from "../funcs/groupsGetGroups.js";
 import { groupsGetGroupTags } from "../funcs/groupsGetGroupTags.js";
 import { groupsGetGroupUsers } from "../funcs/groupsGetGroupUsers.js";
 import { groupsGetGroupVisibility } from "../funcs/groupsGetGroupVisibility.js";
+import { groupsGetUserGroups } from "../funcs/groupsGetUserGroups.js";
 import { groupsRemoveGroupContainingGroup } from "../funcs/groupsRemoveGroupContainingGroup.js";
 import { groupsSetGroupMessageChannels } from "../funcs/groupsSetGroupMessageChannels.js";
 import { groupsSetGroupOnCallSchedules } from "../funcs/groupsSetGroupOnCallSchedules.js";
@@ -27,6 +30,7 @@ import { groupsSetGroupResources } from "../funcs/groupsSetGroupResources.js";
 import { groupsSetGroupReviewers } from "../funcs/groupsSetGroupReviewers.js";
 import { groupsSetGroupReviewerStages } from "../funcs/groupsSetGroupReviewerStages.js";
 import { groupsSetGroupVisibility } from "../funcs/groupsSetGroupVisibility.js";
+import { groupsUpdateGroupConfigurationTemplate } from "../funcs/groupsUpdateGroupConfigurationTemplate.js";
 import { groupsUpdateGroups } from "../funcs/groupsUpdateGroups.js";
 import { groupsUpdateGroupUser } from "../funcs/groupsUpdateGroupUser.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -37,6 +41,9 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Groups extends ClientSDK {
   /**
+   * Get groups
+   *
+   * @remarks
    * Returns a list of groups for your organization.
    */
   async getGroups(
@@ -79,6 +86,9 @@ export class Groups extends ClientSDK {
   }
 
   /**
+   * Get group by ID
+   *
+   * @remarks
    * Returns a `Group` object.
    */
   async getGroup(
@@ -100,6 +110,78 @@ export class Groups extends ClientSDK {
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(groupsDeleteGroup(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get the ID of the configuration template linked to a group
+   *
+   * @remarks
+   * Returns the ID of the configuration template that the group is currently
+   * linked to. The response body is
+   * `{"configuration_template_id": "<uuid>" | null}`:
+   *
+   *   * `<uuid>` is the ID of the configuration template the group is linked to.
+   *   * `null` means the group is not linked to any configuration template
+   *     and uses its own private configuration.
+   *
+   * This endpoint only exposes the link between a group and a configuration
+   * template — it does not return the template's own fields (name,
+   * description, request configurations, visibility, etc.). To read those,
+   * call `GET /configuration-templates/{configuration_template_id}` with the
+   * ID returned here.
+   */
+  async getGroupConfigurationTemplate(
+    request: operations.GetGroupConfigurationTemplateRequest,
+    options?: RequestOptions,
+  ): Promise<components.GroupConfigurationTemplate> {
+    return unwrapAsync(groupsGetGroupConfigurationTemplate(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Set the ID of the configuration template linked to a group
+   *
+   * @remarks
+   * Attaches, repoints, or detaches the configuration template linked to a
+   * group. This endpoint only manages the link (by ID) between a group and
+   * an existing configuration template — it does not create, modify, or
+   * delete the template itself. To manage a template's own fields (name,
+   * description, request configurations, visibility, etc.), use the
+   * `/configuration-templates` endpoints.
+   *
+   * The request body is `{"configuration_template_id": "<uuid>" | null}`:
+   *
+   *   * A `<uuid>` value links the group to the configuration template with
+   *     that ID. If the group was previously linked to a different
+   *     template, the group is repointed in place.
+   *   * `null` detaches the group from its current configuration template.
+   *     The template is deep-copied into a new private configuration with
+   *     the same settings so the group's current behaviour is preserved,
+   *     and the group is repointed at the fork.
+   *
+   * The `configuration_template_id` field is required. Sending `{}` or any
+   * body in which the field is omitted is rejected with `400`.
+   *
+   * The call is idempotent: if the request body matches the group's current
+   * link, no changes are made and no audit events are emitted.
+   *
+   * This endpoint is the preferred, Terraform-friendly surface for linking
+   * and unlinking configuration templates on groups. The equivalent
+   * `configuration_template_id` field on `PUT /groups` remains available
+   * but is deprecated for this purpose.
+   */
+  async updateGroupConfigurationTemplate(
+    request: operations.UpdateGroupConfigurationTemplateRequest,
+    options?: RequestOptions,
+  ): Promise<components.GroupConfigurationTemplate> {
+    return unwrapAsync(groupsUpdateGroupConfigurationTemplate(
       this,
       request,
       options,
@@ -163,6 +245,23 @@ export class Groups extends ClientSDK {
   }
 
   /**
+   * Get group access levels
+   *
+   * @remarks
+   * Returns the list of access levels defined for the group. Groups that only offer default (unnamed) access return an empty list.
+   */
+  async getGroupAccessLevels(
+    request: operations.GetGroupAccessLevelsRequest,
+    options?: RequestOptions,
+  ): Promise<components.GroupAccessLevelList> {
+    return unwrapAsync(groupsGetGroupAccessLevels(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Gets the list of resources that the group gives access to.
    */
   async getGroupResources(
@@ -191,6 +290,9 @@ export class Groups extends ClientSDK {
   }
 
   /**
+   * Get nested groups
+   *
+   * @remarks
    * Gets the list of groups that the group gives access to.
    */
   async getGroupContainingGroups(
@@ -219,6 +321,9 @@ export class Groups extends ClientSDK {
   }
 
   /**
+   * Get nested group by ID
+   *
+   * @remarks
    * Gets a specific containing group for a group.
    */
   async getGroupContainingGroup(
@@ -416,6 +521,20 @@ export class Groups extends ClientSDK {
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(groupsDeleteGroupUser(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Returns all groups that the user is a member of.
+   */
+  async getUserGroups(
+    request: operations.GetUserGroupsRequest,
+    options?: RequestOptions,
+  ): Promise<components.GroupUserList> {
+    return unwrapAsync(groupsGetUserGroups(
       this,
       request,
       options,

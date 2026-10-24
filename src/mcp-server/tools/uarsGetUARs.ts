@@ -12,14 +12,15 @@ const args = {
 
 export const tool$uarsGetUARs: ToolDefinition<typeof args> = {
   name: "uars-get-UA-rs",
-  description: `Returns a list of \`UAR\` objects.`,
+  description:
+    `Returns a list of \`UAR\` objects. Deprecated in favor of \`GET /campaigns\`.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await uarsGetUARs(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

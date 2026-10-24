@@ -19,3 +19,13 @@ Based on:
 - [typescript v0.1.0] .
 ### Releases
 - [NPM v0.1.0] https://www.npmjs.com/package/opal-mcp/v/0.1.0 - .
+
+## 2026-10-24 00:09:28
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.803.2 (2.950.13) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v0.8.0] .
+### Releases
+- [NPM v0.8.0] https://www.npmjs.com/package/opal-mcp/v/0.8.0 - .

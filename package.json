@@ -1,8 +1,11 @@
 {
   "name": "opal-mcp",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "author": "Speakeasy",
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "bin": {
     "mcp": "bin/mcp-server.js"
   },
@@ -32,31 +35,27 @@
     "build": "npm run build:mcp && tshy",
     "prepublishOnly": "npm run build"
   },
-  "peerDependencies": {
-    "@modelcontextprotocol/sdk": ">=1.5.0 <1.10.0",
-    "zod": "^3"
-  },
-  "peerDependenciesMeta": {
-    "@modelcontextprotocol/sdk": {
-      "optional": true
-    }
-  },
+  "peerDependencies": {},
   "devDependencies": {
-    "@eslint/js": "^9.19.0",
-    "@modelcontextprotocol/sdk": ">=1.5.0 <1.10.0",
+    "@eslint/js": "^9.26.0",
     "@stricli/core": "^1.1.1",
     "@types/express": "^4.17.21",
     "bun": "1.2.17",
     "bun-types": "1.2.17",
-    "eslint": "^9.19.0",
-    "express": "^4.21.2",
+    "eslint": "^9.26.0",
+    "express": "^4.22.3",
     "globals": "^15.14.0",
-    "tshy": "^2.0.0",
-    "typescript": "^5.4.5",
-    "typescript-eslint": "^8.22.0",
-    "zod": "^3.25.17"
+    "tshy": "^3.3.2",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.26.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "@modelcontextprotocol/server": "^2.3.1",
+    "@modelcontextprotocol/server-legacy": "^2.3.1",
+    "zod": "^3.25.28",
+    "zod-to-json-schema": "^3.25.2"
+  },
   "exports": {
     ".": {
       "import": {

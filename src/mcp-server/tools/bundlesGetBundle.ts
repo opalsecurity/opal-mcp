@@ -12,14 +12,16 @@ const args = {
 
 export const tool$bundlesGetBundle: ToolDefinition<typeof args> = {
   name: "bundles-get-bundle",
-  description: `Returns a \`Bundle\` object.`,
+  description: `Get bundle by ID
+
+Returns a \`Bundle\` object.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await bundlesGetBundle(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

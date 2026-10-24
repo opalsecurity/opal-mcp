@@ -12,14 +12,16 @@ const args = {
 
 export const tool$requestsGetRequest: ToolDefinition<typeof args> = {
   name: "requests-get-request",
-  description: `Returns a request by ID.`,
+  description: `Get request by ID
+
+Returns a request by ID.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await requestsGetRequest(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

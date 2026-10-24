@@ -22,7 +22,7 @@ export const tool$resourcesSetResourceMessageChannels: ToolDefinition<
     const [result, apiCall] = await resourcesSetResourceMessageChannels(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

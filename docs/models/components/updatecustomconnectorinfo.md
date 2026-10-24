@@ -1,0 +1,26 @@
+# UpdateCustomConnectorInfo
+
+Information needed to update a Custom Connector app. Omitted fields are
+left unchanged. Provide `signing_secret` only when rotating the secret.
+
+## Example Usage
+
+```typescript
+import { UpdateCustomConnectorInfo } from "opal-mcp/models/components";
+
+let value: UpdateCustomConnectorInfo = {};
+```
+
+## Fields
+
+| Field                                                                                                   | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `identifier`                                                                                            | *string*                                                                                                | :heavy_minus_sign:                                                                                      | The identifier of the Custom Connector.                                                                 |
+| `baseUrl`                                                                                               | *string*                                                                                                | :heavy_minus_sign:                                                                                      | The base URL of the Custom Connector.                                                                   |
+| `signingSecret`                                                                                         | *string*                                                                                                | :heavy_minus_sign:                                                                                      | New signing secret. Write-only; never returned by the API. Omit to<br/>leave the existing secret unchanged. |
+| `tlsMode`                                                                                               | *boolean*                                                                                               | :heavy_minus_sign:                                                                                      | Whether TLS verification is enabled for the Custom Connector.                                           |
+| `tlsCaCertContent`                                                                                      | *string*                                                                                                | :heavy_minus_sign:                                                                                      | Optional PEM-encoded CA certificate content for TLS.                                                    |
+| `supportsGroups`                                                                                        | *boolean*                                                                                               | :heavy_minus_sign:                                                                                      | Whether the Custom Connector supports groups.                                                           |
+| `supportsNestedResources`                                                                               | *boolean*                                                                                               | :heavy_minus_sign:                                                                                      | Whether the Custom Connector supports nested resources.                                                 |
+| `supportsNestedGroups`                                                                                  | *boolean*                                                                                               | :heavy_minus_sign:                                                                                      | Whether the Custom Connector supports nested groups.                                                    |
+| `supportsEventIngestion`                                                                                | *boolean*                                                                                               | :heavy_minus_sign:                                                                                      | Whether the Custom Connector supports event ingestion.                                                  |

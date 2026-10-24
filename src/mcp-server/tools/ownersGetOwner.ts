@@ -12,14 +12,16 @@ const args = {
 
 export const tool$ownersGetOwner: ToolDefinition<typeof args> = {
   name: "owners-get-owner",
-  description: `Returns an \`Owner\` object.`,
+  description: `Get owner by ID
+
+Returns an \`Owner\` object.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await ownersGetOwner(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {
