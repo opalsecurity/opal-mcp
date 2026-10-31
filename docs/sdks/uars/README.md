@@ -1,19 +1,23 @@
-# Uars
-(*uars*)
+# ~~Uars~~
+
+> [!WARNING]
+> This SDK is **DEPRECATED**
 
 ## Overview
 
-Operations related to UARs
+Operations related to UARs. Deprecated in favor of the `campaigns` API.
 
 ### Available Operations
 
-* [getUARs](#getuars) - Returns a list of `UAR` objects.
-* [createUar](#createuar) - Starts a User Access Review.
-* [getUar](#getuar) - Retrieves a specific UAR.
+* [~~getUARs~~](#getuars) - Returns a list of `UAR` objects. Deprecated in favor of `GET /campaigns`. :warning: **Deprecated**
+* [~~createUar~~](#createuar) - Starts a User Access Review. Deprecated in favor of `POST /campaigns`. :warning: **Deprecated**
+* [~~getUar~~](#getuar) - Retrieves a specific UAR. Deprecated in favor of `GET /campaigns/{campaign_id}`. :warning: **Deprecated**
 
-## getUARs
+## ~~getUARs~~
 
-Returns a list of `UAR` objects.
+Returns a list of `UAR` objects. Deprecated in favor of `GET /campaigns`.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -90,9 +94,11 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## createUar
+## ~~createUar~~
 
-Starts a User Access Review.
+Starts a User Access Review. Deprecated in favor of `POST /campaigns`.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -221,9 +227,11 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
-## getUar
+## ~~getUar~~
 
-Retrieves a specific UAR.
+Retrieves a specific UAR. Deprecated in favor of `GET /campaigns/{campaign_id}`.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 

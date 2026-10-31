@@ -12,14 +12,16 @@ const args = {
 
 export const tool$groupBindingsGetGroupBinding: ToolDefinition<typeof args> = {
   name: "group-bindings-get-group-binding",
-  description: `Returns a \`GroupBinding\` object.`,
+  description: `Get group binding by ID
+
+Returns a \`GroupBinding\` object.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await groupBindingsGetGroupBinding(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

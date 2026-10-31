@@ -12,14 +12,15 @@ const args = {
 
 export const tool$usersGetUsers: ToolDefinition<typeof args> = {
   name: "users-get-users",
-  description: `Returns a list of users for your organization.`,
+  description:
+    `Returns a list of users for your organization. Includes agent-labeled identities that appear on the Users page. Classic service accounts are not included.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await usersGetUsers(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

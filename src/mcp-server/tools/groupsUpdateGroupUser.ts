@@ -19,7 +19,7 @@ export const tool$groupsUpdateGroupUser: ToolDefinition<typeof args> = {
     const [result, apiCall] = await groupsUpdateGroupUser(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

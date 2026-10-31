@@ -21,7 +21,7 @@ export const tool$idpGroupMappingsDeleteIdpGroupMappings: ToolDefinition<
     const [result, apiCall] = await idpGroupMappingsDeleteIdpGroupMappings(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {
