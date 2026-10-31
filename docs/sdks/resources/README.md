@@ -1,5 +1,4 @@
 # Resources
-(*resources*)
 
 ## Overview
 
@@ -7,11 +6,13 @@ Operations related to resources
 
 ### Available Operations
 
-* [getResources](#getresources) - Returns a list of resources for your organization.
+* [getResources](#getresources) - Get resources
 * [updateResources](#updateresources) - Bulk updates a list of resources.
 * [createResource](#createresource) - Creates a resource. See [here](https://docs.opal.dev/reference/end-system-objects) for details about importing resources.
-* [getResource](#getresource) - Retrieves a resource.
+* [getResource](#getresource) - Get resource by ID
 * [deleteResource](#deleteresource) - Deletes a resource.
+* [getResourceConfigurationTemplate](#getresourceconfigurationtemplate) - Get the ID of the configuration template linked to a resource
+* [updateResourceConfigurationTemplate](#updateresourceconfigurationtemplate) - Set the ID of the configuration template linked to a resource
 * [getResourceMessageChannels](#getresourcemessagechannels) - Gets the list of audit message channels attached to a resource.
 * [setResourceMessageChannels](#setresourcemessagechannels) - Sets the list of audit message channels attached to a resource.
 * [getResourceVisibility](#getresourcevisibility) - Gets the visibility of this resource.
@@ -21,17 +22,24 @@ Operations related to resources
 * [getResourceReviewerStages](#getresourcereviewerstages) - Gets the list reviewer stages for a resource.
 * [setResourceReviewerStages](#setresourcereviewerstages) - Sets the list of reviewer stages for a resource.
 * [getResourceNhis](#getresourcenhis) - Gets the list of non-human identities with access to this resource.
-* [getResourceUsers](#getresourceusers) - Gets the list of users for this resource.
+* [getResourceUsers](#getresourceusers) - Get resource users
 * [addResourceNhi](#addresourcenhi) - Gives a non-human identity access to this resource.
 * [deleteResourceNhi](#deleteresourcenhi) - Removes a non-human identity's direct access from this resource.
 * [addResourceUser](#addresourceuser) - Adds a user to this resource.
 * [updateResourceUser](#updateresourceuser) - Updates a user's access level or duration on this resource.
 * [deleteResourceUser](#deleteresourceuser) - Removes a user's direct access from this resource.
-* [getResourceUser](#getresourceuser) - Returns information about a specific user's access to a resource.
+* [getResourceUser](#getresourceuser) - Get resource user
 * [~~resourceUserAccessStatusRetrieve~~](#resourceuseraccessstatusretrieve) - Get user's access status to a resource. :warning: **Deprecated**
 * [getResourceTags](#getresourcetags) - Returns all tags applied to the resource.
 * [getResourceScopedRolePermissions](#getresourcescopedrolepermissions) - Returns all the scoped role permissions that apply to the given resource. Only OPAL_SCOPED_ROLE resource type supports this field.
 * [setResourceScopedRolePermissions](#setresourcescopedrolepermissions) - Sets all the scoped role permissions on an OPAL_SCOPED_ROLE resource.
+* [getResourceCustomAccessLevels](#getresourcecustomaccesslevels) - Returns all custom access levels for a resource. If the resource is a parent type (e.g. GitHubOrg), returns aggregated roles across child resources.
+* [createResourceCustomAccessLevel](#createresourcecustomaccesslevel) - Creates a custom access level on a resource. If the resource is a parent type, the role is created on all child resources.
+* [updateResourceCustomAccessLevel](#updateresourcecustomaccesslevel) - Updates a custom access level identified by its remote ID. If the resource is a parent type, the update fans out to all child resources.
+* [deleteResourceCustomAccessLevel](#deleteresourcecustomaccesslevel) - Deletes a custom access level identified by its remote ID. If the resource is a parent type, the deletion fans out to all child resources.
+* [getUserResources](#getuserresources) - Gets the list of resources for this user.
+* [getResourceGroups](#getresourcegroups) - Returns a list of groups that grant access to the resource
+* [getResourceAccessLevels](#getresourceaccesslevels) - Get resource access levels
 
 ## getResources
 
@@ -260,13 +268,7 @@ async function run() {
     resourceType: "OKTA_ROLE",
     appId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
     remoteResourceId: "API_ACCESS_MANAGEMENT_ADMIN-51d203da-313a-4fd9-8fcf-420ce6312345",
-    metadata: "{\n" +
-    "  \"okta_directory_role\":\n" +
-    "    {\n" +
-    "      \"role_id\": \"SUPER_ADMIN-b52aa037-4a35-4ac3-9350-f6260fd12345\",\n" +
-    "      \"role_type\": \"SUPER_ADMIN\",\n" +
-    "    },\n" +
-    "}",
+    metadata: "{\n  \"okta_directory_role\":\n    {\n      \"role_id\": \"SUPER_ADMIN-b52aa037-4a35-4ac3-9350-f6260fd12345\",\n      \"role_type\": \"SUPER_ADMIN\",\n    },\n}",
   });
 
   console.log(result);
@@ -296,13 +298,7 @@ async function run() {
     resourceType: "OKTA_ROLE",
     appId: "f454d283-ca87-4a8a-bdbb-df212eca5353",
     remoteResourceId: "API_ACCESS_MANAGEMENT_ADMIN-51d203da-313a-4fd9-8fcf-420ce6312345",
-    metadata: "{\n" +
-    "  \"okta_directory_role\":\n" +
-    "    {\n" +
-    "      \"role_id\": \"SUPER_ADMIN-b52aa037-4a35-4ac3-9350-f6260fd12345\",\n" +
-    "      \"role_type\": \"SUPER_ADMIN\",\n" +
-    "    },\n" +
-    "}",
+    metadata: "{\n  \"okta_directory_role\":\n    {\n      \"role_id\": \"SUPER_ADMIN-b52aa037-4a35-4ac3-9350-f6260fd12345\",\n      \"role_type\": \"SUPER_ADMIN\",\n    },\n}",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -473,6 +469,198 @@ run();
 ### Response
 
 **Promise\<void\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## getResourceConfigurationTemplate
+
+Returns the ID of the configuration template that the resource is
+currently linked to. The response body is
+`{"configuration_template_id": "<uuid>" | null}`:
+
+  * `<uuid>` is the ID of the configuration template the resource is linked to.
+  * `null` means the resource is not linked to any configuration template
+    and uses its own private configuration.
+
+This endpoint only exposes the link between a resource and a
+configuration template — it does not return the template's own fields
+(name, description, request configurations, visibility, etc.). To read
+those, call `GET /configuration-templates/{configuration_template_id}`
+with the ID returned here.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="get_resource_configuration_template" method="get" path="/resources/{resource_id}/configuration-template" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.resources.getResourceConfigurationTemplate({
+    resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { resourcesGetResourceConfigurationTemplate } from "opal-mcp/funcs/resourcesGetResourceConfigurationTemplate.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await resourcesGetResourceConfigurationTemplate(opalMcp, {
+    resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesGetResourceConfigurationTemplate failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetResourceConfigurationTemplateRequest](../../models/operations/getresourceconfigurationtemplaterequest.md)                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.ResourceConfigurationTemplate](../../models/components/resourceconfigurationtemplate.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## updateResourceConfigurationTemplate
+
+Attaches, repoints, or detaches the configuration template linked to a
+resource. This endpoint only manages the link (by ID) between a
+resource and an existing configuration template — it does not create,
+modify, or delete the template itself. To manage a template's own
+fields (name, description, request configurations, visibility, etc.),
+use the `/configuration-templates` endpoints.
+
+The request body is `{"configuration_template_id": "<uuid>" | null}`:
+
+  * A `<uuid>` value links the resource to the configuration template
+    with that ID. If the resource was previously linked to a different
+    template, the resource is repointed in place.
+  * `null` detaches the resource from its current configuration
+    template. The template is deep-copied into a new private
+    configuration with the same settings so the resource's current
+    behaviour is preserved, and the resource is repointed at the fork.
+
+The `configuration_template_id` field is required. Sending `{}` or any
+body in which the field is omitted is rejected with `400`.
+
+The call is idempotent: if the request body matches the resource's
+current link, no changes are made and no audit events are emitted.
+
+This endpoint is the preferred, Terraform-friendly surface for linking
+and unlinking configuration templates on resources. The equivalent
+`configuration_template_id` field on `PUT /resources` remains available
+but is deprecated for this purpose.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="update_resource_configuration_template" method="put" path="/resources/{resource_id}/configuration-template" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.resources.updateResourceConfigurationTemplate({
+    resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+    resourceConfigurationTemplate: {
+      configurationTemplateId: "06851574-e50d-40ca-8c78-f72ae6ab4304",
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { resourcesUpdateResourceConfigurationTemplate } from "opal-mcp/funcs/resourcesUpdateResourceConfigurationTemplate.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await resourcesUpdateResourceConfigurationTemplate(opalMcp, {
+    resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+    resourceConfigurationTemplate: {
+      configurationTemplateId: "06851574-e50d-40ca-8c78-f72ae6ab4304",
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesUpdateResourceConfigurationTemplate failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.UpdateResourceConfigurationTemplateRequest](../../models/operations/updateresourceconfigurationtemplaterequest.md)                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.ResourceConfigurationTemplate](../../models/components/resourceconfigurationtemplate.md)\>**
 
 ### Errors
 
@@ -2081,6 +2269,541 @@ run();
 ### Response
 
 **Promise\<[components.ScopedRolePermissionList](../../models/components/scopedrolepermissionlist.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## getResourceCustomAccessLevels
+
+Returns all custom access levels for a resource. If the resource is a parent type (e.g. GitHubOrg), returns aggregated roles across child resources.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="get_resource_custom_access_levels" method="get" path="/resources/{resource_id}/custom-access-levels" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.resources.getResourceCustomAccessLevels({
+    resourceId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { resourcesGetResourceCustomAccessLevels } from "opal-mcp/funcs/resourcesGetResourceCustomAccessLevels.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await resourcesGetResourceCustomAccessLevels(opalMcp, {
+    resourceId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesGetResourceCustomAccessLevels failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetResourceCustomAccessLevelsRequest](../../models/operations/getresourcecustomaccesslevelsrequest.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.ResourceCustomAccessLevelList](../../models/components/resourcecustomaccesslevellist.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## createResourceCustomAccessLevel
+
+Creates a custom access level on a resource. If the resource is a parent type, the role is created on all child resources.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="create_resource_custom_access_level" method="post" path="/resources/{resource_id}/custom-access-levels" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.resources.createResourceCustomAccessLevel({
+    resourceId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
+    createResourceCustomAccessLevelInfo: {
+      accessLevel: {
+        accessLevelName: "AdminRole",
+        accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
+      },
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { resourcesCreateResourceCustomAccessLevel } from "opal-mcp/funcs/resourcesCreateResourceCustomAccessLevel.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await resourcesCreateResourceCustomAccessLevel(opalMcp, {
+    resourceId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
+    createResourceCustomAccessLevelInfo: {
+      accessLevel: {
+        accessLevelName: "AdminRole",
+        accessLevelRemoteId: "arn:aws:iam::590304332660:role/AdministratorAccess",
+      },
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesCreateResourceCustomAccessLevel failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.CreateResourceCustomAccessLevelRequest](../../models/operations/createresourcecustomaccesslevelrequest.md)                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.ResourceCustomAccessLevelResponse](../../models/components/resourcecustomaccesslevelresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## updateResourceCustomAccessLevel
+
+Updates a custom access level identified by its remote ID. If the resource is a parent type, the update fans out to all child resources.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="update_resource_custom_access_level" method="patch" path="/resources/{resource_id}/custom-access-levels/{access_level_remote_id}" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.resources.updateResourceCustomAccessLevel({
+    resourceId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
+    accessLevelRemoteId: "admin",
+    updateResourceCustomAccessLevelInfo: {},
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { resourcesUpdateResourceCustomAccessLevel } from "opal-mcp/funcs/resourcesUpdateResourceCustomAccessLevel.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await resourcesUpdateResourceCustomAccessLevel(opalMcp, {
+    resourceId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
+    accessLevelRemoteId: "admin",
+    updateResourceCustomAccessLevelInfo: {},
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesUpdateResourceCustomAccessLevel failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.UpdateResourceCustomAccessLevelRequest](../../models/operations/updateresourcecustomaccesslevelrequest.md)                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.ResourceCustomAccessLevelResponse](../../models/components/resourcecustomaccesslevelresponse.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## deleteResourceCustomAccessLevel
+
+Deletes a custom access level identified by its remote ID. If the resource is a parent type, the deletion fans out to all child resources.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="delete_resource_custom_access_level" method="delete" path="/resources/{resource_id}/custom-access-levels/{access_level_remote_id}" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  await opalMcp.resources.deleteResourceCustomAccessLevel({
+    resourceId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
+    accessLevelRemoteId: "admin",
+  });
+
+
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { resourcesDeleteResourceCustomAccessLevel } from "opal-mcp/funcs/resourcesDeleteResourceCustomAccessLevel.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await resourcesDeleteResourceCustomAccessLevel(opalMcp, {
+    resourceId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
+    accessLevelRemoteId: "admin",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("resourcesDeleteResourceCustomAccessLevel failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.DeleteResourceCustomAccessLevelRequest](../../models/operations/deleteresourcecustomaccesslevelrequest.md)                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<void\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## getUserResources
+
+Gets the list of resources for this user.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="get_user_resources" method="get" path="/resources/users/{user_id}" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.resources.getUserResources({
+    userId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+    limit: 200,
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeUnmanaged: false,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { resourcesGetUserResources } from "opal-mcp/funcs/resourcesGetUserResources.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await resourcesGetUserResources(opalMcp, {
+    userId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+    limit: 200,
+    cursor: "cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw",
+    includeUnmanaged: false,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesGetUserResources failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetUserResourcesRequest](../../models/operations/getuserresourcesrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.ResourceAccessUserList](../../models/components/resourceaccessuserlist.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## getResourceGroups
+
+Returns a list of groups that grant access to the resource
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="get_resource_groups" method="get" path="/resources/{resource_id}/groups" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.resources.getResourceGroups({
+    resourceId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { resourcesGetResourceGroups } from "opal-mcp/funcs/resourcesGetResourceGroups.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await resourcesGetResourceGroups(opalMcp, {
+    resourceId: "1b978423-db0a-4037-a4cf-f79c60cb67b3",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesGetResourceGroups failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetResourceGroupsRequest](../../models/operations/getresourcegroupsrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.GroupResourceList](../../models/components/groupresourcelist.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## getResourceAccessLevels
+
+Returns the list of access levels defined for the resource. Resources that only offer default (unnamed) access return an empty list.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="get_resource_access_levels" method="get" path="/resources/{resource_id}/access_levels" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.resources.getResourceAccessLevels({
+    resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { resourcesGetResourceAccessLevels } from "opal-mcp/funcs/resourcesGetResourceAccessLevels.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await resourcesGetResourceAccessLevels(opalMcp, {
+    resourceId: "4baf8423-db0a-4037-a4cf-f79c60cb67a5",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("resourcesGetResourceAccessLevels failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetResourceAccessLevelsRequest](../../models/operations/getresourceaccesslevelsrequest.md)                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.ResourceAccessLevelList](../../models/components/resourceaccesslevellist.md)\>**
 
 ### Errors
 

@@ -12,14 +12,16 @@ const args = {
 
 export const tool$resourcesGetResource: ToolDefinition<typeof args> = {
   name: "resources-get-resource",
-  description: `Retrieves a resource.`,
+  description: `Get resource by ID
+
+Retrieves a resource.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await resourcesGetResource(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

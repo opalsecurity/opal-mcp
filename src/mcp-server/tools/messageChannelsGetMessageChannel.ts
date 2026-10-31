@@ -14,14 +14,16 @@ export const tool$messageChannelsGetMessageChannel: ToolDefinition<
   typeof args
 > = {
   name: "message-channels-get-message-channel",
-  description: `Gets a \`MessageChannel\` object.`,
+  description: `Get message channel by ID
+
+Gets a \`MessageChannel\` object.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await messageChannelsGetMessageChannel(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

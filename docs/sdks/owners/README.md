@@ -1,5 +1,4 @@
 # Owners
-(*owners*)
 
 ## Overview
 
@@ -7,10 +6,10 @@ Operations related to owners
 
 ### Available Operations
 
-* [getOwners](#getowners) - Returns a list of `Owner` objects.
+* [getOwners](#getowners) - Get owners
 * [createOwner](#createowner) - Creates an owner.
 * [updateOwners](#updateowners) - Bulk updates a list of owners.
-* [getOwner](#getowner) - Returns an `Owner` object.
+* [getOwner](#getowner) - Get owner by ID
 * [deleteOwner](#deleteowner) - Deletes an owner.
 * [getOwnerFromName](#getownerfromname) - Returns an `Owner` object. Does not support owners with `/` in their name, use /owners?name=... instead.
 * [getOwnerUsers](#getownerusers) - Gets the list of users for this owner, in escalation priority order if applicable.

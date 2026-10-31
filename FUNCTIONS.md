@@ -1,11 +1,11 @@
 # Standalone Functions
 
 > [!NOTE]
-> This section is useful if you are using a bundler and targetting browsers and
+> This section is useful if you are using a bundler and targeting browsers and
 > runtimes where the size of an application affects performance and load times. 
 
 Every method in this SDK is also available as a standalone function. This
-alternative API is suitable when targetting the browser or serverless runtimes
+alternative API is suitable when targeting the browser or serverless runtimes
 and using a bundler to build your application since all unused functionality
 will be tree-shaken away. This includes code for unused methods, Zod schemas,
 encoding helpers and response handlers. The result is dramatically smaller
@@ -20,7 +20,7 @@ specific category of applications.
 
 ```typescript
 import { OpalMcpCore } from "opal-mcp/core.js";
-import { appsGetApps } from "opal-mcp/funcs/appsGetApps.js";
+import { agentActivityReportAgentActivity } from "opal-mcp/funcs/agentActivityReportAgentActivity.js";
 
 // Use `OpalMcpCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -29,18 +29,14 @@ const opalMcp = new OpalMcpCore({
 });
 
 async function run() {
-  const res = await appsGetApps(opalMcp, {
-    appTypeFilter: [
-      "OKTA_DIRECTORY",
-      "GIT_HUB",
-    ],
-    ownerFilter: "29827fb8-f2dd-4e80-9576-28e31e9934ac",
+  const res = await agentActivityReportAgentActivity(opalMcp, {
+    agentActivityIngestRequest: {},
   });
   if (res.ok) {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("appsGetApps failed:", res.error);
+    console.log("agentActivityReportAgentActivity failed:", res.error);
   }
 }
 
