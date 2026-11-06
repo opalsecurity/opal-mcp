@@ -21,7 +21,7 @@ export const tool$groupsRemoveGroupContainingGroup: ToolDefinition<
     const [result, apiCall] = await groupsRemoveGroupContainingGroup(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

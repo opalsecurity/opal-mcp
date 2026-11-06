@@ -21,7 +21,7 @@ export const tool$messageChannelsCreateMessageChannel: ToolDefinition<
     const [result, apiCall] = await messageChannelsCreateMessageChannel(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

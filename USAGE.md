@@ -7,12 +7,8 @@ const opalMcp = new OpalMcp({
 });
 
 async function run() {
-  const result = await opalMcp.apps.getApps({
-    appTypeFilter: [
-      "OKTA_DIRECTORY",
-      "GIT_HUB",
-    ],
-    ownerFilter: "29827fb8-f2dd-4e80-9576-28e31e9934ac",
+  const result = await opalMcp.agentActivity.reportAgentActivity({
+    agentActivityIngestRequest: {},
   });
 
   console.log(result);

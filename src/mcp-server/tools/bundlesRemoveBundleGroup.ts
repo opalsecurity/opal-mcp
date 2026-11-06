@@ -19,7 +19,7 @@ export const tool$bundlesRemoveBundleGroup: ToolDefinition<typeof args> = {
     const [result, apiCall] = await bundlesRemoveBundleGroup(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

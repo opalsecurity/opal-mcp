@@ -18,6 +18,9 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Owners extends ClientSDK {
   /**
+   * Get owners
+   *
+   * @remarks
    * Returns a list of `Owner` objects.
    */
   async getOwners(
@@ -60,6 +63,9 @@ export class Owners extends ClientSDK {
   }
 
   /**
+   * Get owner by ID
+   *
+   * @remarks
    * Returns an `Owner` object.
    */
   async getOwner(

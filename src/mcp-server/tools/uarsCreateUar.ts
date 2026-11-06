@@ -12,14 +12,15 @@ const args = {
 
 export const tool$uarsCreateUar: ToolDefinition<typeof args> = {
   name: "uars-create-uar",
-  description: `Starts a User Access Review.`,
+  description:
+    `Starts a User Access Review. Deprecated in favor of \`POST /campaigns\`.`,
   scopes: ["write"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await uarsCreateUar(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

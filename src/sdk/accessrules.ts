@@ -4,6 +4,7 @@
 
 import { accessRulesCreateAccessRule } from "../funcs/accessRulesCreateAccessRule.js";
 import { accessRulesGetAccessRule } from "../funcs/accessRulesGetAccessRule.js";
+import { accessRulesGetAccessRules } from "../funcs/accessRulesGetAccessRules.js";
 import { accessRulesUpdateAccessRule } from "../funcs/accessRulesUpdateAccessRule.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
@@ -11,6 +12,20 @@ import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class AccessRules extends ClientSDK {
+  /**
+   * Returns a list of access rules for your organization.
+   */
+  async getAccessRules(
+    request: operations.GetAccessRulesRequest,
+    options?: RequestOptions,
+  ): Promise<components.PaginatedAccessRulesList> {
+    return unwrapAsync(accessRulesGetAccessRules(
+      this,
+      request,
+      options,
+    ));
+  }
+
   /**
    * Creates a new access rule config for the given group_id.
    */

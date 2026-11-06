@@ -19,7 +19,7 @@ export const tool$groupsSetGroupMessageChannels: ToolDefinition<typeof args> = {
     const [result, apiCall] = await groupsSetGroupMessageChannels(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

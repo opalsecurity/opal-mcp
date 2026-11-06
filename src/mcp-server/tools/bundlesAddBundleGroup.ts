@@ -19,7 +19,7 @@ export const tool$bundlesAddBundleGroup: ToolDefinition<typeof args> = {
     const [result, apiCall] = await bundlesAddBundleGroup(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

@@ -14,7 +14,7 @@ export const tool$configurationTemplatesGetConfigurationTemplates:
       const [result, apiCall] =
         await configurationTemplatesGetConfigurationTemplates(
           client,
-          { fetchOptions: { signal: ctx.signal } },
+          { fetchOptions: { signal: ctx.mcpReq.signal } },
         ).$inspect();
 
       if (!result.ok) {

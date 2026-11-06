@@ -1,5 +1,4 @@
 # Bundles
-(*bundles*)
 
 ## Overview
 
@@ -7,9 +6,9 @@ Operations related to bundles
 
 ### Available Operations
 
-* [getBundles](#getbundles) - Returns a list of `Bundle` objects.
+* [getBundles](#getbundles) - Get bundles
 * [createBundle](#createbundle) - Creates a bundle.
-* [getBundle](#getbundle) - Returns a `Bundle` object.
+* [getBundle](#getbundle) - Get bundle by ID
 * [deleteBundle](#deletebundle) - Deletes a bundle.
 * [updateBundle](#updatebundle) - Updates a bundle.
 * [getBundleResources](#getbundleresources) - Returns a list of `Resource` objects in a given bundle.

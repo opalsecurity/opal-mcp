@@ -21,7 +21,7 @@ export const tool$resourcesGetResourceReviewerStages: ToolDefinition<
     const [result, apiCall] = await resourcesGetResourceReviewerStages(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

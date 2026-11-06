@@ -17,7 +17,11 @@ let value: UpdateAccessRuleInfo = {
   status: "ACTIVE",
   ruleClauses: {
     when: {
-      clauses: [],
+      clauses: [
+        {
+          selectors: [],
+        },
+      ],
     },
   },
 };

@@ -4,6 +4,7 @@
 
 import { OpalMcpCore } from "../core.js";
 import { encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -26,7 +27,9 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Retrieves a specific UAR.
+ * Retrieves a specific UAR. Deprecated in favor of `GET /campaigns/{campaign_id}`.
+ *
+ * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
  */
 export function uarsGetUar(
   client: OpalMcpCore,
@@ -89,7 +92,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/uar/{uar_id}")(pathParams);
 
   const headers = new Headers(compactMap({
@@ -104,7 +106,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "get_uar",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -132,7 +134,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["4XX", "5XX"],
+    isErrorStatusCode: (statusCode: number) =>
+      matchStatusCode({ status: statusCode } as Response, ["4XX", "5XX"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });

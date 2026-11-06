@@ -1,5 +1,4 @@
 # Apps
-(*apps*)
 
 ## Overview
 
@@ -7,8 +6,13 @@ Operations related to apps
 
 ### Available Operations
 
-* [getApps](#getapps) - Returns a list of `App` objects.
-* [getApp](#getapp) - Returns an `App` object.
+* [getApps](#getapps) - Get apps
+* [createApp](#createapp) - Create app
+* [getApp](#getapp) - Get app by ID
+* [updateApp](#updateapp) - Update app
+* [deleteApp](#deleteapp) - Delete app
+* [getAppVisibility](#getappvisibility) - Get app visibility
+* [setAppVisibility](#setappvisibility) - Set app visibility
 * [getSyncErrors](#getsyncerrors) - Returns a list of recent sync errors that have occurred since the last successful sync.
 
 ## getApps
@@ -92,6 +96,96 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
+## createApp
+
+Creates an `App` in Opal. Currently supports only Push-only apps (`CUSTOM`)
+and Custom Connector apps (`CUSTOM_CONNECTOR`).
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="createApp" method="post" path="/apps" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.apps.createApp({
+    name: "My Push-only App",
+    description: "Bookkeeping app for internal tools.",
+    adminOwnerId: "7c86c85d-0651-43e2-a748-d69d658418e8",
+    appType: "OKTA_DIRECTORY",
+    customConnector: {
+      identifier: "my-connector",
+      baseUrl: "https://my-connector.example.com",
+      signingSecret: "<value>",
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { appsCreateApp } from "opal-mcp/funcs/appsCreateApp.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await appsCreateApp(opalMcp, {
+    name: "My Push-only App",
+    description: "Bookkeeping app for internal tools.",
+    adminOwnerId: "7c86c85d-0651-43e2-a748-d69d658418e8",
+    appType: "OKTA_DIRECTORY",
+    customConnector: {
+      identifier: "my-connector",
+      baseUrl: "https://my-connector.example.com",
+      signingSecret: "<value>",
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("appsCreateApp failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [components.CreateAppInfo](../../models/components/createappinfo.md)                                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.App](../../models/components/app.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
 ## getApp
 
 Returns an `App` object.
@@ -158,6 +252,325 @@ run();
 ### Response
 
 **Promise\<[components.App](../../models/components/app.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## updateApp
+
+Updates an `App`. Currently supports only Push-only apps (`CUSTOM`) and
+Custom Connector apps (`CUSTOM_CONNECTOR`).
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="updateApp" method="put" path="/apps/{app_id}" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.apps.updateApp({
+    appId: "32acc112-21ff-4669-91c2-21e27683eaa1",
+    updateAppInfo: {},
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { appsUpdateApp } from "opal-mcp/funcs/appsUpdateApp.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await appsUpdateApp(opalMcp, {
+    appId: "32acc112-21ff-4669-91c2-21e27683eaa1",
+    updateAppInfo: {},
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("appsUpdateApp failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.UpdateAppRequest](../../models/operations/updateapprequest.md)                                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.App](../../models/components/app.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## deleteApp
+
+Deletes an `App`. Currently supports only Push-only apps (`CUSTOM`) and
+Custom Connector apps (`CUSTOM_CONNECTOR`). Matches the UI: soft-deletes
+the app and cleans up its resources, groups, and users.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="deleteApp" method="delete" path="/apps/{app_id}" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  await opalMcp.apps.deleteApp({
+    appId: "32acc112-21ff-4669-91c2-21e27683eaa1",
+  });
+
+
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { appsDeleteApp } from "opal-mcp/funcs/appsDeleteApp.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await appsDeleteApp(opalMcp, {
+    appId: "32acc112-21ff-4669-91c2-21e27683eaa1",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("appsDeleteApp failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.DeleteAppRequest](../../models/operations/deleteapprequest.md)                                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<void\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## getAppVisibility
+
+Returns the visibility of this app.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getAppVisibility" method="get" path="/apps/{app_id}/visibility" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.apps.getAppVisibility({
+    appId: "32acc112-21ff-4669-91c2-21e27683eaa1",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { appsGetAppVisibility } from "opal-mcp/funcs/appsGetAppVisibility.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await appsGetAppVisibility(opalMcp, {
+    appId: "32acc112-21ff-4669-91c2-21e27683eaa1",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("appsGetAppVisibility failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetAppVisibilityRequest](../../models/operations/getappvisibilityrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.AppVisibilityInfo](../../models/components/appvisibilityinfo.md)\>**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## setAppVisibility
+
+Sets the visibility of this app. Preferred over setting
+`visibility` / `visibility_group_ids` / `import_visibility` inline on
+`POST /apps` or `PATCH /apps/{app_id}` for drift-sensitive callers
+(Terraform, GitOps). Semantics are a replace, not a merge:
+`visibility_group_ids` is written to exactly what the request sends
+(an omitted or empty array clears all groups), and `import_visibility`
+is updated only when present.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="setAppVisibility" method="put" path="/apps/{app_id}/visibility" -->
+```typescript
+import { OpalMcp } from "opal-mcp";
+
+const opalMcp = new OpalMcp({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const result = await opalMcp.apps.setAppVisibility({
+    appId: "32acc112-21ff-4669-91c2-21e27683eaa1",
+    appVisibilityInfo: {
+      visibility: "LIMITED",
+      visibilityGroupIds: [
+        "7870617d-e72a-47f5-a84c-693817ab4567",
+        "1520617d-e72a-47f5-a84c-693817ab48ad",
+      ],
+      importVisibility: "LIMITED",
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { OpalMcpCore } from "opal-mcp/core.js";
+import { appsSetAppVisibility } from "opal-mcp/funcs/appsSetAppVisibility.js";
+
+// Use `OpalMcpCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const opalMcp = new OpalMcpCore({
+  bearerAuth: process.env["OPALMCP_BEARER_AUTH"] ?? "",
+});
+
+async function run() {
+  const res = await appsSetAppVisibility(opalMcp, {
+    appId: "32acc112-21ff-4669-91c2-21e27683eaa1",
+    appVisibilityInfo: {
+      visibility: "LIMITED",
+      visibilityGroupIds: [
+        "7870617d-e72a-47f5-a84c-693817ab4567",
+        "1520617d-e72a-47f5-a84c-693817ab48ad",
+      ],
+      importVisibility: "LIMITED",
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("appsSetAppVisibility failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.SetAppVisibilityRequest](../../models/operations/setappvisibilityrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[components.AppVisibilityInfo](../../models/components/appvisibilityinfo.md)\>**
 
 ### Errors
 

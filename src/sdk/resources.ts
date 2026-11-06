@@ -5,10 +5,16 @@
 import { resourcesAddResourceNhi } from "../funcs/resourcesAddResourceNhi.js";
 import { resourcesAddResourceUser } from "../funcs/resourcesAddResourceUser.js";
 import { resourcesCreateResource } from "../funcs/resourcesCreateResource.js";
+import { resourcesCreateResourceCustomAccessLevel } from "../funcs/resourcesCreateResourceCustomAccessLevel.js";
 import { resourcesDeleteResource } from "../funcs/resourcesDeleteResource.js";
+import { resourcesDeleteResourceCustomAccessLevel } from "../funcs/resourcesDeleteResourceCustomAccessLevel.js";
 import { resourcesDeleteResourceNhi } from "../funcs/resourcesDeleteResourceNhi.js";
 import { resourcesDeleteResourceUser } from "../funcs/resourcesDeleteResourceUser.js";
 import { resourcesGetResource } from "../funcs/resourcesGetResource.js";
+import { resourcesGetResourceAccessLevels } from "../funcs/resourcesGetResourceAccessLevels.js";
+import { resourcesGetResourceConfigurationTemplate } from "../funcs/resourcesGetResourceConfigurationTemplate.js";
+import { resourcesGetResourceCustomAccessLevels } from "../funcs/resourcesGetResourceCustomAccessLevels.js";
+import { resourcesGetResourceGroups } from "../funcs/resourcesGetResourceGroups.js";
 import { resourcesGetResourceMessageChannels } from "../funcs/resourcesGetResourceMessageChannels.js";
 import { resourcesGetResourceNhis } from "../funcs/resourcesGetResourceNhis.js";
 import { resourcesGetResourceReviewers } from "../funcs/resourcesGetResourceReviewers.js";
@@ -19,12 +25,15 @@ import { resourcesGetResourceTags } from "../funcs/resourcesGetResourceTags.js";
 import { resourcesGetResourceUser } from "../funcs/resourcesGetResourceUser.js";
 import { resourcesGetResourceUsers } from "../funcs/resourcesGetResourceUsers.js";
 import { resourcesGetResourceVisibility } from "../funcs/resourcesGetResourceVisibility.js";
+import { resourcesGetUserResources } from "../funcs/resourcesGetUserResources.js";
 import { resourcesResourceUserAccessStatusRetrieve } from "../funcs/resourcesResourceUserAccessStatusRetrieve.js";
 import { resourcesSetResourceMessageChannels } from "../funcs/resourcesSetResourceMessageChannels.js";
 import { resourcesSetResourceReviewers } from "../funcs/resourcesSetResourceReviewers.js";
 import { resourcesSetResourceReviewerStages } from "../funcs/resourcesSetResourceReviewerStages.js";
 import { resourcesSetResourceScopedRolePermissions } from "../funcs/resourcesSetResourceScopedRolePermissions.js";
 import { resourcesSetResourceVisibility } from "../funcs/resourcesSetResourceVisibility.js";
+import { resourcesUpdateResourceConfigurationTemplate } from "../funcs/resourcesUpdateResourceConfigurationTemplate.js";
+import { resourcesUpdateResourceCustomAccessLevel } from "../funcs/resourcesUpdateResourceCustomAccessLevel.js";
 import { resourcesUpdateResources } from "../funcs/resourcesUpdateResources.js";
 import { resourcesUpdateResourceUser } from "../funcs/resourcesUpdateResourceUser.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -35,6 +44,9 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Resources extends ClientSDK {
   /**
+   * Get resources
+   *
+   * @remarks
    * Returns a list of resources for your organization.
    */
   async getResources(
@@ -79,6 +91,9 @@ export class Resources extends ClientSDK {
   }
 
   /**
+   * Get resource by ID
+   *
+   * @remarks
    * Retrieves a resource.
    */
   async getResource(
@@ -100,6 +115,78 @@ export class Resources extends ClientSDK {
     options?: RequestOptions,
   ): Promise<void> {
     return unwrapAsync(resourcesDeleteResource(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get the ID of the configuration template linked to a resource
+   *
+   * @remarks
+   * Returns the ID of the configuration template that the resource is
+   * currently linked to. The response body is
+   * `{"configuration_template_id": "<uuid>" | null}`:
+   *
+   *   * `<uuid>` is the ID of the configuration template the resource is linked to.
+   *   * `null` means the resource is not linked to any configuration template
+   *     and uses its own private configuration.
+   *
+   * This endpoint only exposes the link between a resource and a
+   * configuration template — it does not return the template's own fields
+   * (name, description, request configurations, visibility, etc.). To read
+   * those, call `GET /configuration-templates/{configuration_template_id}`
+   * with the ID returned here.
+   */
+  async getResourceConfigurationTemplate(
+    request: operations.GetResourceConfigurationTemplateRequest,
+    options?: RequestOptions,
+  ): Promise<components.ResourceConfigurationTemplate> {
+    return unwrapAsync(resourcesGetResourceConfigurationTemplate(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Set the ID of the configuration template linked to a resource
+   *
+   * @remarks
+   * Attaches, repoints, or detaches the configuration template linked to a
+   * resource. This endpoint only manages the link (by ID) between a
+   * resource and an existing configuration template — it does not create,
+   * modify, or delete the template itself. To manage a template's own
+   * fields (name, description, request configurations, visibility, etc.),
+   * use the `/configuration-templates` endpoints.
+   *
+   * The request body is `{"configuration_template_id": "<uuid>" | null}`:
+   *
+   *   * A `<uuid>` value links the resource to the configuration template
+   *     with that ID. If the resource was previously linked to a different
+   *     template, the resource is repointed in place.
+   *   * `null` detaches the resource from its current configuration
+   *     template. The template is deep-copied into a new private
+   *     configuration with the same settings so the resource's current
+   *     behaviour is preserved, and the resource is repointed at the fork.
+   *
+   * The `configuration_template_id` field is required. Sending `{}` or any
+   * body in which the field is omitted is rejected with `400`.
+   *
+   * The call is idempotent: if the request body matches the resource's
+   * current link, no changes are made and no audit events are emitted.
+   *
+   * This endpoint is the preferred, Terraform-friendly surface for linking
+   * and unlinking configuration templates on resources. The equivalent
+   * `configuration_template_id` field on `PUT /resources` remains available
+   * but is deprecated for this purpose.
+   */
+  async updateResourceConfigurationTemplate(
+    request: operations.UpdateResourceConfigurationTemplateRequest,
+    options?: RequestOptions,
+  ): Promise<components.ResourceConfigurationTemplate> {
+    return unwrapAsync(resourcesUpdateResourceConfigurationTemplate(
       this,
       request,
       options,
@@ -233,6 +320,9 @@ export class Resources extends ClientSDK {
   }
 
   /**
+   * Get resource users
+   *
+   * @remarks
    * Gets the list of users for this resource.
    */
   async getResourceUsers(
@@ -317,6 +407,9 @@ export class Resources extends ClientSDK {
   }
 
   /**
+   * Get resource user
+   *
+   * @remarks
    * Returns information about a specific user's access to a resource.
    */
   async getResourceUser(
@@ -382,6 +475,107 @@ export class Resources extends ClientSDK {
     options?: RequestOptions,
   ): Promise<components.ScopedRolePermissionList> {
     return unwrapAsync(resourcesSetResourceScopedRolePermissions(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Returns all custom access levels for a resource. If the resource is a parent type (e.g. GitHubOrg), returns aggregated roles across child resources.
+   */
+  async getResourceCustomAccessLevels(
+    request: operations.GetResourceCustomAccessLevelsRequest,
+    options?: RequestOptions,
+  ): Promise<components.ResourceCustomAccessLevelList> {
+    return unwrapAsync(resourcesGetResourceCustomAccessLevels(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Creates a custom access level on a resource. If the resource is a parent type, the role is created on all child resources.
+   */
+  async createResourceCustomAccessLevel(
+    request: operations.CreateResourceCustomAccessLevelRequest,
+    options?: RequestOptions,
+  ): Promise<components.ResourceCustomAccessLevelResponse> {
+    return unwrapAsync(resourcesCreateResourceCustomAccessLevel(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Updates a custom access level identified by its remote ID. If the resource is a parent type, the update fans out to all child resources.
+   */
+  async updateResourceCustomAccessLevel(
+    request: operations.UpdateResourceCustomAccessLevelRequest,
+    options?: RequestOptions,
+  ): Promise<components.ResourceCustomAccessLevelResponse> {
+    return unwrapAsync(resourcesUpdateResourceCustomAccessLevel(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Deletes a custom access level identified by its remote ID. If the resource is a parent type, the deletion fans out to all child resources.
+   */
+  async deleteResourceCustomAccessLevel(
+    request: operations.DeleteResourceCustomAccessLevelRequest,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(resourcesDeleteResourceCustomAccessLevel(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Gets the list of resources for this user.
+   */
+  async getUserResources(
+    request: operations.GetUserResourcesRequest,
+    options?: RequestOptions,
+  ): Promise<components.ResourceAccessUserList> {
+    return unwrapAsync(resourcesGetUserResources(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Returns a list of groups that grant access to the resource
+   */
+  async getResourceGroups(
+    request: operations.GetResourceGroupsRequest,
+    options?: RequestOptions,
+  ): Promise<components.GroupResourceList> {
+    return unwrapAsync(resourcesGetResourceGroups(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get resource access levels
+   *
+   * @remarks
+   * Returns the list of access levels defined for the resource. Resources that only offer default (unnamed) access return an empty list.
+   */
+  async getResourceAccessLevels(
+    request: operations.GetResourceAccessLevelsRequest,
+    options?: RequestOptions,
+  ): Promise<components.ResourceAccessLevelList> {
+    return unwrapAsync(resourcesGetResourceAccessLevels(
       this,
       request,
       options,

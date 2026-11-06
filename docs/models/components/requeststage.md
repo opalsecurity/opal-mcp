@@ -12,7 +12,8 @@ let value: RequestStage = {
   operator: "OR",
   reviewers: [
     {
-      id: "ad49e317-29f3-4a7c-bca4-979dabe188a1",
+      id: "020729d7-6ef5-4700-aa93-7567afc9c5b0",
+      fullName: "Jake Barnes",
       status: "APPROVED",
     },
   ],

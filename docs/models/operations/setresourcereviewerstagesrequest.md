@@ -16,6 +16,9 @@ let value: SetResourceReviewerStagesRequest = {
           "7870617d-e72a-47f5-a84c-693817ab4567",
           "1520617d-e72a-47f5-a84c-693817ab48ad2",
         ],
+        serviceUserIds: [
+          "7870617d-e72a-47f5-a84c-693817ab4568",
+        ],
       },
     ],
   },

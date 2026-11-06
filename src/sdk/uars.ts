@@ -13,7 +13,9 @@ import { PageIterator, unwrapResultIterator } from "../types/operations.js";
 
 export class Uars extends ClientSDK {
   /**
-   * Returns a list of `UAR` objects.
+   * Returns a list of `UAR` objects. Deprecated in favor of `GET /campaigns`.
+   *
+   * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   async getUARs(
     request: operations.GetUARsRequest,
@@ -27,7 +29,9 @@ export class Uars extends ClientSDK {
   }
 
   /**
-   * Starts a User Access Review.
+   * Starts a User Access Review. Deprecated in favor of `POST /campaigns`.
+   *
+   * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   async createUar(
     request: components.CreateUARInfo,
@@ -41,7 +45,9 @@ export class Uars extends ClientSDK {
   }
 
   /**
-   * Retrieves a specific UAR.
+   * Retrieves a specific UAR. Deprecated in favor of `GET /campaigns/{campaign_id}`.
+   *
+   * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   async getUar(
     request: operations.GetUarRequest,

@@ -21,7 +21,7 @@ export const tool$groupBindingsUpdateGroupBindings: ToolDefinition<
     const [result, apiCall] = await groupBindingsUpdateGroupBindings(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

@@ -21,7 +21,7 @@ export const tool$resourcesResourceUserAccessStatusRetrieve: ToolDefinition<
     const [result, apiCall] = await resourcesResourceUserAccessStatusRetrieve(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

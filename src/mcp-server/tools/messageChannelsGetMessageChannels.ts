@@ -7,12 +7,14 @@ import { formatResult, ToolDefinition } from "../tools.js";
 
 export const tool$messageChannelsGetMessageChannels: ToolDefinition = {
   name: "message-channels-get-message-channels",
-  description: `Returns a list of \`MessageChannel\` objects.`,
+  description: `Get message channels
+
+Returns a list of \`MessageChannel\` objects.`,
   scopes: ["read"],
   tool: async (client, ctx) => {
     const [result, apiCall] = await messageChannelsGetMessageChannels(
       client,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {

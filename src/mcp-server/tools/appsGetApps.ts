@@ -12,14 +12,16 @@ const args = {
 
 export const tool$appsGetApps: ToolDefinition<typeof args> = {
   name: "apps-get-apps",
-  description: `Returns a list of \`App\` objects.`,
+  description: `Get apps
+
+Returns a list of \`App\` objects.`,
   scopes: ["read"],
   args,
   tool: async (client, args, ctx) => {
     const [result, apiCall] = await appsGetApps(
       client,
       args.request,
-      { fetchOptions: { signal: ctx.signal } },
+      { fetchOptions: { signal: ctx.mcpReq.signal } },
     ).$inspect();
 
     if (!result.ok) {
